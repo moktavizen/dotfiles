@@ -1,0 +1,120 @@
+{
+  "name": "Material Theme Darker",
+  "variables": {
+    "accent_color": "#82aaff",
+    "accent_bg_color": "#82aaff",
+    "accent_fg_color": "#eeffff",
+    "destructive_color": "#f07178",
+    "destructive_bg_color": "#f07178",
+    "destructive_fg_color": "#eeffff",
+    "success_color": "#c3e88d",
+    "success_bg_color": "#c3e88d",
+    "success_fg_color": "#eeffff",
+    "warning_color": "#ffcb6b",
+    "warning_bg_color": "#ffcb6b",
+    "warning_fg_color": "rgba(0, 0, 0, 0.8)",
+    "error_color": "#f07178",
+    "error_bg_color": "#f07178",
+    "error_fg_color": "#eeffff",
+    "window_bg_color": "#212121",
+    "window_fg_color": "#eeffff",
+    "view_bg_color": "#1a1a1a",
+    "view_fg_color": "#eeffff",
+    "headerbar_bg_color": "#333333",
+    "headerbar_fg_color": "#eeffff",
+    "headerbar_border_color": "#eeffff",
+    "headerbar_backdrop_color": "@window_bg_color",
+    "headerbar_shade_color": "rgba(0, 0, 0, 0.36)",
+    "headerbar_darker_shade_color": "rgba(0, 0, 0, 0.9)",
+    "card_bg_color": "rgba(255, 255, 255, 0.08)",
+    "card_fg_color": "#eeffff",
+    "card_shade_color": "rgba(0, 0, 0, 0.36)",
+    "dialog_bg_color": "#212121",
+    "dialog_fg_color": "#eeffff",
+    "popover_bg_color": "#212121",
+    "popover_fg_color": "#eeffff",
+    "popover_shade_color": "rgba(0, 0, 0, 0.36)",
+    "shade_color": "rgba(0, 0, 0, 0.36)",
+    "scrollbar_outline_color": "rgba(0, 0, 0, 0.5)",
+    "thumbnail_bg_color": "#212121",
+    "thumbnail_fg_color": "#eeffff",
+    "sidebar_bg_color": "#212121",
+    "sidebar_fg_color": "#eeffff",
+    "sidebar_backdrop_color": "#212121",
+    "sidebar_shade_color": "#212121",
+    "secondary_sidebar_bg_color": "#212121",
+    "secondary_sidebar_fg_color": "#eeffff",
+    "secondary_sidebar_backdrop_color": "#212121",
+    "secondary_sidebar_shade_color": "#212121"
+  },
+  "palette": {
+    "blue_": {
+      "1": "#d6e3ff",
+      "2": "#adc7ff",
+      "3": "#82aaff",
+      "4": "#5c8fff",
+      "5": "#3374ff"
+    },
+    "green_": {
+      "1": "#edf8dd",
+      "2": "#dcf1bb",
+      "3": "#c3e88d",
+      "4": "#b8e378",
+      "5": "#a6dc56"
+    },
+    "yellow_": {
+      "1": "#ffeac2",
+      "2": "#ffdb99",
+      "3": "#ffcb6b",
+      "4": "#ffbf47",
+      "5": "#ffb01f"
+    },
+    "orange_": {
+      "1": "#fcd2c5",
+      "2": "#fab49e",
+      "3": "#f78c6c",
+      "4": "#f67751",
+      "5": "#f4592a"
+    },
+    "red_": {
+      "1": "#f9c8ca",
+      "2": "#f5a3a7",
+      "3": "#f07178",
+      "4": "#ee5960",
+      "5": "#ea343d"
+    },
+    "purple_": {
+      "1": "#edddf8",
+      "2": "#dcbaf2",
+      "3": "#c792ea",
+      "4": "#b876e5",
+      "5": "#a754de"
+    },
+    "brown_": {
+      "1": "#bc9d8a",
+      "2": "#ad8871",
+      "3": "#916b53",
+      "4": "#82604a",
+      "5": "#684c3c"
+    },
+    "light_": {
+      "1": "#ffffff",
+      "2": "#e0e0e0",
+      "3": "#d6d6d6",
+      "4": "#b8b8b8",
+      "5": "#999999"
+    },
+    "dark_": {
+      "1": "#666666",
+      "2": "#474747",
+      "3": "#292929",
+      "4": "#1f1f1f",
+      "5": "#000000"
+    }
+  },
+  "custom_css": {
+    "gtk4": "",
+    "gtk3": ""
+  },
+  "plugins": {}
+}

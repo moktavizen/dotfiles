@@ -1,0 +1,91 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top", // Waybar at top layer
+  "height": 32,
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-right": ["tray", "group/hw", "group/control", "clock"],
+
+  // Modules configuratio1
+  "hyprland/workspaces": {
+    "active-only": false,
+    "sort-by-number": true,
+    "on-click": "activate",
+    "all-outputs": false,
+    "format": "{icon}",
+    "format-icons": {
+      "active": "󰮯",
+      "default": "",
+    },
+  },
+  "hyprland/window": {},
+  "tray": {
+    "icon-size": 15,
+    "spacing": 8,
+  },
+  "group/hw": {
+    "orientation": "horizontal",
+    "modules": ["cpu", "temperature", "memory"],
+  },
+  "cpu": {
+    "format": "<span color='#b2ccd6'>󰍛</span> {usage}%",
+    "interval": 2,
+    "on-click": "wezterm start -- btop",
+  },
+  "temperature": {
+    "format": "<span color='#f07178'></span> {temperatureC}󰔄",
+    "interval": 2,
+    "on-click": "wezterm start -- btop",
+  },
+  "memory": {
+    "format": "<span color='#c792ea'>󰘚</span> {used:.2g}GB",
+    "interval": 2,
+    "on-click": "wezterm start -- btop",
+  },
+  "group/control": {
+    "orientation": "horizontal",
+    "modules": ["battery", "network", "bluetooth", "pulseaudio"],
+  },
+  "battery": {
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "<span color='#c3e88d'>{icon} {capacity}%",
+    "format-charging": "<span color='#c3e88d'>󱐋</span> {capacity}%",
+    "format-plugged": "<span color='#c3e88d'></span> {capacity}%",
+    "tooltip-format": "{time} left",
+    "format-icons": [" ", " ", " ", " ", " "],
+  },
+  "network": {
+    "format-ethernet": "<span color='#89ddff'>󰈀</span> {bandwidthDownBytes}",
+    "format-wifi": "<span color='#89ddff'>{icon}</span> {bandwidthDownBytes}",
+    "format-disconnected": "<span color='#89ddff'>󰤭</span> {bandwidthDownBytes}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "interval": 2,
+    "on-click": "nm-connection-editor",
+  },
+  "bluetooth": {
+    "format": "<span color='#82aaff'>󰂯</span> {status}",
+    "format-disabled": "",
+    "tooltip-format": "{device_alias} {status}",
+    "on-click": "blueman-manager",
+  },
+  "pulseaudio": {
+    "format": "<span color='#f78c6c'>{icon}</span> {volume}%",
+    "format-muted": "<span color='#f78c6c'>󰖁</span> {volume}%",
+    "format-bluetooth": "<span color='#f78c6c'>{icon}</span> {volume}%",
+    "format-bluetooth-muted": "<span color='#f78c6c'>󰖁</span> {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "phone": "",
+      "portable": "",
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol",
+  },
+  "clock": {
+    "format": "<span color='#ffcb6b'></span> {:%a %b %d %R %p}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+}
