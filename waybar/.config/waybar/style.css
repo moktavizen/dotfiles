@@ -1,0 +1,99 @@
+@define-color bg0 #212121;
+@define-color bg1 #353535;
+@define-color fg0 #eeffff;
+@define-color yellow #ffcb6b;
+
+* {
+  font-family: Fira Code Nerd Font Mono;
+  font-size: 11pt;
+  font-weight: 500;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: @bg0;
+  color: @fg0; /* didn't affect workspaces */
+}
+
+#workspaces {
+  background-color: @bg1;
+  border-radius: 16px;
+  padding: 0px;
+  margin: 5px 5px 5px 8px;
+}
+
+#workspaces button {
+  color: @fg0;
+  border-radius: 16px;
+}
+
+#workspaces button.active {
+  color: @yellow;
+}
+
+#window {
+  background-color: @bg1;
+  border-radius: 16px;
+  padding: 0px 12px;
+  margin: 5px;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+#tray {
+  background-color: @bg1;
+  border-radius: 16px;
+  padding: 0px 12px;
+  margin: 5px;
+}
+
+#hw {
+  background-color: @bg1;
+  border-radius: 16px;
+  padding: 0px 12px;
+  margin: 5px;
+}
+
+#cpu {
+  margin-right: 8px;
+}
+
+#temperature {
+  margin: 0px 8px;
+}
+
+#memory {
+  margin-left: 8px;
+}
+
+#control {
+  background-color: @bg1;
+  border-radius: 16px;
+  padding: 0px 12px;
+  margin: 5px;
+}
+
+#battery {
+  margin-right: 8px;
+}
+
+#network {
+  margin: 0px 8px;
+}
+
+#bluetooth {
+  margin: 0px 8px;
+}
+
+#pulseaudio {
+  margin-left: 8px;
+}
+
+#clock {
+  background-color: @bg1;
+  border-radius: 16px;
+  padding: 0px 12px;
+  margin: 5px 8px 5px 5px;
+}
