@@ -4,6 +4,7 @@ return {
     ensure_installed = {
       "hyprlang",
       "css",
+      -- "dart", -- bug causing lags
     },
   },
   -- add hyprlang file detection
