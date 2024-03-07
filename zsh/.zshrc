@@ -29,7 +29,7 @@ compinit
 export CHROME_EXECUTABLE="/usr/bin/android-studio"
 
 # ls colors for ls, fd
-export LS_COLORS="$(vivid generate /home/moktavizen/Downloads/material-darker.yml)"
+export LS_COLORS="$(vivid generate material-darker)"
 # export LS_COLORS="$(vivid generate catppuccin-frappe)"
 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
