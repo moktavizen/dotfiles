@@ -12,10 +12,10 @@ config.enable_tab_bar = false
 
 -- Window padding in pixel
 config.window_padding = {
-	left = 14,
-	right = 14,
-	top = 14,
-	bottom = 14,
+	left = "2.5cell",
+	right = "2.5cell",
+	top = "1cell",
+	bottom = "1cell",
 }
 
 -- material theme darker color scheme
