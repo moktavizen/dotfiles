@@ -50,5 +50,6 @@ alias sfile='nvim "$(fd -H -t f | fzf --preview "bat --theme=base16 --color=alwa
 alias shis='history 1 | fzf'
 
 # Plugins
+source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
