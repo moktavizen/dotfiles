@@ -1,0 +1,25 @@
+# VIZZEN mini, theme for macchina
+# Author: github.com/moktavizzen
+
+prefer_small_ascii = true
+spacing = 0
+padding = 0
+hide_ascii = false
+separator = " "
+key_color = "#c792ea"
+
+[keys]
+host            = " "
+distro          = "󰻀 "
+kernel          = " "
+packages        = " "
+memory          = "󰘚 "
+de              = " "
+
+[palette]
+glyph = " ●"
+visible = true
+
+[custom_ascii]
+color = "#89ddff"
+path = "~/.config/wallpapers/arch_linux"
