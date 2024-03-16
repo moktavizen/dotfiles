@@ -1,5 +1,5 @@
 return {
-  -- enable colorful bracket pairs
+  -- enable colorful bracket pairs (depends on installed treesitter)
   {
     "HiPhish/rainbow-delimiters.nvim",
     -- config = true, -- for some reason this gives an error
