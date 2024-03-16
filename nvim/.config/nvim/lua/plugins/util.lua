@@ -13,4 +13,13 @@ return {
     -- "NvChad/nvim-colorizer.lua",
     -- config = true,
   },
+
+  -- disable indent color
+  {
+    "echasnovski/mini.indentscope",
+    enabled = false,
+    -- opts = { -- disable indent animation
+    --   draw = { animation = require("mini.indentscope").gen_animation.none() },
+    -- },
+  },
 }

@@ -17,6 +17,12 @@ return {
     }),
   },
 
+  -- Markdown
+  {
+    "lukas-reineke/headlines.nvim",
+    enabled = false, -- disable decoration on markdown file
+  },
+
   -- Dart & Flutter
   {
     "akinsho/flutter-tools.nvim",
