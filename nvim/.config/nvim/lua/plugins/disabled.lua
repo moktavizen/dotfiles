@@ -4,4 +4,10 @@ return {
     "lukas-reineke/headlines.nvim",
     enabled = false,
   },
+
+  -- disable indent andimation and color
+  {
+    "echasnovski/mini.indentscope",
+    enabled = false,
+  },
 }
