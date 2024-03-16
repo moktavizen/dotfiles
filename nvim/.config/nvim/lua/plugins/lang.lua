@@ -7,6 +7,7 @@ return {
         vim.list_extend(opts.ensure_installed, {
           "css",
           "hyprlang",
+          -- "dart", -- tree-sitter-dart is slow and stuttery
         })
       end
     end,
