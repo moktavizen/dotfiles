@@ -2,13 +2,14 @@ return {
   -- Syntax Highlighting
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "hyprlang",
-        "css",
-        -- "dart", -- bug causing lags
-      },
-    },
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, {
+          "css",
+          "hyprlang",
+        })
+      end
+    end,
     -- add hyprlang file detection
     vim.filetype.add({
       pattern = { [".*/hypr.*%.conf"] = "hyprlang" },
