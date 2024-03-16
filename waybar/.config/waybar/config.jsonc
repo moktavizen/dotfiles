@@ -63,7 +63,7 @@
     "format-disconnected": "<span color='#89ddff'>󰤭</span> {bandwidthDownBytes}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "interval": 2,
-    "on-click": "nm-connection-editor",
+    "on-click": "kitty --class nmtui nmtui",
   },
   "bluetooth": {
     "format": "<span color='#82aaff'>󰂯</span> {status}",
