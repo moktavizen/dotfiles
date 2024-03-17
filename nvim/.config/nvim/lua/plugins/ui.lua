@@ -39,12 +39,6 @@ return {
           key = "f",
         },
         {
-          action = "ene | startinsert",
-          desc = " New file",
-          icon = " ",
-          key = "n",
-        },
-        {
           action = "Telescope oldfiles",
           desc = " Recent files",
           icon = " ",
