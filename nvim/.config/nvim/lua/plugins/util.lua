@@ -12,12 +12,12 @@ return {
     config = true,
   },
 
-  -- disable indent color
+  -- disable indent animation
   {
     "echasnovski/mini.indentscope",
-    enabled = false,
-    -- opts = { -- disable indent animation
-    --   draw = { animation = require("mini.indentscope").gen_animation.none() },
-    -- },
+    -- enabled = false,
+    opts = {
+      draw = { animation = require("mini.indentscope").gen_animation.none() },
+    },
   },
 }
