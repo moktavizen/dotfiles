@@ -22,6 +22,10 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # flutter
 export CHROME_EXECUTABLE="/usr/bin/android-studio"
 
@@ -52,8 +56,7 @@ alias shutdown='shutdown -P now'
 alias sdir='cd "$(fd -H -t d | fzf --preview "eza -lh --no-user --no-permissions --icons=always --color=always {}")"' # change directory using fzf
 alias sfile='nvim "$(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=full --line-range=:100 {}")"' # edit file using fzf
 alias shis='history 1 | fzf'
-alias npm='bun'
-alias npx='bunx'
+alias mdpdf='mdpdf --border=10mm'
 
 # p10k theme
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
