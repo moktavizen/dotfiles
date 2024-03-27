@@ -27,7 +27,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # flutter
-export CHROME_EXECUTABLE="/usr/bin/android-studio"
+export CHROME_EXECUTABLE="/usr/bin/vivaldi-stable"
 
 # ls colors for ls, fd
 export LS_COLORS="$(vivid generate material-darker)"
