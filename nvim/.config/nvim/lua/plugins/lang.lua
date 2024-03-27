@@ -42,6 +42,8 @@ return {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
-    config = true,
+    opts = {
+      flutter_path = "/home/moktavizen/Documents/sdk/flutter/bin/flutter",
+    },
   },
 }
