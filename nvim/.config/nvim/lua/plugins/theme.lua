@@ -65,4 +65,14 @@ return {
       colorscheme = "material",
     },
   },
+
+  -- disable unused theme
+  {
+    "folke/tokyonight.nvim",
+    enabled = false,
+  },
+  {
+    "catppuccin/nvim",
+    enabled = false,
+  },
 }
