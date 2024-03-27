@@ -52,7 +52,7 @@ return {
           colors.editor.contrast = colors.editor.bg -- removing LazyVim top darker bar
         end,
         custom_highlights = {
-          MiniIndentscopeSymbol = { fg = colors.editor.line_numbers }, -- set indentscope color to blue
+          MiniIndentscopeSymbol = { fg = colors.editor.line_numbers }, -- set indentscope color
         },
       })
     end,
