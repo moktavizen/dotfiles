@@ -27,7 +27,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # flutter
-export PATH="$HOME/Documents/sdk/flutter/bin:$PATH"
+export PATH="/usr/bin/flutter/bin:$PATH"
 export CHROME_EXECUTABLE="/usr/bin/vivaldi-stable"
 
 # ls colors for ls, fd

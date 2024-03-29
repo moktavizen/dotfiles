@@ -43,7 +43,7 @@ return {
       "stevearc/dressing.nvim", -- optional for vim.ui.select
     },
     opts = {
-      flutter_path = "/home/moktavizen/Documents/sdk/flutter/bin/flutter",
+      flutter_path = "/usr/bin/flutter/bin/flutter",
     },
   },
 }
