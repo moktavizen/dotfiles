@@ -12,19 +12,39 @@ return {
         })
       end
     end,
-    -- add hyprlang file detection
+    -- add additional file detection
     vim.filetype.add({
-      pattern = { [".*/hypr.*%.conf"] = "hyprlang" },
+      pattern = {
+        [".*hypr.*%.conf"] = "hyprlang",
+      },
     }),
   },
 
-  -- LSP, Linter, Formatter
+  -- Install LSP, Linter, Formatter
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "phpactor" })
+      vim.list_extend(opts.ensure_installed, {
+        "phpactor",
+        "blade-formatter",
+      })
     end,
+  },
+
+  -- Set Formatter
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        php = { "blade-formatter" },
+      },
+      formatters = {
+        ["blade-formatter"] = {
+          prepend_args = { "--sort-tailwindcss-classes" },
+        },
+      },
+    },
   },
 
   -- Markdown
