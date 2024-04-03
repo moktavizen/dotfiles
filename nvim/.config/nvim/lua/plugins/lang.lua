@@ -8,16 +8,34 @@ return {
           "hyprlang",
           "css",
           "php",
+          "blade",
           -- "dart", -- tree-sitter-dart is slow and stuttery
         })
       end
     end,
-    -- add additional file detection
-    vim.filetype.add({
-      pattern = {
-        [".*hypr.*%.conf"] = "hyprlang",
-      },
-    }),
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+
+      ---@class ParserConfig
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+      parser_config.blade = {
+        install_info = {
+          url = "https://github.com/EmranMR/tree-sitter-blade",
+          files = { "src/parser.c" },
+          branch = "main",
+        },
+        filetype = "blade",
+      }
+
+      -- add additional file detection
+      vim.filetype.add({
+        pattern = {
+          [".*hypr.*%.conf"] = "hyprlang",
+          [".*blade%.php"] = "blade",
+        },
+      })
+    end,
   },
 
   -- Install LSP, Linter, Formatter
@@ -27,6 +45,7 @@ return {
       opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, {
         "phpactor",
+        "php-cs-fixer",
         "blade-formatter",
       })
     end,
@@ -37,7 +56,8 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        php = { "blade-formatter" },
+        php = { "php_cs_fixer" },
+        blade = { "blade-formatter" },
       },
       formatters = {
         ["blade-formatter"] = {
