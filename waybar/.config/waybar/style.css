@@ -12,6 +12,7 @@
 
 window#waybar {
   background-color: @bg0;
+  /* background-color: transparent; */
   color: @fg0; /* didn't affect workspaces */
 }
 
@@ -39,6 +40,7 @@ window#waybar {
 }
 
 window#waybar.empty #window {
+  /* hide empty module */
   background-color: transparent;
 }
 

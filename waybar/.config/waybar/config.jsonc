@@ -29,17 +29,17 @@
   "cpu": {
     "format": "<span color='#b2ccd6'>󰍛</span> {usage}%",
     "interval": 2,
-    "on-click": "wezterm start -- btop",
+    "on-click": "kitty btop",
   },
   "temperature": {
     "format": "<span color='#f07178'></span> {temperatureC}󰔄",
     "interval": 2,
-    "on-click": "wezterm start -- btop",
+    "on-click": "kitty btop",
   },
   "memory": {
     "format": "<span color='#c792ea'>󰘚</span> {used:.2g}GB",
     "interval": 2,
-    "on-click": "wezterm start -- btop",
+    "on-click": "kitty btop",
   },
   "group/control": {
     "orientation": "horizontal",
@@ -51,7 +51,7 @@
       "warning": 30,
       "critical": 15,
     },
-    "format": "<span color='#c3e88d'>{icon} {capacity}%",
+    "format": "<span color='#c3e88d'>{icon}</span> {capacity}%",
     "format-charging": "<span color='#c3e88d'>󱐋</span> {capacity}%",
     "format-plugged": "<span color='#c3e88d'></span> {capacity}%",
     "tooltip-format": "{time} left",
