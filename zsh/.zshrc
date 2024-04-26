@@ -28,7 +28,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # flutter
 export PATH="/usr/bin/flutter/bin:$PATH"
-export CHROME_EXECUTABLE="/usr/bin/vivaldi-stable"
+export CHROME_EXECUTABLE="/usr/bin/firefox"
 
 # ls colors for ls, fd
 export LS_COLORS="$(vivid generate material-darker)"
