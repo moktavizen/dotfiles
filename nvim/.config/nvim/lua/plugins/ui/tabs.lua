@@ -21,7 +21,8 @@ return {
     { '<leader>bj', "<cmd>lua require('bufferline').go_to(2, true)<cr>", desc = 'Switch to Buffer 2' },
     { '<leader>bk', "<cmd>lua require('bufferline').go_to(3, true)<cr>", desc = 'Switch to Buffer 3' },
     { '<leader>bl', "<cmd>lua require('bufferline').go_to(4, true)<cr>", desc = 'Switch to Buffer 4' },
-    { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
-    { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
+    { '<leader>bp', '<cmd>BufferLineTogglePin<cr>', desc = 'Toggle Pin' },
+    { '<leader>bP', '<cmd>BufferLineGroupClose ungrouped<cr>', desc = 'Delete Non-Pinned Buffers' },
+    { '<leader>bd', '<cmd>bd<cr>', desc = 'Delete Buffer' },
   },
 }

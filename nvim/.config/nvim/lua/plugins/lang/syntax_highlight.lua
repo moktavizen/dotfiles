@@ -1,10 +1,10 @@
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-context',
-    opts = { mode = 'cursor', max_lines = 3 },
-  },
+  -- dependencies = {
+  --   'nvim-treesitter/nvim-treesitter-context',
+  --   opts = { mode = 'cursor', max_lines = 3 },
+  -- },
   opts = {
     ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
     -- Autoinstall languages that are not installed
