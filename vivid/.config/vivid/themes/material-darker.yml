@@ -15,7 +15,7 @@ colors:                             # fg    bg
                                     # 01 is bold
 
 # colors key from 'dircolors --print-ls-colors'
-# on arch installation image
+# on fresh Arch Linux installation image
 core:
   normal_text: {}                   # no undefined
 
