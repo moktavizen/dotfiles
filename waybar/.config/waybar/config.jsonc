@@ -2,9 +2,16 @@
 {
   "layer": "top", // Waybar at top layer
   "height": 32,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-right": ["tray", "group/hw", "group/control", "clock"],
-
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "tray",
+    "group/hw",
+    "group/control",
+    "clock"
+  ],
   // Modules configuratio1
   "hyprland/workspaces": {
     "active-only": false,
@@ -24,7 +31,11 @@
   },
   "group/hw": {
     "orientation": "horizontal",
-    "modules": ["cpu", "temperature", "memory"],
+    "modules": [
+      "cpu",
+      "temperature",
+      "memory"
+    ],
   },
   "cpu": {
     "format": "<span color='#b2ccd6'>󰍛</span> {usage}%",
@@ -43,7 +54,12 @@
   },
   "group/control": {
     "orientation": "horizontal",
-    "modules": ["battery", "network", "bluetooth", "pulseaudio"],
+    "modules": [
+      "battery",
+      "network",
+      "bluetooth",
+      "pulseaudio"
+    ],
   },
   "battery": {
     "states": {
@@ -55,13 +71,25 @@
     "format-charging": "<span color='#c3e88d'>󱐋</span> {capacity}%",
     "format-plugged": "<span color='#c3e88d'></span> {capacity}%",
     "tooltip-format": "{time} left",
-    "format-icons": [" ", " ", " ", " ", " "],
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
   },
   "network": {
     "format-ethernet": "<span color='#89ddff'>󰈀</span> {bandwidthDownBytes}",
     "format-wifi": "<span color='#89ddff'>{icon}</span> {bandwidthDownBytes}",
     "format-disconnected": "<span color='#89ddff'>󰤭</span> {bandwidthDownBytes}",
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
     "interval": 2,
     "on-click": "kitty --class nmtui sleep 1 nmtui",
   },
@@ -80,7 +108,11 @@
       "headphone": "",
       "phone": "",
       "portable": "",
-      "default": ["", "", ""],
+      "default": [
+        "",
+        "",
+        ""
+      ],
     },
     "on-click": "pavucontrol",
   },
