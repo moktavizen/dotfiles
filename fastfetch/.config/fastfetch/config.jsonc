@@ -4,10 +4,13 @@
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
     "type": "small",
-    "padding": { "left": 1, "right": 3 },
+    "padding": {
+      "left": 1,
+      "right": 3
+    }
   },
   "display": {
-    "separator": "  ",
+    "separator": "  "
   },
   // mini = few modules
   "modules": [
@@ -16,42 +19,42 @@
       "color": {
         "user": "red",
         "at": "cyan",
-        "host": "blue",
-      },
+        "host": "blue"
+      }
     },
     {
       "type": "os",
       "key": "󰻀",
       "keyColor": "yellow",
-      "format": "{2} {8}",
+      "format": "{2} {8}"
     },
     {
       "type": "kernel",
       "key": "",
-      "keyColor": "yellow",
+      "keyColor": "yellow"
     },
     {
       "type": "disk",
       "key": "",
-      "keyColor": "green",
+      "keyColor": "green"
     },
     {
       "type": "memory",
       "key": "󰘚",
-      "keyColor": "green",
+      "keyColor": "green"
     },
     {
       "type": "wm",
       "key": "",
-      "keyColor": "magenta",
+      "keyColor": "magenta"
     },
     {
       "type": "custom",
-      "format": "\u001b[35m  \u001b[37m● \u001b[36m● \u001b[35m● \u001b[34m● \u001b[33m● \u001b[32m● \u001b[31m● \u001b[30m●",
+      "format": "\u001b[95m  \u001b[97m● \u001b[96m● \u001b[95m● \u001b[94m● \u001b[93m● \u001b[92m● \u001b[91m● \u001b[90m●"
     },
     {
       "type": "custom",
-      "format": " ",
-    },
-  ],
+      "format": " "
+    }
+  ]
 }
