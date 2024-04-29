@@ -58,10 +58,6 @@ return {
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
           return { '󱐋 Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms' }
         end,
-        colors = {
-          -- Change 'Neovim loaded' text color to green
-          loaded_color = '#00FF00',
-        },
       },
     }
 

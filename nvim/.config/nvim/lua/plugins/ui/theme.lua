@@ -64,6 +64,9 @@ return { -- You can easily change to a different colorscheme.
       end,
       custom_highlights = {
         MiniIndentscopeSymbol = { fg = colors.editor.line_numbers }, -- set indentscope color
+        DashboardIcon = { fg = colors.main.blue },
+        DashboardKey = { fg = colors.main.red },
+        DashboardFooter = { fg = colors.main.purple },
       },
     }
   end,
