@@ -60,6 +60,8 @@ alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
 alias npm='bun'
 alias npx='bunx'
+alias vim='nvim_APPNAME=nvim nvim'
+alias lg='lazygit'
 
 # p10k theme
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
