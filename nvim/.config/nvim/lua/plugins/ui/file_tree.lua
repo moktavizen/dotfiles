@@ -12,7 +12,7 @@ return {
     },
   },
   keys = {
-    { '\\', '<cmd>NvimTreeToggle<cr>', { desc = 'Toggle NvimTree' } },
+    { '\\', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle NvimTree' },
   },
   -- 'nvim-neo-tree/neo-tree.nvim',
   -- version = '*',
