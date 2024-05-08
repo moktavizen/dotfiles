@@ -4,7 +4,7 @@ return {
   version = '*',
   dependencies = 'nvim-tree/nvim-web-devicons',
   event = 'VimEnter',
-  config = {
+  opts = {
     options = {
       always_show_bufferline = true,
       -- groups = {
