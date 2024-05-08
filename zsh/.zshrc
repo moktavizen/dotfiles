@@ -54,11 +54,10 @@ alias clean='paru --clean'
 alias ff='fastfetch'
 alias fff='fastfetch -C ~/.config/fastfetch/fastfetch-full.jsonc'
 alias shutdown='shutdown -h now'
-alias sdir='cd "$(fd -H -t d | fzf --preview "eza -lh --no-user --no-permissions --icons=always --color=always {}")"' # change directory using fzf
-alias sfile='nvim "$(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=full --line-range=:100 {}")"' # edit file using fzf
+alias sd='cd "$(fd -H -t d | fzf --preview "eza -lh --no-user --no-permissions --icons=always --color=always {}")"' # change directory using fzf
+alias sf='nvim "$(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=full --line-range=:100 {}")"' # edit file using fzf
 alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
-alias npm='bun'
 alias npx='bunx'
 alias vim='nvim_APPNAME=nvim nvim'
 alias lg='lazygit'
