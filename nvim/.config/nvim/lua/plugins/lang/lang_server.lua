@@ -182,6 +182,10 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
+
+      -- intelephense = {
+      --   root_dir = require('lspconfig').util.root_pattern('composer.json', '.git'),
+      -- },
     }
 
     -- Ensure the servers and tools above are installed
