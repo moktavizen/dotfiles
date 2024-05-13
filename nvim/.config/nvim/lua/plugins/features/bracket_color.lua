@@ -1,6 +1,6 @@
 return {
   'HiPhish/rainbow-delimiters.nvim',
-  filetype = { 'dart', 'php' },
+  filetype = { 'dart' },
   config = function()
     require('rainbow-delimiters.setup').setup {
       highlight = {
