@@ -8,12 +8,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt autocd beep extendedglob nomatch notify
-bindkey -e
+bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/moktavizen/.zshrc'
@@ -22,18 +26,18 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# bun
+# Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# flutter
+# Flutter
 export PATH="/usr/bin/flutter/bin:$PATH"
 export CHROME_EXECUTABLE="/usr/bin/firefox"
 
-# ls colors for ls, fd
+# Colors for ls, fd
 export LS_COLORS="$(vivid generate material-darker)"
 
-# fzf colorscheme
+# Colors for fzf
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
  --color=fg:#eeffff,bg:#212121,hl:#c3e88d
  --color=fg+:#82aaff,bg+:#353535,hl+:#82aaff
@@ -46,7 +50,7 @@ alias diff='diff --color=auto'
 alias grep='rg'
 alias ip='ip -color=auto'
 alias ls='eza --icons=always --color=always'
-alias cat='bat --theme=base16 --color=always --style=full --paging=never'
+alias cat='bat --theme=base16 --color=always --style=plain --paging=never'
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 alias yay='paru'
 alias update='paru'
@@ -62,11 +66,6 @@ alias npx='bunx'
 alias vim='nvim_APPNAME=nvim nvim'
 alias lg='lazygit'
 
-# p10k theme
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Plugins
+# ZSH Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be the last sourced
