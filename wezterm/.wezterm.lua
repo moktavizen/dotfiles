@@ -138,7 +138,7 @@ config.font_rules = {
 
 config.window_frame = {
 	font = wezterm.font({
-		family = "Lexend",
+		family = "Inter",
 		weight = "Regular",
 	}),
 }
