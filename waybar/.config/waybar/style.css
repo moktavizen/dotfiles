@@ -1,5 +1,6 @@
 @define-color bg0 #212121;
-@define-color bg1 #353535;
+/* @define-color bg1 #353535; */
+@define-color bg1 #212121;
 @define-color fg0 #eeffff;
 @define-color yellow #ffcb6b;
 
@@ -11,8 +12,8 @@
 }
 
 window#waybar {
-  background-color: @bg0;
-  /* background-color: transparent; */
+  /* background-color: @bg0; */
+  background-color: transparent;
   color: @fg0; /* didn't affect workspaces */
 }
 
@@ -20,7 +21,8 @@ window#waybar {
   background-color: @bg1;
   border-radius: 16px;
   padding: 0px;
-  margin: 5px 5px 5px 8px;
+  /* margin: 4px 4px 4px 8px; */
+  margin: 8px 4px 0px 8px;
 }
 
 #workspaces button {
@@ -35,8 +37,9 @@ window#waybar {
 #window {
   background-color: @bg1;
   border-radius: 16px;
-  padding: 0px 12px;
-  margin: 5px;
+  padding: 0px 16px;
+  /* margin: 4px; */
+  margin: 8px 4px 0px 4px;
 }
 
 window#waybar.empty #window {
@@ -47,15 +50,17 @@ window#waybar.empty #window {
 #tray {
   background-color: @bg1;
   border-radius: 16px;
-  padding: 0px 12px;
-  margin: 5px;
+  padding: 0px 16px;
+  /* margin: 4px; */
+  margin: 8px 4px 0px 4px;
 }
 
 #hw {
   background-color: @bg1;
   border-radius: 16px;
-  padding: 0px 12px;
-  margin: 5px;
+  padding: 0px 16px;
+  /* margin: 4px; */
+  margin: 8px 4px 0px 4px;
 }
 
 #cpu {
@@ -73,8 +78,9 @@ window#waybar.empty #window {
 #control {
   background-color: @bg1;
   border-radius: 16px;
-  padding: 0px 12px;
-  margin: 5px;
+  padding: 0px 16px;
+  /* margin: 4px; */
+  margin: 8px 4px 0px 4px;
 }
 
 #battery {
@@ -96,6 +102,7 @@ window#waybar.empty #window {
 #clock {
   background-color: @bg1;
   border-radius: 16px;
-  padding: 0px 12px;
-  margin: 5px 8px 5px 5px;
+  padding: 0px 16px;
+  /* margin: 4px 8px 4px 4px; */
+  margin: 8px 8px 0px 4px;
 }
