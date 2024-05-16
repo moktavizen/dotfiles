@@ -72,11 +72,11 @@
     "format-plugged": "<span color='#c3e88d'></span> {capacity}%",
     "tooltip-format": "{time} left",
     "format-icons": [
-      " ",
-      " ",
-      " ",
-      " ",
-      " "
+      "",
+      "",
+      "",
+      "",
+      ""
     ],
   },
   "network": {
@@ -94,8 +94,8 @@
     "on-click": "kitty --class nmtui sleep 1 nmtui",
   },
   "bluetooth": {
-    "format": "<span color='#82aaff'>󰂯</span> {status}",
-    "format-disabled": "",
+    "format": "<span color='#82aaff'></span> {status}",
+    "format-connected-battery": "<span color='#82aaff'></span> {device_battery_percentage}%",
     "tooltip-format": "{device_alias} {status}",
     "on-click": "blueman-manager",
   },
