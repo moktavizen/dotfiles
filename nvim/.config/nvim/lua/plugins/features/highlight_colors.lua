@@ -1,8 +1,7 @@
 return {
-  -- enable css color highlight
+  -- enable color highlight
   {
     'brenoprata10/nvim-highlight-colors',
-    ft = 'css',
     config = true,
   },
 }
