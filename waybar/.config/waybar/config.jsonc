@@ -21,13 +21,13 @@
     "format": "{icon}",
     "format-icons": {
       "active": "󰮯",
-      "default": "",
-    },
+      "default": ""
+    }
   },
   "hyprland/window": {},
   "tray": {
     "icon-size": 15,
-    "spacing": 8,
+    "spacing": 8
   },
   "group/hw": {
     "orientation": "horizontal",
@@ -35,22 +35,22 @@
       "cpu",
       "temperature",
       "memory"
-    ],
+    ]
   },
   "cpu": {
     "format": "<span color='#b2ccd6'>󰍛</span> {usage}%",
     "interval": 2,
-    "on-click": "kitty btop",
+    "on-click": "kitty btop"
   },
   "temperature": {
     "format": "<span color='#f07178'></span> {temperatureC}󰔄",
     "interval": 2,
-    "on-click": "kitty btop",
+    "on-click": "kitty btop"
   },
   "memory": {
     "format": "<span color='#c792ea'>󰘚</span> {used:.2g}GB",
     "interval": 2,
-    "on-click": "kitty btop",
+    "on-click": "kitty btop"
   },
   "group/control": {
     "orientation": "horizontal",
@@ -59,13 +59,13 @@
       "network",
       "bluetooth",
       "pulseaudio"
-    ],
+    ]
   },
   "battery": {
     "states": {
       // "good": 95,
       "warning": 30,
-      "critical": 15,
+      "critical": 15
     },
     "format": "<span color='#c3e88d'>{icon}</span> {capacity}%",
     "format-charging": "<span color='#c3e88d'>󱐋</span> {capacity}%",
@@ -77,7 +77,7 @@
       "",
       "",
       ""
-    ],
+    ]
   },
   "network": {
     "format-ethernet": "<span color='#89ddff'>󰈀</span> {bandwidthDownBytes}",
@@ -91,13 +91,13 @@
       "󰤨"
     ],
     "interval": 2,
-    "on-click": "kitty --class nmtui sleep 1 nmtui",
+    "on-click": "kitty --class nmtui sleep 1 nmtui"
   },
   "bluetooth": {
     "format": "<span color='#82aaff'></span> {status}",
     "format-connected-battery": "<span color='#82aaff'></span> {device_battery_percentage}%",
     "tooltip-format": "{device_alias} {status}",
-    "on-click": "blueman-manager",
+    "on-click": "blueman-manager"
   },
   "pulseaudio": {
     "format": "<span color='#f78c6c'>{icon}</span> {volume}%",
@@ -112,12 +112,12 @@
         "",
         "",
         ""
-      ],
+      ]
     },
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol"
   },
   "clock": {
     "format": "<span color='#ffcb6b'></span> {:%a %b %d %R %p}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-  },
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  }
 }
