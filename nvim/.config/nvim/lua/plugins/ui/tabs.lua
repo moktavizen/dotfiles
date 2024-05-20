@@ -1,4 +1,4 @@
--- -- Buffer Tabs
+-- Buffer Tabs
 return {
   'akinsho/bufferline.nvim',
   version = '*',
@@ -6,7 +6,16 @@ return {
   event = 'VimEnter',
   opts = {
     options = {
+      offsets = {
+        {
+          filetype = 'NvimTree',
+          text = 'Explorer',
+          text_align = 'left',
+          separator = true,
+        },
+      },
       always_show_bufferline = true,
+      -- separator_style = { '', '' },
       -- groups = {
       --   items = {
       --     require('bufferline.groups').builtin.pinned:with { icon = '' },
