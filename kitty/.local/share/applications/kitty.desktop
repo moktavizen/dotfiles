@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=kitty
+GenericName=Terminal emulator
+Comment=Fast, feature-rich, GPU based terminal
+TryExec=kitty
+Exec=kitty -T "System Environment — Kitty" -d "~/" sh -c "sleep 0.1 && tmux new-session"
+Icon=kitty
+Categories=System;TerminalEmulator;
