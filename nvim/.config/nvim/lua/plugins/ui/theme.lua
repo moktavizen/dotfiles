@@ -9,10 +9,7 @@ return { -- You can easily change to a different colorscheme.
     -- Load the colorscheme here.
     -- Like many other themes, this one has different styles, and you could load
     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-    vim.cmd.colorscheme 'material-darker'
-
-    -- You can configure highlights by doing something like:
-    vim.cmd.hi 'Comment gui=none'
+    vim.cmd.colorscheme 'material'
   end,
   config = function()
     vim.g.material_style = 'darker'
@@ -60,13 +57,19 @@ return { -- You can easily change to a different colorscheme.
       custom_colors = function(colors)
         colors.editor.cursor = colors.main.blue -- set cursor caret to blue
         colors.editor.accent = colors.main.blue -- set accent to blue
-        colors.editor.contrast = colors.editor.bg -- removing LazyVim top darker bar
       end,
       custom_highlights = {
+        CursorLine = { bg = colors.editor.bg },
         MiniIndentscopeSymbol = { fg = colors.editor.line_numbers }, -- set indentscope color
         DashboardIcon = { fg = colors.main.blue },
         DashboardKey = { fg = colors.main.red },
         DashboardFooter = { fg = colors.main.purple },
+        BufferLineFill = { bg = colors.editor.bg },
+        -- BufferLineBackground = { bg = colors.editor.bg },
+        -- BufferLineBufferSelected = { bg = colors.editor.bg_alt },
+        -- BufferLineCloseButtonSelected = { bg = colors.editor.bg_alt },
+        -- BufferlineSeparatorSelected = { bg = colors.editor.bg_alt },
+        -- BufferlineIndicatorSelected = { bg = colors.editor.bg_alt },
       },
     }
   end,
