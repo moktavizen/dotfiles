@@ -2,4 +2,4 @@
 lazy-lock.json
 
 # tmux plugins directory
-*/tmux/plugins
+**/tmux/plugins
