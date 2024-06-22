@@ -1,0 +1,70 @@
+/*--------------------- Global Variables ---------------------*/
+
+:root {
+  --bg: #212121;
+  --bg-alt: #353535;
+  --fg: #eeffff;
+  --fg-alt: #545454;
+  --border-radius: 18px;
+}
+
+/* ---------- Bars ---------- */
+
+#navigator-toolbox
+{
+  background-color: var(--bg) !important;
+  border-style: none !important;
+}
+
+#nav-bar
+{
+  background-color: var(--bg-alt) !important;
+  border-style: none !important;
+}
+
+#toolbar-menubar
+{
+  max-height: 24px !important;
+}
+
+/* ---------- Remove Window Button ---------- */
+
+.titlebar-buttonbox-container,
+.titlebar-spacer
+{
+  display: none !important;
+}
+
+
+/*--------------------- Tabs ---------------------*/
+
+.tab-background
+{
+  box-shadow: none !important;
+  border-radius: var(--border-radius) !important;
+  background-color: var(--bg) !important;
+}
+
+.tab-background[selected]
+{
+  background-color: var(--bg-alt) !important;
+}
+
+.titlebar-color
+{
+    --tab-border-radius: var(--border-radius) !important;
+}
+
+/*--------------------- URL & Search ---------------------*/
+
+:root
+{
+    --urlbar-icon-border-radius: var(--border-radius) !important;
+}
+
+#urlbar #urlbar-background, #searchbar
+{
+    --toolbarbutton-border-radius: var(--border-radius) !important;
+    background-color: var(--bg) !important;
+}
+
