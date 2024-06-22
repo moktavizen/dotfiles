@@ -1,7 +1,6 @@
 -- Dart & Flutter
 return {
   'akinsho/flutter-tools.nvim',
-  -- lazy = false,
   ft = 'dart',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -11,8 +10,7 @@ return {
     flutter_path = '/usr/bin/flutter/bin/flutter',
     dev_log = {
       enabled = false,
-      notify_errors = true,
-      open_cmd = 'FlutterLog',
+      notify_errors = false,
     },
     lsp = {
       color = {
@@ -22,9 +20,9 @@ return {
     },
   },
   keys = {
-    { '<leader>cte', '<cmd>FlutterEmulators<cr>', desc = 'Shows a list of emulators' },
-    { '<leader>ctq', '<cmd>FlutterQuit<cr>', desc = 'Ends a running session' },
-    { '<leader>ctr', '<cmd>FlutterRun<cr>', desc = 'Run the current project' },
-    { '<leader>ctl', '<cmd>FlutterRun<cr>', desc = 'Open Dev Log' },
+    { '<leader>cfe', '<cmd>FlutterEmulators<cr>', desc = 'Shows a list of emulators' },
+    { '<leader>cfq', '<cmd>FlutterQuit<cr>', desc = 'Ends a running session' },
+    { '<leader>cfr', '<cmd>FlutterRun<cr>', desc = 'Run the current project' },
+    { '<leader>cfo', '<cmd>FlutterOpenDevTools<cr>', desc = 'Open Flutter DevTools' },
   },
 }
