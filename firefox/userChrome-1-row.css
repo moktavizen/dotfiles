@@ -1,0 +1,161 @@
+/*--------------------- Global Variables ---------------------*/
+
+:root {
+  --bg: #212121;
+  --bg-alt: #353535;
+  --border-radius: 18px;
+}
+
+/* ---------- Bars ---------- */
+
+#navigator-toolbox
+{
+  background-color: var(--bg) !important;
+  border-style: none !important;
+}
+
+#nav-bar
+{
+  background-color: var(--bg) !important;
+  border-style: none !important;
+}
+
+#toolbar-menubar
+{
+  max-height: 24px !important;
+}
+
+/* ---------- Hide Extension Button ---------- */
+
+#unified-extensions-button
+{
+  fill: var(--bg) !important;
+  --toolbarbutton-border-radius: var(--border-radius) !important;
+}
+
+/* ---------- Remove Unused Button ---------- */
+
+#back-button,
+#forward-button,
+#tracking-protection-icon-container,
+#identity-icon-box,
+#identity-permission-box,
+#reader-mode-button,
+#picture-in-picture-button,
+#star-button-box,
+#PanelUI-menu-button
+{
+  display: none !important;
+}
+
+/* ---------- Remove Window Button ---------- */
+
+.titlebar-buttonbox-container,
+.titlebar-spacer
+{
+  display: none !important;
+}
+
+
+/*--------------------- Tabs ---------------------*/
+
+.tab-background
+{
+  box-shadow: none !important;
+  border-radius: var(--border-radius) !important;
+  background-color: var(--bg) !important;
+}
+
+.tab-background[selected]
+{
+  background-color: var(--bg-alt) !important;
+}
+
+.titlebar-color
+{
+  --tab-border-radius: var(--border-radius) !important;
+}
+
+/*--------------------- URL & Search ---------------------*/
+
+:root
+{
+  --urlbar-icon-border-radius: var(--border-radius) !important;
+}
+
+#urlbar #urlbar-background, #searchbar
+{
+  --toolbarbutton-border-radius: var(--border-radius) !important;
+  background-color: var(--bg) !important;
+}
+
+/* ---------------------------------------- One Line ---------------------------------------- */
+
+#navigator-toolbox
+{
+  grid-template-columns: auto minmax(auto, 0%) !important;
+}
+
+#titlebar
+{
+  grid-area: 1 / 1 / span 1 / span 1 !important;
+}
+
+:root
+{
+  --drag-space: 0px !important;
+}
+
+#navigator-toolbox
+{
+  display: grid !important;
+  -moz-window-dragging: drag !important;
+}
+
+#TabsToolbar::before
+{
+  display: none !important;
+}
+
+#nav-bar
+{
+  width: fit-content !important;
+  margin: var(--tab-block-margin) !important;
+  border-radius: var(--tab-border-radius) !important;
+  box-shadow: var(--additional-outer-box-shadow, 0 0 0 transparent),
+    var(--outer-box-shadow, 0 0 0 transparent) !important;
+}
+
+#urlbar-container,
+#search-container
+{
+  padding-block: 0px !important;
+}
+
+#urlbar-container
+{
+  --urlbar-container-height: var(--tab-min-height) !important;
+}
+
+#PersonalToolbar
+{
+  margin-inline: var(--tab-block-margin) !important;
+  border-radius: var(--tab-border-radius) !important;
+  box-shadow: var(--additional-outer-box-shadow, 0 0 0 transparent),
+    var(--outer-box-shadow, 0 0 0 transparent) !important;
+}
+
+#PersonalToolbar[collapsed="false"]
+{
+  margin-bottom: var(--tab-block-margin) !important;
+}
+
+#navigator-toolbox > *:not(#titlebar, #nav-bar)
+{
+  grid-column: 1 / span 2 !important;
+}
+
+#customization-panelWrapper
+{
+  --panel-arrow-offset: 0px !important;
+}
