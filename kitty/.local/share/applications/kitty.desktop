@@ -5,6 +5,6 @@ Name=kitty
 GenericName=Terminal emulator
 Comment=Fast, feature-rich, GPU based terminal
 TryExec=kitty
-Exec=kitty -T "System Environment — Kitty" -d "~/" sh -c "sleep 0.1 && tmux new-session"
+Exec=kitty -T "System Environment — Kitty" sh -c "cd ~/ && tmux new-session"
 Icon=kitty
 Categories=System;TerminalEmulator;
