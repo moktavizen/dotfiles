@@ -1,0 +1,41 @@
+@define-color bg0 #1a1a1a;
+@define-color bg1 #323232;
+@define-color fg0 #b0bec5;
+@define-color fg1 #eeffff;
+
+window {
+  font-size: 26px;
+  font-family: JetBrainsMono Nerd Font Mono;
+  background-color: @bg0;
+  color: @fg0;
+  border-radius: 18px;
+}
+
+#input {
+  background-color: @bg0;
+  color: @fg0;
+  padding: 8px 16px;
+  border-radius: 18px;
+  border: none;
+  box-shadow: none;
+}
+
+#input > image.left {
+  margin-right: 16px;
+}
+
+#entry {
+  padding: 8px;
+}
+
+#entry:selected {
+  background: @bg1;
+}
+
+#text:selected {
+  color: @fg1;
+}
+
+#img {
+  margin-right: 8px;
+}
