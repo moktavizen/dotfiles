@@ -37,7 +37,14 @@ return { -- Autoformat
       --
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
-      -- javascript = { { "prettierd", "prettier" } },
+      css = { 'prettier' },
+      javascript = { 'prettier' },
+      blade = { 'blade-formatter' },
+    },
+    formatters = {
+      ['blade-formatter'] = {
+        prepend_args = { '--sort-tailwindcss-classes' },
+      },
     },
   },
 }

@@ -55,11 +55,13 @@ return { -- You can easily change to a different colorscheme.
       },
       -- If you want to override the default colors, set this to a function
       custom_colors = function(colors)
-        colors.editor.cursor = colors.main.blue -- set cursor caret to blue
+        colors.editor.cursor = colors.main.yellow -- set cursor caret to blue
         colors.editor.accent = colors.main.blue -- set accent to blue
       end,
       custom_highlights = {
-        CursorLine = { bg = colors.editor.bg },
+        -- enable cursorline in init.lua
+        CursorLine = { bg = '#171717' },
+        CursorColumn = { bg = '#171717' },
         MiniIndentscopeSymbol = { fg = colors.editor.line_numbers }, -- set indentscope color
         DashboardIcon = { fg = colors.main.blue },
         DashboardKey = { fg = colors.main.red },
