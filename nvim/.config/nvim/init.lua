@@ -150,7 +150,8 @@ vim.opt.fillchars = { eob = ' ' }
 vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+-- vim.opt.cursorline = true
+-- vim.opt.cursorcolumn = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
@@ -158,9 +159,8 @@ vim.opt.scrolloff = 10
 -- for true color
 vim.opt.termguicolors = true
 
--- nvim-tree recommendation
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- line wrap
+vim.opt.wrap = false
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
