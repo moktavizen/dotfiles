@@ -22,6 +22,12 @@
   max-height: 24px !important;
 }
 
+#tabbrowser-tabs {
+  border-inline-start: 0 !important;
+  padding-inline-start: 0 !important;
+  margin-inline-start: 0 !important;
+}
+
 /* ---------- Hide Extension Button ---------- */
 
 #unified-extensions-button {
@@ -31,8 +37,12 @@
 
 /* ---------- Remove Unused Button ---------- */
 
+#firefox-view-button,
+#tabs-newtab-button,
 #back-button,
 #forward-button,
+#reload-button,
+#stop-button,
 #tracking-protection-icon-container,
 #identity-icon-box,
 #identity-permission-box,
@@ -40,6 +50,8 @@
 #picture-in-picture-button,
 #star-button-box,
 #alltabs-button,
+#save-to-pocket-button,
+#fxa-toolbar-menu-button,
 #PanelUI-menu-button {
   display: none !important;
 }
