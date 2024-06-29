@@ -38,7 +38,7 @@ export CHROME_EXECUTABLE="/usr/bin/firefox"
 export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 
 # Colors for ls, fd
-export LS_COLORS="$(vivid generate material-darker)"
+# export LS_COLORS="$(vivid generate material-darker)"
 
 # Colors for fzf
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
