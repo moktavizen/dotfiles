@@ -72,11 +72,11 @@
     "format-plugged": "<span color='#c3e88d'></span> {capacity}%",
     "tooltip-format": "{time} left",
     "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "󰁺",
+      "󰁼",
+      "󰁾",
+      "󰂁",
+      "󰁹"
     ]
   },
   "network": {
@@ -105,13 +105,13 @@
     "format-bluetooth": "<span color='#f78c6c'>{icon}</span> {volume}%",
     "format-bluetooth-muted": "<span color='#f78c6c'>󰖁</span> {volume}%",
     "format-icons": {
-      "headphone": "",
-      "phone": "",
-      "portable": "",
+      "headphone": "󰋋",
+      "phone": "󰏲",
+      "portable": "󰏲",
       "default": [
-        "",
-        "",
-        ""
+        "󰕿",
+        "󰖀",
+        "󰕾"
       ]
     },
     "on-click": "pavucontrol"
