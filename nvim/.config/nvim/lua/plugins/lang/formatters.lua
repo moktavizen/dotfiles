@@ -26,7 +26,7 @@ return { -- Autoformat
       -- languages here or re-enable it for the disabled ones.
       local disable_filetypes = { c = true, cpp = true }
       return {
-        timeout_ms = 500,
+        timeout_ms = 1000,
         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
       }
     end,
@@ -37,10 +37,10 @@ return { -- Autoformat
       --
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
-      sh = { 'shfmt' },
       bash = { 'shfmt' },
-      css = { 'prettier' },
-      javascript = { 'prettier' },
+      html = { 'prettierd' },
+      css = { 'prettierd' },
+      javascript = { 'prettierd' },
       blade = { 'blade-formatter' },
     },
     formatters = {
