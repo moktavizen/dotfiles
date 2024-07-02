@@ -41,6 +41,8 @@ return { -- Autoformat
       html = { 'prettierd' },
       css = { 'prettierd' },
       javascript = { 'prettierd' },
+      json = { 'prettierd' },
+      jsonc = { 'prettierd' },
       blade = { 'blade-formatter' },
     },
     formatters = {
