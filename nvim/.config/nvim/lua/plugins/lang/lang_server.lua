@@ -165,8 +165,7 @@ return { -- LSP Configuration & Plugins
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
-      -- tsserver = {},
-      --
+      tsserver = {},
 
       lua_ls = {
         -- cmd = {...},
@@ -183,6 +182,11 @@ return { -- LSP Configuration & Plugins
         },
       },
 
+      html = {},
+      cssls = {},
+      jsonls = {},
+      intelephense = {},
+      bashls = {},
       -- intelephense = {
       --   root_dir = require('lspconfig').util.root_pattern('composer.json', '.git'),
       -- },
@@ -201,8 +205,8 @@ return { -- LSP Configuration & Plugins
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
-      'bashls',
       'shfmt', -- Used to format shell code
+      'prettierd', -- Used to format HTML, CSS, JS
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
