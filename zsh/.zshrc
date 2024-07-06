@@ -26,6 +26,12 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# ENV
+export EDITOR=nvim
+export VISUAL=nvim
+export TERMINAL=kitty
+export PATH="$HOME/.local/bin:$PATH"
+
 # Bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -61,8 +67,8 @@ alias clean='paru --clean'
 alias ff='fastfetch'
 alias fff='fastfetch -C ~/.config/fastfetch/fastfetch-full.jsonc'
 alias shutdown='shutdown -h now'
-alias sd='cd "$(fd -H -t d | fzf --preview "eza -lh --no-user --no-permissions --icons=always --color=always {}")"' # change directory using fzf
-alias sf='nvim "$(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=full --line-range=:100 {}")"' # edit file using fzf
+alias sd='cd $(fd -H -t d | fzf --preview "eza -lh --no-user --no-permissions --icons=always --color=always {}")' # change directory using fzf
+alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=full --line-range=:100 {}")' # edit file using fzf
 alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
 alias npx='bunx'
