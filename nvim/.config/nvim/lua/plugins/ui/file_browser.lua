@@ -55,6 +55,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
           'filename_first',
           -- shorten = { len = 1, exclude = { -2, -1 } },
         },
+        -- border = false,
       },
       pickers = {
         find_files = {
