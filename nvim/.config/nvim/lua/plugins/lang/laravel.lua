@@ -1,5 +1,6 @@
 return {
   'adalessa/laravel.nvim',
+  ft = 'blade',
   dependencies = {
     'nvim-telescope/telescope.nvim',
     'tpope/vim-dotenv',
@@ -12,6 +13,5 @@ return {
     { '<leader>lr', ':Laravel routes<cr>' },
     { '<leader>lm', ':Laravel related<cr>' },
   },
-  event = { 'VeryLazy' },
   config = true,
 }
