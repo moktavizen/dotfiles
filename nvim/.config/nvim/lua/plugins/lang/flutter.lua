@@ -1,4 +1,3 @@
--- Dart & Flutter
 return {
   'akinsho/flutter-tools.nvim',
   ft = 'dart',
