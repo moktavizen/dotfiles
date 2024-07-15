@@ -12,8 +12,16 @@ return { -- You can easily change to a different colorscheme.
     vim.cmd.colorscheme 'material'
   end,
   config = function()
+    -- for true color
+    vim.opt.termguicolors = true
+
+    -- Show which line your cursor is on
+    -- vim.opt.cursorline = true
+    -- vim.opt.cursorcolumn = true
+
     vim.g.material_style = 'darker'
     local colors = require 'material.colors'
+
     require('material').setup {
       contrast = {
         terminal = true, -- Enable contrast for the built-in terminal
@@ -59,7 +67,7 @@ return { -- You can easily change to a different colorscheme.
         colors.editor.accent = colors.main.blue -- set accent to blue
       end,
       custom_highlights = {
-        -- enable cursorline in init.lua
+        -- require enabling cursorline on top
         CursorLine = { bg = '#171717' },
         CursorColumn = { bg = '#171717' },
         MiniIndentscopeSymbol = { fg = colors.editor.line_numbers }, -- set indentscope color
