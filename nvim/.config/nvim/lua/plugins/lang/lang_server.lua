@@ -187,6 +187,7 @@ return { -- LSP Configuration & Plugins
       denols = {},
       intelephense = {},
       bashls = {},
+      powershell_es = {}, -- require powershell to be installed
       -- intelephense = {
       --   root_dir = require('lspconfig').util.root_pattern('composer.json', '.git'),
       -- },
