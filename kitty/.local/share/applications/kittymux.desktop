@@ -1,10 +1,10 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=kitty
+Name=kittymux
 GenericName=Terminal emulator
 Comment=Fast, feature-rich, GPU based terminal
 TryExec=kitty
-Exec=kitty -T "System Environment — Kitty" sh -c "cd ~/ && tmux new-session"
+Exec=kitty -T "System Environment — Kitty" tmux
 Icon=kitty
 Categories=System;TerminalEmulator;
