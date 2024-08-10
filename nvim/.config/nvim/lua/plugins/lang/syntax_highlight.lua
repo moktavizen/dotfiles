@@ -6,7 +6,17 @@ return { -- Highlight, edit, and navigate code
   --   opts = { mode = 'cursor', max_lines = 3 },
   -- },
   opts = {
-    ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+    ensure_installed = {
+      'bash',
+      'c',
+      'html',
+      'lua',
+      'luadoc',
+      'markdown',
+      'vim',
+      'vimdoc',
+      'regex',
+    },
     -- Autoinstall languages that are not installed
     auto_install = true,
     highlight = {
