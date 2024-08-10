@@ -43,6 +43,7 @@ return { -- Autoformat
       javascript = { 'prettierd' },
       json = { 'prettierd' },
       jsonc = { 'prettierd' },
+      yaml = { 'prettierd' },
       blade = { 'blade-formatter' },
       bash = { 'shfmt' },
     },
