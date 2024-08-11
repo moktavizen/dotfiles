@@ -316,7 +316,7 @@ Rectangle {
                   "Reboot - F12"
             color: textColor
             font.pointSize: 18
-	    font.family: "Fira Code Nerd Font Mono"
+	    font.family: "RobotoMono Nerd Font Mono"
             anchors {
                 top: parent.top
                 topMargin: 30

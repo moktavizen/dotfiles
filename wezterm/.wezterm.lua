@@ -88,7 +88,7 @@ config.underline_position = "-1pt" -- adjust underline position
 -- config.underline_thickness = "2pt" -- adjustunderline thickness
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" } --disable ligatures
 config.font = wezterm.font({
-	family = "Fira Code Nerd Font Mono",
+	family = "RobotoMono Nerd Font Mono",
 	weight = "Regular",
 })
 config.font_rules = {
@@ -96,7 +96,7 @@ config.font_rules = {
 		intensity = "Half",
 		italic = true,
 		font = wezterm.font({
-			family = "Fira Code Nerd Font Mono",
+			family = "RobotoMono Nerd Font Mono",
 			weight = "ExtraLight",
 			style = "Italic",
 		}),
@@ -105,7 +105,7 @@ config.font_rules = {
 		intensity = "Half",
 		italic = false,
 		font = wezterm.font({
-			family = "Fira Code Nerd Font Mono",
+			family = "RobotoMono Nerd Font Mono",
 			weight = "ExtraLight",
 		}),
 	},
@@ -113,7 +113,7 @@ config.font_rules = {
 		intensity = "Bold",
 		italic = true,
 		font = wezterm.font({
-			family = "Fira Code Nerd Font Mono",
+			family = "RobotoMono Nerd Font Mono",
 			weight = "DemiBold",
 			style = "Italic",
 		}),
@@ -122,7 +122,7 @@ config.font_rules = {
 		intensity = "Bold",
 		italic = false,
 		font = wezterm.font({
-			family = "Fira Code Nerd Font Mono",
+			family = "RobotoMono Nerd Font Mono",
 			weight = "DemiBold",
 		}),
 	},
@@ -130,7 +130,7 @@ config.font_rules = {
 		intensity = "Normal",
 		italic = true,
 		font = wezterm.font({
-			family = "Fira Code Nerd Font Mono",
+			family = "RobotoMono Nerd Font Mono",
 			-- style = "Italic", -- disable italic
 		}),
 	},
