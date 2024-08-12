@@ -37,13 +37,14 @@ return { -- Autoformat
       --
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
-      markdown = { 'prettierd' },
       html = { 'prettierd' },
       css = { 'prettierd' },
-      javascript = { 'prettierd' },
-      json = { 'prettierd' },
-      jsonc = { 'prettierd' },
+      markdown = { 'prettierd' },
       yaml = { 'prettierd' },
+      javascript = { 'biome' },
+      typescript = { 'biome' },
+      json = { 'biome' },
+      jsonc = { 'biome' },
       blade = { 'blade-formatter' },
       bash = { 'shfmt' },
     },
