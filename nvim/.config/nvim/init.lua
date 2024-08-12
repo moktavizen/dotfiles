@@ -152,6 +152,9 @@ vim.opt.inccommand = 'split'
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- hide command when not used
+vim.opt.cmdheight = 0
+
 -- line wrap
 vim.opt.wrap = false
 
