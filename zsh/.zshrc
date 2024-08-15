@@ -68,7 +68,9 @@ alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always -
 alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
 alias npx='bunx'
-alias yt-mp3='yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-format mp3 --embed-thumbnail --embed-metadata'
+alias dlmp3='yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --embed-metadata'
+alias dlmkv='yt-dlp -S "res:1080" --remux mkv --merge mkv'
+alias dlmp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4'
 # alias vim='nvim_APPNAME=nvim nvim'
 alias lg='lazygit'
 
