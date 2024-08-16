@@ -206,6 +206,7 @@ return { -- LSP Configuration & Plugins
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
       'shfmt', -- Used to format shell code
+      'beautysh', -- Used to format zsh code
       'prettierd', -- Used to format html, css
       'biome', -- Used to format js
     })

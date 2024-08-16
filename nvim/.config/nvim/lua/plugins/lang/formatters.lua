@@ -47,6 +47,7 @@ return { -- Autoformat
       jsonc = { 'biome' },
       blade = { 'blade-formatter' },
       bash = { 'shfmt' },
+      zsh = { 'beautysh' },
     },
     formatters = {
       ['blade-formatter'] = {
