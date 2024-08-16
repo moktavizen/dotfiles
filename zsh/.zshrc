@@ -5,7 +5,7 @@ fastfetch
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Lines configured by zsh-newuser-install
@@ -44,10 +44,10 @@ export GOPATH="$HOME/.go"
 
 # Colors for fzf
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
- --color=fg:#eeffff,bg:#212121,hl:#c3e88d
- --color=fg+:#82aaff,bg+:#353535,hl+:#82aaff
- --color=info:#ffcb6b,prompt:#f07178,pointer:#c792ea
- --color=marker:#89ddff,spinner:#c792ea,header:#89ddff'
+--color=fg:#eeffff,bg:#212121,hl:#c3e88d
+--color=fg+:#82aaff,bg+:#353535,hl+:#82aaff
+--color=info:#ffcb6b,prompt:#f07178,pointer:#c792ea
+--color=marker:#89ddff,spinner:#c792ea,header:#89ddff'
 
 # Alias needs rg, eza, bat, fd, fzf, to be installed
 alias sudo='sudo ' # make sudo detect alias
@@ -68,11 +68,15 @@ alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always -
 alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
 alias npx='bunx'
-alias dlmp3='yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --embed-thumbnail --embed-metadata'
-alias dlmkv='yt-dlp -S "res:1080" --remux mkv --merge mkv'
-alias dlmp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4'
 # alias vim='nvim_APPNAME=nvim nvim'
 alias lg='lazygit'
+alias mp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4'
+function mp3() {
+    yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 \
+        --embed-metadata --embed-thumbnail --convert-thumb jpg \
+        --ppa "ThumbnailsConvertor+FFmpeg_o:-c:v mjpeg -vf crop=\"'min(iw,ih)':'min(iw,ih)'\"" \
+        "$1"
+}
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
