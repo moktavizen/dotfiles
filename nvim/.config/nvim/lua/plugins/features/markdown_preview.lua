@@ -1,12 +1,14 @@
 return {
-  -- install without yarn or npm
-  'iamcco/markdown-preview.nvim',
-  cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-  ft = { 'markdown' },
-  build = function()
-    vim.fn['mkdp#util#install']()
+  'toppair/peek.nvim',
+  event = { 'VeryLazy' },
+  build = 'deno task --quiet build:fast',
+  config = function()
+    require('peek').setup()
+    vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+    vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
   end,
   keys = {
-    { '<leader>cmp', '<cmd>MarkdownPreviewToggle<cr>', desc = 'Toggle Markodown Preview' },
+    { '<leader>cmo', '<cmd>PeekOpen<cr>', desc = 'Open Markodown Preview' },
+    { '<leader>cmc', '<cmd>PeekClose<cr>', desc = 'Close Markodown Preview' },
   },
 }
