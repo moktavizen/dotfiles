@@ -70,11 +70,12 @@ alias mdpdf='mdpdf --border=10mm'
 alias npx='bunx'
 # alias vim='nvim_APPNAME=nvim nvim'
 alias lg='lazygit'
-alias mp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4'
+alias mp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4 -o "%(title)s - %(uploader)s.%(ext)s"'
 function mp3() {
     yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 \
         --embed-metadata --embed-thumbnail --convert-thumb jpg \
         --ppa "ThumbnailsConvertor+FFmpeg_o:-c:v mjpeg -vf crop=\"'min(iw,ih)':'min(iw,ih)'\"" \
+        -o "%(title)s - %(artist)s.%(ext)s" \
         "$1"
 }
 
