@@ -39,15 +39,14 @@ return { -- Autoformat
       -- is found.
       html = { 'prettierd' },
       css = { 'prettierd' },
-      markdown = { 'prettierd' },
-      yaml = { 'prettierd' },
       javascript = { 'biome' },
       typescript = { 'biome' },
-      json = { 'biome' },
-      jsonc = { 'biome' },
+      markdown = { 'prettierd' },
+      yaml = { 'prettierd' },
+      json = { 'prettierd' },
+      jsonc = { 'prettierd' },
       blade = { 'blade-formatter' },
-      bash = { 'shfmt' },
-      zsh = { 'beautysh' },
+      sh = { 'shfmt' },
     },
     formatters = {
       ['blade-formatter'] = {

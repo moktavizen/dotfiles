@@ -183,9 +183,11 @@ return { -- LSP Configuration & Plugins
 
       html = {},
       cssls = {},
-      tsserver = {},
+      ts_ls = {},
       intelephense = {},
-      bashls = {},
+      bashls = {
+        filetypes = { 'sh', 'zsh' },
+      },
       powershell_es = {}, -- require powershell to be installed
       -- intelephense = {
       --   root_dir = require('lspconfig').util.root_pattern('composer.json', '.git'),
@@ -206,7 +208,6 @@ return { -- LSP Configuration & Plugins
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
       'shfmt', -- Used to format shell code
-      'beautysh', -- Used to format zsh code
       'prettierd', -- Used to format html, css
       'biome', -- Used to format js
     })
