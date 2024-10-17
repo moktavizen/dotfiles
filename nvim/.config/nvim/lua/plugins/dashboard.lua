@@ -1,5 +1,6 @@
 return {
   'nvimdev/dashboard-nvim',
+  enabled = true,
   event = 'VimEnter',
   opts = function()
     local logo = [[
@@ -27,7 +28,7 @@ return {
 ⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣯⠀⢺⣄⠈⢚⠑⠤⠤⠤⠤⢴⣾⠇⢀⡀⠀⠀⣷⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
     ]]
 
-    logo = string.rep('\n', 4) .. logo .. '\n\n'
+    logo = string.rep('\n', 5) .. logo .. '\n\n'
 
     local opts = {
       theme = 'doom',
