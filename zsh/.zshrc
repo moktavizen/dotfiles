@@ -69,7 +69,8 @@ alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always -
 alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
 alias npx='bunx'
-# alias vim='nvim_APPNAME=nvim nvim'
+alias vim='nvim'
+# alias cvim='NVIM_APPNAME=nvchad nvim'
 alias lg='lazygit'
 alias mp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4 -o "%(title)s - %(uploader)s.%(ext)s"'
 function mp3() {
@@ -80,12 +81,12 @@ function mp3() {
         "$1"
 }
 
-# ZSH Plugins
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be the last plugin sourced
-
 # ZSH Theme
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ZSH Plugins
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be the last plugin sourced
