@@ -48,4 +48,4 @@ end, { desc = 'buffer close' })
 
 vim.keymap.set('n', '<leader>X', function()
   require('nvchad.tabufline').closeAllBufs(false)
-end, { desc = 'buffer close' })
+end, { desc = 'buffer close others' })
