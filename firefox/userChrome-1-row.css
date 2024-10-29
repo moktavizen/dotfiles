@@ -79,6 +79,14 @@
   --tab-border-radius: var(--border-radius) !important;
 }
 
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]):not(
+    [orient="vertical"]
+  )
+  > #tabbrowser-arrowscrollbox
+  > .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
+  margin-inline-start: 0 !important;
+}
+
 /*--------------------- URL & Search ---------------------*/
 
 :root {
