@@ -11,6 +11,8 @@ M.base46 = {
 
   hl_override = {
     TbFill = { bg = 'none' },
+    CursorLine = { bg = 'darker_black' },
+    CursorColumn = { bg = 'darker_black' },
   },
 
   changed_themes = {
