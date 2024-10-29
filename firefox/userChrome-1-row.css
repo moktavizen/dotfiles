@@ -74,6 +74,10 @@
   background-color: var(--bg-alt) !important;
 }
 
+.tab-content {
+  padding: 0px 10px !important;
+}
+
 .titlebar-color {
   --tab-border-radius: var(--border-radius) !important;
 }
