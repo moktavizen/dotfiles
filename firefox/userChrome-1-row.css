@@ -103,6 +103,7 @@
 }
 
 /* ---------------------------------------- One Line ---------------------------------------- */
+/*Credit to WaveFox*/
 
 #navigator-toolbox {
   grid-template-columns: auto minmax(auto, 0%) !important;
