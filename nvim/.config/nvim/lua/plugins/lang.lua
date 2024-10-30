@@ -269,6 +269,7 @@ return {
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
         javascript = { 'prettierd' },
         css = { 'prettierd' },
+        html = { 'prettierd' },
       },
     },
   },
