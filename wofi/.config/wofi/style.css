@@ -1,5 +1,7 @@
-@define-color bg0 #1a1a1a;
-@define-color bg1 #323232;
+/*@define-color bg0 #1a1a1a;*/
+@define-color bg0 rgba(26,26,26,0.8);
+/*@define-color bg1 #353535;*/
+@define-color bg1 rgba(53,53,53,0.4);
 @define-color fg0 #b0bec5;
 @define-color fg1 #eeffff;
 
@@ -12,7 +14,7 @@ window {
 }
 
 #input {
-  background-color: @bg0;
+  background-color: transparent;
   color: @fg0;
   padding: 8px 16px;
   border-radius: 18px;
