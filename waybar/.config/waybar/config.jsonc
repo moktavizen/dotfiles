@@ -1,7 +1,7 @@
 // -*- mode: jsonc -*-
 {
-  "layer": "top", // Waybar at top layer
-  "height": 39,
+  //"layer": "top", // Waybar at top layer
+  "height": 40,
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-right": ["tray", "group/hw", "group/control", "clock"],
   // Modules configuratio1
@@ -13,7 +13,7 @@
     "format": "{icon}",
     "format-icons": {
       "active": "󰮯",
-      "default": "",
+      "default": "•",
     },
   },
   "hyprland/window": {},
