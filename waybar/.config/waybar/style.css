@@ -1,14 +1,16 @@
 /* @define-color bg0 #212121; */
-/* @define-color bg1 #353535; */
+/*@define-color bg1 #353535;*/
+/*@define-color bg1 rgba(33,33,33,0.8);*/
 @define-color bg1 #212121;
 @define-color fg0 #eeffff;
 @define-color yellow #ffcb6b;
 
 * {
-  font-family: JetBrainsMono Nerd Font Mono;
+  font-family: JetBrainsMono Nerd Font Propo;
   font-size: 14px;
   font-weight: 500;
   min-height: 0;
+  border-color: @bg1;
 }
 
 window#waybar {
