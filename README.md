@@ -1,4 +1,4 @@
-# VIZZEN dotfiles
+# Vizen dotfiles
 
 Usage:
 
