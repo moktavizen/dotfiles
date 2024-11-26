@@ -23,7 +23,7 @@ compinit
 # End of lines added by compinstall
 
 # ENV
-export LIBVA_DRIVERS_PATH=/usr/lib/dri/i965_drv_video.so
+# export LIBVA_DRIVERS_PATH=/usr/lib/dri/i965_drv_video.so
 export LIBVA_DRIVER_NAME=i965
 # export LIBVA_DRIVER_NAME=iHD
 export EDITOR=nvim
