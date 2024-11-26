@@ -99,9 +99,6 @@ require 'keymaps'
 
 require 'autocommands'
 
--- put this in your main init.lua file ( before lazy setup )
-vim.g.base46_cache = vim.fn.stdpath 'data' .. '/base46_cache/'
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -125,7 +122,7 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup {
+require('lazy').setup(
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -149,21 +146,15 @@ require('lazy').setup {
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
-  { import = 'plugins' },
-}
+  'plugins',
+  {
+    ui = {
+      backdrop = 100,
+    },
+  }
+)
 
--- put this after lazy setup
-
--- (method 1, For heavy lazyloaders)
--- dofile(vim.g.base46_cache .. 'defaults')
--- dofile(vim.g.base46_cache .. 'statusline')
--- dofile(vim.g.base46_cache .. 'syntax')
--- dofile(vim.g.base46_cache .. 'treesitter')
-
--- (method 2, for non lazyloaders) to load all highlights at once
-for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
-  dofile(vim.g.base46_cache .. v)
-end
+vim.cmd 'colorscheme material-darker-hc'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

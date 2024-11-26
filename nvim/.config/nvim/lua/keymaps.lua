@@ -30,22 +30,3 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- tabufline
-vim.keymap.set('n', '<leader>b', '<cmd>enew<CR>', { desc = 'buffer new' })
-
-vim.keymap.set('n', '<S-l>', function()
-  require('nvchad.tabufline').next()
-end, { desc = 'buffer goto next' })
-
-vim.keymap.set('n', '<S-h>', function()
-  require('nvchad.tabufline').prev()
-end, { desc = 'buffer goto prev' })
-
-vim.keymap.set('n', '<leader>x', function()
-  require('nvchad.tabufline').close_buffer()
-end, { desc = 'buffer close' })
-
-vim.keymap.set('n', '<leader>X', function()
-  require('nvchad.tabufline').closeAllBufs(false)
-end, { desc = 'buffer close others' })

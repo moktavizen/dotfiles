@@ -24,16 +24,17 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 300
+    width = 400
 
     # The maximum height of a single notification, excluding the frame.
-    height = 300
+    # Max icon height + 2 x padding
+    height = 112
 
     # Position the notification in the top right corner
     origin = top-right
 
     # Offset from the origin
-    offset = 10x50
+    offset = 16x16
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -64,7 +65,7 @@
     progress_bar_corner_radius = 12
 
     # Corner radius for the icon image.
-    icon_corner_radius = 0
+    icon_corner_radius = 12
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -82,26 +83,26 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 8
+    padding = 16
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 16
 
     # Padding between text and icon.
-    text_icon_padding = 0
+    text_icon_padding = 12
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 3
+    frame_width = 0
 
     # Defines color of the frame around the notification window.
-    frame_color = "#82aaff"
+    frame_color = "#ffffff"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 0
+    gap_size = 16
 
     # Define a color for the separator.
     # possible values are:
@@ -255,7 +256,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 12
+    corner_radius = 14
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -300,8 +301,8 @@
     # * context_all: Open context menu for all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_current
     mouse_right_click = close_all
 
 # Experimental features that may or may not work correctly. Do not expect them
@@ -318,28 +319,26 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#353535"
-    foreground = "#eeffff"
-    frame_color = "#eeffff"
+    background = "#25252580"
+    foreground = "#545454"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
-    #default_icon = /path/to/icon
+    default_icon = dialog-information
 
 [urgency_normal]
-    background = "#353535"
+    background = "#25252580"
     foreground = "#eeffff"
-    frame_color = "#82aaff"
     timeout = 10
     override_pause_level = 30
     # Icon for notifications with normal urgency, uncomment to enable
-    #default_icon = /path/to/icon
+    default_icon = dialog-information
 
 [urgency_critical]
-    background = "#353535"
-    foreground = "#eeffff"
-    frame_color = "#f07178"
+    background = "#25252580"
+    foreground = "#f07178"
     timeout = 0
     override_pause_level = 60
+    default_icon = dialog-warning
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
 

@@ -9,9 +9,6 @@ return {
     { '\\', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle NvimTree' },
   },
   opts = {
-    renderer = {
-      root_folder_label = false, -- hide root directory at the top
-    },
     update_focused_file = {
       enable = true,
       update_root = {
