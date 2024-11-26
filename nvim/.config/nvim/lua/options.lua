@@ -67,3 +67,6 @@ vim.opt.scrolloff = 10
 
 -- hide command when not used
 vim.opt.cmdheight = 0
+
+-- show separator on horizontal split
+vim.opt.laststatus = 3
