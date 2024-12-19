@@ -1,0 +1,8 @@
+[General]
+TerminalApplication=kitty
+
+[UiSettings] 
+ColorScheme=WhiteSur Dark
+
+[Icons]
+Theme=Papirus-Dark

@@ -58,10 +58,16 @@ fi
 
 # Colors for fzf
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---color=fg:#eeffff,bg:#212121,hl:#c3e88d
---color=fg+:#82aaff,bg+:#353535,hl+:#82aaff
---color=info:#ffcb6b,prompt:#f07178,pointer:#c792ea
---color=marker:#89ddff,spinner:#c792ea,header:#89ddff'
+ --color=fg:#848484,bg:#1a1a1a,hl:#82aaff
+ --color=fg+:#82aaff,bg+:#353535,hl+:#82aaff
+ --color=info:#ffcb6b,prompt:#f07178,pointer:#c792ea
+ --color=marker:#c3e88d,spinner:#c792ea,header:#89ddff
+ --color=border:#848484,gutter:#1a1a1a
+ --no-separator
+ --no-scrollbar
+ --height 40% 
+ --layout reverse 
+ --border'
 
 # Alias needs rg, eza, bat, fd, fzf, to be installed
 alias sudo='sudo ' # make sudo detect alias
@@ -78,12 +84,12 @@ alias ff='fastfetch'
 alias fff='fastfetch -C ~/.config/fastfetch/fastfetch-full.jsonc'
 alias shutdown='shutdown -h now'
 alias sd='cd $(fd -H -t d | fzf --preview "eza -lh --no-user --no-permissions --icons=always --color=always {}")' # change directory using fzf
-alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=full --line-range=:100 {}")' # edit file using fzf
+alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=numbers,changes {}")' # edit file using fzf
 alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
 alias npx='bunx'
 alias vim='nvim'
-alias cvim='NVIM_APPNAME=nvchad nvim'
+alias lvim='NVIM_APPNAME=lvim nvim'
 alias lg='lazygit'
 alias mp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4 -o "%(title)s - %(uploader)s.%(ext)s"'
 function mp3() {
@@ -93,64 +99,9 @@ function mp3() {
         -o "%(title)s - %(artist)s.%(ext)s" \
         "$1"
 }
-yt_search_play() {
-    # Check if required dependencies are installed
-    for cmd in fzf mpv yt-dlp jq; do
-        if ! command -v "$cmd" &> /dev/null; then
-            echo "Error: $cmd is not installed. Please install it first."
-            return 1
-        fi
-    done
-
-    # Function to format duration
-    format_duration() {
-        local duration=$1
-        local hours=$((duration/3600))
-        local minutes=$(((duration%3600)/60))
-        local seconds=$((duration%60))
-        
-        if [ $hours -gt 0 ]; then
-            printf "%02d:%02d:%02d" $hours $minutes $seconds
-        else
-            printf "%02d:%02d" $minutes $seconds
-        fi
-    }
-
-    # Get search query from user if not provided as argument
-    local query="$*"
-    if [ -z "$query" ]; then
-        read -p "Enter search term: " query
-    fi
-
-    # Perform YouTube search and format results
-    selected=$(yt-dlp ytsearch20:"$query" \
-        --get-id --get-title --get-duration \
-        --no-playlist \
-        --print '%(title)s|||%(duration)s|||%(id)s' 2>/dev/null \
-        | while IFS='|||' read -r title duration id; do
-            duration_formatted=$(format_duration "$duration")
-            printf "%-70.70s  [%s]  https://youtube.com/watch?v=%s\n" \
-                "$title" "$duration_formatted" "$id"
-        done | fzf --ansi \
-            --preview 'yt-dlp --get-description {-1}' \
-            --preview-window 'right:40%:wrap' \
-            --bind 'ctrl-y:execute(echo {-1} | xclip -selection clipboard)' \
-            --header 'TAB/Shift-TAB: Move preview window | Ctrl-Y: Copy URL | Enter: Play video')
-
-    # Check if a video was selected
-    if [ -n "$selected" ]; then
-        # Extract video URL and play with mpv
-        url=$(echo "$selected" | awk '{print $NF}')
-        echo "Playing: $url"
-        mpv "$url"
-    else
-        echo "No video selected"
-    fi
-}
-alias ytp='yt_search_play'
 
 # ZSH Theme
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

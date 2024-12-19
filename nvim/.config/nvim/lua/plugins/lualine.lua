@@ -1,7 +1,8 @@
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  event = 'VimEnter',
+  -- enabled = false,
+  event = 'VeryLazy',
   config = function()
     local colors = {
       blue = '#82aaff',
@@ -10,7 +11,7 @@ return {
       white = '#eeffff',
       red = '#f07178',
       violet = '#c792ea',
-      grey = '#3f3f3f',
+      grey = '#3e3e3e',
       light_grey = '#848484',
     }
 
@@ -26,9 +27,9 @@ return {
       replace = { a = { fg = colors.black, bg = colors.violet, gui = 'bold' } },
 
       inactive = {
-        a = { fg = colors.white, bg = colors.black },
-        b = { fg = colors.white, bg = colors.black },
-        c = { fg = colors.white },
+        a = { fg = colors.light_grey, bg = colors.black },
+        b = { fg = colors.light_grey, bg = colors.black },
+        c = { fg = colors.light_grey, bg = colors.black },
       },
     }
 
@@ -37,13 +38,13 @@ return {
         theme = split_theme,
         component_separators = '',
         section_separators = { left = '', right = '' },
-        disabled_filetypes = { statusline = { 'dashboard' } },
+        disabled_filetypes = { statusline = { 'snacks_dashboard' } },
       },
       sections = {
         lualine_a = { { 'mode', separator = { left = '' } } },
         lualine_b = { 'filename' },
         lualine_c = { 'branch' },
-        lualine_x = {},
+        lualine_x = { 'searchcount', 'selectioncount' },
         lualine_y = { 'filetype', 'progress' },
         lualine_z = {
           { 'location', separator = { right = '' } },
@@ -51,10 +52,10 @@ return {
       },
       inactive_sections = {
         lualine_a = { 'filename' },
-        lualine_b = {},
+        lualine_b = { 'branch' },
         lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
+        lualine_x = { 'searchcount', 'selectioncount' },
+        lualine_y = { 'filetype', 'progress' },
         lualine_z = { 'location' },
       },
     }
