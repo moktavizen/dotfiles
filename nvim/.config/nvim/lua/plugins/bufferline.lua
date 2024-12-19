@@ -1,6 +1,7 @@
 -- Buffer Tabs
 return {
   'akinsho/bufferline.nvim',
+  -- enabled = false,
   version = '*',
   dependencies = 'nvim-tree/nvim-web-devicons',
   event = 'VimEnter',
@@ -13,8 +14,8 @@ return {
     { '<leader>bl', "<cmd>lua require('bufferline').go_to(4, true)<cr>", desc = 'Switch to Buffer 4' },
     { '<leader>bp', '<cmd>BufferLineTogglePin<cr>', desc = 'Toggle Buffer Pin' },
     { '<leader>bP', '<cmd>BufferLineGroupClose ungrouped<cr>', desc = 'Delete Non-Pinned Buffers' },
-    { '<leader>bd', '<cmd>bd<cr>', desc = 'Delete Buffer' },
-    { '<leader>bD', '<cmd>BufferLineCloseOthers<cr>', desc = 'Delete Other Buffers' },
+    { '<leader>x', '<cmd>bd<cr>', desc = 'Delete Buffer' },
+    { '<leader>X', '<cmd>BufferLineCloseOthers<cr>', desc = 'Delete Other Buffers' },
   },
   opts = {
     options = {
