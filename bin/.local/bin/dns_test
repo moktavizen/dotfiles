@@ -1,0 +1,100 @@
+#!/bin/bash
+#
+# Rank DNS servers by latency from current location
+
+set -euo pipefail
+
+get_current_dns() {
+  local current_dns
+
+  if command -v nmcli >/dev/null; then
+    current_dns=$(nmcli dev show | awk '/DNS/ {print $2; exit}')
+  elif [[ -f /etc/resolv.conf ]]; then
+    current_dns=$(awk '/^nameserver/ {print $2; exit}' /etc/resolv.conf)
+  elif command -v resolvectl >/dev/null; then
+    current_dns=$(
+      resolvectl status | awk -F': ' '/DNS Servers/ {print $2; exit}' \
+        | awk '{print $1}'
+    )
+  fi
+
+  if [[ -n $current_dns ]]; then
+    echo "$current_dns"
+  else
+    echo "ERROR: Can't find current DNS"
+    exit 1
+  fi
+}
+
+fetch_public_dns() {
+  local sources=(
+    "https://www.publicdns.xyz/"
+  )
+  local ip_list
+
+  for source in "${sources[@]}"; do
+    ip_list=$(curl -fs "$source" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}')
+    if [[ -n "${ip_list}" ]]; then
+      echo -e "DNS Source\t: $source" >&2
+      break
+    fi
+  done
+
+  echo "$ip_list"
+}
+
+test_dns_servers() {
+  local current_dns="$1"
+  local public_dns="$2"
+
+  local full_dns
+  full_dns=$(echo -e "$current_dns\n$public_dns")
+
+  local n_proc
+  n_proc=$(echo "$full_dns" | wc --lines)
+
+  local ping_count="10"
+  local ping_timeout="0.3"
+
+  echo "$full_dns" \
+    | xargs -P "$n_proc" -I{} sh -c \
+      "ping -c $ping_count -W $ping_timeout -q {} 2>/dev/null \
+        | awk -F/ '/rtt/ {print \"{} \" \$5}'"
+}
+
+display_results() {
+  local current_dns="$1"
+  local test_results="$2"
+
+  local n_row="20"
+
+  printf "+----+------------------------+-----------+\n"
+  printf "| NO | DNS SERVER             | PING      |\n"
+  printf "+----+------------------------+-----------+\n"
+
+  sort -nk2 <<<"$test_results" | head -n "$n_row" \
+    | awk -v current="$current_dns" '{
+        printf "| %2d | %-22s | %6.2f ms |\n", NR,
+        ($1 == current) ? $1 " (CUR.)" : $1, $2
+      }'
+
+  printf "+----+------------------------+-----------+\n"
+}
+
+main() {
+  local current_dns
+  current_dns=$(get_current_dns)
+  echo -e "Current DNS\t: $current_dns"
+
+  local public_dns
+  public_dns=$(fetch_public_dns)
+
+  echo -e "\nTesting DNS servers...\n"
+
+  local test_results
+  test_results=$(test_dns_servers "$current_dns" "$public_dns")
+
+  display_results "$current_dns" "$test_results"
+}
+
+main

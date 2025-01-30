@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# Fuzzy find TMDB ID
+# Require $TMDB_API_ACCESS_TOKEN environment variable
+# Dependency: fzf, curl, jq
+
+set -euo pipefail
+
+check_tmdb_token() {
+  if [ -z "$TMDB_API_ACCESS_TOKEN" ]; then
+    echo "Error: TMDB_API_ACCESS_TOKEN environment variable is not set" >&2
+    echo "Set the token and try again!" >&2
+    exit 1
+  fi
+}
+
+fzf_tmdb_id() {
+  (
+    QUERY_TMDB() {
+      local raw_query="$1"
+
+      curl --request GET -sG \
+        --url "https://api.themoviedb.org/3/search/multi" \
+        --data-urlencode "query=$raw_query" \
+        --header "Authorization: Bearer $TMDB_API_ACCESS_TOKEN" \
+        --header "accept: application/json" \
+        | jq -r ".results[] | [.id, .media_type, (.title//.name)] | @tsv"
+    }
+
+    export -f QUERY_TMDB
+
+    local ui_opts=(
+      --no-scrollbar --info default
+      --height 50% --layout reverse --border
+    )
+
+    fzf --with-shell "bash -c" \
+      --bind "start:reload:QUERY_TMDB spongebob" \
+      --bind "change:reload:sleep 0.25; QUERY_TMDB {q} || true" \
+      --disabled \
+      --delimiter "\t" \
+      --bind "enter:become(wl-copy {1})" \
+      --disabled --header $'ID\tTYPE\tTITLE' \
+      "${ui_opts[@]}"
+  )
+}
+
+main() {
+  check_tmdb_token
+
+  if fzf_tmdb_id; then
+    echo "ID $(wl-paste) copied to clipboard"
+  else
+    echo "Exited with code $?" >&2
+  fi
+}
+
+main

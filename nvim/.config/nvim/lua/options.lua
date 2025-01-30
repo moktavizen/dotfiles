@@ -37,7 +37,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+-- vim.opt.signcolumn = 'yes'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -54,7 +54,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
 vim.opt.fillchars = { eob = ' ' }
 
 -- Preview substitutions live, as you type!
@@ -73,3 +73,13 @@ vim.opt.cmdheight = 0
 
 -- show separator on horizontal split
 vim.opt.laststatus = 3
+
+-- set tab width
+vim.opt.tabstop = 2
+vim.opt.softtabstop = -1
+vim.opt.shiftwidth = 0
+vim.opt.shiftround = true
+vim.opt.expandtab = true
+
+-- set line wrap
+vim.opt.wrap = false

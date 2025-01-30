@@ -1,0 +1,273 @@
+
+# NEUTR V2
+        hsl          hex
+black   0  ,0  ,15   #1f1f1f
+red     0  ,77 ,77   #f09393
+green   90 ,77 ,77   #c2f093
+yellow  40 ,77 ,77   #f0d193
+blue    230,77 ,77   #93a3f0
+magenta 280,76 ,76   #d193f0
+cyan    200,77 ,77   #93d1f0
+white   0  ,0  ,92   #ebebeb
+
+neutral = {
+	50 = #ebebeb
+	100 = #c1c1c1
+	200 = #999999
+	300 = #868686
+	400 = #717171
+	500 = #5c5c5c
+	600 = #484848
+	700 = #373737
+	800 = #2c2c2c
+	900 = #1f1f1f
+	950 = #141414
+},
+red = {
+	300 = #f29797
+	950 = #352c2c
+},
+yellow = {
+	300 = #f2db97
+	950 = #35332c
+},
+green = {
+	300 = #c4f297
+	950 = #30352c
+},
+cyan = {
+	300 = #97f2f2
+	500 = #b6d2d2
+	950 = #2c3535
+},
+blue = {
+	300 = #97aef2
+	950 = #2c2e35
+},
+magenta = {
+	300 = #c497f2
+},
+
+Here is the updated table with rounded HSL values:
+
+ANSI Terminal and Material Theme
+
+| **Color** | **HEX (1)** | **HSL (1)**          | **HEX (2)** | **HSL (2)**          |
+|-----------|-------------|----------------------|-------------|----------------------|
+| Base      | #000000     | hsl(0  , 0%  , 0%  ) | #212121     | hsl(0  , 0%  , 13% ) |
+| Text      | #ffffff     | hsl(0  , 0%  , 100%) | #eeffff     | hsl(180, 100%, 97% ) |
+| Red       | #ff0000     | hsl(0  , 100%, 50% ) | #f07178     | hsl(357, 81% , 69% ) | #36292a hsl(355,14,19) #6f3f42 356 28 34
+| Orange    | #ffa500     | hsl(39 , 100%, 50% ) | #f78c6c     | hsl(14 , 90% , 70% ) |
+| Yellow    | #ffff00     | hsl(60 , 100%, 50% ) | #ffcb6b     | hsl(39 , 100%, 71% ) | #373228 hsl(40,16,19)
+| Green     | #00ff00     | hsl(120, 100%, 50% ) | #c3e88d     | hsl(84 , 66% , 73% ) |                        #5e6c4a 85 19 36
+| Cyan      | #00ffff     | hsl(180, 100%, 50% ) | #89ddff     | hsl(197, 100%, 77% ) | #2b3437 hsl(195,12,19)
+| Blue      | #0000ff     | hsl(240, 100%, 50% ) | #82aaff     | hsl(221, 100%, 75% ) | #2b2f37 hsl(220,12,19) #5c75a9 221 31 51
+| Purple    | #9d00ff     | hsl(277, 100%, 50% ) | #c792ea     | hsl(276, 68% , 75% ) |
+
+Neutr
+
+| **Color** | **HEX (1)** | **HSL (1)**          |
+|-----------|-------------|----------------------|
+| Base      | #212121     | hsl(0  , 0%  , 13% ) |
+| Text      | #ececec     | hsl(0  , 0%  , 88% ) |
+| Red       | #f2979c     | hsl(357, 77% , 77% ) |
+| Orange    | #f2d297     | hsl(39 , 77% , 77% ) |
+| Green     | #cdf297     | hsl(84 , 77% , 77% ) |
+| Cyan      | #97d8f2     | hsl(197, 77% , 77% ) |
+| Blue      | #97b4f2     | hsl(221, 77% , 77% ) |
+| Purple    | #cd97f2     | hsl(276, 77% , 77% ) |
+| Pale Cyan | #b6cad2     | hsl(197, 24% , 77% ) |
+| Dim Text  | #888888     | hsl(0  ,  0% , 53% ) |
+
+base8
+
+black       #212121
+red         #f2979c
+green       #cdf297
+orange      #f2d297
+blue        #97b4f2
+purple      #cd97f2
+cyan        #97d8f2
+white       #ececec
+
+extra
+
+pale-cyan   #b6cad2
+muted-red   #9a5b5e
+muted-green #819a5b
+muted-blue  #5b6f9a
+dark-red    #352c2d
+dark-green  #31352c
+dark-orange #35322c
+dark-cyan   #2c3235
+dark-blue   #2c2f35
+dim-white   #9c9c9c
+cursline    #888888
+curslinenum #b7b7b7
+hl          #404040
+indent      #4a4a4a
+indent-hl   #5d5d5d
+
+ui
+
+bg          #212121
+bg+         #171717
+fg          #ececec
+fg+         #b7b7b7
+scroll+     #404040
+dim-fg      #9c9c9c
+title       #ececec
+curshl      #2e2e2e
+border      #737373
+
+local colors = {
+	neutral = {
+		50 = #ececec93
+		100 = #b7b7b772
+		200 = #9c9c9c61
+		300 = #88888853
+		400 = #73737345
+		500 = #5d5d5d36
+		600 = #4a4a4a29
+		700 = #40404025
+		800 = #2e2e2e18
+		900 = #212121
+		950 = #171717
+	},
+	red = {
+		300 = #f2979c
+		600 = #9a5b5e
+		950 = #352c2d
+	},
+	orange = {
+
+		300 = #f2d297
+		950 = #352c2d
+	},
+	green = {
+		300 = #cdf297
+		600 = #819a5b
+		950 = #31352c
+	},
+	cyan = {
+		300 = #97d8f2
+		950 = #2c3235
+	},
+	blue = {
+		300 = #97b4f2
+		600 = #5b6f9a
+		950 = #2c2f35
+	},
+	purple = {
+		300 = #cd97f2
+	},
+}
+
+
+
+base      #212121 # Contrast to base
+text      #e0e0e0 # 12
+red       #ff0000 # 4
+orange    #ffa500 # 8
+yellow    #ffff00 # 15
+green     #00ff00 # 12
+cyan      #00ffff # 13
+blue      #0000ff # 2
+purple    #9d00ff # 3
+
+base      #212121
+text      #e0e0e0
+red       #f07178
+orange    #f78c6c
+yellow    #ffcb6b
+green     #c3e88d
+cyan      #89ddff
+blue      #82aaff
+purple    #c792ea
+
+base      #212121
+text      #e0e0e0
+red       #f88d8d
+orange    #f78c6c
+yellow    #ffcb6b
+green     #c3e88d
+cyan      #89ddff
+blue      #a4a4f9
+purple    #c792ea
+
+# From Personal Test
+
+Tested using iPhone XR
+
+## Notification - Dark
+
+background: rgba(37, 37, 37, 0.5);
+backdrop-filter: blur(30px);
+border-radius: 24px;
+
+## From Apple's Dev https://developer.apple.com/design/resources/
+
+@supports ((-webkit-backdrop-filter: initial) or (backdrop-filter: initial)) {
+  .localnav.localnav-sticking .localnav-background {
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+    backdrop-filter:saturate(180%) blur(20px);
+  }
+}
+
+# From Apple's Figma
+
+Figma is untested, I dont have macbook at the time of this writing
+
+## macOS Sidebar - Light
+
+background: rgba(234, 234, 234, 0.84);
+backdrop-filter: blur(50px);
+border-radius: 10px;
+
+## Notification - Light
+
+background: linear-gradient(0deg, rgba(246, 246, 246, 0.84), rgba(246, 246, 246, 0.84)), #262626;
+backdrop-filter: blur(20px);
+border-radius: 16px;
+
+## macOS Top Panel - Dark
+
+/* Menu Bar */
+background: rgba(0, 0, 0, 0.18);
+backdrop-filter: blur(25px);
+
+rosewater="#f5e4dc"
+flamingo="#f2d3cd"
+pink="#f5c2df"
+mauve="#d7a6f7"
+red="#f38b98"
+maroon="#eba0a1"
+peach="#fac487"
+yellow="#f9edaf"
+green="#a1e3a6"
+teal="#94e2e1"
+sky="#89cdeb"
+sapphire="#74b5ec"
+blue="#89a3fa"
+lavender="#b5b4fe"
+text="#eeeeee"
+subtext1="#d7d7d7"
+subtext0="#c0c0c0"
+overlay2="#a9a9a9"
+overlay1="#929292"
+overlay0="#7b7b7b"
+surface2="#646464"
+surface1="#4d4d4d"
+surface0="#363636"
+base="#1f1f1f"
+mantle="#141414"
+crust="#090909"
+
+#f09393
+#f0b293
+#f0d193
+#c2f093
+#93e1f0
+#93b2f0
+#d193f0
+

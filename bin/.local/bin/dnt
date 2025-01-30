@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Create temporary directory
+temp_dir=$(mktemp -d)
+trap 'rm -rf "$temp_dir"' EXIT
+
+# Function to test ping latency (modified for parallel execution)
+test_ping() {
+  local ip=$1
+  local ping_result
+  local rtt_line
+  local rtt_stats
+  local -a stats
+  local avg_ping
+
+  ping_result=$(ping -c 4 -W 2 "$ip" 2>/dev/null)
+  if [[ $? -eq 0 ]]; then
+    rtt_line=$(echo "$ping_result" | grep 'rtt')
+    rtt_stats=${rtt_line#*=}
+    IFS='/' read -ra stats <<<"$rtt_stats"
+    avg_ping=$(printf "%.1f" "${stats[1]}")
+    echo "$ip $avg_ping" >"$temp_dir/${ip//./_}.txt"
+  else
+    echo "$ip 999.0" >"$temp_dir/${ip//./_}.txt"
+  fi
+}
+
+# Get current DNS servers
+current_dns=$(grep '^nameserver' /etc/resolv.conf | awk '{print $2}' | grep -E '^([0-9]{1,3}\.){3}[0-9]{1,3}$')
+
+# Get public DNS servers
+public_dns=$(curl -fs "https://www.publicdns.xyz/" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}')
+
+# Combine and remove duplicates
+all_dns=$(echo -e "${current_dns}\n${public_dns}" | sort -u)
+
+# Run all ping tests in parallel
+echo "Testing DNS servers in parallel (this may take a moment)..."
+while read -r ip; do
+  [[ -z "$ip" ]] && continue
+  test_ping "$ip" &
+done <<<"$all_dns"
+
+# Wait for all background processes to complete
+wait
+
+# Collect results
+declare -a results
+for result_file in "$temp_dir"/*.txt; do
+  results+=("$(cat "$result_file")")
+done
+
+# Sort results by latency
+sorted_results=($(printf "%s\n" "${results[@]}" | sort -n -k2))
+
+# Display results in table format
+clear
+printf "+----+------------------------+-----------+\n"
+printf "| NO | DNS SERVER             | PING (ms) |\n"
+printf "+----+------------------------+-----------+\n"
+
+count=1
+for entry in "${sorted_results[@]}"; do
+  ip=$(awk '{print $1}' <<<"$entry")
+  latency=$(awk '{print $2}' <<<"$entry")
+  printf "| %-2d | %-22s | %-9s |\n" "$count" "$ip" "$latency"
+  ((count++))
+done
+
+printf "+----+------------------------+-----------+\n"

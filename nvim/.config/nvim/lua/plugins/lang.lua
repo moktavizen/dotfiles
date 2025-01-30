@@ -75,27 +75,23 @@ return {
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
+          map('gd', require('snacks.picker').lsp_definitions, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
-          map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
+          map('gr', require('snacks.picker').lsp_references, '[G]oto [R]eferences')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', require('snacks.picker').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
+          map('<leader>D', require('snacks.picker').lsp_type_definitions, 'Type [D]efinition')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
-
-          -- Fuzzy find all the symbols in your current workspace.
-          --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>ds', require('snacks.picker').lsp_symbols, '[D]ocument [S]ymbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -166,10 +162,15 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
+        pyright = {},
+        rust_analyzer = {},
+        bashls = {
+          settings = {
+            filetypes = { 'sh', 'zsh' },
+          },
+        },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -178,6 +179,9 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         ts_ls = {},
         --
+        html = {},
+        cssls = {},
+        marksman = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -208,6 +212,7 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'shfmt', -- Used to format shell code
         'prettierd', -- Used to format WebDev code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -259,8 +264,16 @@ return {
           lsp_format = lsp_format_opt,
         }
       end,
+      formatters = {
+        shfmt = {
+          -- Google's shell style guide: shfmt -i 2 -ci -bn
+          prepend_args = { '-i', '2', '-ci', '-bn' },
+        },
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
+        bash = { 'shfmt' },
+        sh = { 'shfmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -275,16 +288,12 @@ return {
 
   { -- Autocompletion
     'saghen/blink.cmp',
-    lazy = false, -- lazy loading handled internally
     -- optional: provides snippets for the snippet source
-    dependencies = {
-      { 'rafamadriz/friendly-snippets' },
-      { 'L3MON4D3/LuaSnip', version = '*' },
-    },
+    dependencies = 'rafamadriz/friendly-snippets',
 
     -- use a release tag to download pre-built binaries
     version = '*',
-    -- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     -- build = 'cargo build --release',
     -- If you use nix, you can build from source using latest nightly rust with:
     -- build = 'nix run .#build-plugin',
@@ -295,55 +304,31 @@ return {
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-      -- see the "default configuration" section below for full documentation on how to define
-      -- your own keymap.
+      -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = { preset = 'default' },
 
       appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups
         -- Useful for when your theme doesn't support blink.cmp
-        -- will be removed in a future release
+        -- Will be removed in a future release
         use_nvim_cmp_as_default = true,
         -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
       },
 
-      snippets = {
-        expand = function(snippet)
-          require('luasnip').lsp_expand(snippet)
-        end,
-        active = function(filter)
-          if filter and filter.direction then
-            return require('luasnip').jumpable(filter.direction)
-          end
-          return require('luasnip').in_snippet()
-        end,
-        jump = function(direction)
-          require('luasnip').jump(direction)
-        end,
-      },
-
-      -- default list of enabled providers defined so that you can extend it
-      -- elsewhere in your config, without redefining it, via `opts_extend`
+      -- Default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'luasnip', 'buffer' },
-        -- optionally disable cmdline completions
-        -- cmdline = {},
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
-
-      completion = { accept = { auto_brackets = { enabled = true } } },
-
-      -- experimental signature help support
-      -- signature = { enabled = true }
     },
-    -- allows extending the providers array elsewhere in your config
-    -- without having to redefine it
     opts_extend = { 'sources.default' },
   },
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    -- enabled = false,
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`

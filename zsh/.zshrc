@@ -4,8 +4,8 @@ fastfetch
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USERNAME:-$(whoami)}.zsh" ]]; then
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USERNAME:-$(whoami)}.zsh"
 fi
 
 # Lines configured by zsh-newuser-install
@@ -28,7 +28,6 @@ export LIBVA_DRIVER_NAME=i965
 # export LIBVA_DRIVER_NAME=iHD
 export EDITOR=nvim
 export VISUAL=nvim
-export TERMINAL=kitty
 export PATH="$HOME/.local/bin:$PATH"
 # export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=gasp -Dsun.java2d.uiScale=2'
 export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=gasp'
@@ -49,8 +48,8 @@ export GOPATH="$HOME/.go"
 # fnm
 FNM_PATH="/home/vizen/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/vizen/.local/share/fnm:$PATH"
-  eval "`fnm env`"
+    export PATH="/home/vizen/.local/share/fnm:$PATH"
+    eval "$(fnm env)"
 fi
 
 # Colors for ls, fd
@@ -58,46 +57,48 @@ fi
 
 # Colors for fzf
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
- --color=fg:#848484,bg:#1a1a1a,hl:#82aaff
- --color=fg+:#82aaff,bg+:#353535,hl+:#82aaff
- --color=info:#ffcb6b,prompt:#f07178,pointer:#c792ea
- --color=marker:#c3e88d,spinner:#c792ea,header:#89ddff
- --color=border:#848484,gutter:#1a1a1a
- --no-separator
- --no-scrollbar
- --height 40% 
- --layout reverse 
- --border'
+    --color=fg:#b7b7b7,bg:#171717,hl:#97b4f2
+    --color=fg+:#97b4f2,bg+:#2e2e2e,hl+:#97b4f2
+    --color=info:#f2d297,prompt:#f2979c,pointer:#cd97f2
+    --color=marker:#cdf297,spinner:#cd97f2,header:#97d8f2
+    --color=border:#737373
+    --no-scrollbar
+    --info=hidden
+    --height 50%
+    --layout reverse
+    --border'
 
 # Alias needs rg, eza, bat, fd, fzf, to be installed
 alias sudo='sudo ' # make sudo detect alias
 alias diff='diff --color=auto'
-alias grep='rg'
+# alias grep='rg'
 alias ip='ip -color=auto'
 alias ls='eza --icons=always --color=always'
-alias cat='bat --theme=base16 --color=always --style=plain --paging=never'
+# alias cat='bat --theme=base16 --color=always --style=plain --paging=never'
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 alias yay='paru'
 alias update='paru'
 alias clean='paru --clean'
 alias ff='fastfetch'
 alias fff='fastfetch -C ~/.config/fastfetch/fastfetch-full.jsonc'
-alias shutdown='shutdown -h now'
 alias sd='cd $(fd -H -t d | fzf --preview "eza -lh --no-user --no-permissions --icons=always --color=always {}")' # change directory using fzf
-alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=numbers,changes {}")' # edit file using fzf
+alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=numbers,changes {}")'      # edit file using fzf
 alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
 alias npx='bunx'
 alias vim='nvim'
 alias lvim='NVIM_APPNAME=lvim nvim'
 alias lg='lazygit'
+alias media_ser='sudo systemctl start jellyfin'
+alias qbit_ser='sudo systemctl start qbittorrent-nox@vizen'
+
+# yt-dlp mp3 mp4
 alias mp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4 -o "%(title)s - %(uploader)s.%(ext)s"'
-function mp3() {
+mp3() {
     yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 \
         --embed-metadata --embed-thumbnail --convert-thumb jpg \
-        --ppa "ThumbnailsConvertor+FFmpeg_o:-c:v mjpeg -vf crop=\"'min(iw,ih)':'min(iw,ih)'\"" \
-        -o "%(title)s - %(artist)s.%(ext)s" \
-        "$1"
+        --ppa "ThumbnailsConvertor:-c:v mjpeg -vf crop=min(iw\,ih)" \
+        -o "%(title)s - %(artist)s.%(ext)s" "$1"
 }
 
 # ZSH Theme
@@ -107,5 +108,6 @@ source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ZSH Plugins
+# source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be the last plugin sourced
