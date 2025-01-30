@@ -1,0 +1,110 @@
+#!/bin/bash
+#
+# Install software that I use on Arch Linux Hyprland
+#
+# - usage       : just execute without any args, like an alias
+
+set -euo pipefail
+
+configure_pacman() {
+  sed -i '/^\[options\]/a\ParallelDownloads = 5' /etc/pacman.conf
+  sed -i '/^\[options\]/a\Color' /etc/pacman.conf
+  sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
+}
+
+install_paru() {
+  pacman -S --needed git base-devel
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
+  makepkg -si --noconfirm
+  cd ..
+  rm -rf paru
+}
+
+install_packages() {
+  paru -S --needed \
+    stow \
+    greetd \
+    hyprland \
+    hyprpaper \
+    hyprpicker \
+    qt5-wayland \
+    qt6-wayland \
+    polkit-gnome \
+    xdg-desktop-portal-hyprland \
+    inter-font \
+    ttf-jetbrains-mono-nerd \
+    adobe-source-serif-fonts \
+    noto-fonts \
+    noto-fonts-cjk \
+    noto-fonts-emoji \
+    noto-fonts-extra \
+    dunst \
+    waybar \
+    wofi \
+    pavucontrol \
+    bluetui \
+    grimblast \
+    foot \
+    foot-terminfo \
+    zsh \
+    zsh-autosuggestions \
+    zsh-syntax-highlighting \
+    fastfetch \
+    tmux \
+    neovim \
+    tree-sitter-cli \
+    ripgrep \
+    eza \
+    bat \
+    fd \
+    dust \
+    btop \
+    nautilus \
+    mpv \
+    shotwell \
+    zen-browser-bin \
+    gnome-boxes \
+}
+
+configure_greeter() {
+  sed -i '/^\[initial_session\]/a\user = "vizen"' /etc/greetd/config.toml
+  sed -i '/^\[initial_session\]/a\command = "Hyprland"' /etc/greetd/config.toml
+}
+
+configure_dotfiles() {
+  git clone https://github.com/moktavizen/dotfiles
+  cd dotfiles
+
+  stow hypr
+  stow fontconfig
+  stow wallpapers
+  stow waybar
+  stow wofi
+  stow dunst
+  stow easyeffects
+  stow foot
+  stow zsh
+  stow fastfetch
+  stow tmux
+  stow bin
+  stow nvim
+  stow mpv
+}
+
+main() {
+  if [ $EUID != 0 ]; then
+    sudo "$0" "$@"
+    exit $?
+  fi
+
+  configure_pacman
+  install_paru
+  install_packages
+  configure_greeter
+  configure_dotfiles
+
+  echo "Post Installation process complete!"
+}
+
+main
