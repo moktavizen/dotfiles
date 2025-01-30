@@ -1,0 +1,41 @@
+return {
+  enabled = false,
+  'catppuccin/nvim',
+  name = 'catppuccin',
+  priority = 1000,
+  init = function()
+    vim.cmd.colorscheme 'catppuccin'
+  end,
+  opts = {
+    color_overrides = {
+      all = {
+        rosewater = '#f5e4dc',
+        flamingo = '#f2d3cd',
+        pink = '#f5c2df',
+        mauve = '#d7a6f7',
+        red = '#f38b98',
+        maroon = '#eba0a1',
+        peach = '#fac487',
+        yellow = '#f9edaf',
+        green = '#a1e3a6',
+        teal = '#94e2e1',
+        sky = '#89cdeb',
+        sapphire = '#74b5ec',
+        blue = '#89a3fa',
+        lavender = '#b5b4fe',
+        text = '#eeeeee',
+        subtext1 = '#d7d7d7',
+        subtext0 = '#c0c0c0',
+        overlay2 = '#a9a9a9',
+        overlay1 = '#929292',
+        overlay0 = '#7b7b7b',
+        surface2 = '#646464',
+        surface1 = '#4d4d4d',
+        surface0 = '#363636',
+        base = '#1f1f1f',
+        mantle = '#141414',
+        crust = '#090909',
+      },
+    },
+  },
+}

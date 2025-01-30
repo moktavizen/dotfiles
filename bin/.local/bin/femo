@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# fzf and select emoji
+# - dependency  : fzf, curl
+# - usage       : just execute without any args, like an alias
+
+set -euo pipefail
+
+readonly EMOJI_LIST="${XDG_DATA_HOME:-$HOME/.local/share}/emoji-list.txt"
+
+fetch_emoji_list() {
+  curl -fsS "https://unicode.org/Public/emoji/latest/emoji-test.txt" \
+    | awk -F 'fully-qualified     # ' 'NF > 1 { print $2 }' \
+    | sed -E 's/E[0-9]+\.[0-9]+//g'
+}
+
+fzf_select() {
+  local ui_opts=(
+    --no-scrollbar --info hidden
+    --height 50% --layout reverse --border
+  )
+
+  fzf --with-shell "bash -c" \
+    --delimiter "  " \
+    --bind "enter:become(wl-copy {1})" \
+    "${ui_opts[@]}"
+}
+
+main() {
+  if [[ ! -f "$EMOJI_LIST" ]]; then
+    mkdir -p "${EMOJI_LIST%/*}" 2>/dev/null
+
+    echo "Processing emoji list..."
+    echo "Only needed on first run. Please wait..."
+
+    # TODO: if canceled, there's an empty emoji-list file
+    fetch_emoji_list >"$EMOJI_LIST" || {
+      echo "Failed to fetch emoji list" >&2
+    }
+  fi
+
+  if fzf_select <"$EMOJI_LIST"; then
+    echo "$(wl-paste) Copied to clipboard"
+  else
+    echo "Exited with code $?" >&2
+  fi
+}
+
+main

@@ -36,10 +36,6 @@ return {
       fill = {
         bg = 'None',
       },
-      offset_separator = {
-        fg = '#2a2a2a',
-        bg = '#212121',
-      },
     },
   },
 }

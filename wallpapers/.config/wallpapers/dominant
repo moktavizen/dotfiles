@@ -1,0 +1,9 @@
+area=$(magick boat.png -format "%[fx:w*h]" info:)
+data=$(magick boat.png -kmeans 10 -format "%c" histogram:info: | sed 's/://g' | awk -v area=$area '{print 100*$1/area, "%,", $3}' | sed 's/ *//g' | sort -nr -k1,1 -t ",")
+echo "$data"
+magick -size 1x1 xc: swatches.png
+for item in $data; do
+  color=$(echo $item | cut -d, -f2)
+  magick swatches.png \( -size 100x100 xc:"$color" \) +append swatches.png
+done
+magick swatches.png -gravity west -chop 1x swatches.png

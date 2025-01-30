@@ -1,0 +1,3 @@
+Server = https://sg.mirrors.cicku.me/archlinux/$repo/os/$arch
+#Server = https://sg.arch.niranjan.co/$repo/os/$arch
+Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch

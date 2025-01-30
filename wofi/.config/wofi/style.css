@@ -1,9 +1,10 @@
 /*@define-color bg0 #1a1a1a;*/
-@define-color bg0 rgba(37,37,37,0.5);
+/*@define-color bg0 rgba(0, 0, 0, 0.18);*/
+@define-color bg0 rgba(23,23,23,0.8);
 /*@define-color bg1 #212121;*/
-@define-color bg1 rgba(255,255,255,0.2);
-@define-color fg0 #b0bec5;
-@define-color fg1 #eeffff;
+@define-color bg1 rgba(235,235,235,0.2);
+@define-color fg0 #999999;
+@define-color fg1 #ebebeb;
 
 window {
   font-size: 26px;
@@ -11,6 +12,9 @@ window {
   background-color: @bg0;
   color: @fg0;
   border-radius: 12px;
+}
+#outer-box {
+  color: @fg0;
 }
 
 #input {

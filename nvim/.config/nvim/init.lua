@@ -1,4 +1,4 @@
-vim.cmd 'colorscheme material-darker-hc'
+vim.hl = vim.highlight
 --[[
 
 =====================================================================
