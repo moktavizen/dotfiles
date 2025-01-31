@@ -13,11 +13,11 @@ configure_pacman() {
 
 install_paru() {
   sudo pacman -S --needed git base-devel
-  git clone https://aur.archlinux.org/paru.git
-  cd paru
+  git clone https://aur.archlinux.org/paru-bin.git
+  cd paru-bin
   makepkg -si --noconfirm
   cd ..
-  rm -rf paru
+  rm -rf paru-bin
 }
 
 install_packages() {
