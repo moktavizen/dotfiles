@@ -122,6 +122,17 @@ configure_dotfiles() {
     mpv
 }
 
+confgiure_home() {
+  mkdir -p "$HOME/Desktop"
+  mkdir -p "$HOME/Documents"
+  mkdir -p "$HOME/Downloads"
+
+  ln -s /media/Pictures "$HOME/Books"
+  ln -s /media/Music "$HOME/Music"
+  ln -s /media/Pictures "$HOME/Pictures"
+  ln -s /media/Pictures "$HOME/Videos"
+}
+
 main() {
   if [ -z "${SUDO_USER:-}" ]; then
     echo "Error: Run this script with sudo."
@@ -135,6 +146,7 @@ main() {
   configure_greeter
   configure_systemctl
   configure_dotfiles
+  configure_home
 
   sudo -u "$SUDO_USER" echo "Post Installation process complete!"
 }
