@@ -6,24 +6,25 @@
     "audio_config": {
         "audio": "pipewire"
     },
-    "bootloader": "Grub",
-    "config_version": "3.0.1",
+    "bootloader": "Systemd-boot",
+    "config_version": "3.0.2",
     "disk_config": {
         "config_type": "default_layout",
         "device_modifications": [
             {
-                "device": "/dev/vda",
+                "device": "/dev/sda",
                 "partitions": [
                     {
                         "btrfs": [],
                         "dev_path": null,
                         "flags": [
-                            "boot"
+                            "boot",
+                            "esp"
                         ],
                         "fs_type": "fat32",
                         "mount_options": [],
                         "mountpoint": "/boot",
-                        "obj_id": "54759e29-e968-4087-bca8-93b2ecd8df13",
+                        "obj_id": "8fd63d0d-91d8-400a-abbb-957915864e37",
                         "size": {
                             "sector_size": {
                                 "unit": "B",
@@ -38,7 +39,7 @@
                                 "value": 512
                             },
                             "unit": "MiB",
-                            "value": 3
+                            "value": 1
                         },
                         "status": "create",
                         "type": "primary"
@@ -73,14 +74,14 @@
                             "compress=zstd"
                         ],
                         "mountpoint": null,
-                        "obj_id": "07b9d6b4-eded-4916-ae37-b16a2329da7c",
+                        "obj_id": "86cc1443-39fd-4e41-9ae9-719ec85f0b77",
                         "size": {
                             "sector_size": {
                                 "unit": "B",
                                 "value": 512
                             },
                             "unit": "B",
-                            "value": 20397948928
+                            "value": 254985371648
                         },
                         "start": {
                             "sector_size": {
@@ -88,7 +89,7 @@
                                 "value": 512
                             },
                             "unit": "B",
-                            "value": 1076887552
+                            "value": 1074790400
                         },
                         "status": "create",
                         "type": "primary"
@@ -99,7 +100,7 @@
         ]
     },
     "disk_encryption": null,
-    "hostname": "boxes",
+    "hostname": "thicc430",
     "kernels": [
         "linux"
     ],
@@ -112,19 +113,7 @@
         "custom_mirrors": [],
         "mirror_regions": {
             "Singapore": [
-                "{\"url\":\"https://download.nus.edu.sg/mirror/archlinux/\",\"protocol\":\"https\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":false,\"details\":\"https://archlinux.org/mirrors/download.nus.edu.sg/1026/\",\"delay\":40553,\"last_sync\":\"2025-01-30T09:35:19Z\",\"duration_avg\":1.2914423433939617,\"duration_stddev\":0.6976474373632401,\"completion_pct\":0.9615384615384616,\"score\":14}",
-                "{\"url\":\"http://sg.mirrors.cicku.me/archlinux/\",\"protocol\":\"http\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":true,\"details\":\"https://archlinux.org/mirrors/cicku.me/1995/\",\"delay\":710,\"last_sync\":\"2025-01-31T02:27:00Z\",\"duration_avg\":1.502796004499708,\"duration_stddev\":10.03535788364361,\"completion_pct\":1.0,\"score\":12}",
                 "{\"url\":\"https://sg.mirrors.cicku.me/archlinux/\",\"protocol\":\"https\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":true,\"details\":\"https://archlinux.org/mirrors/cicku.me/1996/\",\"delay\":680,\"last_sync\":\"2025-01-31T02:27:00Z\",\"duration_avg\":0.8540291581835066,\"duration_stddev\":0.4122209859054641,\"completion_pct\":1.0,\"score\":1}",
-                "{\"url\":\"http://mirror.aktkn.sg/archlinux/\",\"protocol\":\"http\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":true,\"details\":\"https://archlinux.org/mirrors/aktkn.sg/1268/\",\"delay\":11171,\"last_sync\":\"2025-01-30T23:59:01Z\",\"duration_avg\":0.33456024756798375,\"duration_stddev\":0.12784011032794956,\"completion_pct\":0.5571428571428572,\"score\":6}",
-                "{\"url\":\"https://mirror.aktkn.sg/archlinux/\",\"protocol\":\"https\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":true,\"details\":\"https://archlinux.org/mirrors/aktkn.sg/1269/\",\"delay\":10972,\"last_sync\":\"2025-01-30T23:59:01Z\",\"duration_avg\":1.1309365125802846,\"duration_stddev\":4.04844945861238,\"completion_pct\":0.5571428571428572,\"score\":15}",
-                "{\"url\":\"http://mirror.guillaumea.fr/archlinux/\",\"protocol\":\"http\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":false,\"details\":\"https://archlinux.org/mirrors/guillaumea.fr/1498/\",\"delay\":4909,\"last_sync\":\"2025-01-31T01:30:19Z\",\"duration_avg\":1.060571435170296,\"duration_stddev\":0.40050714280361965,\"completion_pct\":1.0,\"score\":3}",
-                "{\"url\":\"https://mirror.guillaumea.fr/archlinux/\",\"protocol\":\"https\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":false,\"details\":\"https://archlinux.org/mirrors/guillaumea.fr/1499/\",\"delay\":4909,\"last_sync\":\"2025-01-31T01:30:19Z\",\"duration_avg\":0.6193742874341134,\"duration_stddev\":0.23245260371327675,\"completion_pct\":1.0,\"score\":2}",
-                "{\"url\":\"http://mirror.jingk.ai/archlinux/\",\"protocol\":\"http\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":false,\"details\":\"https://archlinux.org/mirrors/jingk.ai/1584/\",\"delay\":8213,\"last_sync\":\"2025-01-30T23:21:16Z\",\"duration_avg\":0.43849806296519744,\"duration_stddev\":0.2896202794844802,\"completion_pct\":1.0,\"score\":3}",
-                "{\"url\":\"https://mirror.jingk.ai/archlinux/\",\"protocol\":\"https\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":false,\"details\":\"https://archlinux.org/mirrors/jingk.ai/1585/\",\"delay\":8213,\"last_sync\":\"2025-01-30T23:21:16Z\",\"duration_avg\":0.5427277791194427,\"duration_stddev\":0.305778570677522,\"completion_pct\":1.0,\"score\":3}",
-                "{\"url\":\"http://ossmirror.mycloud.services/os/linux/archlinux/\",\"protocol\":\"http\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":false,\"details\":\"https://archlinux.org/mirrors/ossmirror.mycloud.services/1625/\",\"delay\":1739,\"last_sync\":\"2025-01-31T02:16:17Z\",\"duration_avg\":0.7198246167256281,\"duration_stddev\":0.3000438994710048,\"completion_pct\":1.0,\"score\":2}",
-                "{\"url\":\"http://mirror.sg.gs/archlinux/\",\"protocol\":\"http\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":false,\"details\":\"https://archlinux.org/mirrors/sg.gs/1655/\",\"delay\":5340,\"last_sync\":\"2025-01-31T01:44:02Z\",\"duration_avg\":0.4524023288335556,\"duration_stddev\":0.35377349343559567,\"completion_pct\":1.0,\"score\":2}",
-                "{\"url\":\"https://mirror.sg.gs/archlinux/\",\"protocol\":\"https\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":false,\"details\":\"https://archlinux.org/mirrors/sg.gs/1656/\",\"delay\":5341,\"last_sync\":\"2025-01-31T01:44:02Z\",\"duration_avg\":0.5472926115378355,\"duration_stddev\":0.36234065720598857,\"completion_pct\":1.0,\"score\":2}",
-                "{\"url\":\"http://sg.arch.niranjan.co/\",\"protocol\":\"http\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":true,\"details\":\"https://archlinux.org/mirrors/niranjan.co/2158/\",\"delay\":122,\"last_sync\":\"2025-01-31T02:26:00Z\",\"duration_avg\":0.35581554515021185,\"duration_stddev\":0.148828881242684,\"completion_pct\":1.0,\"score\":1}",
                 "{\"url\":\"https://sg.arch.niranjan.co/\",\"protocol\":\"https\",\"active\":true,\"country\":\"Singapore\",\"country_code\":\"SG\",\"isos\":true,\"ipv4\":true,\"ipv6\":true,\"details\":\"https://archlinux.org/mirrors/niranjan.co/2159/\",\"delay\":122,\"last_sync\":\"2025-01-31T02:26:00Z\",\"duration_avg\":0.5079394016947065,\"duration_stddev\":0.213558544258158,\"completion_pct\":1.0,\"score\":1}"
             ]
         }
@@ -133,9 +122,7 @@
         "type": "nm"
     },
     "ntp": true,
-    "packages": [
-        "git"
-    ],
+    "packages": [],
     "parallel downloads": 5,
     "profile_config": {
         "gfx_driver": null,
@@ -150,5 +137,5 @@
     "swap": true,
     "timezone": "Asia/Jakarta",
     "uki": false,
-    "version": "3.0.1"
+    "version": "3.0.2"
 }
