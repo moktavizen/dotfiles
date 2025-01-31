@@ -71,9 +71,6 @@ configure_greeter() {
 }
 
 configure_dotfiles() {
-  git clone https://github.com/moktavizen/dotfiles
-  cd dotfiles
-
   stow hypr
   stow fontconfig
   stow wallpapers
