@@ -66,6 +66,21 @@ install_packages() {
     gnome-boxes
 }
 
+configure_boot() {
+  sed -i '/^timeout/s/^/#/' /boot/loader/loader.conf
+
+  local entries_conf
+
+  for entries_conf in /boot/loader/entries/*_linux.conf; do
+    if [ -f "$entries_conf" ]; then
+      grep -q "^initrd.*/intel-ucode.img" "$entries_conf" \
+        || sed -i '/^linux/a initrd  /boot/intel-ucode.img' "$entries_conf"
+
+      sed -i '/^options / {/ quiet/! s/$/ quiet/}' "$entries_conf"
+    fi
+  done
+}
+
 configure_greeter() {
   tee -a /etc/greetd/config.toml <<EOF
 
@@ -105,6 +120,7 @@ main() {
   configure_pacman
   install_paru
   install_packages
+  configure_boot
   configure_greeter
   configure_dotfiles
 
