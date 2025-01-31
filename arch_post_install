@@ -2,7 +2,7 @@
 #
 # Install software that I use on Arch Linux Hyprland
 #
-# - usage       : just execute without any args, like an alias
+# - usage       : run this script in $HOME directory with sudo
 
 set -euo pipefail
 
@@ -13,15 +13,15 @@ configure_pacman() {
 
 install_paru() {
   pacman -S --needed git base-devel
-  sudo -u $SUDO_USER git clone https://aur.archlinux.org/paru-bin.git
-  sudo -u $SUDO_USER cd paru-bin
+  git clone https://aur.archlinux.org/paru-bin.git
+  cd paru-bin
   sudo -u $SUDO_USER makepkg -si --noconfirm
-  sudo -u $SUDO_USER cd ..
-  sudo -u $SUDO_USER rm -rf paru-bin
+  cd ..
+  rm -rf paru-bin
 }
 
 install_packages() {
-  sudo -u $SUDO_USER paru -S --needed \
+  sudo -u $SUDO_USER paru -S --needed --noconfirm \
     stow \
     greetd \
     hyprland \
@@ -72,7 +72,7 @@ configure_greeter() {
 }
 
 configure_dotfiles() {
-  sudo -u $SUDO_USER stow \
+  stow \
     hypr \
     fontconfig \
     wallpapers \
@@ -101,7 +101,7 @@ main() {
   configure_greeter
   configure_dotfiles
 
-  sudo -u $SUDO_USER echo "Post Installation process complete!"
+  "Post Installation process complete!"
 }
 
 main "$@"
