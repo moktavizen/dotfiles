@@ -7,21 +7,21 @@
 set -euo pipefail
 
 configure_pacman() {
-  sudo sed -i '/^\[options\]/a\Color' /etc/pacman.conf
-  sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
+  sed -i '/^\[options\]/a\Color' /etc/pacman.conf
+  sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 }
 
 install_paru() {
-  sudo pacman -S --needed git base-devel
-  git clone https://aur.archlinux.org/paru-bin.git
-  cd paru-bin
-  makepkg -si --noconfirm
-  cd ..
-  rm -rf paru-bin
+  pacman -S --needed git base-devel
+  sudo -u $SUDO_USER git clone https://aur.archlinux.org/paru-bin.git
+  sudo -u $SUDO_USER cd paru-bin
+  sudo -u $SUDO_USER makepkg -si --noconfirm
+  sudo -u $SUDO_USER cd ..
+  sudo -u $SUDO_USER rm -rf paru-bin
 }
 
 install_packages() {
-  paru -S --needed \
+  sudo -u $SUDO_USER paru -S --needed \
     stow \
     greetd \
     hyprland \
@@ -67,12 +67,12 @@ install_packages() {
 }
 
 configure_greeter() {
-  sudo sed -i '/^\[initial_session\]/a\user = "vizen"' /etc/greetd/config.toml
-  sudo sed -i '/^\[initial_session\]/a\command = "Hyprland"' /etc/greetd/config.toml
+  sed -i '/^\[initial_session\]/a\user = "$SUDO_USER"' /etc/greetd/config.toml
+  sed -i '/^\[initial_session\]/a\command = "Hyprland"' /etc/greetd/config.toml
 }
 
 configure_dotfiles() {
-  stow \
+  sudo -u $SUDO_USER stow \
     hypr \
     fontconfig \
     wallpapers \
@@ -90,13 +90,18 @@ configure_dotfiles() {
 }
 
 main() {
+  if [ -z "$SUDO_USER" ]; then
+    echo "Error: Run this script with sudo."
+    exit 1
+  fi
+
   configure_pacman
   install_paru
   install_packages
   configure_greeter
   configure_dotfiles
 
-  echo "Post Installation process complete!"
+  sudo -u $SUDO_USER echo "Post Installation process complete!"
 }
 
 main "$@"
