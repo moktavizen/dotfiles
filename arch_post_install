@@ -62,7 +62,7 @@ install_packages() {
     mpv \
     shotwell \
     zen-browser-bin \
-    gnome-boxes \
+    gnome-boxes
 }
 
 configure_greeter() {
@@ -102,4 +102,4 @@ main() {
   echo "Post Installation process complete!"
 }
 
-main
+main "$@"
