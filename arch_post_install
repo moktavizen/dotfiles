@@ -72,20 +72,21 @@ configure_greeter() {
 }
 
 configure_dotfiles() {
-  stow hypr
-  stow fontconfig
-  stow wallpapers
-  stow waybar
-  stow wofi
-  stow dunst
-  stow easyeffects
-  stow foot
-  stow zsh
-  stow fastfetch
-  stow tmux
-  stow bin
-  stow nvim
-  stow mpv
+  stow \
+    hypr \
+    fontconfig \
+    wallpapers \
+    waybar \
+    wofi \
+    dunst \
+    easyeffects \
+    foot \
+    zsh \
+    fastfetch \
+    tmux \
+    bin \
+    nvim \
+    mpv
 }
 
 main() {
