@@ -12,7 +12,7 @@ configure_pacman() {
 }
 
 install_paru() {
-  pacman -S --needed git base-devel
+  sudo pacman -S --needed git base-devel
   git clone https://aur.archlinux.org/paru.git
   cd paru
   makepkg -si --noconfirm
@@ -67,8 +67,8 @@ install_packages() {
 }
 
 configure_greeter() {
-  sed -i '/^\[initial_session\]/a\user = "vizen"' /etc/greetd/config.toml
-  sed -i '/^\[initial_session\]/a\command = "Hyprland"' /etc/greetd/config.toml
+  sudo sed -i '/^\[initial_session\]/a\user = "vizen"' /etc/greetd/config.toml
+  sudo sed -i '/^\[initial_session\]/a\command = "Hyprland"' /etc/greetd/config.toml
 }
 
 configure_dotfiles() {
@@ -89,11 +89,6 @@ configure_dotfiles() {
 }
 
 main() {
-  if [ $EUID != 0 ]; then
-    sudo "$0" "$@"
-    exit $?
-  fi
-
   configure_pacman
   install_paru
   install_packages
