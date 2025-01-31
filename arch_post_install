@@ -53,6 +53,7 @@ install_packages() {
     tmux \
     neovim \
     tree-sitter-cli \
+    lazygit \
     ripgrep \
     eza \
     bat \
