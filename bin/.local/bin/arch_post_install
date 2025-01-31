@@ -7,8 +7,6 @@
 set -euo pipefail
 
 configure_pacman() {
-  sed -i '/^\[options\]/a\ParallelDownloads = 5' /etc/pacman.conf
-  sed -i '/^\[options\]/a\Color' /etc/pacman.conf
   sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 }
 
