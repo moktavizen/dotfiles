@@ -13,11 +13,11 @@ configure_pacman() {
 
 install_paru() {
   pacman -S --needed git base-devel
-  git clone https://aur.archlinux.org/paru-bin.git
+  sudo -u $SUDO_USER git clone https://aur.archlinux.org/paru-bin.git
   cd paru-bin
   sudo -u $SUDO_USER makepkg -si --noconfirm
   cd ..
-  rm -rf paru-bin
+  sudo -u $SUDO_USER rm -rf paru-bin
 }
 
 install_packages() {
@@ -72,10 +72,10 @@ configure_greeter() {
 }
 
 configure_dotfiles() {
-  git clone https://github.com/moktavizen/dotfiles
+  sudo -u $SUDO_USER git clone https://github.com/moktavizen/dotfiles
   cd dotfiles
 
-  stow \
+  sudo -u $SUDO_USER stow \
     hypr \
     fontconfig \
     wallpapers \
@@ -104,7 +104,7 @@ main() {
   configure_greeter
   configure_dotfiles
 
-  "Post Installation process complete!"
+  sudo -u $SUDO_USER "Post Installation process complete!"
 }
 
 main "$@"
