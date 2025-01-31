@@ -69,7 +69,9 @@ install_packages() {
 }
 
 configure_boot() {
-  sed -i '/^timeout/s/^/#/' /boot/loader/loader.conf
+  local loader_conf = "/boot/loader/loader.conf"
+
+  sed -i '/^timeout/s/^/#/' "$loader_conf"
 
   local entries_conf
 
