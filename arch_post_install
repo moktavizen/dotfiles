@@ -94,6 +94,13 @@ user = "$SUDO_USER"
 EOF
 }
 
+configure_systemctl() {
+  systemctl enable greetd.service
+  systemctl enable bluetooth.service
+  systemctl enable tlp.service
+  systemctl enable paccache.timer
+}
+
 configure_dotfiles() {
   sudo -u "$SUDO_USER" git clone https://github.com/moktavizen/dotfiles
   cd dotfiles
@@ -126,6 +133,7 @@ main() {
   install_packages
   configure_boot
   configure_greeter
+  configure_systemctl
   configure_dotfiles
 
   sudo -u "$SUDO_USER" echo "Post Installation process complete!"
