@@ -104,7 +104,7 @@ main() {
   configure_greeter
   configure_dotfiles
 
-  sudo -u "$SUDO_USER" "Post Installation process complete!"
+  sudo -u "$SUDO_USER" echo "Post Installation process complete!"
 }
 
 main "$@"
