@@ -5,7 +5,7 @@ fastfetch
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USERNAME:-$(whoami)}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USERNAME:-$(whoami)}.zsh"
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USERNAME:-$(whoami)}.zsh"
 fi
 
 # Lines configured by zsh-newuser-install
@@ -48,8 +48,8 @@ export GOPATH="$HOME/.go"
 # fnm
 FNM_PATH="/home/vizen/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-    export PATH="/home/vizen/.local/share/fnm:$PATH"
-    eval "$(fnm env)"
+  export PATH="/home/vizen/.local/share/fnm:$PATH"
+  eval "$(fnm env)"
 fi
 
 # Colors for ls, fd
@@ -81,8 +81,6 @@ alias update='paru'
 alias clean='paru --clean'
 alias ff='fastfetch'
 alias fff='fastfetch -C ~/.config/fastfetch/fastfetch-full.jsonc'
-alias sd='cd $(fd -H -t d | fzf --preview "eza -lh --no-user --no-permissions --icons=always --color=always {}")' # change directory using fzf
-alias sf='nvim $(fd -H -t f | fzf --preview "bat --theme=base16 --color=always --style=numbers,changes {}")'      # edit file using fzf
 alias shis='history 1 | fzf'
 alias mdpdf='mdpdf --border=10mm'
 alias npx='bunx'
@@ -91,14 +89,32 @@ alias lvim='NVIM_APPNAME=lvim nvim'
 alias lg='lazygit'
 alias media_ser='sudo systemctl start jellyfin'
 alias qbit_ser='sudo systemctl start qbittorrent-nox@vizen'
-
-# yt-dlp mp3 mp4
-alias mp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4 -o "%(title)s - %(uploader)s.%(ext)s"'
+sf() {
+  nvim $(
+    fd -H -t f | fzf --preview \
+      "bat --theme=base16 --color=always --style=numbers,changes {}"
+  )
+}
+sd() {
+  cd $(
+    fd -H -t d | fzf --preview \
+      "eza -lh --no-user --no-permissions --icons=always --color=always {}"
+  )
+}
+fgu() {
+  fd -H -t d -g '.git' \
+    -E '**/.*/**/.git' \
+    -x echo -e '\n{//}' \; -x git -C '{//}' status -s
+}
+mp4() {
+  yt-dlp -S "" --remux mp4 --merge mp4 \
+    -o "%(title)s - %(uploader)s.%(ext)s"
+}
 mp3() {
-    yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 \
-        --embed-metadata --embed-thumbnail --convert-thumb jpg \
-        --ppa "ThumbnailsConvertor:-c:v mjpeg -vf crop=min(iw\,ih)" \
-        -o "%(title)s - %(artist)s.%(ext)s" "$1"
+  yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 \
+    --embed-metadata --embed-thumbnail --convert-thumb jpg \
+    --ppa "ThumbnailsConvertor:-c:v mjpeg -vf crop=min(iw\,ih)" \
+    -o "%(title)s - %(artist)s.%(ext)s" "$1"
 }
 
 # ZSH Theme
