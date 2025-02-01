@@ -107,8 +107,8 @@ fgu() {
     -x echo -e '\n{//}' \; -x git -C '{//}' status -s
 }
 mp4() {
-  yt-dlp -S "" --remux mp4 --merge mp4 \
-    -o "%(title)s - %(uploader)s.%(ext)s"
+  yt-dlp -S "res:1080" --remux mp4 --merge mp4 \
+    -o "%(title)s - %(uploader)s.%(ext)s" "$1"
 }
 mp3() {
   yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 \
