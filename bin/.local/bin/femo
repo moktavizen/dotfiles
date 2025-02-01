@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # fzf and select emoji
-# - dependency  : fzf, curl
+# - dependency  : fzf, curl, wl-copy, wl-paste
 # - usage       : just execute without any args, like an alias
 
 set -euo pipefail
@@ -9,6 +9,7 @@ set -euo pipefail
 readonly EMOJI_LIST="${XDG_DATA_HOME:-$HOME/.local/share}/emoji-list.txt"
 
 fetch_emoji_list() {
+  # If the fetch is canceled or fails, we don't want to create an empty file.
   curl -fsS "https://unicode.org/Public/emoji/latest/emoji-test.txt" \
     | awk -F 'fully-qualified     # ' 'NF > 1 { print $2 }' \
     | sed -E 's/E[0-9]+\.[0-9]+//g'
@@ -33,10 +34,14 @@ main() {
     echo "Processing emoji list..."
     echo "Only needed on first run. Please wait..."
 
-    # TODO: if canceled, there's an empty emoji-list file
-    fetch_emoji_list >"$EMOJI_LIST" || {
-      echo "Failed to fetch emoji list" >&2
-    }
+    tmpfile="$(mktemp)"
+    if fetch_emoji_list >"$tmpfile" && [[ -s "$tmpfile" ]]; then
+      mv "$tmpfile" "$EMOJI_LIST"
+    else
+      rm -f "$tmpfile"
+      echo "Failed to fetch emoji list or list was empty" >&2
+      exit 1
+    fi
   fi
 
   if fzf_select <"$EMOJI_LIST"; then
