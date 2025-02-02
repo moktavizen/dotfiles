@@ -55,6 +55,7 @@ install_packages() {
     neovim \
     tree-sitter-cli \
     lazygit \
+    unzip \
     ripgrep \
     eza \
     bat \
