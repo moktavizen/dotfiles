@@ -13,11 +13,11 @@ configure_pacman() {
 
 install_paru() {
   pacman -S --needed git base-devel --noconfirm
-  sudo -u "$SUDO_USER" git clone https://aur.archlinux.org/paru-bin.git
+  git clone https://aur.archlinux.org/paru-bin.git
   cd paru-bin
   sudo -u "$SUDO_USER" makepkg -si --noconfirm
   cd ..
-  sudo -u "$SUDO_USER" rm -rf paru-bin
+  rm -rf paru-bin
 }
 
 install_packages() {
@@ -123,6 +123,11 @@ confgiure_home() {
   ln -s /media/Pictures "$HOME/Videos"
 }
 
+configure_extras() {
+  sudo -u "$SUDO_USER" git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
+  sudo -u "$SUDO_USER" tmux source $XDG_CONFIG_HOME/tmux/tmux.conf
+}
+
 main() {
   if [ -z "${SUDO_USER:-}" ]; then
     echo "Error: Run this script with sudo!"
@@ -138,7 +143,7 @@ main() {
   configure_dotfiles
   configure_home
 
-  sudo -u "$SUDO_USER" echo "Post Installation process complete!"
+  echo "Post Installation process complete!"
 }
 
 main "$@"
