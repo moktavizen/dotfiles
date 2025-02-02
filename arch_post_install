@@ -51,10 +51,6 @@ install_packages() {
     zsh-autosuggestions \
     zsh-syntax-highlighting \
     fastfetch \
-    tmux \
-    neovim \
-    tree-sitter-cli \
-    lazygit \
     unzip \
     ripgrep \
     eza \
@@ -62,6 +58,10 @@ install_packages() {
     fd \
     dust \
     btop \
+    tmux \
+    neovim \
+    tree-sitter-cli \
+    lazygit \
     nautilus \
     mpv \
     shotwell \
