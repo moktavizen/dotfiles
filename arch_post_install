@@ -124,8 +124,9 @@ confgiure_home() {
 }
 
 configure_extras() {
-  sudo -u "$SUDO_USER" git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
-  sudo -u "$SUDO_USER" tmux source $XDG_CONFIG_HOME/tmux/tmux.conf
+  sudo -u "$SUDO_USER" git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+  sudo -u "$SUDO_USER" tmux source ~/.config/tmux/tmux.conf
+
 }
 
 main() {
