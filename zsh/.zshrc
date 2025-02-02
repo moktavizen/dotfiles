@@ -22,16 +22,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# ENV
-# export LIBVA_DRIVERS_PATH=/usr/lib/dri/i965_drv_video.so
-export LIBVA_DRIVER_NAME=i965
-# export LIBVA_DRIVER_NAME=iHD
-export EDITOR=nvim
-export VISUAL=nvim
-export PATH="$HOME/.local/bin:$PATH"
-# export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=gasp -Dsun.java2d.uiScale=2'
-export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=gasp'
-
+# set environment variables for command-line applications only
+#
 # Flutter
 export PATH="/usr/bin/flutter/bin:$PATH"
 export CHROME_EXECUTABLE="/usr/bin/firefox"
