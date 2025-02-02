@@ -24,12 +24,12 @@ compinit
 
 # set environment variables for command-line applications only
 #
+# ADB
+export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+
 # Flutter
 export PATH="/usr/bin/flutter/bin:$PATH"
 export CHROME_EXECUTABLE="/usr/bin/firefox"
-
-# ADB
-export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 
 # Go
 export GOPATH="$HOME/.go"
