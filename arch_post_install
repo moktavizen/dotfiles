@@ -72,17 +72,6 @@ configure_boot() {
   local loader_conf="/boot/loader/loader.conf"
 
   sed -i '/^timeout/s/^/#/' "$loader_conf"
-
-  local entries_conf
-
-  for entries_conf in /boot/loader/entries/*_linux.conf; do
-    if [ -f "$entries_conf" ]; then
-      grep -q "^initrd.*/intel-ucode.img" "$entries_conf" \
-        || sed -i '/^linux/a initrd  /boot/intel-ucode.img' "$entries_conf"
-
-      sed -i '/^options / {/ quiet/! s/$/ quiet/}' "$entries_conf"
-    fi
-  done
 }
 
 configure_greeter() {
