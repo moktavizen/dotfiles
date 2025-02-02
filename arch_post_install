@@ -62,6 +62,10 @@ install_packages() {
     neovim \
     tree-sitter-cli \
     lazygit \
+    qt6ct \
+    qt5ct \
+    kvantum \
+    kvantum-qt5 \
     nautilus \
     mpv \
     shotwell \
