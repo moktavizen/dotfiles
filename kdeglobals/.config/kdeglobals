@@ -1,8 +1,14 @@
 [General]
-TerminalApplication=kitty
-
-[UiSettings] 
-ColorScheme=WhiteSur Dark
+TerminalApplication=foot
 
 [Icons]
-Theme=Papirus-Dark
+Theme=Will be overwritten by themeswitch
+
+[Colors:View]
+BackgroundNormal=#00000000
+
+[KDE]
+widgetStyle=kvantum
+
+[UiSettings]
+ColorScheme=*
