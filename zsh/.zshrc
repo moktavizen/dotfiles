@@ -105,7 +105,7 @@ mp4() {
 mp3() {
   yt-dlp -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 \
     --embed-metadata --embed-thumbnail --convert-thumb jpg \
-    --ppa "ThumbnailsConvertor:-c:v mjpeg -vf crop=min(iw\,ih)" \
+    --ppa "ThumbnailsConvertor+FFmpeg_o:-c:v mjpeg -vf crop=\"'min(iw,ih)':'min(iw,ih)'\"" \
     -o "%(title)s - %(artist)s.%(ext)s" "$1"
 }
 
