@@ -1,14 +1,11 @@
+[Colors:View]
+BackgroundNormal=#00000000
+
 [General]
 TerminalApplication=foot
 
 [Icons]
-Theme=Will be overwritten by themeswitch
-
-[Colors:View]
-BackgroundNormal=#00000000
-
-[KDE]
-widgetStyle=kvantum
+Theme=Will be overwritten on themeswitch
 
 [UiSettings]
 ColorScheme=*
