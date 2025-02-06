@@ -29,6 +29,7 @@ install_packages() {
     hyprpaper \
     hyprpicker \
     grimblast-git \
+    pacman-contrib \
     tlp \
     qt5-wayland \
     qt6-wayland \
