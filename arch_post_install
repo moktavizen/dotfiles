@@ -130,7 +130,7 @@ configure_dotfiles() {
   git restore .
 }
 
-confgiure_home() {
+configure_home() {
   mkdir -p "$HOME/Desktop/"
   mkdir -p "$HOME/Documents/"
   mkdir -p "$HOME/Downloads/"
@@ -149,7 +149,6 @@ confgiure_home() {
 configure_extras() {
   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
   tmux source ~/.config/tmux/tmux.conf
-
 }
 
 main() {
@@ -161,6 +160,7 @@ main() {
   configure_systemctl
   configure_dotfiles
   configure_home
+  configure_extras
 
   echo "Post Installation process complete!"
 }
