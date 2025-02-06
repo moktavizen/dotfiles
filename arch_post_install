@@ -22,6 +22,7 @@ install_paru() {
 
 install_packages() {
   paru -S --needed --noconfirm \
+    `# base` \
     stow \
     greetd \
     hyprland \
@@ -50,6 +51,7 @@ install_packages() {
     zsh \
     zsh-autosuggestions \
     zsh-syntax-highlighting \
+    `# tui` \
     tmux \
     fastfetch \
     unzip \
@@ -66,6 +68,7 @@ install_packages() {
     tree-sitter-cli \
     neovim \
     lazygit \
+    `# gui` \
     qt6ct \
     qt5ct \
     kvantum \
