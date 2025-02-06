@@ -152,6 +152,9 @@ configure_extras() {
 
   sudo rm /etc/pacman.d/mirrorlist
   sudo ln -s "$HOME/dotfiles/_root/pacman/mirror-global" "/etc/pacman.d/mirrorlist"
+
+  sudo rm /etc/zcfan.conf
+  sudo ln -s "$HOME/dotfiles/_root/zcfan/zcfan.conf" "/etc/zcfan.conf"
 }
 
 main() {
