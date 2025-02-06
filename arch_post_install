@@ -2,26 +2,26 @@
 #
 # Install software that I use on Arch Linux Hyprland
 #
-# - usage       : run this script in $HOME directory with sudo
+# - usage       : run this script in $HOME directory
 
 set -euo pipefail
 
 configure_pacman() {
-  sed -i '/^\[options\]/a\Color' /etc/pacman.conf
-  sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
+  sudo sed -i '/^\[options\]/a\Color' /etc/pacman.conf
+  sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 }
 
 install_paru() {
-  pacman -S --needed git base-devel --noconfirm
-  git clone 'https://aur.archlinux.org/paru-bin.git'
+  sudo pacman -S --needed git base-devel --noconfirm
+  git clone https://aur.archlinux.org/paru-bin.git
   cd paru-bin
-  sudo -u "$SUDO_USER" makepkg -si --noconfirm
+  makepkg -si --noconfirm
   cd ..
   rm -rf paru-bin
 }
 
 install_packages() {
-  sudo -u "$SUDO_USER" paru -S --needed --noconfirm \
+  paru -S --needed --noconfirm \
     stow \
     greetd \
     hyprland \
@@ -76,13 +76,13 @@ install_packages() {
 configure_boot() {
   local loader_conf="/boot/loader/loader.conf"
 
-  sed -i '/^timeout/s/^/#/' "$loader_conf"
+  sudo sed -i '/^timeout/s/^/#/' "$loader_conf"
 }
 
 configure_greeter() {
   local greetd_conf="/etc/greetd/config.toml"
 
-  tee -a "$greetd_conf" <<EOF
+  sudo tee -a "$greetd_conf" <<EOF
 
 [initial_session]
 command = "Hyprland"
@@ -91,17 +91,17 @@ EOF
 }
 
 configure_systemctl() {
-  systemctl enable greetd.service
-  systemctl enable bluetooth.service
-  systemctl enable tlp.service
-  systemctl enable paccache.timer
+  sudo systemctl enable greetd.service
+  sudo systemctl enable bluetooth.service
+  sudo systemctl enable tlp.service
+  sudo systemctl enable paccache.timer
 }
 
 configure_dotfiles() {
-  sudo -u "$SUDO_USER" git 'clone https://github.com/moktavizen/dotfiles'
+  git clone https://github.com/moktavizen/dotfiles
   cd dotfiles
 
-  sudo -u "$SUDO_USER" stow --no-folding \
+  stow --no-folding \
     hypr \
     fontconfig \
     wallpapers \
@@ -119,33 +119,28 @@ configure_dotfiles() {
 }
 
 confgiure_home() {
-  sudo -u "$SUDO_USER" mkdir -p "$HOME/Desktop/"
-  sudo -u "$SUDO_USER" mkdir -p "$HOME/Documents/"
-  sudo -u "$SUDO_USER" mkdir -p "$HOME/Downloads/"
-  sudo -u "$SUDO_USER" mkdir -p "$HOME/Downloads/"
-  sudo -u "$SUDO_USER" mkdir -p "/media/Books/"
-  sudo -u "$SUDO_USER" mkdir -p "/media/Music/"
-  sudo -u "$SUDO_USER" mkdir -p "/media/Pictures/"
-  sudo -u "$SUDO_USER" mkdir -p "/media/Videos/"
+  mkdir -p "$HOME/Desktop/"
+  mkdir -p "$HOME/Documents/"
+  mkdir -p "$HOME/Downloads/"
+  mkdir -p "$HOME/Downloads/"
+  mkdir -p "/media/Books/"
+  mkdir -p "/media/Music/"
+  mkdir -p "/media/Pictures/"
+  mkdir -p "/media/Videos/"
 
-  sudo -u "$SUDO_USER" ln -s /media/Books/ "$HOME/Books"
-  sudo -u "$SUDO_USER" ln -s /media/Music "$HOME/Music"
-  sudo -u "$SUDO_USER" ln -s /media/Pictures "$HOME/Pictures"
-  sudo -u "$SUDO_USER" ln -s /media/Videos/ "$HOME/Videos"
+  ln -s /media/Books/ "$HOME/Books"
+  ln -s /media/Music "$HOME/Music"
+  ln -s /media/Pictures "$HOME/Pictures"
+  ln -s /media/Videos/ "$HOME/Videos"
 }
 
 configure_extras() {
-  sudo -u "$SUDO_USER" git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-  sudo -u "$SUDO_USER" tmux source ~/.config/tmux/tmux.conf
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+  tmux source ~/.config/tmux/tmux.conf
 
 }
 
 main() {
-  if [ -z "${SUDO_USER:-}" ]; then
-    echo "Error: Run this script with sudo!"
-    exit 1
-  fi
-
   configure_pacman
   install_paru
   install_packages
