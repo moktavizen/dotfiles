@@ -27,6 +27,8 @@ install_packages() {
     hyprland \
     hyprpaper \
     hyprpicker \
+    grimblast-git \
+    tlp \
     qt5-wayland \
     qt6-wayland \
     polkit-gnome \
@@ -41,26 +43,28 @@ install_packages() {
     dunst \
     waybar \
     wofi \
-    tlp \
     pavucontrol \
     bluetui \
-    grimblast \
     foot \
     foot-terminfo \
     zsh \
     zsh-autosuggestions \
     zsh-syntax-highlighting \
+    tmux \
     fastfetch \
     unzip \
     ripgrep \
     eza \
     bat \
     fd \
+    hyprfine \
     dust \
+    tokei \
+    oxipng \
+    imagemagick \
     btop \
-    tmux \
-    neovim \
     tree-sitter-cli \
+    neovim \
     lazygit \
     qt6ct \
     qt5ct \
@@ -70,6 +74,7 @@ install_packages() {
     mpv \
     shotwell \
     zen-browser-bin \
+    libreoffice-still \
     gnome-boxes
 }
 
