@@ -125,6 +125,8 @@ configure_dotfiles() {
     bin \
     nvim \
     mpv
+
+  git restore .
 }
 
 confgiure_home() {
