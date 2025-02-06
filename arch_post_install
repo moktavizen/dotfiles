@@ -94,7 +94,7 @@ configure_greeter() {
 
 [initial_session]
 command = "Hyprland"
-user = "$SUDO_USER"
+user = "$(whoami)"
 EOF
 }
 
