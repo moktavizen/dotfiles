@@ -59,7 +59,7 @@ install_packages() {
     eza \
     bat \
     fd \
-    hyprfine \
+    hyperfine \
     dust \
     tokei \
     oxipng \
