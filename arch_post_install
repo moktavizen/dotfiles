@@ -106,13 +106,14 @@ configure_dotfiles() {
   git clone https://github.com/moktavizen/dotfiles
   cd dotfiles
 
-  stow --no-folding \
+  stow --no-folding --adopt \
     hypr \
     fontconfig \
     wallpapers \
     waybar \
     wofi \
     dunst \
+    kdeglobals \
     easyeffects \
     foot \
     zsh \
