@@ -21,6 +21,7 @@ install_paru() {
 }
 
 install_packages() {
+  paru -Syyu --noconfirm
   paru -S --needed --noconfirm \
     `# --- base packages` \
     stow \
