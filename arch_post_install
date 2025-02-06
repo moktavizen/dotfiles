@@ -149,7 +149,6 @@ configure_home() {
 
 configure_extras() {
   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-  tmux source ~/.config/tmux/tmux.conf
 
   sudo rm /etc/pacman.d/mirrorlist
   sudo ln -s "$HOME/dotfiles/_root/pacman/mirror-global" "/etc/pacman.d/mirrorlist"
