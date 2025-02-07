@@ -160,7 +160,7 @@ configure_home() {
 }
 
 configure_extras() {
-  chsh -s /usr/bin/zsh
+  sudo usermod -s "$(which zsh)" "$(whoami)"
 
   local tmux_conf="$HOME/.config/tmux"
   git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
@@ -189,6 +189,7 @@ main() {
   configure_systemctl
 
   echo "Post Installation process complete!"
+  echo "You may reboot!
 }
 
 main "$@"
