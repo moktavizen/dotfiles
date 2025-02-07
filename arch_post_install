@@ -119,9 +119,9 @@ dns=none
 EOF
   sudo systemctl restart NetworkManager
 
-  cp /etc/resolv.conf /etc/resolv.conf.backup
-  rm -f /etc/resolv.conf
-  sudo echo -e 'nameserver 127.0.0.1\noptions edns0' >'/etc/resolv.conf'
+  sudo cp /etc/resolv.conf /etc/resolv.conf.backup
+  sudo rm -f /etc/resolv.conf
+  sudo sh -c "echo -e 'nameserver 127.0.0.1\noptions edns0' > /etc/resolv.conf"
 }
 
 configure_dotfiles() {
