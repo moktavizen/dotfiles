@@ -103,6 +103,14 @@ user = "$(whoami)"
 EOF
 }
 
+configure_dns() {
+  local dnscrypt_conf="/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
+
+  sudo sed -i -E "s|^listen_addresses\s*=.*|listen_addresses = ['127.0.0.1:53']|" "$dnscrypt_conf"
+  sudo sed -i -E "s|^block_ipv6\s*=.*|block_ipv6 = true|" "$dnscrypt_conf"
+  sudo sed -i -E "s|^ipv6_servers\s*=.*|ipv6_servers = false|" "$dnscrypt_conf"
+}
+
 configure_dotfiles() {
   git clone https://github.com/moktavizen/dotfiles
   cd dotfiles
@@ -162,6 +170,7 @@ configure_extras() {
 
 configure_systemctl() {
   sudo systemctl enable greetd.service
+  sudo systemctl enable dnscrypt-proxy.service
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
   sudo systemctl enable paccache.timer
@@ -173,6 +182,7 @@ main() {
   install_packages
   configure_boot
   configure_greeter
+  configure_dns
   configure_dotfiles
   configure_home
   configure_extras
