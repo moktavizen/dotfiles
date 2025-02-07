@@ -103,26 +103,26 @@ user = "$(whoami)"
 EOF
 }
 
-configure_dns() {
-  local dnscrypt_conf="/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
-
-  sudo sed -i -E "s|^listen_addresses\s*=.*|listen_addresses = ['127.0.0.1:53']|" "$dnscrypt_conf"
-  sudo sed -i -E "s|^block_ipv6\s*=.*|block_ipv6 = true|" "$dnscrypt_conf"
-  sudo sed -i -E "s|^ipv6_servers\s*=.*|ipv6_servers = false|" "$dnscrypt_conf"
-
-  local nm_conf="/etc/NetworkManager/NetworkManager.conf"
-
-  sudo tee -a "$nm_conf" <<EOF
-
-[main]
-dns=none
-EOF
-  sudo systemctl restart NetworkManager
-
-  sudo cp /etc/resolv.conf /etc/resolv.conf.backup
-  sudo rm -f /etc/resolv.conf
-  sudo sh -c "echo -e 'nameserver 127.0.0.1\noptions edns0' > /etc/resolv.conf"
-}
+# configure_dns() {
+#   local dnscrypt_conf="/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
+#
+#   sudo sed -i -E "s|^listen_addresses\s*=.*|listen_addresses = ['127.0.0.1:53']|" "$dnscrypt_conf"
+#   sudo sed -i -E "s|^block_ipv6\s*=.*|block_ipv6 = true|" "$dnscrypt_conf"
+#   sudo sed -i -E "s|^ipv6_servers\s*=.*|ipv6_servers = false|" "$dnscrypt_conf"
+#
+#   local nm_conf="/etc/NetworkManager/NetworkManager.conf"
+#
+#   sudo tee -a "$nm_conf" <<EOF
+#
+# [main]
+# dns=none
+# EOF
+#   sudo systemctl restart NetworkManager
+#
+#   sudo cp /etc/resolv.conf /etc/resolv.conf.backup
+#   sudo rm -f /etc/resolv.conf
+#   sudo sh -c "echo -e 'nameserver 127.0.0.1\noptions edns0' > /etc/resolv.conf"
+# }
 
 configure_dotfiles() {
   git clone https://github.com/moktavizen/dotfiles
@@ -192,7 +192,7 @@ main() {
   install_packages
   configure_boot
   configure_greeter
-  configure_dns
+  # configure_dns
   configure_dotfiles
   configure_home
   configure_extras
