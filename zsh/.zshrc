@@ -23,26 +23,9 @@ compinit
 # End of lines added by compinstall
 
 # set environment variables for command-line applications only
-#
-# ADB
-export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
-
-# Flutter
-export PATH="/usr/bin/flutter/bin:$PATH"
-export CHROME_EXECUTABLE="/usr/bin/firefox"
 
 # Go
 export GOPATH="$HOME/.go"
-
-# deno
-. "/home/vizen/.deno/env"
-
-# fnm
-FNM_PATH="/home/vizen/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/vizen/.local/share/fnm:$PATH"
-  eval "$(fnm env)"
-fi
 
 # Colors for ls, fd
 # export LS_COLORS="$(vivid generate material-darker)"
