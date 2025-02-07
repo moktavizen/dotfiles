@@ -160,7 +160,7 @@ configure_home() {
 }
 
 configure_extras() {
-  chsh -s "$(which zsh)"
+  chsh -s /usr/bin/zsh
 
   local tmux_conf="$HOME/.config/tmux"
   git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
