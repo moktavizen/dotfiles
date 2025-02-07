@@ -102,6 +102,7 @@ EOF
 
 configure_systemctl() {
   sudo systemctl enable greetd.service
+  sudo systemctl enable systemd-resolved.service
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
   sudo systemctl enable paccache.timer
@@ -152,11 +153,17 @@ configure_extras() {
 
   chsh -s "$(which zsh)"
 
-  sudo rm /etc/pacman.d/mirrorlist
-  sudo ln -s "$HOME/dotfiles/_root/pacman/mirror-global" "/etc/pacman.d/mirrorlist"
+  sudo mkdir -p "/etc/systemd/resolved.conf.d/"
+  sudo ln -sf "$HOME/dotfiles/_root/systemd-resolved/cloudflare-tls.conf" \
+    "/etc/systemd/resolved.conf.d/"
 
-  sudo rm /etc/zcfan.conf
-  sudo ln -s "$HOME/dotfiles/_root/zcfan/zcfan.conf" "/etc/zcfan.conf"
+  sudo mkdir -p "/etc/pacman.d/"
+  sudo ln -sf "$HOME/dotfiles/_root/pacman/mirror-global" \
+    "/etc/pacman.d/mirrorlist"
+
+  sudo mkdir -p "/etc/"
+  sudo ln -sf "$HOME/dotfiles/_root/zcfan/zcfan.conf" \
+    "/etc/zcfan.conf"
 }
 
 main() {
