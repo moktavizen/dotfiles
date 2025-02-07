@@ -189,7 +189,7 @@ main() {
   configure_systemctl
 
   echo "Post Installation process complete!"
-  echo "You may reboot!
+  echo "You may reboot!"
 }
 
 main "$@"
