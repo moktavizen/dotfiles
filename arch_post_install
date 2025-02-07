@@ -132,6 +132,18 @@ configure_dotfiles() {
     mpv
 
   git restore .
+
+  sudo mkdir -p "/etc/systemd/resolved.conf.d/"
+  sudo ln -sf "$HOME/dotfiles/_root/systemd-resolved/cloudflare-tls.conf" \
+    "/etc/systemd/resolved.conf.d/"
+
+  sudo mkdir -p "/etc/pacman.d/"
+  sudo ln -sf "$HOME/dotfiles/_root/pacman/mirror-global" \
+    "/etc/pacman.d/mirrorlist"
+
+  sudo mkdir -p "/etc/"
+  sudo ln -sf "$HOME/dotfiles/_root/zcfan/zcfan.conf" \
+    "/etc/zcfan.conf"
 }
 
 configure_home() {
@@ -154,18 +166,6 @@ configure_extras() {
   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
   chsh -s "$(which zsh)"
-
-  sudo mkdir -p "/etc/systemd/resolved.conf.d/"
-  sudo ln -sf "$HOME/dotfiles/_root/systemd-resolved/cloudflare-tls.conf" \
-    "/etc/systemd/resolved.conf.d/"
-
-  sudo mkdir -p "/etc/pacman.d/"
-  sudo ln -sf "$HOME/dotfiles/_root/pacman/mirror-global" \
-    "/etc/pacman.d/mirrorlist"
-
-  sudo mkdir -p "/etc/"
-  sudo ln -sf "$HOME/dotfiles/_root/zcfan/zcfan.conf" \
-    "/etc/zcfan.conf"
 }
 
 main() {
