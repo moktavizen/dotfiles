@@ -71,6 +71,8 @@ install_packages() {
     neovim \
     lazygit \
     `# --- gui packages` \
+    adw-gtk-theme \
+    papirus-icon-theme \
     qt6ct \
     qt5ct \
     kvantum \
