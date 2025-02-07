@@ -181,7 +181,6 @@ configure_extras() {
 
 configure_systemctl() {
   sudo systemctl enable greetd.service
-  sudo systemctl enable dnscrypt-proxy.service
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
   sudo systemctl enable paccache.timer
