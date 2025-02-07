@@ -33,7 +33,7 @@ fetch_public_dns() {
   local ip_list
 
   for source in "${sources[@]}"; do
-    ip_list=$(curl -fs "$source" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}')
+    ip_list=$(curl -fsSL "$source" | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}')
     if [[ -n "${ip_list}" ]]; then
       echo -e "DNS Source\t: $source" >&2
       break
