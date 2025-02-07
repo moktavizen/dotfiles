@@ -103,13 +103,6 @@ user = "$(whoami)"
 EOF
 }
 
-configure_systemctl() {
-  sudo systemctl enable greetd.service
-  sudo systemctl enable bluetooth.service
-  sudo systemctl enable tlp.service
-  sudo systemctl enable paccache.timer
-}
-
 configure_dotfiles() {
   git clone https://github.com/moktavizen/dotfiles
   cd dotfiles
@@ -167,16 +160,23 @@ configure_extras() {
   "$tmux_conf/plugins/tpm/bin/install_plugins"
 }
 
+configure_systemctl() {
+  sudo systemctl enable greetd.service
+  sudo systemctl enable bluetooth.service
+  sudo systemctl enable tlp.service
+  sudo systemctl enable paccache.timer
+}
+
 main() {
   configure_pacman
   install_paru
   install_packages
   configure_boot
   configure_greeter
-  configure_systemctl
   configure_dotfiles
   configure_home
   configure_extras
+  configure_systemctl
 
   echo "Post Installation process complete!"
 }
