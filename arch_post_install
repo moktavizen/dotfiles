@@ -109,6 +109,19 @@ configure_dns() {
   sudo sed -i -E "s|^listen_addresses\s*=.*|listen_addresses = ['127.0.0.1:53']|" "$dnscrypt_conf"
   sudo sed -i -E "s|^block_ipv6\s*=.*|block_ipv6 = true|" "$dnscrypt_conf"
   sudo sed -i -E "s|^ipv6_servers\s*=.*|ipv6_servers = false|" "$dnscrypt_conf"
+
+  local nm_conf="/etc/NetworkManager/NetworkManager.conf"
+
+  sudo tee -a "$nm_conf" <<EOF
+
+[main]
+dns=none
+EOF
+  sudo systemctl restart NetworkManager
+
+  cp /etc/resolv.conf /etc/resolv.conf.backup
+  rm -f /etc/resolv.conf
+  sudo echo -e 'nameserver 127.0.0.1\noptions edns0' >'/etc/resolv.conf'
 }
 
 configure_dotfiles() {
