@@ -164,8 +164,6 @@ configure_extras() {
 
   local tmux_conf="$HOME/.config/tmux"
   git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
-  tmux source "$tmux_conf/tmux.conf"
-  "$tmux_conf/plugins/tpm/bin/install_plugins"
 }
 
 configure_systemctl() {
