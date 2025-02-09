@@ -5,7 +5,7 @@ BackgroundNormal=#00000000
 TerminalApplication=foot
 
 [Icons]
-Theme=Will be overwritten on themeswitch
+Theme=Papirus-Dark
 
 [UiSettings]
-ColorScheme=*
+ColorScheme=adw-gtk3-dark
