@@ -36,6 +36,7 @@ install_packages() {
     qt5-wayland \
     qt6-wayland \
     polkit-gnome \
+    xdg-desktop-portal-gtk \
     xdg-desktop-portal-hyprland \
     inter-font \
     ttf-jetbrains-mono-nerd \
@@ -58,6 +59,7 @@ install_packages() {
     tmux \
     fastfetch \
     unzip \
+    fzf \
     ripgrep \
     eza \
     bat \
@@ -74,6 +76,7 @@ install_packages() {
     `# --- gui packages` \
     adw-gtk-theme \
     papirus-icon-theme \
+    bibata-cursor-theme-bin \
     qt6ct \
     qt5ct \
     kvantum \
