@@ -24,6 +24,13 @@ compinit
 
 # set environment variables for command-line applications only
 
+# fnm
+FNM_PATH="/home/vizen/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/vizen/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+
 # Go
 export GOPATH="$HOME/.go"
 
