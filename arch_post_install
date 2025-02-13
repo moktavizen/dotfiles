@@ -89,35 +89,6 @@ install_packages() {
     gnome-boxes
 }
 
-configure_boot() {
-  local loader_path="/boot/loader"
-  sudo sed -i '/^timeout/s/^/#/' "$loader_path"/loader.conf
-
-  local entries_path="/boot/loader/entries"
-  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "$entries_path"/*_linux.conf
-}
-
-configure_greeter() {
-  local greetd_conf="/etc/greetd/config.toml"
-
-  sudo tee -a "$greetd_conf" <<EOF
-
-[initial_session]
-command = "Hyprland"
-user = "$(whoami)"
-EOF
-}
-
-configure_dns() {
-  sudo systemctl enable systemd-resolved
-
-  sudo rm -f /etc/resolv.conf
-  sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-
-  nmcli connection modify 'Wired connection 1' \
-    connection.dns-over-tls '2' ipv4.dns '1.1.1.1 1.0.0.1'
-}
-
 configure_dotfiles() {
   git clone https://github.com/moktavizen/dotfiles
   cd dotfiles
@@ -167,6 +138,35 @@ configure_home() {
   ln -s /media/Videos/ "$HOME/Videos"
 }
 
+configure_boot() {
+  local loader_path="/boot/loader"
+  sudo sed -i '/^timeout/s/^/#/' "$loader_path"/loader.conf
+
+  local entries_path="/boot/loader/entries"
+  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "$entries_path"/*_linux.conf
+}
+
+configure_greeter() {
+  local greetd_conf="/etc/greetd/config.toml"
+
+  sudo tee -a "$greetd_conf" <<EOF
+
+[initial_session]
+command = "Hyprland"
+user = "$(whoami)"
+EOF
+}
+
+configure_dns() {
+  sudo systemctl enable systemd-resolved
+
+  sudo rm -f /etc/resolv.conf
+  sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+
+  nmcli connection modify 'Wired connection 1' \
+    connection.dns-over-tls '2' ipv4.dns '1.1.1.1 1.0.0.1'
+}
+
 configure_systemctl() {
   sudo systemctl enable greetd.service
   sudo systemctl enable bluetooth.service
@@ -185,11 +185,11 @@ main() {
   configure_pacman
   install_paru
   install_packages
+  configure_dotfiles
+  configure_home
   configure_boot
   configure_greeter
   configure_dns
-  configure_dotfiles
-  configure_home
   configure_systemctl
   configure_extras
 
