@@ -31,7 +31,6 @@ install_packages() {
     hyprpicker \
     grimblast-git \
     pacman-contrib \
-    dnscrypt-proxy \
     tlp \
     qt5-wayland \
     qt6-wayland \
