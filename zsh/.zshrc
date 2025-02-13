@@ -8,21 +8,24 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USERNAME:-$(whoa
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USERNAME:-$(whoami)}.zsh"
 fi
 
+# ZSH Init Config
+# ------------------------------------------------------------------------------
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-setopt autocd beep extendedglob nomatch notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/moktavizen/.zshrc'
+zstyle :compinstall filename '/home/vizen/.zshrc'
 
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# set environment variables for command-line applications only
+# CLI Env Variable
+# ------------------------------------------------------------------------------
 
 # fnm
 FNM_PATH="/home/vizen/.local/share/fnm"
@@ -50,7 +53,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --layout reverse
     --border'
 
-# Alias needs rg, eza, bat, fd, fzf, to be installed
+# Alias
+# ------------------------------------------------------------------------------
+
+# require fzf, rg, eza, bat, fd to be installed
 alias sudo='sudo ' # make sudo detect alias
 alias diff='diff --color=auto'
 # alias grep='rg'
@@ -99,13 +105,16 @@ mp3() {
     -o "%(artist)s - %(title)s.%(ext)s" "$1"
 }
 
+# Source
+# ------------------------------------------------------------------------------
+
 # ZSH Theme
 source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ZSH Plugins
 # source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # must be the last plugin sourced
+# Must be the last plugin sourced
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
