@@ -90,9 +90,11 @@ install_packages() {
 }
 
 configure_boot() {
-  local loader_conf="/boot/loader/loader.conf"
+  local loader_path="/boot/loader"
+  sudo sed -i '/^timeout/s/^/#/' "$loader_path"/loader.conf
 
-  sudo sed -i '/^timeout/s/^/#/' "$loader_conf"
+  local entries_path="/boot/loader/entries"
+  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "$entries_path"/*_linux.conf
 }
 
 configure_greeter() {
