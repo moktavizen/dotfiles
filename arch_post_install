@@ -76,13 +76,11 @@ install_packages() {
     adw-gtk-theme \
     papirus-icon-theme \
     bibata-cursor-theme-bin \
-    qt6ct \
-    qt5ct \
-    kvantum \
-    kvantum-qt5 \
+    qt6ct-kde \
+    qt5ct-kde \
     nautilus \
     mpv \
-    shotwell \
+    gwenview \
     zen-browser-bin \
     libreoffice-still \
     gnome-boxes
