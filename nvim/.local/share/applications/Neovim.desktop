@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=nvim %F
+MimeType=application/x-desktop;
+Name=nvim
+NoDisplay=true
+Type=Application
