@@ -46,7 +46,7 @@ install_packages() {
     noto-fonts-extra \
     dunst \
     waybar \
-    wofi \
+    rofi-wayland \
     pavucontrol \
     bluetui \
     foot \
@@ -82,8 +82,6 @@ install_packages() {
     mpv \
     gwenview \
     zen-browser-bin \
-    libreoffice-still \
-    gnome-boxes
 }
 
 configure_dotfiles() {
@@ -95,7 +93,7 @@ configure_dotfiles() {
     fontconfig \
     wallpapers \
     waybar \
-    wofi \
+    rofi \
     dunst \
     kdeglobals \
     easyeffects \
