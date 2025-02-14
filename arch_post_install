@@ -136,6 +136,8 @@ configure_home() {
 }
 
 configure_boot() {
+  sudo systemctl enable greetd.service
+
   local loader_path="/boot/loader"
   sudo sed -i '/^timeout/s/^/#/' "$loader_path"/loader.conf
 
@@ -155,7 +157,7 @@ EOF
 }
 
 configure_dns() {
-  sudo systemctl enable systemd-resolved
+  sudo systemctl enable systemd-resolved.service
 
   sudo rm -f /etc/resolv.conf
   sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
@@ -165,7 +167,6 @@ configure_dns() {
 }
 
 configure_systemctl() {
-  sudo systemctl enable greetd.service
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
   sudo systemctl enable paccache.timer
