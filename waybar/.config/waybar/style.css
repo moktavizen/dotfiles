@@ -15,7 +15,6 @@
   font-size: 14px;
   font-weight: 500;
   min-height: 0;
-  border-color: @bg1;
 }
 
 window#waybar {
@@ -27,7 +26,7 @@ window#waybar {
 #workspaces {
   background-color: @bg1;
   border-radius: 18px;
-  padding: 0px 4px;
+  padding: 0px 2px;
   /* margin: 4px 4px 4px 8px; */
   margin: 8px 4px 0px 8px;
 }
