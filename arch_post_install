@@ -25,6 +25,7 @@ install_packages() {
   paru -S --needed --noconfirm \
     `# --- base packages` \
     stow \
+    libva-intel-driver \
     greetd \
     hyprland \
     hyprpaper \
@@ -57,6 +58,7 @@ install_packages() {
     `# --- tui packages` \
     tmux \
     fastfetch \
+    wget \
     unzip \
     fzf \
     ripgrep \
@@ -71,17 +73,20 @@ install_packages() {
     btop \
     tree-sitter-cli \
     neovim \
+    github-cli \
     lazygit \
     `# --- gui packages` \
     adw-gtk-theme \
     papirus-icon-theme \
     bibata-cursor-theme-bin \
+    breeze \
+    breeze5 \
     qt6ct-kde \
     qt5ct-kde \
     nautilus \
     mpv \
     gwenview \
-    zen-browser-bin \
+    zen-browser-bin
 }
 
 configure_dotfiles() {
@@ -95,6 +100,8 @@ configure_dotfiles() {
     waybar \
     rofi \
     dunst \
+    gtk-3.0 \
+    qtct \
     kdeglobals \
     easyeffects \
     foot \
@@ -133,6 +140,13 @@ configure_home() {
   ln -s /media/Videos/ "$HOME/Videos"
 }
 
+configure_extras() {
+  sudo usermod -s "$(which zsh)" "$(whoami)"
+
+  local tmux_conf="$HOME/.config/tmux"
+  git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
+}
+
 configure_boot() {
   sudo systemctl enable greetd.service
 
@@ -160,6 +174,7 @@ configure_dns() {
   sudo rm -f /etc/resolv.conf
   sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
+  # will cause no connection until reboot
   nmcli connection modify 'Wired connection 1' \
     connection.dns-over-tls '2' ipv4.dns '1.1.1.1 1.0.0.1'
 }
@@ -168,13 +183,6 @@ configure_systemctl() {
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
   sudo systemctl enable paccache.timer
-}
-
-configure_extras() {
-  sudo usermod -s "$(which zsh)" "$(whoami)"
-
-  local tmux_conf="$HOME/.config/tmux"
-  git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
 }
 
 main() {
