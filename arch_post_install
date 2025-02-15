@@ -143,6 +143,9 @@ configure_home() {
 configure_extras() {
   sudo usermod -s "$(which zsh)" "$(whoami)"
 
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+    "$HOME/.config/powerlevel10k"
+
   local tmux_conf="$HOME/.config/tmux"
   git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
 }
