@@ -94,6 +94,7 @@ configure_dotfiles() {
   cd dotfiles
 
   stow --no-folding --adopt \
+    git \
     hypr \
     fontconfig \
     wallpapers \
