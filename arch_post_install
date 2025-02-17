@@ -26,10 +26,12 @@ install_packages() {
     `# --- base packages` \
     stow \
     libva-intel-driver \
+    zcfan \
     greetd \
     hyprland \
     hyprpaper \
     hyprpicker \
+    cliphist \
     grimblast-git \
     pacman-contrib \
     tlp \
@@ -196,11 +198,11 @@ main() {
   install_packages
   configure_dotfiles
   configure_home
+  configure_extras
   configure_boot
   configure_greeter
   configure_dns
   configure_systemctl
-  configure_extras
 
   echo "Post Installation process complete!"
   echo "You may reboot!"
