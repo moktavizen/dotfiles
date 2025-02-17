@@ -184,6 +184,7 @@ configure_dns() {
 }
 
 configure_systemctl() {
+  sudo systemctl enable zcfan.service
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
   sudo systemctl enable paccache.timer
