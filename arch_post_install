@@ -152,8 +152,6 @@ configure_extras() {
 }
 
 configure_boot() {
-  sudo systemctl enable greetd.service
-
   local loader_path="/boot/loader"
   sudo sed -i '/^timeout/s/^/#/' "$loader_path"/loader.conf
 
@@ -162,6 +160,8 @@ configure_boot() {
 }
 
 configure_greeter() {
+  sudo systemctl enable greetd.service
+
   local greetd_conf="/etc/greetd/config.toml"
 
   sudo tee -a "$greetd_conf" <<EOF
@@ -176,7 +176,7 @@ configure_dns() {
   sudo systemctl enable systemd-resolved.service
 
   sudo rm -f /etc/resolv.conf
-  sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+  sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
   # will cause no connection until reboot
   nmcli connection modify 'Wired connection 1' \
