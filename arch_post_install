@@ -111,9 +111,6 @@ configure_dotfiles() {
     mpv
 
   git restore .
-
-  sudo ln -sf "$HOME/dotfiles/_root/zcfan/zcfan.conf" \
-    "/etc/zcfan.conf"
 }
 
 configure_home() {
@@ -142,7 +139,6 @@ configure_extras() {
   local tmux_conf="$HOME/.config/tmux"
   git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
 
-  sudo systemctl enable zcfan.service
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
   sudo systemctl enable paccache.timer
@@ -177,6 +173,13 @@ configure_pacman() {
     "/etc/pacman.d/mirrorlist"
 }
 
+configure_fan() {
+  sudo ln -sf "$HOME/dotfiles/_root/zcfan/zcfan.conf" \
+    "/etc/zcfan.conf"
+  sudo mkinitcpio -P
+  sudo systemctl enable zcfan.service
+}
+
 # Must be last because this will cause no connection until reboot
 configure_dns() {
   sudo systemctl enable systemd-resolved.service
@@ -197,6 +200,7 @@ main() {
   configure_boot
   configure_greeter
   configure_pacman
+  configure_fan
   configure_dns
 
   echo "Post Installation process complete!"
