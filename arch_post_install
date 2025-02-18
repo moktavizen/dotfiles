@@ -83,8 +83,8 @@ install_packages() {
     bibata-cursor-theme-bin \
     breeze \
     breeze5 \
-    qt6ct-kde \
-    qt5ct-kde \
+    qt6ct \
+    qt5ct \
     nautilus \
     mpv \
     gwenview \
