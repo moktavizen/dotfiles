@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-install_paru() {
+install_aur_helper() {
   sudo pacman -S --needed git base-devel --noconfirm
   git clone https://aur.archlinux.org/paru-bin.git
   cd paru-bin
@@ -192,7 +192,7 @@ configure_dns() {
 }
 
 main() {
-  install_paru
+  install_aur_helper
   install_packages
   configure_dotfiles
   configure_home
