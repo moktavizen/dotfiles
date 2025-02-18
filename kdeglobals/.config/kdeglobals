@@ -1,14 +1,8 @@
-[Colors:View]
-BackgroundNormal=#00000000
-
 [General]
 TerminalApplication=foot
 
 [Icons]
 Theme=Papirus-Dark
 
-[KDE]
-widgetStyle=qt6ct-style
-
 [UiSettings]
-ColorScheme=adw-gtk3-dark
+ColorScheme=Breeze Libadwaita Dark
