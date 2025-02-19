@@ -55,6 +55,7 @@ install_packages() {
     `# --- tui packages` \
     tmux \
     fastfetch \
+    man-db \
     wget \
     unzip \
     fzf \
@@ -76,6 +77,7 @@ install_packages() {
     adw-gtk-theme \
     papirus-icon-theme \
     bibata-cursor-theme-bin \
+    nwg-look \
     breeze \
     breeze5 \
     qt6ct \
