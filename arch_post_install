@@ -99,8 +99,6 @@ configure_dotfiles() {
     waybar \
     rofi \
     dunst \
-    gtk-3.0 \
-    qtct \
     kdeglobals \
     easyeffects \
     foot \
