@@ -76,7 +76,6 @@ install_packages() {
     `# --- gui packages` \
     adw-gtk-theme \
     papirus-icon-theme \
-    bibata-cursor-theme-bin \
     nwg-look \
     breeze \
     breeze5 \
