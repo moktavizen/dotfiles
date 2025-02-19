@@ -30,6 +30,8 @@ install_packages() {
     grimblast-git \
     pacman-contrib \
     tlp \
+    easyeffects \
+    calf \
     qt5-wayland \
     qt6-wayland \
     polkit-gnome \
