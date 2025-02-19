@@ -77,10 +77,8 @@ install_packages() {
     adw-gtk-theme \
     papirus-icon-theme \
     nwg-look \
-    breeze \
-    breeze5 \
-    qt6ct \
-    qt5ct \
+    plasma-workspace \
+    systemsettings \
     nautilus \
     mpv \
     gwenview \
