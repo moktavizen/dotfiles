@@ -171,6 +171,8 @@ configure_pacman() {
 }
 
 configure_fan() {
+  echo "options thinkpad_acpi fan_control=1" \
+    | sudo tee /etc/modprobe.d/99-fancontrol.conf
   sudo ln -sf "$HOME/dotfiles/_root/zcfan/zcfan.conf" \
     "/etc/zcfan.conf"
   sudo mkinitcpio -P
