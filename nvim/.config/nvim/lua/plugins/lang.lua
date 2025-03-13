@@ -214,6 +214,7 @@ return {
         'stylua', -- Used to format Lua code
         'shfmt', -- Used to format shell code
         'prettierd', -- Used to format WebDev code
+        'ruff', -- Used to format Python code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -274,6 +275,7 @@ return {
         lua = { 'stylua' },
         bash = { 'shfmt' },
         sh = { 'shfmt' },
+        python = { 'ruff' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
