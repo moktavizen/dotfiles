@@ -324,6 +324,7 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
+      fuzzy = { implementation = 'rust' },
     },
     opts_extend = { 'sources.default' },
   },
