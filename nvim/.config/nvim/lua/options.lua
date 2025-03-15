@@ -68,11 +68,8 @@ vim.opt.cursorlineopt = 'number'
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- hide command when not used
+-- hide commandline when not used
 vim.opt.cmdheight = 0
-
--- show separator on horizontal split
-vim.opt.laststatus = 3
 
 -- set tab width
 vim.opt.tabstop = 2
