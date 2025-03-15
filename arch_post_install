@@ -30,6 +30,7 @@ install_packages() {
     grimblast-git \
     pacman-contrib \
     tlp \
+    wlsunset \
     easyeffects \
     calf \
     qt5-wayland \
