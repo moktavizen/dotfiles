@@ -17,5 +17,12 @@ return {
         },
       },
     },
+    sections = {
+      lualine_c = {
+        'filename',
+        'searchcount',
+        'selectioncount',
+      },
+    },
   },
 }
