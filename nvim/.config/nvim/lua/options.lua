@@ -54,7 +54,8 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
 vim.opt.fillchars = { eob = ' ' }
 
 -- Preview substitutions live, as you type!
