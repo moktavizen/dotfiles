@@ -72,6 +72,9 @@ vim.opt.scrolloff = 10
 -- hide commandline when not used
 vim.opt.cmdheight = 0
 
+-- enable global statusline
+vim.opt.laststatus = 3
+
 -- set tab width
 vim.opt.tabstop = 2
 vim.opt.softtabstop = -1

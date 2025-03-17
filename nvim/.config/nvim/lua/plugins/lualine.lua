@@ -5,7 +5,7 @@ return {
   event = 'VeryLazy',
   opts = {
     options = {
-      globalstatus = true,
+      globalstatus = false,
       component_separators = '',
       section_separators = {
         left = '',
