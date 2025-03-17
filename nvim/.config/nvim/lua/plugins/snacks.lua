@@ -34,7 +34,7 @@ return {
     quickfile = { enabled = true },
     words = { enabled = true },
     indent = {
-      enabled = true,
+      enabled = false,
       animate = {
         enabled = false,
       },
