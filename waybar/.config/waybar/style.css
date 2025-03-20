@@ -6,6 +6,7 @@
 @define-color bg1 rgba(31,31,31,0.8);
 /*@define-color bg1 rgba(33,33,33,0.8);*/
 /*@define-color bg1 #212121;*/
+/*@define-color bg1 #1f1f1f;*/
 
 @define-color fg0 #ebebeb;
 @define-color yellow #f2db97;
@@ -15,6 +16,8 @@
   font-size: 14px;
   font-weight: 500;
   min-height: 0;
+  /*match hyprland window opacity*/
+  /*opacity: 0.955;*/
 }
 
 window#waybar {
