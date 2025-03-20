@@ -2,7 +2,7 @@
 #
 # Install software that I use on Arch Linux Hyprland
 #
-# - usage       : run this script in $HOME directory
+# - usage       : run this script after minimal install using archinstall
 
 set -euo pipefail
 
