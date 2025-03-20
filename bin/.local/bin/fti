@@ -19,8 +19,8 @@ fzf_tmdb_id() {
     QUERY_TMDB() {
       local raw_query="$1"
 
-      curl --request GET -sG \
-        --url "https://api.themoviedb.org/3/search/multi" \
+      curl -GfsL \
+        "https://api.themoviedb.org/3/search/multi" \
         --data-urlencode "query=$raw_query" \
         --header "Authorization: Bearer $TMDB_API_ACCESS_TOKEN" \
         --header "accept: application/json" \
