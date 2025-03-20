@@ -24,7 +24,11 @@ fzf_tmdb_id() {
         --data-urlencode "query=$raw_query" \
         --header "Authorization: Bearer $TMDB_API_ACCESS_TOKEN" \
         --header "accept: application/json" \
-        | jq -r ".results[] | [.id, .media_type, (.title//.name)] | @tsv"
+        | jq -r ".results
+                   | sort_by(.popularity)
+                   | reverse[]
+                   | [.id, .media_type, .popularity, (.title//.name)]
+                   | @tsv"
     }
 
     export -f QUERY_TMDB
@@ -40,7 +44,7 @@ fzf_tmdb_id() {
       --disabled \
       --delimiter "\t" \
       --bind "enter:become(wl-copy {1})" \
-      --disabled --header $'ID\tTYPE\tTITLE' \
+      --disabled --header $'ID\tTYPE\tPOP\tTITLE' \
       "${ui_opts[@]}"
   )
 }
