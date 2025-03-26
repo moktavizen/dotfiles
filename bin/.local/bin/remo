@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# Rofi and select emoji by Gemini-2.5-Pro-Exp-03-25
+# - dependency  : rofi, curl, wl-copy, awk, sed
+# - usage       : just execute without any args, like an alias
+
+set -euo pipefail
+
+readonly EMOJI_LIST="${XDG_DATA_HOME:-$HOME/.local/share}/emoji-list.txt"
+
+fetch_emoji_list() {
+  curl -fsS "https://unicode.org/Public/emoji/latest/emoji-test.txt" \
+    | awk -F 'fully-qualified     # ' 'NF > 1 { print $2 }' \
+    | sed -E 's/E[0-9]+\.[0-9]+//g'
+}
+
+rofi_select() {
+  local rofi_opts=(
+    -dmenu
+    -i
+    -p "Emoji"
+  )
+
+  rofi "${rofi_opts[@]}"
+}
+
+main() {
+  if [[ ! -f "$EMOJI_LIST" ]]; then
+    mkdir -p "${EMOJI_LIST%/*}" 2>/dev/null
+
+    echo "Emoji list not found. Downloading and processing..." >&2
+    echo "This is only needed on the first run. Please wait..." >&2
+
+    tmpfile="$(mktemp)"
+    if fetch_emoji_list >"$tmpfile" && [[ -s "$tmpfile" ]]; then
+      mv "$tmpfile" "$EMOJI_LIST"
+      echo "Emoji list created at $EMOJI_LIST" >&2
+    else
+      rm -f "$tmpfile"
+      echo "Failed to fetch or process emoji list. It might be empty." >&2
+      exit 1
+    fi
+  fi
+
+  selected_line=$(rofi_select <"$EMOJI_LIST" || true)
+  local rofi_exit_status=$?
+
+  if [[ -n "$selected_line" ]]; then
+    emoji=$(echo "$selected_line" | awk '{print $1}')
+
+    echo -n "$emoji" | wl-copy
+
+    echo "$emoji Copied to clipboard"
+  else
+    echo "No emoji selected." >&2
+    [[ $rofi_exit_status -gt 0 ]] && exit "$rofi_exit_status"
+  fi
+}
+
+main
