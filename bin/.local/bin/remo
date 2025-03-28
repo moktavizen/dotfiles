@@ -9,52 +9,53 @@ set -euo pipefail
 readonly EMOJI_LIST="${XDG_DATA_HOME:-$HOME/.local/share}/emoji-list.txt"
 
 fetch_emoji_list() {
-  curl -fsS "https://unicode.org/Public/emoji/latest/emoji-test.txt" \
+  curl -fsSL "https://unicode.org/Public/emoji/latest/emoji-test.txt" \
     | awk -F 'fully-qualified     # ' 'NF > 1 { print $2 }' \
-    | sed -E 's/E[0-9]+\.[0-9]+//g'
+    | sed -E 's/\s*E[0-9]+\.[0-9]+//g'
 }
 
 rofi_select() {
   local rofi_opts=(
     -dmenu
     -i
-    -p "Emoji"
+    -markup-rows
+    -p "Select Emoji"
+    -lines 15
+    -width 30
+    -location 0
   )
 
-  rofi "${rofi_opts[@]}"
+  local selected_line
+  if selected_line=$(rofi "${rofi_opts[@]}"); then
+    if [[ -n "$selected_line" ]]; then
+      local selected_emoji
+      selected_emoji=$(echo "$selected_line" | cut -d' ' -f1)
+
+      echo -n "$selected_emoji" | wl-copy
+
+      return 0
+    else
+      return 1
+    fi
+  else
+    return $?
+  fi
 }
 
 main() {
   if [[ ! -f "$EMOJI_LIST" ]]; then
-    mkdir -p "${EMOJI_LIST%/*}" 2>/dev/null
-
-    echo "Emoji list not found. Downloading and processing..." >&2
-    echo "This is only needed on the first run. Please wait..." >&2
-
     tmpfile="$(mktemp)"
+    mkdir -p "${EMOJI_LIST%/*}"
     if fetch_emoji_list >"$tmpfile" && [[ -s "$tmpfile" ]]; then
       mv "$tmpfile" "$EMOJI_LIST"
-      echo "Emoji list created at $EMOJI_LIST" >&2
     else
+      # If the fetch is canceled or fails, remove the corrupt/empty file.
       rm -f "$tmpfile"
-      echo "Failed to fetch or process emoji list. It might be empty." >&2
       exit 1
     fi
   fi
 
-  selected_line=$(rofi_select <"$EMOJI_LIST" || true)
-  local rofi_exit_status=$?
-
-  if [[ -n "$selected_line" ]]; then
-    emoji=$(echo "$selected_line" | awk '{print $1}')
-
-    echo -n "$emoji" | wl-copy
-
-    echo "$emoji Copied to clipboard"
-  else
-    echo "No emoji selected." >&2
-    [[ $rofi_exit_status -gt 0 ]] && exit "$rofi_exit_status"
-  fi
+  rofi_select <"$EMOJI_LIST"
 }
 
 main
