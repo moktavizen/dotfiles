@@ -9,35 +9,33 @@ set -euo pipefail
 readonly EMOJI_LIST="${XDG_DATA_HOME:-$HOME/.local/share}/emoji-list.txt"
 
 fetch_emoji_list() {
-  # If the fetch is canceled or fails, we don't want to create an empty file.
-  curl -fsS "https://unicode.org/Public/emoji/latest/emoji-test.txt" \
+  curl -fsSL "https://unicode.org/Public/emoji/latest/emoji-test.txt" \
     | awk -F 'fully-qualified     # ' 'NF > 1 { print $2 }' \
-    | sed -E 's/E[0-9]+\.[0-9]+//g'
+    | sed -E 's/\s*E[0-9]+\.[0-9]+//g'
 }
 
 fzf_select() {
   local ui_opts=(
-    --no-scrollbar --info hidden
-    --height 50% --layout reverse --border
+    --no-scrollbar --info hidden --height 50% --layout reverse --border
   )
 
   fzf --with-shell "bash -c" \
-    --delimiter "  " \
+    --delimiter " " \
     --bind "enter:become(wl-copy {1})" \
     "${ui_opts[@]}"
 }
 
 main() {
   if [[ ! -f "$EMOJI_LIST" ]]; then
-    mkdir -p "${EMOJI_LIST%/*}" 2>/dev/null
-
     echo "Processing emoji list..."
     echo "Only needed on first run. Please wait..."
 
     tmpfile="$(mktemp)"
+    mkdir -p "${EMOJI_LIST%/*}"
     if fetch_emoji_list >"$tmpfile" && [[ -s "$tmpfile" ]]; then
       mv "$tmpfile" "$EMOJI_LIST"
     else
+      # If the fetch is canceled or fails, remove the corrupt file.
       rm -f "$tmpfile"
       echo "Failed to fetch emoji list or list was empty" >&2
       exit 1
