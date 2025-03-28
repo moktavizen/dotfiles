@@ -19,7 +19,7 @@ fzf_tmdb_id() {
     QUERY_TMDB() {
       local raw_query="$1"
 
-      curl -GfsL \
+      curl -GfsSL \
         "https://api.themoviedb.org/3/search/multi" \
         --data-urlencode "query=$raw_query" \
         --header "Authorization: Bearer $TMDB_API_ACCESS_TOKEN" \
@@ -34,8 +34,7 @@ fzf_tmdb_id() {
     export -f QUERY_TMDB
 
     local ui_opts=(
-      --no-scrollbar --info default
-      --height 50% --layout reverse --border
+      --no-scrollbar --info default --height 50% --layout reverse --border
     )
 
     fzf --with-shell "bash -c" \
