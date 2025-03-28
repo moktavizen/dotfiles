@@ -32,10 +32,5 @@ return {
         },
       },
     },
-    highlights = {
-      fill = {
-        bg = 'None',
-      },
-    },
   },
 }
