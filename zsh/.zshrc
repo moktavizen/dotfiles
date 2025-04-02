@@ -66,7 +66,7 @@ fgu() {
     -x echo -e '\n{//}' \; -x git -C '{//}' status -s
 }
 mp4() {
-  yt-dlp -S "res:1080" --remux mp4 --merge mp4 \
+  yt-dlp -S "vcodec:h264,res:1080" --remux mp4 --merge mp4 \
     -o "%(uploader)s - %(title)s.%(ext)s" "$1"
 }
 mp3() {
