@@ -50,8 +50,7 @@ install_packages() {
     rofi-wayland \
     pavucontrol \
     bluetui \
-    foot \
-    foot-terminfo \
+    kitty \
     zsh \
     zsh-autosuggestions \
     zsh-syntax-highlighting \
@@ -102,7 +101,7 @@ configure_dotfiles() {
     rofi \
     dunst \
     easyeffects \
-    foot \
+    kitty \
     zsh \
     fastfetch \
     tmux \
