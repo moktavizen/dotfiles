@@ -195,6 +195,9 @@ configure_dns() {
 
   nmcli connection modify 'Wired connection 1' \
     connection.dns-over-tls '2' ipv4.dns '1.1.1.1 1.0.0.1'
+
+  nmcli connection modify 'krusty-krab' \
+    connection.dns-over-tls '2' ipv4.dns '1.1.1.1 1.0.0.1'
 }
 
 main() {
