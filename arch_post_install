@@ -49,7 +49,7 @@ install_packages() {
     waybar \
     rofi-wayland \
     pavucontrol \
-    bluetui \
+    blueman \
     kitty \
     zsh \
     zsh-autosuggestions \
