@@ -28,17 +28,17 @@
   "cpu": {
     "format": "<span color='#b6d2d2'>󰍛</span> {usage}%",
     "interval": 2,
-    "on-click": "foot -T 'Task Manager' btop",
+    "on-click": "kitty -T 'Task Manager' btop",
   },
   "temperature": {
     "format": "<span color='#f29797'></span> {temperatureC}󰔄",
     "interval": 2,
-    "on-click": "foot -T 'Task Manager' btop",
+    "on-click": "kitty -T 'Task Manager' btop",
   },
   "memory": {
     "format": "<span color='#c497f2'>󰘚</span> {used:.2g}GB",
     "interval": 2,
-    "on-click": "foot -T 'Task Manager' btop",
+    "on-click": "kitty -T 'Task Manager' btop",
   },
   "group/control": {
     "orientation": "horizontal",
@@ -63,13 +63,13 @@
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "interval": 2,
     "tooltip-format": "{essid}",
-    "on-click": "foot -T 'Network Manager' nmtui",
+    "on-click": "kitty -T 'Network Manager' nmtui",
   },
   "bluetooth": {
     "format": "<span color='#97aef2'></span> {status}",
     "format-connected-battery": "<span color='#97aef2'></span> {device_battery_percentage}%",
     "tooltip-format": "{device_alias} {status}",
-    "on-click": "foot -T 'Bluetooth Manager' bluetui",
+    "on-click": "blueman-manager",
   },
   "pulseaudio": {
     "format": "<span color='#f29797'>{icon}</span> {volume}%",
