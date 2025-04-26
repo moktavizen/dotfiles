@@ -153,7 +153,7 @@ configure_boot() {
   sudo sed -i '/^timeout/s/^/#/' "$loader_path"/loader.conf
 
   local entries_path="/boot/loader/entries"
-  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "$entries_path"/*_linux.conf
+  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "$entries_path"/*_linux-lts.conf
 }
 
 configure_greeter() {
