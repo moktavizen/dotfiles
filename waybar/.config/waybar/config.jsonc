@@ -31,7 +31,7 @@
     "on-click": "kitty -T 'Task Manager' btop",
   },
   "temperature": {
-    "format": "<span color='##f2979c'></span> {temperatureC}󰔄",
+    "format": "<span color='#f2979c'></span> {temperatureC}󰔄",
     "interval": 2,
     "on-click": "kitty -T 'Task Manager' btop",
   },
@@ -72,10 +72,10 @@
     "on-click": "blueman-manager",
   },
   "pulseaudio": {
-    "format": "<span color='##f2979c'>{icon}</span> {volume}%",
-    "format-muted": "<span color='##f2979c'>󰖁</span> {volume}%",
-    "format-bluetooth": "<span color='##f2979c'>{icon}</span> {volume}%",
-    "format-bluetooth-muted": "<span color='##f2979c'>󰖁</span> {volume}%",
+    "format": "<span color='#f2979c'>{icon}</span> {volume}%",
+    "format-muted": "<span color='#f2979c'>󰖁</span> {volume}%",
+    "format-bluetooth": "<span color='#f2979c'>{icon}</span> {volume}%",
+    "format-bluetooth-muted": "<span color='#f2979c'>󰖁</span> {volume}%",
     "format-icons": {
       "headphone": "󰋋",
       "phone": "󰏲",
