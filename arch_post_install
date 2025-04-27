@@ -21,6 +21,7 @@ install_packages() {
     `# --- base packages` \
     stow \
     libva-intel-driver \
+    broadcom-bt-firmware \
     zcfan \
     greetd \
     hyprland \
