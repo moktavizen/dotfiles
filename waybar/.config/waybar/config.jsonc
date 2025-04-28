@@ -63,13 +63,13 @@
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "interval": 2,
     "tooltip-format": "{essid}",
-    "on-click": "kitty -T 'Network Manager' nmtui",
+    "on-click": "kitty -T 'WiFi Manager' impala",
   },
   "bluetooth": {
     "format": "<span color='#97b4f2'></span> {status}",
     "format-connected-battery": "<span color='#97b4f2'></span> {device_battery_percentage}%",
     "tooltip-format": "{device_alias} {status}",
-    "on-click": "blueman-manager",
+    "on-click": "kitty -T 'Bluetooth Manager' bluetui",
   },
   "pulseaudio": {
     "format": "<span color='#f2979c'>{icon}</span> {volume}%",
