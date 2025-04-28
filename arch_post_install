@@ -21,6 +21,7 @@ install_packages() {
     `# --- base packages` \
     stow \
     libva-intel-driver \
+    iwd \
     broadcom-bt-firmware \
     zcfan \
     greetd \
@@ -187,18 +188,12 @@ configure_fan() {
   sudo systemctl enable zcfan.service
 }
 
-# Must be last because this will cause no connection until reboot
-configure_dns() {
-  sudo systemctl enable systemd-resolved.service
+configure_network() {
+  sudo systemctl enable iwd.service
 
-  sudo rm -f /etc/resolv.conf
-  sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
-
-  nmcli connection modify 'Wired connection 1' \
-    connection.dns-over-tls '2' ipv4.dns '1.1.1.1 1.0.0.1'
-
-  nmcli connection modify 'krusty-krab' \
-    connection.dns-over-tls '2' ipv4.dns '1.1.1.1 1.0.0.1'
+  sudo sed -i '/^\[Network\]/a\DNS=1.0.0.1' /etc/systemd/network/*.network
+  sudo sed -i '/^\[Network\]/a\DNS=1.1.1.1' /etc/systemd/network/*.network
+  sudo sed -i '/^\[Network\]/a\DNSOverTLS=yes' /etc/systemd/network/*.network
 }
 
 main() {
@@ -211,7 +206,8 @@ main() {
   configure_greeter
   configure_pacman
   configure_fan
-  configure_dns
+  # Must be last because this will cause no connection until reboot
+  configure_network
 
   echo "Post Installation process complete!"
   echo "You may reboot!"
