@@ -142,6 +142,7 @@ configure_extras() {
 
   local tmux_conf="$HOME/.config/tmux"
   git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
+  "$tmux_conf/plugins/tpm/bin/install_plugins"
 
   mkdir -p "$HOME/.local/share/color-schemes/"
   curl \
