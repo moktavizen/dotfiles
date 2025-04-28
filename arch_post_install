@@ -53,6 +53,8 @@ install_packages() {
     pavucontrol \
     impala \
     bluetui \
+    gnome-disk-utility \
+    dosfstools \
     kitty \
     zsh \
     zsh-autosuggestions \
