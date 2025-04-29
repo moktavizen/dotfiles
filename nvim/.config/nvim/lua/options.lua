@@ -76,10 +76,9 @@ vim.opt.cmdheight = 0
 vim.opt.laststatus = 3
 
 -- set tab width
+vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
-vim.opt.softtabstop = -1
-vim.opt.shiftwidth = 0
-vim.opt.shiftround = true
+vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
 -- set line wrap
