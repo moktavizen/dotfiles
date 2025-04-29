@@ -89,6 +89,10 @@ install_packages() {
     nautilus \
     mpv \
     gwenview \
+    libheif \
+    libavif \
+    kimageformats \
+    qt6-imageformats \
     zen-browser-bin
 }
 
