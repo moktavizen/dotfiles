@@ -1,6 +1,6 @@
 # Vizen dotfiles
 
-![preview](./preview.png)
+![preview](./preview.avif)
 
 Usage:
 
