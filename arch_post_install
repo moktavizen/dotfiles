@@ -174,7 +174,7 @@ configure_greeter() {
   sudo tee -a "$greetd_conf" <<EOF
 
 [initial_session]
-command = "Hyprland"
+command = "Hyprland > /dev/null"
 user = "$(whoami)"
 EOF
 }
