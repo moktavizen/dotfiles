@@ -21,7 +21,7 @@ window#waybar {
 
 #workspaces {
   background-color: @bg1;
-  border-radius: 18px;
+  border-radius: 32px;
   padding: 0px 8px;
   /* margin: 4px 4px 4px 8px; */
   margin: 8px 4px 0px 8px;
@@ -29,7 +29,7 @@ window#waybar {
 
 #workspaces button {
   color: @fg0;
-  border-radius: 18px;
+  border-radius: 32px;
   padding: 3px;
 }
 
@@ -39,7 +39,7 @@ window#waybar {
 
 #window {
   background-color: @bg1;
-  border-radius: 18px;
+  border-radius: 32px;
   padding: 0px 16px;
   /* margin: 4px; */
   margin: 8px 4px 0px 4px;
@@ -52,7 +52,7 @@ window#waybar.empty #window {
 
 #tray {
   background-color: @bg1;
-  border-radius: 18px;
+  border-radius: 32px;
   padding: 0px 16px;
   /* margin: 4px; */
   margin: 8px 4px 0px 4px;
@@ -60,7 +60,7 @@ window#waybar.empty #window {
 
 #hw {
   background-color: @bg1;
-  border-radius: 18px;
+  border-radius: 32px;
   padding: 0px 16px;
   /* margin: 4px; */
   margin: 8px 4px 0px 4px;
@@ -80,7 +80,7 @@ window#waybar.empty #window {
 
 #control {
   background-color: @bg1;
-  border-radius: 18px;
+  border-radius: 32px;
   padding: 0px 16px;
   /* margin: 4px; */
   margin: 8px 4px 0px 4px;
@@ -104,7 +104,7 @@ window#waybar.empty #window {
 
 #clock {
   background-color: @bg1;
-  border-radius: 18px;
+  border-radius: 32px;
   padding: 0px 16px;
   /* margin: 4px 8px 4px 4px; */
   margin: 8px 8px 0px 4px;
