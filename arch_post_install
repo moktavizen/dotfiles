@@ -27,6 +27,7 @@ install_packages() {
     greetd \
     hyprland \
     hyprpaper \
+    hyprlock \
     hyprpicker \
     cliphist \
     grimblast-git \
