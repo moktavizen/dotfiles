@@ -63,7 +63,8 @@ sd() {
 fgu() {
   fd -H -t d -g '.git' \
     -E '**/.*/**/.git' \
-    -x echo -e '\n{//}' \; -x git -C '{//}' status -s
+    -x echo -e '\n\e[34m{//}\e[0m' \; \
+    -x git -C '{//}' -c color.ui=always status -s
 }
 mp4() {
   yt-dlp -S "vcodec:h264,res:1080" --remux mp4 --merge mp4 \
