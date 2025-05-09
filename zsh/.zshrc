@@ -74,7 +74,7 @@ mp3() {
   yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-format mp3 \
     --embed-metadata --embed-thumbnail --convert-thumb jpg \
     --ppa "ThumbnailsConvertor+FFmpeg_o:-c:v mjpeg -vf crop=\"'min(iw,ih)':'min(iw,ih)'\"" \
-    -o "%(artist)s - %(title)s.%(ext)s" "$1"
+    -o "%(uploader)s - %(title)s.%(ext)s" "$1"
 }
 
 # Source
