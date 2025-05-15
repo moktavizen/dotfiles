@@ -33,7 +33,7 @@
     "on-click": "kitty -T 'Task Manager' btop",
   },
   "temperature": {
-    "format": "<span color='#f2979c'></span> {temperatureC}󰔄",
+    "format": "<span color='#f2979c'></span> {temperatureC}C",
     "interval": 2,
     "on-click": "kitty -T 'Task Manager' btop",
   },
