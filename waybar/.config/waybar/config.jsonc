@@ -16,7 +16,9 @@
       "default": "•",
     },
   },
-  "hyprland/window": {},
+  "hyprland/window": {
+    "format": "<span color='#97b4f2'>󰊠</span> {title}",
+  },
   "tray": {
     "icon-size": 15,
     "spacing": 8,
