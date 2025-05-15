@@ -45,9 +45,9 @@ window#waybar {
   margin: 8px 4px 0px 4px;
 }
 
-/* hide empty module */
+/* adjust empty module */
 window#waybar.empty #window {
-  background-color: transparent;
+  padding: 0px 8px 0px 16px;
 }
 
 #tray {
