@@ -16,6 +16,8 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+    event = { 'BufReadPost', 'BufNewFile' },
+    cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'mason-org/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
@@ -290,6 +292,7 @@ return {
 
   { -- Autocompletion
     'saghen/blink.cmp',
+    event = { 'BufReadPost', 'BufNewFile' },
     -- optional: provides snippets for the snippet source
     dependencies = 'rafamadriz/friendly-snippets',
 
@@ -332,6 +335,8 @@ return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     -- enabled = false,
+    event = { 'BufReadPost', 'BufNewFile' },
+    cmd = { 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`

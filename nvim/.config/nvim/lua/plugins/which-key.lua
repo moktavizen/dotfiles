@@ -16,7 +16,7 @@
 return { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
   -- enabled = false,
-  event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+  event = { 'BufReadPost', 'BufNewFile' },
   opts = {
     icons = {
       -- set icon mappings to true if you have a Nerd Font
