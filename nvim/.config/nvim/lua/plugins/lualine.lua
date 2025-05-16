@@ -2,7 +2,7 @@ return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   -- enabled = false,
-  event = 'VeryLazy',
+  event = { 'BufReadPost', 'BufNewFile' },
   opts = {
     options = {
       globalstatus = false,

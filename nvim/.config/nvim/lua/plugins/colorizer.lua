@@ -1,6 +1,7 @@
 return {
   -- the only one that supports css variable
   'brenoprata10/nvim-highlight-colors',
+  event = { 'BufReadPost', 'BufNewFile' },
   -- enabled = false,
   opts = {},
 
