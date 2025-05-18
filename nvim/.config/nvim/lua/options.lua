@@ -83,3 +83,7 @@ vim.opt.expandtab = true
 
 -- set line wrap
 vim.opt.wrap = false
+
+-- Spell Checker
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us'
