@@ -1,6 +1,6 @@
 return {
   'derektata/lorem.nvim',
-  ft = 'html',
+  event = 'InsertEnter',
   config = function()
     require('lorem').opts {
       sentence_length = 'medium',
