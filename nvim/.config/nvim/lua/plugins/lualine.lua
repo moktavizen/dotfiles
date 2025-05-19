@@ -5,7 +5,7 @@ return {
   event = { 'BufReadPost', 'BufNewFile' },
   opts = {
     options = {
-      globalstatus = false,
+      globalstatus = true,
       component_separators = '',
       section_separators = {
         left = '',
