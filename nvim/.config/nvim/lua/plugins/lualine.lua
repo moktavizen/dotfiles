@@ -18,11 +18,8 @@ return {
       },
     },
     sections = {
-      lualine_c = {
-        'filename',
-        'searchcount',
-        'selectioncount',
-      },
+      lualine_b = { 'filename', 'searchcount', 'selectioncount' },
+      lualine_c = { 'branch', 'diff', 'diagnostics' },
     },
   },
 }
