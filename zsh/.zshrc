@@ -88,6 +88,16 @@ encav1() {
   #
   ffmpeg -i "$1" -c:v libsvtav1 -preset 6 -crf 23 -c:a libopus -b:a 128k "$2"
 }
+ench265(){
+  # > Preset medium is roughly the same speed as -preset 6 in `libsvtav1`.
+  #
+  # > The default is 28, and it should visually correspond to libx264
+  # > video at CRF 23. That makes CRF 24 corresponds to CRF 19 for x264,
+  # > which would be considered visually lossless.
+  # See https://trac.ffmpeg.org/wiki/Encode/H.265
+  #
+  ffmpeg -i "$1" -c:v libx265 -preset medium -crf 24 -c:a libopus -b:a 128k "$2"
+}
 
 # Source
 # ------------------------------------------------------------------------------
