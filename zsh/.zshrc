@@ -77,6 +77,17 @@ mp3() {
     --ppa "ThumbnailsConvertor+FFmpeg_o:-c:v mjpeg -vf crop=\"'min(iw,ih)':'min(iw,ih)'\"" \
     -o "%(uploader)s - %(title)s.%(ext)s" "$1"
 }
+encav1() {
+  # > Preset value of 6 can give you a good trade-off between quality,
+  # > file size, and speed.
+  # See https://ottverse.com/analysis-of-svt-av1-presets-and-crf-values/
+  #
+  # > CRF value of 23 yields a quality level corresponding to CRF 19 for x264,
+  # > which would be considered visually lossless.
+  # See https://trac.ffmpeg.org/wiki/Encode/AV1/
+  #
+  ffmpeg -i "$1" -c:v libsvtav1 -preset 6 -crf 23 -c:a libopus -b:a 128k "$2"
+}
 
 # Source
 # ------------------------------------------------------------------------------
