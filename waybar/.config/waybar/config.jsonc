@@ -18,6 +18,7 @@
   },
   "hyprland/window": {
     "format": "<span color='#97b4f2'>󰊠</span> {title}",
+    "tooltip": false,
   },
   "tray": {
     "icon-size": 15,
@@ -36,11 +37,13 @@
     "format": "<span color='#f2979c'></span> {temperatureC}C",
     "interval": 2,
     "on-click": "kitty -T 'Task Manager' btop",
+    "tooltip-format": "Max before throttling: 105 °C",
   },
   "memory": {
     "format": "<span color='#cd97f2'>󰘚</span> {used:.2g}GB",
     "interval": 2,
     "on-click": "kitty -T 'Task Manager' btop",
+    "tooltip-format": "Used  : {used}\nAvail : {avail}\nTotal : {total}",
   },
   "group/control": {
     "orientation": "horizontal",
