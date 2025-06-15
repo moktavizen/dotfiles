@@ -50,16 +50,16 @@ alias lg='lazygit'
 alias media_ser='sudo systemctl start jellyfin'
 alias qbit_ser='sudo systemctl start qbittorrent-nox@vizen'
 sf() {
-  nvim $(
+  nvim "$(
     fd -H -t f | fzf --preview \
       "bat --theme=base16 --color=always --style=numbers,changes {}"
-  )
+  )"
 }
 sd() {
-  cd $(
+  cd "$(
     fd -H -t d | fzf --preview \
       "eza -lh --no-user --no-permissions --icons=always --color=always {}"
-  )
+  )"
 }
 fgu() {
   fd -H -t d -g '.git' \
