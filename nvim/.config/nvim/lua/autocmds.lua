@@ -25,3 +25,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     vim.fn.setpos('.', save_cursor)
   end,
 })
+
+-- Set zsh filetype to bash for better LSP/syntax support
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'zsh',
+  command = 'set filetype=bash',
+})
