@@ -322,7 +322,7 @@ return {
       formatters = {
         shfmt = {
           -- Google's shell style guide: shfmt -i 2 -ci -bn
-          prepend_args = { '-i', '2', '-ci', '-bn' },
+          append_args = { '-i', '2', '-ci', '-bn' },
         },
         ['biome-check'] = {
           append_args = { '--indent-style=space' },
