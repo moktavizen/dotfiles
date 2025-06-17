@@ -264,7 +264,8 @@ return {
         -- Step 2: Install the formatter
         'stylua', -- Used to format Lua code
         'shfmt', -- Used to format shell code
-        'prettierd', -- Used to format WebDev code
+        'prettierd', -- Used to format HTML code
+        'biome', -- Used to format web-dev code
         'ruff', -- Used to format Python code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -323,6 +324,9 @@ return {
           -- Google's shell style guide: shfmt -i 2 -ci -bn
           prepend_args = { '-i', '2', '-ci', '-bn' },
         },
+        ['biome-check'] = {
+          append_args = { '--indent-style=space' },
+        },
       },
       formatters_by_ft = {
         lua = { 'stylua' },
@@ -333,9 +337,11 @@ return {
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
-        javascript = { 'prettierd' },
-        css = { 'prettierd' },
+        -- javascript = { "biome-check", "prettier", stop_after_first = true },
+        typescript = { 'biome-check' },
+        javascript = { 'biome-check' },
+        css = { 'biome-check' },
+        -- HTML Formatting: https://github.com/biomejs/biome/issues/4726
         html = { 'prettierd' },
       },
     },
