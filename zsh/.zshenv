@@ -1,9 +1,6 @@
 # Env Variable
 # ------------------------------------------------------------------------------
 
-# export LIBVA_DRIVERS_PATH=/usr/lib/dri/i965_drv_video.so
-export LIBVA_DRIVER_NAME=i965
-# export LIBVA_DRIVER_NAME=iHD
 export EDITOR=nvim
 export VISUAL=nvim
 export MANPAGER='nvim +Man!'
@@ -15,7 +12,7 @@ export PATH="$HOME/.local/bin:$PATH"
 FNM_PATH="/home/vizen/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="/home/vizen/.local/share/fnm:$PATH"
-  eval "`fnm env`"
+  eval "$(fnm env)"
 fi
 
 # rust
@@ -39,4 +36,3 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --height 50%
     --layout reverse
     --border'
-
