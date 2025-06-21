@@ -1,0 +1,70 @@
+* {
+  background:         #1e1e1ecc;
+  foreground:         #ebebebcc;
+  inactive-foreground:#999999cc;
+  active-background:  #ffffff26;
+
+  background-color:   transparent;
+  text-color:         @foreground;
+}
+
+window {
+  width:              730px;
+  background-color:   @background;
+  border-radius:      12px;
+  padding:            8px;
+}
+
+inputbar {
+  padding:            8px 12px 14px;
+  children:           [ "icon-search","entry","num-filtered-rows","textbox-num-sep","num-rows"];
+  border:             0px 0px 1px solid;
+  border-color:       @active-background;
+  margin:             0px 0px 10px;
+}
+
+icon-search {
+  expand:             false;
+  filename:           "search";
+  size:               1em;
+  padding:            0px 12px 0px 0px;
+}
+
+entry{
+  placeholder:        "Search...";
+  placeholder-color:  @inactive-foreground;
+}
+
+num-filtered-rows {
+    expand:           false;
+    text-color:       @foreground;
+}
+
+num-rows {
+    expand:           false;
+    text-color:       @foreground;
+}
+
+textbox-num-sep {
+    expand:           false;
+    str:              "/";
+    text-color:       @foreground;
+}
+
+listview {
+  lines:              7;
+}
+
+element {
+  padding:            12px;
+  spacing:            12px;
+  border-radius:      8px;
+}
+
+element-icon {
+  size:               1em;
+}
+
+element selected{
+  background-color:   @active-background;
+}
