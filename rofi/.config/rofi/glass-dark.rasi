@@ -27,12 +27,12 @@ icon-search {
   expand:             false;
   filename:           "search";
   size:               1em;
-  padding:            0px 12px 0px 0px;
 }
 
 entry{
   placeholder:        "Search...";
   placeholder-color:  @inactive-foreground;
+  padding:            0px 10px;
 }
 
 num-filtered-rows {
