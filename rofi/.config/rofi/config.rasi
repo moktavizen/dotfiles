@@ -1,5 +1,5 @@
 configuration {
-  drun-display-format: "{name} [({generic})]";
+  drun-display-format: "{name} [— {generic}]";
   sort: true;
 
   // Prevent conflict with vim keybinds
