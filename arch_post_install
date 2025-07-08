@@ -29,8 +29,9 @@ install_packages() {
     hyprpaper \
     hyprlock \
     hyprpicker \
+    grim \
+    slurp \
     cliphist \
-    grimblast-git \
     pacman-contrib \
     tlp \
     wlsunset \
