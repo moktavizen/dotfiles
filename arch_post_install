@@ -6,6 +6,8 @@
 
 set -euo pipefail
 
+readonly GITHUB_URL="https://github.com/moktavizen"
+
 install_aur_helper() {
   sudo pacman -S --needed git base-devel --noconfirm
   git clone https://aur.archlinux.org/paru-bin.git
@@ -128,7 +130,7 @@ install_packages() {
 }
 
 configure_dotfiles() {
-  git clone https://github.com/moktavizen/dotfiles
+  git clone "$GITHUB_URL/dotfiles"
   cd dotfiles
 
   local dot_dirs=(
@@ -183,7 +185,7 @@ configure_extras() {
 
   mkdir -p "$HOME/.local/share/color-schemes/"
   curl \
-    -fsSL https://github.com/moktavizen/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors \
+    -fsSL "$GITHUB_URL/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors" \
     -o "$HOME/.local/share/color-schemes/BreezeLibadwaitaDark.colors"
 
   sudo systemctl enable bluetooth.service
