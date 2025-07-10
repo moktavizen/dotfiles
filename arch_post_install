@@ -35,6 +35,10 @@ install_packages() {
     'polkit-gnome'
     'qt5-wayland'
     'qt6-wayland'
+    'noto-fonts'
+    'noto-fonts-cjk'
+    'noto-fonts-emoji'
+    'noto-fonts-extra'
     'kitty'
     'zsh'
     'zsh-autosuggestions'
@@ -62,10 +66,6 @@ install_packages() {
     'inter-font'
     'ttf-jetbrains-mono-nerd'
     'adobe-source-serif-fonts'
-    'noto-fonts'
-    'noto-fonts-cjk'
-    'noto-fonts-emoji'
-    'noto-fonts-extra'
   )
 
   local cli=(
