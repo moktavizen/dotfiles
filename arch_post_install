@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-readonly GITHUB_URL="https://github.com/moktavizen"
+readonly GITHUB_URL='https://github.com/moktavizen'
 
 install_aur_helper() {
   sudo pacman -S --needed git base-devel --noconfirm
@@ -19,100 +19,100 @@ install_aur_helper() {
 
 install_packages() {
   local base=(
-    "libva-intel-driver"
-    "broadcom-bt-firmware"
-    "iwd"
-    "tlp"
-    "zcfan"
-    "greetd"
-    "hyprland"
-    "hyprpaper"
-    "hyprlock"
-    "hyprpicker"
-    "xdg-desktop-portal-hyprland"
-    "xdg-desktop-portal-gtk"
-    "polkit-gnome"
-    "qt5-wayland"
-    "qt6-wayland"
-    "kitty"
-    "zsh"
-    "zsh-autosuggestions"
-    "zsh-syntax-highlighting"
-    "pacman-contrib"
-    "stow"
-    "grim"
-    "slurp"
-    "cliphist"
-    "wlsunset"
-    "pavucontrol"
-    "bluetui"
-    "impala"
-    "waybar"
-    "rofi-wayland"
-    "dunst"
+    'libva-intel-driver'
+    'broadcom-bt-firmware'
+    'iwd'
+    'tlp'
+    'zcfan'
+    'greetd'
+    'hyprland'
+    'hyprpaper'
+    'hyprlock'
+    'hyprpicker'
+    'xdg-desktop-portal-hyprland'
+    'xdg-desktop-portal-gtk'
+    'polkit-gnome'
+    'qt5-wayland'
+    'qt6-wayland'
+    'kitty'
+    'zsh'
+    'zsh-autosuggestions'
+    'zsh-syntax-highlighting'
+    'pacman-contrib'
+    'stow'
+    'grim'
+    'slurp'
+    'cliphist'
+    'wlsunset'
+    'pavucontrol'
+    'bluetui'
+    'impala'
+    'waybar'
+    'rofi-wayland'
+    'dunst'
   )
 
   local theme=(
-    "plasma-workspace"
-    "systemsettings"
-    "nwg-look"
-    "adw-gtk-theme"
-    "papirus-icon-theme"
-    "inter-font"
-    "ttf-jetbrains-mono-nerd"
-    "adobe-source-serif-fonts"
-    "noto-fonts"
-    "noto-fonts-cjk"
-    "noto-fonts-emoji"
-    "noto-fonts-extra"
+    'plasma-workspace'
+    'systemsettings'
+    'nwg-look'
+    'adw-gtk-theme'
+    'papirus-icon-theme'
+    'inter-font'
+    'ttf-jetbrains-mono-nerd'
+    'adobe-source-serif-fonts'
+    'noto-fonts'
+    'noto-fonts-cjk'
+    'noto-fonts-emoji'
+    'noto-fonts-extra'
   )
 
   local cli=(
-    "man-db"
-    "tmux"
-    "fastfetch"
-    "btop"
-    "wget"
-    "unzip"
-    "fzf"
-    "ripgrep"
-    "eza"
-    "bat"
-    "fd"
-    "hyperfine"
-    "dust"
-    "tokei"
-    "oxipng"
-    "imagemagick"
-    "yt-dlp"
-    "neovim"
-    "tree-sitter-cli"
-    "github-cli"
-    "lazygit"
+    'man-db'
+    'tmux'
+    'fastfetch'
+    'btop'
+    'wget'
+    'unzip'
+    'fzf'
+    'ripgrep'
+    'eza'
+    'bat'
+    'fd'
+    'hyperfine'
+    'dust'
+    'tokei'
+    'oxipng'
+    'imagemagick'
+    'yt-dlp'
+    'neovim'
+    'tree-sitter-cli'
+    'github-cli'
+    'lazygit'
   )
 
   local desktop_apps=(
-    "gnome-disk-utility"
-    "gnome-boxes"
-    "easyeffects"
-    "obs-studio"
-    "kdenlive"
-    "inkscape"
-    "gimp"
-    "pinta"
-    "nautilus"
-    "gwenview"
-    "mpv"
-    "zen-browser-bin"
+    'gnome-disk-utility'
+    'gnome-boxes'
+    'easyeffects'
+    'obs-studio'
+    'kdenlive'
+    'inkscape'
+    'gimp'
+    'pinta'
+    'nautilus'
+    'gwenview'
+    'mpv'
+    'zen-browser-bin'
   )
 
   local optional_deps=(
-    "dosfstools"       # gnome-disk-utility
-    "calf"             # easyeffects
-    "libheif"          # gwenview
-    "libavif"          # gwenview
-    "kimageformats"    # gwenview
-    "qt6-imageformats" # gwenview
+    'dosfstools'       # gnome-disk-utility
+    'calf'             # easyeffects
+    'libheif'          # gwenview
+    'libavif'          # gwenview
+    'kimageformats'    # gwenview
+    'qt6-imageformats' # gwenview
   )
 
   local packages=(
@@ -134,22 +134,22 @@ configure_dotfiles() {
   cd dotfiles
 
   local dot_dirs=(
-    "git"
-    "paru"
-    "hypr"
-    "fontconfig"
-    "wallpapers"
-    "waybar"
-    "rofi"
-    "dunst"
-    "easyeffects"
-    "kitty"
-    "zsh"
-    "fastfetch"
-    "tmux"
-    "bin"
-    "nvim"
-    "mpv"
+    'git'
+    'paru'
+    'hypr'
+    'fontconfig'
+    'wallpapers'
+    'waybar'
+    'rofi'
+    'dunst'
+    'easyeffects'
+    'kitty'
+    'zsh'
+    'fastfetch'
+    'tmux'
+    'bin'
+    'nvim'
+    'mpv'
   )
 
   stow --adopt "${dot_dirs[@]}"
@@ -161,10 +161,10 @@ configure_home() {
   mkdir -p "${HOME}/Documents/"
   mkdir -p "${HOME}/Downloads/"
   mkdir -p "${HOME}/Downloads/"
-  sudo mkdir -p "/media/Books/"
-  sudo mkdir -p "/media/Music/"
-  sudo mkdir -p "/media/Pictures/"
-  sudo mkdir -p "/media/Videos/"
+  sudo mkdir -p /media/Books/
+  sudo mkdir -p /media/Music/
+  sudo mkdir -p /media/Pictures/
+  sudo mkdir -p /media/Videos/
   sudo chmod -R 777 /media
 
   ln -s /media/Books/ "${HOME}/Books"
@@ -180,7 +180,7 @@ configure_extras() {
     "${HOME}/.config/powerlevel10k"
 
   local tmux_conf="${HOME}/.config/tmux"
-  git clone "https://github.com/tmux-plugins/tpm" "${tmux_conf}/plugins/tpm"
+  git clone https://github.com/tmux-plugins/tpm "${tmux_conf}/plugins/tpm"
   "${tmux_conf}/plugins/tpm/bin/install_plugins"
 
   mkdir -p "${HOME}/.local/share/color-schemes/"
@@ -194,17 +194,17 @@ configure_extras() {
 }
 
 configure_boot() {
-  local loader_path="/boot/loader"
+  local loader_path='/boot/loader'
   sudo sed -i '/^timeout/s/^/#/' "${loader_path}/loader.conf"
 
-  local entries_path="/boot/loader/entries"
+  local entries_path='/boot/loader/entries'
   sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "${entries_path}"/*_linux-lts.conf
 }
 
 configure_greeter() {
   sudo systemctl enable greetd.service
 
-  local greetd_conf="/etc/greetd/config.toml"
+  local greetd_conf='/etc/greetd/config.toml'
 
   sudo tee -a "${greetd_conf}" <<EOF
 
@@ -219,14 +219,14 @@ configure_pacman() {
   sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 
   sudo ln -sf "${HOME}/dotfiles/_root/pacman/mirror-global" \
-    "/etc/pacman.d/mirrorlist"
+    /etc/pacman.d/mirrorlist
 }
 
 configure_fan() {
-  echo "options thinkpad_acpi fan_control=1" \
+  echo 'options thinkpad_acpi fan_control=1' \
     | sudo tee /etc/modprobe.d/99-fancontrol.conf
   sudo ln -sf "${HOME}/dotfiles/_root/zcfan/zcfan.conf" \
-    "/etc/zcfan.conf"
+    /etc/zcfan.conf
   sudo mkinitcpio -P
   sudo systemctl enable zcfan.service
 }
@@ -252,8 +252,8 @@ main() {
   # Must be last because this will cause no connection until reboot
   configure_network
 
-  echo "Post Installation process complete!"
-  echo "You may reboot!"
+  echo 'Post Installation process complete!'
+  echo 'You may reboot!'
 }
 
 main "$@"
