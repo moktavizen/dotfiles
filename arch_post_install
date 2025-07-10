@@ -130,7 +130,7 @@ install_packages() {
 }
 
 configure_dotfiles() {
-  git clone "$GITHUB_URL/dotfiles"
+  git clone "${GITHUB_URL}/dotfiles"
   cd dotfiles
 
   local dot_dirs=(
@@ -157,36 +157,36 @@ configure_dotfiles() {
 }
 
 configure_home() {
-  mkdir -p "$HOME/Desktop/"
-  mkdir -p "$HOME/Documents/"
-  mkdir -p "$HOME/Downloads/"
-  mkdir -p "$HOME/Downloads/"
+  mkdir -p "${HOME}/Desktop/"
+  mkdir -p "${HOME}/Documents/"
+  mkdir -p "${HOME}/Downloads/"
+  mkdir -p "${HOME}/Downloads/"
   sudo mkdir -p "/media/Books/"
   sudo mkdir -p "/media/Music/"
   sudo mkdir -p "/media/Pictures/"
   sudo mkdir -p "/media/Videos/"
   sudo chmod -R 777 /media
 
-  ln -s /media/Books/ "$HOME/Books"
-  ln -s /media/Music "$HOME/Music"
-  ln -s /media/Pictures "$HOME/Pictures"
-  ln -s /media/Videos/ "$HOME/Videos"
+  ln -s /media/Books/ "${HOME}/Books"
+  ln -s /media/Music "${HOME}/Music"
+  ln -s /media/Pictures "${HOME}/Pictures"
+  ln -s /media/Videos/ "${HOME}/Videos"
 }
 
 configure_extras() {
   sudo usermod -s "$(which zsh)" "$(whoami)"
 
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-    "$HOME/.config/powerlevel10k"
+    "${HOME}/.config/powerlevel10k"
 
-  local tmux_conf="$HOME/.config/tmux"
-  git clone "https://github.com/tmux-plugins/tpm" "$tmux_conf/plugins/tpm"
-  "$tmux_conf/plugins/tpm/bin/install_plugins"
+  local tmux_conf="${HOME}/.config/tmux"
+  git clone "https://github.com/tmux-plugins/tpm" "${tmux_conf}/plugins/tpm"
+  "${tmux_conf}/plugins/tpm/bin/install_plugins"
 
-  mkdir -p "$HOME/.local/share/color-schemes/"
+  mkdir -p "${HOME}/.local/share/color-schemes/"
   curl \
-    -fsSL "$GITHUB_URL/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors" \
-    -o "$HOME/.local/share/color-schemes/BreezeLibadwaitaDark.colors"
+    -fsSL "${GITHUB_URL}/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors" \
+    -o "${HOME}/.local/share/color-schemes/BreezeLibadwaitaDark.colors"
 
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
@@ -195,10 +195,10 @@ configure_extras() {
 
 configure_boot() {
   local loader_path="/boot/loader"
-  sudo sed -i '/^timeout/s/^/#/' "$loader_path"/loader.conf
+  sudo sed -i '/^timeout/s/^/#/' "${loader_path}/loader.conf"
 
   local entries_path="/boot/loader/entries"
-  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "$entries_path"/*_linux-lts.conf
+  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "${entries_path}"/*_linux-lts.conf
 }
 
 configure_greeter() {
@@ -206,7 +206,7 @@ configure_greeter() {
 
   local greetd_conf="/etc/greetd/config.toml"
 
-  sudo tee -a "$greetd_conf" <<EOF
+  sudo tee -a "${greetd_conf}" <<EOF
 
 [initial_session]
 command = "Hyprland > /dev/null"
@@ -218,14 +218,14 @@ configure_pacman() {
   sudo sed -i '/^\[options\]/a\Color' /etc/pacman.conf
   sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 
-  sudo ln -sf "$HOME/dotfiles/_root/pacman/mirror-global" \
+  sudo ln -sf "${HOME}/dotfiles/_root/pacman/mirror-global" \
     "/etc/pacman.d/mirrorlist"
 }
 
 configure_fan() {
   echo "options thinkpad_acpi fan_control=1" \
     | sudo tee /etc/modprobe.d/99-fancontrol.conf
-  sudo ln -sf "$HOME/dotfiles/_root/zcfan/zcfan.conf" \
+  sudo ln -sf "${HOME}/dotfiles/_root/zcfan/zcfan.conf" \
     "/etc/zcfan.conf"
   sudo mkinitcpio -P
   sudo systemctl enable zcfan.service
