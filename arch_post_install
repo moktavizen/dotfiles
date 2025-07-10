@@ -82,6 +82,7 @@ install_packages() {
     "tokei"
     "oxipng"
     "imagemagick"
+    "yt-dlp"
     "neovim"
     "tree-sitter-cli"
     "github-cli"
@@ -90,7 +91,13 @@ install_packages() {
 
   local desktop_apps=(
     "gnome-disk-utility"
+    "gnome-boxes"
     "easyeffects"
+    "obs-studio"
+    "kdenlive"
+    "inkscape"
+    "gimp"
+    "pinta"
     "nautilus"
     "gwenview"
     "mpv"
