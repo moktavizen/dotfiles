@@ -131,24 +131,26 @@ configure_dotfiles() {
   git clone https://github.com/moktavizen/dotfiles
   cd dotfiles
 
-  stow --adopt \
-    git \
-    paru \
-    hypr \
-    fontconfig \
-    wallpapers \
-    waybar \
-    rofi \
-    dunst \
-    easyeffects \
-    kitty \
-    zsh \
-    fastfetch \
-    tmux \
-    bin \
-    nvim \
-    mpv
+  local dot_dirs=(
+    "git"
+    "paru"
+    "hypr"
+    "fontconfig"
+    "wallpapers"
+    "waybar"
+    "rofi"
+    "dunst"
+    "easyeffects"
+    "kitty"
+    "zsh"
+    "fastfetch"
+    "tmux"
+    "bin"
+    "nvim"
+    "mpv"
+  )
 
+  stow --adopt "${dot_dirs[@]}"
   git restore .
 }
 
