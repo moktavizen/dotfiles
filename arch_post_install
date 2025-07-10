@@ -20,6 +20,7 @@ install_aur_helper() {
 install_packages() {
   local base=(
     'libva-intel-driver'
+    'brightnessctl'
     'broadcom-bt-firmware'
     'iwd'
     'tlp'
