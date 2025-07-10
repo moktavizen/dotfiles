@@ -16,86 +16,108 @@ install_aur_helper() {
 }
 
 install_packages() {
+  local base=(
+    "libva-intel-driver"
+    "broadcom-bt-firmware"
+    "iwd"
+    "tlp"
+    "zcfan"
+    "greetd"
+    "hyprland"
+    "hyprpaper"
+    "hyprlock"
+    "hyprpicker"
+    "xdg-desktop-portal-hyprland"
+    "xdg-desktop-portal-gtk"
+    "polkit-gnome"
+    "qt5-wayland"
+    "qt6-wayland"
+    "kitty"
+    "zsh"
+    "zsh-autosuggestions"
+    "zsh-syntax-highlighting"
+    "pacman-contrib"
+    "stow"
+    "grim"
+    "slurp"
+    "cliphist"
+    "wlsunset"
+    "pavucontrol"
+    "bluetui"
+    "impala"
+    "waybar"
+    "rofi-wayland"
+    "dunst"
+  )
+
+  local theme=(
+    "plasma-workspace"
+    "systemsettings"
+    "nwg-look"
+    "adw-gtk-theme"
+    "papirus-icon-theme"
+    "inter-font"
+    "ttf-jetbrains-mono-nerd"
+    "adobe-source-serif-fonts"
+    "noto-fonts"
+    "noto-fonts-cjk"
+    "noto-fonts-emoji"
+    "noto-fonts-extra"
+  )
+
+  local cli=(
+    "man-db"
+    "tmux"
+    "fastfetch"
+    "btop"
+    "wget"
+    "unzip"
+    "fzf"
+    "ripgrep"
+    "eza"
+    "bat"
+    "fd"
+    "hyperfine"
+    "dust"
+    "tokei"
+    "oxipng"
+    "imagemagick"
+    "neovim"
+    "tree-sitter-cli"
+    "github-cli"
+    "lazygit"
+  )
+
+  local desktop_apps=(
+    "gnome-disk-utility"
+    "easyeffects"
+    "nautilus"
+    "gwenview"
+    "mpv"
+    "zen-browser-bin"
+  )
+
+  local optional_deps=(
+    "dosfstools"       # gnome-disk-utility
+    "calf"             # easyeffects
+    "libheif"          # gwenview
+    "libavif"          # gwenview
+    "kimageformats"    # gwenview
+    "qt6-imageformats" # gwenview
+  )
+
+  local packages=(
+    "${base[@]}"
+    "${theme[@]}"
+    "${cli[@]}"
+    "${desktop_apps[@]}"
+    "${optional_deps[@]}"
+  )
+
   paru -Syyu --noconfirm
-  paru -S --needed --noconfirm \
-    `# --- base packages` \
-    stow \
-    libva-intel-driver \
-    iwd \
-    broadcom-bt-firmware \
-    zcfan \
-    greetd \
-    hyprland \
-    hyprpaper \
-    hyprlock \
-    hyprpicker \
-    grim \
-    slurp \
-    cliphist \
-    pacman-contrib \
-    tlp \
-    wlsunset \
-    easyeffects \
-    calf \
-    qt5-wayland \
-    qt6-wayland \
-    polkit-gnome \
-    xdg-desktop-portal-gtk \
-    xdg-desktop-portal-hyprland \
-    inter-font \
-    ttf-jetbrains-mono-nerd \
-    adobe-source-serif-fonts \
-    noto-fonts \
-    noto-fonts-cjk \
-    noto-fonts-emoji \
-    noto-fonts-extra \
-    dunst \
-    waybar \
-    rofi-wayland \
-    pavucontrol \
-    impala \
-    bluetui \
-    gnome-disk-utility \
-    dosfstools \
-    kitty \
-    zsh \
-    zsh-autosuggestions \
-    zsh-syntax-highlighting \
-    `# --- tui packages` \
-    tmux \
-    fastfetch \
-    man-db \
-    wget \
-    unzip \
-    fzf \
-    ripgrep \
-    eza \
-    bat \
-    fd \
-    hyperfine \
-    dust \
-    tokei \
-    oxipng \
-    imagemagick \
-    btop \
-    tree-sitter-cli \
-    neovim \
-    github-cli \
-    lazygit \
-    `# --- gui packages` \
-    adw-gtk-theme \
-    papirus-icon-theme \
-    nwg-look \
-    plasma-workspace \
-    systemsettings \
-    nautilus \
-    mpv \
-    gwenview \
-    libheif \
-    libavif \
-    kimageformats \
-    qt6-imageformats \
-    zen-browser-bin
+
+  echo "Installing ${#packages[@]} packages..."
+  paru -S --needed --noconfirm "${packages[@]}"
 }
 
 configure_dotfiles() {
