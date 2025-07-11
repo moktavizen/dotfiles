@@ -1,10 +1,9 @@
 // -*- mode: jsonc -*-
 {
-  //"layer": "top", // Waybar at top layer
-  "height": 40,
+  //"layer": "top",
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-right": ["tray", "group/hw", "group/control", "clock"],
-  // Modules configuratio1
+  "modules-right": ["tray", "group/hardware", "group/control", "clock"],
+  "spacing": 8,
   "hyprland/workspaces": {
     "active-only": false,
     "sort-by-number": true,
@@ -21,10 +20,10 @@
     "tooltip": false,
   },
   "tray": {
-    "icon-size": 15,
-    "spacing": 8,
+    "icon-size": 14,
+    "spacing": 16,
   },
-  "group/hw": {
+  "group/hardware": {
     "orientation": "horizontal",
     "modules": ["cpu", "temperature", "memory"],
   },

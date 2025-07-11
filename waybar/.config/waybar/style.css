@@ -1,6 +1,5 @@
-@define-color bg1 rgba(30,30,30,0.8);
-
-@define-color fg0 #ebebeb;
+@define-color background rgba(30,30,30,0.8);
+@define-color foreground #ebebeb;
 @define-color yellow #f2d297;
 
 * {
@@ -10,92 +9,56 @@
   min-height: 0;
 }
 
-window#waybar {
+#waybar {
   background-color: transparent;
-  color: @fg0;
 }
 
-#workspaces {
-  background-color: @bg1;
+#waybar > box {
+  margin: 8px 8px 0 8px;
+}
+
+#workspaces,
+#window,
+#tray,
+#hardware,
+#control,
+#clock {
+  background-color: @background;
+  color: @foreground;
+  padding: 5px 16px;
   border-radius: 32px;
-  padding: 0px 8px;
-  margin: 8px 4px 0px 8px;
+}
+
+#hardware #cpu,
+#hardware #temperature,
+#control #battery,
+#control #network,
+#control #bluetooth {
+  margin-right: 16px;
+}
+
+/* Workspaces module is built different */
+
+#workspaces {
+  padding: 0 9px;
 }
 
 #workspaces button {
-  color: @fg0;
+  color: @foreground;
+  padding: 0;
   border-radius: 32px;
-  padding: 3px;
 }
 
 #workspaces button.active {
   color: @yellow;
 }
 
+/* Spacing for long window title */
 #window {
-  background-color: @bg1;
-  border-radius: 32px;
-  padding: 0px 16px;
-  margin: 8px 4px 0px 4px;
-}
-
-/* adjust empty window */
-window#waybar.empty #window {
-  padding: 0px 8px 0px 16px;
-}
-
-#tray {
-  background-color: @bg1;
-  border-radius: 32px;
-  padding: 0px 16px;
-  margin: 8px 4px 0px 4px;
-}
-
-#hw {
-  background-color: @bg1;
-  border-radius: 32px;
-  padding: 0px 16px;
-  margin: 8px 4px 0px 4px;
-}
-
-#cpu {
   margin-right: 8px;
 }
 
-#temperature {
-  margin: 0px 8px;
-}
-
-#memory {
-  margin-left: 8px;
-}
-
-#control {
-  background-color: @bg1;
-  border-radius: 32px;
-  padding: 0px 16px;
-  margin: 8px 4px 0px 4px;
-}
-
-#battery {
-  margin-right: 8px;
-}
-
-#network {
-  margin: 0px 8px;
-}
-
-#bluetooth {
-  margin: 0px 8px;
-}
-
-#pulseaudio {
-  margin-left: 8px;
-}
-
-#clock {
-  background-color: @bg1;
-  border-radius: 32px;
-  padding: 0px 16px;
-  margin: 8px 8px 0px 4px;
+/* Padding for empty window title */
+#waybar.empty #window {
+  padding-right: 8px;
 }
