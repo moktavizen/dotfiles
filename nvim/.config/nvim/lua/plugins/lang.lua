@@ -15,6 +15,7 @@ return {
   {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
+    event = { 'VeryLazy' },
     cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -348,7 +349,7 @@ return {
 
   { -- Autocompletion
     'saghen/blink.cmp',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'VeryLazy' },
     version = '1.*',
     dependencies = {
       -- Snippet Engine
@@ -448,7 +449,7 @@ return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     -- enabled = false,
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'VeryLazy' },
     cmd = { 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
