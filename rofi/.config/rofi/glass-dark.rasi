@@ -1,7 +1,7 @@
 * {
-  background:         #1e1e1ecc;
-  foreground:         #ebebebcc;
-  inactive-foreground:#999999cc;
+  background:         #1e1e1eb8;
+  foreground:         #ebebebb8;
+  inactive-foreground:#999999b8;
   active-background:  #ffffff26;
 
   background-color:   transparent;
