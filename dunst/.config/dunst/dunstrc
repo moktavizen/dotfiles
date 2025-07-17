@@ -23,18 +23,17 @@
 
     # dynamic width from 0 to 300
     # width = (0, 300)
-    # constant width of 300
-    width = 400
+    width = (400, 400)
 
     # The maximum height of a single notification, excluding the frame.
     # Max icon height + 2 x padding
-    height = 112
+    height = (0, 132)
 
     # Position the notification in the top right corner
     origin = top-right
 
     # Offset from the origin
-    offset = 16x16
+    offset = (16, 16)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -50,19 +49,19 @@
 
     # Set the progress bar height. This includes the frame, so make sure
     # it's at least twice as big as the frame width.
-    progress_bar_height = 10
+    progress_bar_height = 8
 
     # Set the frame width of the progress bar
     progress_bar_frame_width = 1
 
     # Set the minimum width for the progress bar
-    progress_bar_min_width = 150
+    progress_bar_min_width = 400
 
     # Set the maximum width for the progress bar
-    progress_bar_max_width = 300
+    progress_bar_max_width = 400
 
     # Corner radius for the progress bar. 0 disables rounded corners.
-    progress_bar_corner_radius = 10
+    progress_bar_corner_radius = 4
 
     # Corner radius for the icon image.
     icon_corner_radius = 10
@@ -93,10 +92,13 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 0
+    frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#717171"
+    frame_color = "#ffffff26"
+
+    # Defines color small elements, e.g. progress bar
+    highlight = "#97b4f2ff"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -204,7 +206,7 @@
 
     # Recursive icon lookup. You can set a single theme, instead of having to
     # define all lookup paths.
-    enable_recursive_icon_lookup = true
+    enable_recursive_icon_lookup = false
 
     # Set icon theme (only used for recursive icon lookup)
     icon_theme = Papirus-Dark
@@ -223,7 +225,7 @@
     max_icon_size = 128
 
     # Paths to default icons (only neccesary when not using recursive icon lookup)
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Papirus-Dark/24x24/actions/
 
     ### History ###
 
@@ -320,7 +322,7 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#1e1e1eb8"
-    foreground = "#999999ff"
+    foreground = "#ebebebff"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     default_icon = dialog-information
