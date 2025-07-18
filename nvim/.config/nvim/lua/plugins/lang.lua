@@ -368,6 +368,7 @@ return {
         -- javascript = { "biome-check", "prettier", stop_after_first = true },
         typescript = { 'biome-check' },
         javascript = { 'biome-check' },
+        json = { 'biome-check' },
         css = { 'biome-check' },
         -- HTML Formatting: https://github.com/biomejs/biome/issues/4726
         html = { 'prettierd' },
