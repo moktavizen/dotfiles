@@ -25,4 +25,4 @@ configuration {
   }
 }
 
-@theme "glass-dark"
+@theme "style"
