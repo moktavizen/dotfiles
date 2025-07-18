@@ -3,6 +3,7 @@
   foreground:         #ebebebff;
   inactive-foreground:#999999ff;
   active-background:  #ffffff1a;
+  outline:            #ffffff26;
 
   background-color:   transparent;
   text-color:         @foreground;
@@ -11,6 +12,8 @@
 window {
   width:              730px;
   background-color:   @background;
+  border:             1px solid;
+  border-color:       @outline;
   border-radius:      12px;
   padding:            8px;
 }
