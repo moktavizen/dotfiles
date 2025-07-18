@@ -1,0 +1,43 @@
+#!/bin/bash
+# audioctl.sh
+# Requires: wireplumber, pipewire, dunst, libnotify
+
+if [[ "$1" == "--speaker" ]]; then
+  wp_id="@DEFAULT_AUDIO_SINK@"
+  type="speaker"
+elif [[ "$1" == "--microphone" ]]; then
+  wp_id="@DEFAULT_AUDIO_SOURCE@"
+  type="microphone"
+fi
+
+# Change the volume using wireplumber
+if [[ "$2" == "toggle" ]]; then
+  wpctl set-mute "$wp_id" toggle >/dev/null
+else
+  wpctl set-volume -l 1.50 "$wp_id" "$2" >/dev/null
+fi
+
+# Query wireplumber for the current volume and whether or not the speaker is muted
+status="$(wpctl get-volume "$wp_id" | grep -o 'MUTED' || echo '')"
+volume="$(wpctl get-volume "$wp_id" | awk '{print $2 * 100}')"
+
+if [[ "$status" == "MUTED" ]]; then
+  dunstify \
+    -a audioctl \
+    -i audio-volume-muted \
+    -h string:x-dunst-stack-tag:"$type" \
+    "${type^}: ${volume}% — Muted"
+else
+  dunstify \
+    -a audioctl \
+    -i audio-volume-high \
+    -h string:x-dunst-stack-tag:"$type" \
+    -h int:value:"$volume" \
+    "${type^}: ${volume}%"
+fi
+
+# Play the volume changed sound
+if [[ "$1" == "--speaker" && "$status" != "MUTED" && "$volume" != "0" ]]; then
+  flock -n /tmp/audio-volume-change.lock \
+    pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+fi

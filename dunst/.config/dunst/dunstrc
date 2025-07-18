@@ -390,6 +390,9 @@
 # This can be used to set partial pause modes, where more urgent notifications get through, but less urgent stay paused. To do that, you can override the following in the rules:
 # override_pause_level = X
 
+[audioctl]
+  history_ignore = yes
+
 # SCRIPTING
 # You can specify a script that gets run when the rule matches by
 # setting the "script" option.
