@@ -30,7 +30,7 @@ install_packages() {
     'hyprpaper'
     'hyprlock'
     'hyprpicker'
-    'hyprpolkitagent'
+    'polkit-kde-agent'
     'xdg-desktop-portal-hyprland'
     'xdg-desktop-portal-gtk'
     'qt5-wayland'
