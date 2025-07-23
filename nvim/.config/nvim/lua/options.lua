@@ -82,7 +82,7 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
 -- set line wrap
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.linebreak = true -- breaks by word rather than character
 
 -- Spell Checker
