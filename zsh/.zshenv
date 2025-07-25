@@ -8,19 +8,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=gasp -Dsun.java2d.uiScale=2'
 # export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=gasp'
 
-# fnm
-FNM_PATH="/home/vizen/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/vizen/.local/share/fnm:$PATH"
-  eval "$(fnm env)"
-fi
-
-# rust
-. "$HOME/.cargo/env"
-
-# Go
-export GOPATH="$HOME/.go"
-
 # Colors for ls, fd
 # export LS_COLORS="$(vivid generate material-darker)"
 
