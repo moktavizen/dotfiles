@@ -1,34 +1,37 @@
+-- UI tweaks for signature help, LSP progress, messages, search, etc
 return {
   'folke/noice.nvim',
+  dependencies = { 'MunifTanjim/nui.nvim' },
   event = 'VeryLazy',
-  dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    'MunifTanjim/nui.nvim',
-  },
   opts = {
-    -- add any options here
-    -- Suggested setup:
     lsp = {
-      -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+      -- Override markdown rendering so that **cmp** and other plugins use **Treesitter**
       override = {
         ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
         ['vim.lsp.util.stylize_markdown'] = true,
-        ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
       },
     },
     -- Classic command-line
     cmdline = {
       view = 'cmdline',
       format = {
-        -- Classic input
-        input = {
-          view = 'cmdline',
-        },
+        input = false,
       },
     },
-    -- Opaque notifications
+    -- Opaque pop-ups
     views = {
+      hover = {
+        border = {
+          padding = { left = 1, right = 1 },
+        },
+        win_options = {
+          winblend = 0,
+        },
+      },
       mini = {
+        border = {
+          padding = { left = 1, right = 1 },
+        },
         win_options = {
           winblend = 0,
         },
