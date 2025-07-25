@@ -15,8 +15,7 @@
 
 return { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
-  -- enabled = false,
-  event = { 'VeryLazy' },
+  event = 'VeryLazy',
   opts = {
     icons = {
       -- set icon mappings to true if you have a Nerd Font

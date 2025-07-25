@@ -1,8 +1,7 @@
 return {
   -- the only one that supports css variable
   'brenoprata10/nvim-highlight-colors',
-  event = { 'VeryLazy' },
-  -- enabled = false,
+  event = 'VeryLazy',
   opts = {},
 
   -- 'uga-rosa/ccc.nvim',
