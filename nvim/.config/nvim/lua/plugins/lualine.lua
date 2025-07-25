@@ -18,8 +18,7 @@ return {
       },
     },
     sections = {
-      lualine_b = { 'filename', 'searchcount', 'selectioncount' },
-      lualine_c = { 'branch', 'diff', 'diagnostics' },
+      lualine_y = { 'selectioncount', 'progress' },
     },
   },
 }
