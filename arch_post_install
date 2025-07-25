@@ -90,6 +90,8 @@ install_packages() {
     'tree-sitter-cli'
     'github-cli'
     'lazygit'
+    'nodejs'
+    'rustup'
   )
 
   local desktop_apps=(
