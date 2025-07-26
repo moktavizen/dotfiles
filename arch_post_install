@@ -96,7 +96,7 @@ install_packages() {
 
   local desktop_apps=(
     'gnome-disk-utility'
-    'gnome-boxes'
+    'quickemu-git'
     'easyeffects'
     'obs-studio'
     'kdenlive'
