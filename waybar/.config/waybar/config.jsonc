@@ -30,18 +30,18 @@
   "cpu": {
     "format": "<span color='#b6cad2'>󰍛</span> {usage}%",
     "interval": 2,
-    "on-click": "kitty -T 'Task Manager' btop",
+    "on-click": "foot -T 'Task Manager' btop",
   },
   "temperature": {
     "format": "<span color='#f2979c'></span> {temperatureC}C",
     "interval": 2,
-    "on-click": "kitty -T 'Task Manager' btop",
+    "on-click": "foot -T 'Task Manager' btop",
     "tooltip-format": "Max before throttling: 105 °C",
   },
   "memory": {
     "format": "<span color='#cd97f2'>󰘚</span> {used:.2g}GB",
     "interval": 2,
-    "on-click": "kitty -T 'Task Manager' btop",
+    "on-click": "foot -T 'Task Manager' btop",
     "tooltip-format": "Used  : {used}\nAvail : {avail}\nTotal : {total}",
   },
   "group/control": {
@@ -67,13 +67,13 @@
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "interval": 2,
     "tooltip-format": "{essid}",
-    "on-click": "kitty -T 'WiFi Manager' impala",
+    "on-click": "foot -T 'WiFi Manager' impala",
   },
   "bluetooth": {
     "format": "<span color='#97b4f2'></span> {status}",
     "format-connected-battery": "<span color='#97b4f2'></span> {device_battery_percentage}%",
     "tooltip-format": "{device_alias} {status}",
-    "on-click": "kitty -T 'Bluetooth Manager' bluetui",
+    "on-click": "foot -T 'Bluetooth Manager' bluetui",
   },
   "pulseaudio": {
     "format": "<span color='#f2979c'>{icon}</span> {volume}%",
