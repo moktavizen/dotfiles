@@ -40,6 +40,7 @@ install_packages() {
     'noto-fonts-emoji'
     'noto-fonts-extra'
     'foot'
+    'foot-terminfo'
     'zsh'
     'zsh-autosuggestions'
     'zsh-syntax-highlighting'
