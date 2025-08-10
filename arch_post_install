@@ -106,7 +106,7 @@ install_packages() {
     'inkscape'
     'gimp'
     'pinta'
-    'nautilus'
+    'pcmanfm-qt'
     'gwenview'
     'mpv'
     'zen-browser-bin'
