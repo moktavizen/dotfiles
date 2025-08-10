@@ -59,10 +59,12 @@ install_packages() {
   )
 
   local theme=(
-    'plasma-workspace'
-    'systemsettings'
+    'qt5ct'
+    'qt6ct'
     'nwg-look'
     'adw-gtk-theme'
+    'breeze5'
+    'breeze'
     'papirus-icon-theme'
     'inter-font'
     'ttf-jetbrains-mono-nerd'
