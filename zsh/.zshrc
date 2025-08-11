@@ -24,6 +24,12 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Keymaps
+# ------------------------------------------------------------------------------
+
+bindkey ^y end-of-line
+bindkey -s ^f "tmux-sessionizer\n"
+
 # Alias
 # ------------------------------------------------------------------------------
 
@@ -59,7 +65,7 @@ sf() {
 sd() {
   cd "$(
     fd -H -t d | fzf --preview \
-      "eza -lh --no-user --no-permissions --icons=always --color=always {}"
+      "eza -1 --icons=always --color=always {}"
   )"
 }
 fgu() {

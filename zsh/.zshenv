@@ -19,6 +19,5 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --color=marker:#cdf297,spinner:#cd97f2,header:#97d8f2
     --color=border:#717171
     --no-scrollbar
-    --height 50%
     --layout reverse
     --border'
