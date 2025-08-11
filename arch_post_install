@@ -166,13 +166,14 @@ configure_home() {
   mkdir -p "${HOME}/Desktop/"
   mkdir -p "${HOME}/Documents/"
   mkdir -p "${HOME}/Downloads/"
-  mkdir -p "${HOME}/Downloads/"
+  mkdir -p "${HOME}/Projects/"
+  mkdir -p "${HOME}/Courses/"
+
   sudo mkdir -p /media/Books/
   sudo mkdir -p /media/Music/
   sudo mkdir -p /media/Pictures/
   sudo mkdir -p /media/Videos/
   sudo chmod -R 777 /media
-
   ln -s /media/Books/ "${HOME}/Books"
   ln -s /media/Music "${HOME}/Music"
   ln -s /media/Pictures "${HOME}/Pictures"

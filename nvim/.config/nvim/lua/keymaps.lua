@@ -1,5 +1,7 @@
 local map = vim.keymap.set
 
+map('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
+
 map('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Remove search highlight' })
 
 map('n', '<C-H>', '<C-W><C-H>', { desc = 'Move focus to the left window' })
