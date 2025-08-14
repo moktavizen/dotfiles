@@ -10,7 +10,7 @@
 }
 
 window {
-  width:              730px;
+  width:              666px;
   background-color:   @background;
   border:             1px solid;
   border-color:       @outline;
