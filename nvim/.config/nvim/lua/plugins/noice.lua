@@ -15,7 +15,9 @@ return {
     cmdline = {
       view = 'cmdline',
       format = {
-        input = false,
+        input = {
+          view = 'cmdline',
+        },
       },
     },
     -- Opaque pop-ups
