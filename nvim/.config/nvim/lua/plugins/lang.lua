@@ -39,6 +39,9 @@ local tools = {
         append_args = { '--indent-style=space' },
       },
     },
+    xmlformatter = {
+      filetypes = { 'xml' },
+    },
   },
 }
 
