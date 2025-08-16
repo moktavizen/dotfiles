@@ -142,6 +142,7 @@ configure_dotfiles() {
     'paru'
     'hypr'
     'fontconfig'
+    'menus'
     'wallpapers'
     'waybar'
     'rofi'
