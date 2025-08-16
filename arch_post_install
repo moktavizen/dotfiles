@@ -59,16 +59,14 @@ install_packages() {
   )
 
   local theme=(
-    'qt5ct'
-    'qt6ct'
+    'qt6ct-kde'
+    'breeze'
     'nwg-look'
     'adw-gtk-theme'
-    'breeze5'
-    'breeze'
     'papirus-icon-theme'
     'inter-font'
-    'ttf-jetbrains-mono-nerd'
     'adobe-source-serif-fonts'
+    'ttf-jetbrains-mono-nerd'
   )
 
   local cli=(
