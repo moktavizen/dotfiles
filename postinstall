@@ -55,6 +55,7 @@ install_packages() {
     'impala'
     'waybar'
     'rofi-wayland'
+    'rofi-emoji'
     'dunst'
   )
 
