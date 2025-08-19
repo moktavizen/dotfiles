@@ -2,7 +2,7 @@
 #
 # Install software that I use on Arch Linux Hyprland
 #
-# - usage       : run this script after minimal install using archinstall
+# - usage       : run this script after minimal install using ./archinstall.json
 
 set -euo pipefail
 
