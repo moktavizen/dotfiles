@@ -1,3 +1,0 @@
-theme = "vizzen-mini"
-
-show = ["Host", "Distribution", "Kernel", "Packages", "Memory", "DesktopEnvironment"]

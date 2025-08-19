@@ -56,6 +56,8 @@ alias nvchad='NVIM_APPNAME=nvchad nvim'
 alias lg='lazygit'
 alias media_ser='sudo systemctl start jellyfin'
 alias qbit_ser='sudo systemctl start qbittorrent-nox@vizen'
+alias poweroff='pkill chromium && poweroff' # restore chromium session correctly
+alias reboot='pkill chromium && reboot'
 sf() {
   nvim "$(
     fd -H -t f | fzf --preview \
@@ -71,16 +73,17 @@ sd() {
 fgu() {
   fd -H -t d -g '.git' \
     -E '**/.*/**/.git' \
-    -x echo -e '\n\e[34m{//}\e[0m' \; \
+    -x echo -e '\nDir: {//}' \; \
     -x git -C '{//}' -c color.ui=always status -s
 }
 mp4() {
   yt-dlp -S "vcodec:h264,res:1080" --remux mp4 --merge mp4 \
+    --embed-metadata --embed-thumbnail \
     -o "%(uploader)s - %(title)s.%(ext)s" "$1"
 }
 mp3() {
   yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-format mp3 \
-    --embed-metadata --embed-thumbnail --convert-thumb jpg \
+    --embed-metadata --embed-thumbnail \
     --ppa "ThumbnailsConvertor+FFmpeg_o:-c:v mjpeg -vf crop=\"'min(iw,ih)':'min(iw,ih)'\"" \
     -o "%(uploader)s - %(title)s.%(ext)s" "$1"
 }

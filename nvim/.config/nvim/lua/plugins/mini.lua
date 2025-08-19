@@ -27,7 +27,6 @@ return {
     MiniIcons.mock_nvim_web_devicons()
 
     -- Replaces gitsigns.nvim
-    require('mini.git').setup()
     require('mini.diff').setup {
       view = {
         style = 'sign',

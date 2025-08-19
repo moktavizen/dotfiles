@@ -1,8 +1,11 @@
 #!/bin/bash
 #
+# postinstall
 # Install software that I use on Arch Linux Hyprland
 #
-# - usage       : run this script after minimal install using ./archinstall.json
+# Usage:
+# run this script after minimal install using ./archinstall.json
+# `curl -fsSL https://github.com/moktavizen/dotfiles/raw/main/postinstall | bash`
 
 set -euo pipefail
 
@@ -93,38 +96,41 @@ install_packages() {
     'github-cli'
     'lazygit'
     'nodejs'
+    'npm'
     'rustup'
   )
 
-  local desktop_apps=(
-    'gnome-disk-utility'
-    'quickemu-git'
+  local gui_apps=(
     'easyeffects'
-    'obs-studio'
-    'kdenlive'
-    'inkscape'
-    'gimp'
-    'pinta'
-    'pcmanfm-qt'
+    'chromium'
+    'dolphin'
+    'ark'
     'gwenview'
     'mpv'
-    'zen-browser-bin'
+    'inkscape'
+    'gimp'
+    'kdenlive'
+    'obs-studio'
+    'gnome-disk-utility'
+    'quickemu-git'
   )
 
   local optional_deps=(
-    'dosfstools'       # gnome-disk-utility
     'calf'             # easyeffects
+    '7zip'             # ark
+    'unrar'            # ark
     'libheif'          # gwenview
     'libavif'          # gwenview
     'kimageformats'    # gwenview
     'qt6-imageformats' # gwenview
+    'dosfstools'       # gnome-disk-utility
   )
 
   local packages=(
     "${base[@]}"
     "${theme[@]}"
     "${cli[@]}"
-    "${desktop_apps[@]}"
+    "${gui_apps[@]}"
     "${optional_deps[@]}"
   )
 
@@ -137,29 +143,7 @@ install_packages() {
 configure_dotfiles() {
   git clone "${github_url}/dotfiles"
   cd dotfiles
-
-  local dot_dirs=(
-    'git'
-    'paru'
-    'hypr'
-    'fontconfig'
-    'menus'
-    'wallpapers'
-    'waybar'
-    'rofi'
-    'dunst'
-    'easyeffects'
-    'foot'
-    'zsh'
-    'fastfetch'
-    'tmux'
-    'bin'
-    'nvim'
-    'mpv'
-  )
-
-  stow --adopt "${dot_dirs[@]}"
-  git restore .
+  stow */
 }
 
 configure_home() {
