@@ -182,16 +182,10 @@ configure_home() {
 configure_extras() {
   sudo usermod -s "$(which zsh)" "$(whoami)"
 
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-    "${HOME}/.config/powerlevel10k"
-
-  local tmux_conf="${HOME}/.config/tmux"
-  git clone https://github.com/tmux-plugins/tpm "${tmux_conf}/plugins/tpm"
-  "${tmux_conf}/plugins/tpm/bin/install_plugins"
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${HOME}/.config/powerlevel10k"
 
   mkdir -p "${HOME}/.local/share/color-schemes/"
-  curl \
-    -fsSL "${github_url}/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors" \
+  curl -fsSL "${github_url}/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors" \
     -o "${HOME}/.local/share/color-schemes/BreezeLibadwaitaDark.colors"
 
   sudo systemctl enable bluetooth.service
@@ -200,19 +194,14 @@ configure_extras() {
 }
 
 configure_boot() {
-  local loader_path='/boot/loader'
-  sudo sed -i '/^timeout/s/^/#/' "${loader_path}/loader.conf"
-
-  local entries_path='/boot/loader/entries'
-  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' "${entries_path}"/*_linux-lts.conf
+  sudo sed -i '/^timeout/s/^/#/' /boot/loader/loader.conf
+  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' /boot/loader/entries/*_linux-lts.conf
 }
 
 configure_greeter() {
   sudo systemctl enable greetd.service
 
-  local greetd_conf='/etc/greetd/config.toml'
-
-  sudo tee -a "${greetd_conf}" <<EOF
+  sudo tee -a '/etc/greetd/config.toml' <<EOF
 
 [initial_session]
 command = "Hyprland > /dev/null"
