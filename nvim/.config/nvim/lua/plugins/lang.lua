@@ -162,18 +162,18 @@ return {
     event = 'VeryLazy',
     config = function()
       local needed_tools = vim.tbl_keys(vim.tbl_extend('force', tools.lsp, tools.formatter))
-      require('mason-tool-installer').setup {
+      require('mason-tool-installer').setup({
         ensure_installed = needed_tools,
-      }
+      })
 
       -- See https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/39
-      vim.api.nvim_command 'MasonToolsInstall'
+      vim.api.nvim_command('MasonToolsInstall')
       vim.api.nvim_create_autocmd('User', {
         desc = 'Start current buffer LSP after installing it',
         pattern = 'MasonToolsUpdateCompleted',
         callback = function()
           vim.schedule(function()
-            vim.api.nvim_command 'LspStart'
+            vim.api.nvim_command('LspStart')
           end)
         end,
       })
@@ -181,7 +181,7 @@ return {
       -- Cleanup unneeded tools
       local installed_tools = require('mason-registry').get_all_package_names()
       if #installed_tools > #needed_tools then
-        vim.api.nvim_command 'MasonToolsClean'
+        vim.api.nvim_command('MasonToolsClean')
       end
     end,
   },

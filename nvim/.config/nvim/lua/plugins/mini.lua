@@ -19,7 +19,7 @@ return {
   end,
   config = function()
     -- Improves motion
-    require('mini.ai').setup { n_lines = 500 }
+    require('mini.ai').setup({ n_lines = 500 })
     require('mini.surround').setup()
 
     -- Replaces nvim-web-devicons
@@ -27,12 +27,12 @@ return {
     MiniIcons.mock_nvim_web_devicons()
 
     -- Replaces gitsigns.nvim
-    require('mini.diff').setup {
+    require('mini.diff').setup({
       view = {
         style = 'sign',
         signs = { add = '┃', change = '┃', delete = '┃' },
       },
-    }
+    })
 
     -- Replaces netrw and nvim-tree
     require('mini.files').setup()
@@ -44,13 +44,13 @@ return {
     require('mini.align').setup()
 
     -- Replaces todo-comments
-    require('mini.hipatterns').setup {
+    require('mini.hipatterns').setup({
       highlighters = {
         fixme = { pattern = 'FIXME', group = 'MiniHipatternsFixme' },
         hack = { pattern = 'HACK', group = 'MiniHipatternsHack' },
         todo = { pattern = 'TODO', group = 'MiniHipatternsTodo' },
         note = { pattern = 'NOTE', group = 'MiniHipatternsNote' },
       },
-    }
+    })
   end,
 }

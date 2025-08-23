@@ -44,10 +44,10 @@ vim.o.updatetime = 250
 vim.o.spell = true
 vim.o.spelllang = 'en_us'
 
-vim.diagnostic.config {
+vim.diagnostic.config({
   underline = true,
   virtual_text = true,
   signs = true,
   float = true,
   severity_sort = true,
-}
+})

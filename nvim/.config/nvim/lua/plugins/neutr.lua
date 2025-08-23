@@ -4,6 +4,6 @@ return {
   -- dir = '~/Projects/neutr.nvim/',
   priority = 1000,
   config = function()
-    vim.cmd 'colorscheme neutr'
+    vim.cmd('colorscheme neutr')
   end,
 }

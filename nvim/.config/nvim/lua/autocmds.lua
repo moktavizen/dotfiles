@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('on-lsp-detach', { clear = true }),
       callback = function(event2)
         vim.lsp.buf.clear_references()
-        vim.api.nvim_clear_autocmds { group = 'cursor-lsp-highlight', buffer = event2.buf }
+        vim.api.nvim_clear_autocmds({ group = 'cursor-lsp-highlight', buffer = event2.buf })
       end,
     })
   end,
@@ -42,8 +42,8 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('BufWritePre', {
   desc = 'Removes trailing whitespace on save',
   callback = function()
-    local save_cursor = vim.fn.getpos '.'
-    vim.cmd [[%s/\s\+$//e]]
+    local save_cursor = vim.fn.getpos('.')
+    vim.cmd([[%s/\s\+$//e]])
     vim.fn.setpos('.', save_cursor)
   end,
 })
