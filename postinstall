@@ -106,7 +106,7 @@ install_packages() {
     'dolphin'
     'ark'
     'gwenview'
-    'mpv'
+    'haruna'
     'inkscape'
     'gimp'
     'kdenlive'
