@@ -95,6 +95,7 @@ install_packages() {
     'tree-sitter-cli'
     'github-cli'
     'lazygit'
+    'git-delta'
     'nodejs'
     'npm'
     'rustup'

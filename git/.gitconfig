@@ -11,3 +11,30 @@
 	defaultBranch = main
 [pull]
 	rebase = false
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    dark = true
+
+    # Theme
+    syntax-theme                  = base16
+    minus-style                   = syntax "#3a2b2c"
+    minus-non-emph-style          = syntax "#3a2b2c"
+    minus-emph-style              = syntax "#724d4f"
+    minus-empty-line-marker-style = syntax "#3a2b2c"
+    line-numbers-minus-style      = "#f2979c"
+    plus-style                    = syntax "#3b4133"
+    plus-non-emph-style           = syntax "#3b4133"
+    plus-emph-style               = syntax "#687754"
+    plus-empty-line-marker-style  = syntax "#3b4133"
+    line-numbers-plus-style       = "#cdf297"
+    line-numbers-zero-style       = "#5c5c5c"
+
+[merge]
+    conflictStyle = zdiff3
