@@ -134,6 +134,7 @@ ForegroundVisited=251,167,255
 ColorScheme=BreezeLibadwaitaDark
 Name=Breeze Libadwaita Dark
 shadeSortColumn=true
+TerminalApplication=foot
 
 [Icons]
 Theme=Papirus-Dark
