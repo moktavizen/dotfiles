@@ -78,17 +78,10 @@ install_packages() {
     'tmux'
     'fastfetch'
     'btop'
-    'wget'
-    'unzip'
-    'fzf'
-    'ripgrep'
     'eza'
-    'bat'
     'fd'
-    'hyperfine'
-    'dust'
-    'tokei'
-    'oxipng'
+    'bat'
+    'fzf'
     'imagemagick'
     'yt-dlp'
     'neovim'
@@ -112,19 +105,22 @@ install_packages() {
     'gimp'
     'kdenlive'
     'obs-studio'
-    'gnome-disk-utility'
+    'partitionmanager'
     'quickemu-git'
   )
 
   local optional_deps=(
-    'calf'             # easyeffects
-    '7zip'             # ark
-    'unrar'            # ark
-    'libheif'          # gwenview
-    'libavif'          # gwenview
-    'kimageformats'    # gwenview
-    'qt6-imageformats' # gwenview
-    'dosfstools'       # gnome-disk-utility
+    'calf'             # easyeffects     : mono speaker, since left broke
+    'ripgrep'          # nvim            : snacks.picker
+    'wget'             # nvim            : mason
+    'unzip'            # nvim            : mason
+    '7zip'             # ark             : 7zip format
+    'unrar'            # ark             : RAR format
+    'kimageformats'    # gwenview        : support additional formats
+    'qt6-imageformats' # gwenview        : support additional formats
+    'libheif'          # gwenview        : HEIF format
+    'libavif'          # gwenview        : AVIF format
+    'dosfstools'       # partitionmanager: FAT format
   )
 
   local packages=(
