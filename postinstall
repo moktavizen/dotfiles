@@ -82,6 +82,7 @@ install_packages() {
     'fd'
     'bat'
     'fzf'
+    'ffmpeg'
     'imagemagick'
     'yt-dlp'
     'neovim'
