@@ -33,14 +33,11 @@ bindkey -s ^f "tmux-sessionizer\n"
 # Alias
 # ------------------------------------------------------------------------------
 
-# require fzf, rg, eza, bat, fd to be installed
+# require fzf, eza, bat, fd to be installed
 alias sudo='sudo ' # make sudo detect alias
 alias diff='diff --color=auto'
-# alias grep='rg'
 alias ip='ip -color=auto'
 alias ls='eza --icons=always --color=always'
-# alias cat='bat --theme=base16 --color=always --style=plain --paging=never'
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 alias yay='paru'
 alias yayf='paru -Slq | fzf --preview "paru -Sii {}" | xargs -ro paru -S'
 alias update='paru'
@@ -48,14 +45,11 @@ alias clean='paru --clean'
 alias ff='fastfetch'
 alias fff='fastfetch -C ~/.config/fastfetch/fastfetch-full.jsonc'
 alias shis='history 1 | fzf'
-alias mdpdf='mdpdf --border=10mm'
-# alias npx='bunx'
 alias vim='nvim'
 alias lazyvim='NVIM_APPNAME=lazyvim nvim'
 alias nvchad='NVIM_APPNAME=nvchad nvim'
 alias lg='lazygit'
 alias media_ser='sudo systemctl start jellyfin'
-alias qbit_ser='sudo systemctl start qbittorrent-nox@vizen'
 alias poweroff='pkill chromium && poweroff' # restore chromium session correctly
 alias reboot='pkill chromium && reboot'
 sf() {
