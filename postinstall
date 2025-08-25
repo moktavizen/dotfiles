@@ -25,41 +25,44 @@ install_packages() {
     'libva-intel-driver'
     'brightnessctl'
     'broadcom-bt-firmware'
-    'iwd'
-    'tlp'
-    'zcfan'
-    'greetd'
-    'hyprland'
-    'hyprpaper'
-    'hyprlock'
-    'hyprpicker'
-    'polkit-kde-agent'
-    'xdg-desktop-portal-hyprland'
-    'xdg-desktop-portal-gtk'
-    'qt5-wayland'
-    'qt6-wayland'
     'noto-fonts'
     'noto-fonts-cjk'
     'noto-fonts-emoji'
     'noto-fonts-extra'
-    'foot'
-    'foot-terminfo'
     'zsh'
     'zsh-autosuggestions'
     'zsh-syntax-highlighting'
+    'man-db'
     'pacman-contrib'
-    'stow'
-    'grim'
-    'slurp'
-    'cliphist'
-    'wlsunset'
+  )
+
+  local hyprland=(
+    'hyprland'
+    'hyprpaper'
+    'hyprlock'
+    'hyprpicker'
+    'xdg-desktop-portal-hyprland'
+    'xdg-desktop-portal-gtk'
+    'polkit-kde-agent'
+    'qt5-wayland'
+    'qt6-wayland'
+    'greetd'
+    'zcfan'
+    'iwd'
+    'tlp'
+    'foot'
+    'foot-terminfo'
+    'waybar'
+    'rofi-wayland'
+    'dunst'
     'pavucontrol'
     'bluetui'
     'impala'
-    'waybar'
-    'rofi-wayland'
     'rofi-emoji'
-    'dunst'
+    'cliphist'
+    'wlsunset'
+    'grim'
+    'slurp'
   )
 
   local theme=(
@@ -74,7 +77,7 @@ install_packages() {
   )
 
   local cli=(
-    'man-db'
+    'stow'
     'tmux'
     'fastfetch'
     'btop'
@@ -126,6 +129,7 @@ install_packages() {
 
   local packages=(
     "${base[@]}"
+    "${hyprland[@]}"
     "${theme[@]}"
     "${cli[@]}"
     "${gui_apps[@]}"
@@ -136,15 +140,20 @@ install_packages() {
 
   echo "Installing ${#packages[@]} packages..."
   paru -S --needed --noconfirm "${packages[@]}"
+
+  # Unpackaged, not in Arch repos or AUR
+  curl --create-dirs -fsSL \
+    "${github_url}/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors" \
+    -o "${HOME}/.local/share/color-schemes/BreezeLibadwaitaDark.colors"
 }
 
-configure_dotfiles() {
+stow_dotfiles() {
   git clone "${github_url}/dotfiles"
   cd dotfiles
   stow */
 }
 
-configure_home() {
+configure_home_dir() {
   mkdir -p "${HOME}/Desktop/"
   mkdir -p "${HOME}/Documents/"
   mkdir -p "${HOME}/Downloads/"
@@ -162,26 +171,24 @@ configure_home() {
   ln -s /media/Videos/ "${HOME}/Videos"
 }
 
-configure_extras() {
+configure_shell() {
   sudo usermod -s "$(which zsh)" "$(whoami)"
 
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${HOME}/.config/powerlevel10k"
+}
 
-  mkdir -p "${HOME}/.local/share/color-schemes/"
-  curl -fsSL "${github_url}/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors" \
-    -o "${HOME}/.local/share/color-schemes/BreezeLibadwaitaDark.colors"
-
+enable_systemd_units() {
   sudo systemctl enable bluetooth.service
   sudo systemctl enable tlp.service
   sudo systemctl enable paccache.timer
 }
 
-configure_boot() {
+configure_bootloader() {
   sudo sed -i '/^timeout/s/^/#/' /boot/loader/loader.conf
   sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' /boot/loader/entries/*_linux-lts.conf
 }
 
-configure_greeter() {
+configure_display_manager() {
   sudo systemctl enable greetd.service
 
   sudo tee -a '/etc/greetd/config.toml' <<EOF
@@ -199,7 +206,7 @@ configure_pacman() {
   sudo tee /etc/pacman.d/mirrorlist <<<'Server = http://sg.mirrors.cicku.me/archlinux/$repo/os/$arch'
 }
 
-configure_fan() {
+configure_fan_control() {
   sudo tee /etc/modprobe.d/99-fancontrol.conf <<<'options thinkpad_acpi fan_control=1'
   sudo tee /etc/zcfan.conf <<EOF
 max_temp 85
@@ -220,17 +227,17 @@ configure_network() {
 }
 
 main() {
+  configure_pacman
   install_aur_helper
   install_packages
-  configure_dotfiles
-  configure_home
-  configure_extras
-  configure_boot
-  configure_greeter
-  configure_pacman
-  configure_fan
-  # Must be last because this will cause no connection until reboot
+  configure_bootloader
   configure_network
+  configure_home_dir
+  stow_dotfiles
+  configure_shell
+  enable_systemd_units
+  configure_display_manager
+  configure_fan_control
 
   echo 'Post Installation process complete!'
   echo 'You may reboot!'
