@@ -50,7 +50,6 @@ install_packages() {
     'xdg-desktop-portal-hyprland'
     'xdg-desktop-portal-gtk'
     'polkit-kde-agent'
-    'qt5-wayland'
     'qt6-wayland'
     'greetd'
     'zcfan'
