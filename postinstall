@@ -71,7 +71,6 @@ install_packages() {
     'slurp'
     'qt6ct-kde'
     'breeze'
-    'nwg-look'
   )
 
   local theme=(
