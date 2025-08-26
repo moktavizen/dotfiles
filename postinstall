@@ -17,12 +17,13 @@ configure_pacman() {
 
   sudo tee /etc/pacman.d/mirrorlist <<<'Server = http://sg.mirrors.cicku.me/archlinux/$repo/os/$arch'
 
-  sudo pacman -S --needed git base-devel --noconfirm
-  git clone https://aur.archlinux.org/paru-bin.git
-  cd paru-bin
+  sudo pacman -S --needed git base-devel rustup --noconfirm
+  rustup default stable
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
   makepkg -si --noconfirm
   cd ..
-  rm -rf paru-bin
+  rm -rf paru
 }
 
 install_packages() {
