@@ -37,6 +37,7 @@ install_packages() {
     'zsh'
     'zsh-autosuggestions'
     'zsh-syntax-highlighting'
+    'zsh-theme-powerlevel10k-git'
     'man-db'
     'pacman-contrib'
   )
@@ -191,7 +192,6 @@ configure_user_env() {
 
   sudo usermod -s "$(which zsh)" "$(whoami)"
 
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${HOME}/.config/powerlevel10k"
 }
 
 configure_network() {
