@@ -21,6 +21,7 @@
 [delta]
     navigate = true    # use n and N to move between diff sections
     dark = true
+    line-numbers = true
 
     # Theme
     syntax-theme                  = base16
