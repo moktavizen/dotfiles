@@ -146,11 +146,6 @@ install_packages() {
 
   echo "Installing ${#packages[@]} packages..."
   paru -S --needed --noconfirm "${packages[@]}"
-
-  # Unpackaged, not in Arch repos or AUR
-  curl --create-dirs -fsSL \
-    "${github_url}/breeze-libadwaita/raw/main/kde/color-schemes/BreezeLibadwaitaDark.colors" \
-    -o "${HOME}/.local/share/color-schemes/BreezeLibadwaitaDark.colors"
 }
 
 configure_bootloader() {
