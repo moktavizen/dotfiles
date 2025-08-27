@@ -74,6 +74,7 @@ install_packages() {
   local theme=(
     'qt6ct-kde'
     'breeze'
+    'nwg-look'
     'adw-gtk-theme'
     'papirus-icon-theme'
     'inter-font'
@@ -188,6 +189,7 @@ configure_user_env() {
 
   sudo usermod -s "$(which zsh)" "$(whoami)"
 
+  nwg-look -a
 }
 
 configure_network() {
