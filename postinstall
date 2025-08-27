@@ -77,7 +77,6 @@ install_packages() {
     'adw-gtk-theme'
     'papirus-icon-theme'
     'inter-font'
-    'adobe-source-serif-fonts'
     'ttf-jetbrains-mono-nerd'
   )
 
