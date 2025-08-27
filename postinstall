@@ -4,7 +4,7 @@
 # Install software that I use on Arch Linux Hyprland
 #
 # Usage:
-# run this script after minimal install using ./archinstall.json
+# run this script after minimal install using `archinstall --advanced`
 # `curl -fsSL https://github.com/moktavizen/dotfiles/raw/main/postinstall | bash`
 
 set -euo pipefail
