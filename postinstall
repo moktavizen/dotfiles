@@ -69,11 +69,11 @@ install_packages() {
     'wlsunset'
     'grim'
     'slurp'
-    'qt6ct-kde'
-    'breeze'
   )
 
   local theme=(
+    'qt6ct-kde'
+    'breeze'
     'adw-gtk-theme'
     'papirus-icon-theme'
     'inter-font'
