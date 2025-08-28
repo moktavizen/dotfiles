@@ -90,6 +90,7 @@ install_packages() {
     'eza'
     'fd'
     'bat'
+    'dust'
     'fzf'
     'ffmpeg'
     'imagemagick'
