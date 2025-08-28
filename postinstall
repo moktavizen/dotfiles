@@ -16,7 +16,7 @@ configure_pacman() {
   sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 
   sudo pacman -S --needed --noconfirm reflector
-  sudo reflector --country Indonesia,Singapore --age 2 --sort rate --number 4 --save /etc/pacman.d/mirrorlist
+  sudo reflector --country Indonesia,Singapore --isos --delay 2 --sort rate --number 4 --save /etc/pacman.d/mirrorlist
 
   sudo pacman -S --needed --noconfirm git base-devel rustup
   rustup default stable
