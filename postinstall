@@ -15,7 +15,8 @@ configure_pacman() {
   sudo sed -i '/^\[options\]/a\Color' /etc/pacman.conf
   sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 
-  sudo tee /etc/pacman.d/mirrorlist <<<'Server = http://sg.mirrors.cicku.me/archlinux/$repo/os/$arch'
+  sudo pacman -S --needed reflector --noconfirm
+  sudo reflector --country Indonesia,Singapore --age 2 --sort rate --number 4 --save /etc/pacman.d/mirrorlist
 
   sudo pacman -S --needed git base-devel rustup --noconfirm
   rustup default stable
