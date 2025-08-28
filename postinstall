@@ -5,7 +5,7 @@
 #
 # Usage:
 # run this script after minimal install using `archinstall --advanced`
-# `curl -fsSL https://github.com/moktavizen/dotfiles/raw/main/postinstall | bash`
+# `curl -fsSL https://github.com/moktavizen/dotfiles/raw/main/postinstall | sh`
 
 set -euo pipefail
 
@@ -15,10 +15,10 @@ configure_pacman() {
   sudo sed -i '/^\[options\]/a\Color' /etc/pacman.conf
   sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 
-  sudo pacman -S --needed reflector --noconfirm
+  sudo pacman -S --needed --noconfirm reflector
   sudo reflector --country Indonesia,Singapore --age 2 --sort rate --number 4 --save /etc/pacman.d/mirrorlist
 
-  sudo pacman -S --needed git base-devel rustup --noconfirm
+  sudo pacman -S --needed --noconfirm git base-devel rustup
   rustup default stable
   git clone https://aur.archlinux.org/paru.git
   cd paru
