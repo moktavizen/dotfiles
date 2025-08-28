@@ -192,6 +192,11 @@ configure_user_env() {
   nwg-look -a -x
 }
 
+configure_locale() {
+  sudo sed -i '/^#en_US.UTF-8 UTF-8/s/^#//' /etc/locale.gen
+  sudo locale-gen
+}
+
 configure_network() {
   sudo systemctl enable iwd.service
 
@@ -224,6 +229,7 @@ main() {
   configure_bootloader
   configure_display_manager
   configure_user_env
+  configure_locale
   configure_network
   configure_fan_control
   enable_systemd_units
