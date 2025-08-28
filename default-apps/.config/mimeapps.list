@@ -1,0 +1,5 @@
+[Added Associations]
+audio/mpeg=org.kde.haruna.desktop;
+
+[Default Applications]
+audio/mpeg=org.kde.haruna.desktop;
