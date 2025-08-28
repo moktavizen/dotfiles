@@ -190,7 +190,7 @@ configure_user_env() {
 
   sudo usermod -s "$(which zsh)" "$(whoami)"
 
-  nwg-look -a
+  nwg-look -a -x
 }
 
 configure_network() {
