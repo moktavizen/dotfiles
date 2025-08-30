@@ -72,13 +72,13 @@ fgu() {
 mp4() {
   yt-dlp -S "vcodec:h264,res:1080" --remux mp4 --merge mp4 \
     --embed-metadata --embed-thumbnail \
-    -o "%(uploader)s - %(title)s.%(ext)s" "$1"
+    -o "%(channel)s - %(title)s.%(ext)s" "$1"
 }
 mp3() {
   yt-dlp -f bestaudio --extract-audio --audio-quality 0 --audio-format mp3 \
     --embed-metadata --embed-thumbnail \
     --ppa "ThumbnailsConvertor+FFmpeg_o:-c:v mjpeg -vf crop=\"'min(iw,ih)':'min(iw,ih)'\"" \
-    -o "%(uploader)s - %(title)s.%(ext)s" "$1"
+    -o "%(channel)s - %(title)s.%(ext)s" "$1"
 }
 encav1() {
   # > Preset value of 6 can give you a good trade-off between quality,
