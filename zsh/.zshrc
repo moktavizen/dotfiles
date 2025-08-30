@@ -33,7 +33,7 @@ bindkey -s ^f "tmux-sessionizer\n"
 # Alias
 # ------------------------------------------------------------------------------
 
-# require fzf, eza, bat, fd to be installed
+# require fzf, fd, eza, bat to be installed
 alias sudo='sudo ' # make sudo detect alias
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
@@ -65,9 +65,8 @@ sd() {
   )"
 }
 fgu() {
-  fd -H -t d -g '.git' \
-    -E '**/.*/**/.git' \
-    -x echo -e '\nDir: {//}' \; \
+  fd -H -t d -g '.git' -E '**/.*/**/.git' \
+    -x echo '{//}' \; \
     -x git -C '{//}' -c color.ui=always status -s
 }
 mp4() {
