@@ -133,8 +133,8 @@ ForegroundVisited=251,167,255
 [General]
 ColorScheme=BreezeLibadwaitaDark
 Name=Breeze Libadwaita Dark
-shadeSortColumn=true
 TerminalApplication=foot
+shadeSortColumn=true
 
 [Icons]
 Theme=Papirus-Dark
@@ -142,6 +142,26 @@ Theme=Papirus-Dark
 [KDE]
 contrast=4
 widgetStyle=qt6ct-style
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort hidden files last=false
+Sort reversed=false
+Speedbar Width=154
+View Style=DetailTree
 
 [WM]
 activeBackground=48,48,48
