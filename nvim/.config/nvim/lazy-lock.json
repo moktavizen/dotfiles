@@ -7,7 +7,7 @@
   "mason-lspconfig.nvim": { "branch": "main", "commit": "5e085efe67fccb13372d54331d849219662a7e93" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "517ef5994ef9d6b738322664d5fdd948f0fdeb46" },
   "mason.nvim": { "branch": "main", "commit": "7dc4facca9702f95353d5a1f87daf23d78e31c2a" },
-  "mini.nvim": { "branch": "main", "commit": "68955a915c45ae7c988c539abe6e89f0971a9a2d" },
+  "mini.nvim": { "branch": "main", "commit": "6bf9eccaf2a5395b254bc031f9812cf163ca4187" },
   "neutr.nvim": { "branch": "master", "commit": "09c6eb0bbec59f06a9edbdbcf4054463eb22e2ff" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
