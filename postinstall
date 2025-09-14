@@ -60,7 +60,7 @@ install_packages() {
     'foot'
     'foot-terminfo'
     'waybar'
-    'rofi-wayland'
+    'rofi'
     'dunst'
     'pavucontrol'
     'bluetui'
