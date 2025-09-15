@@ -29,7 +29,7 @@ configure_pacman() {
 
 install_packages() {
   local base=(
-    'libva-intel-driver'
+    'libva-intel-driver-irql'
     'brightnessctl'
     'broadcom-bt-firmware'
     'noto-fonts'
