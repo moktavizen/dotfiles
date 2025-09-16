@@ -30,6 +30,8 @@ configure_pacman() {
 install_packages() {
   local base=(
     'libva-intel-driver-irql'
+    'vulkan-intel'
+    'mesa'
     'brightnessctl'
     'broadcom-bt-firmware'
     'noto-fonts'
@@ -120,19 +122,20 @@ install_packages() {
   )
 
   local optional_deps=(
-    'calf'             # easyeffects     : mono speaker, since left broke
-    'tree-sitter-cli'  # nvim            : tree-sitter auto_install
-    'ripgrep'          # nvim            : snacks.picker
-    'wget'             # nvim            : mason
-    'unzip'            # nvim            : mason
-    'npm'              # nvim            : mason
-    '7zip'             # ark             : 7zip format
-    'unrar'            # ark             : RAR format
-    'kimageformats'    # gwenview        : support additional formats
-    'qt6-imageformats' # gwenview        : support additional formats
-    'libheif'          # gwenview        : HEIF format
-    'libavif'          # gwenview        : AVIF format
-    'dosfstools'       # partitionmanager: FAT format
+    'vulkan-mesa-layers' # vulkan-intel    : additional vulkan layers
+    'calf'               # easyeffects     : mono speaker, since left broke
+    'tree-sitter-cli'    # nvim            : tree-sitter auto_install
+    'ripgrep'            # nvim            : snacks.picker
+    'wget'               # nvim            : mason
+    'unzip'              # nvim            : mason
+    'npm'                # nvim            : mason
+    '7zip'               # ark             : 7zip format
+    'unrar'              # ark             : RAR format
+    'kimageformats'      # gwenview        : support additional formats
+    'qt6-imageformats'   # gwenview        : support additional formats
+    'libheif'            # gwenview        : HEIF format
+    'libavif'            # gwenview        : AVIF format
+    'dosfstools'         # partitionmanager: FAT format
   )
 
   local packages=(
