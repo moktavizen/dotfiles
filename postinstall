@@ -175,11 +175,17 @@ configure_locale() {
 }
 
 configure_network() {
-  sudo systemctl enable iwd.service
+  sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
-  sudo sed -i '/^\[Network\]/a\DNS=1.0.0.1' /etc/systemd/network/*.network
-  sudo sed -i '/^\[Network\]/a\DNS=1.1.1.1' /etc/systemd/network/*.network
-  sudo sed -i '/^\[Network\]/a\DNSOverTLS=yes' /etc/systemd/network/*.network
+  sudo mkdir -p /etc/systemd/resolved.conf.d/
+  sudo tee /etc/systemd/resolved.conf.d/dns_over_tls.conf <<EOF
+[Resolve]
+DNS=1.1.1.1#one.one.one.one 1.0.0.1#one.one.one.one 2606:4700:4700::1111#one.one.one.one 2606:4700:4700::1001#one.one.one.one
+DNSOverTLS=yes
+Domains=~.
+EOF
+
+  sudo systemctl enable iwd.service
 }
 
 configure_fan_control() {
