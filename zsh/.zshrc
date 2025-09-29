@@ -49,7 +49,7 @@ alias vim='nvim'
 alias lazyvim='NVIM_APPNAME=lazyvim nvim'
 alias nvchad='NVIM_APPNAME=nvchad nvim'
 alias lg='lazygit'
-alias media_ser='sudo systemctl start jellyfin'
+alias start-jellyfin='sudo systemctl start jellyfin'
 alias poweroff='pkill chromium && poweroff' # restore chromium session correctly
 alias reboot='pkill chromium && reboot'
 sf() {
