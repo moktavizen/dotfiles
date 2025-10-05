@@ -1,11 +1,13 @@
 [Added Associations]
 application/pdf=chromium.desktop;
 audio/mpeg=org.kde.haruna.desktop;
+image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop;
 video/mp4=org.kde.haruna.desktop;
 
 [Default Applications]
 application/pdf=chromium.desktop;
 audio/mpeg=org.kde.haruna.desktop;
+image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop;
 video/mp4=org.kde.haruna.desktop;
