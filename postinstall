@@ -111,7 +111,6 @@ install_packages() {
     'gwenview'
     'haruna'
     'inkscape'
-    'gimp'
     'kdenlive'
     'obs-studio'
     'partitionmanager'
