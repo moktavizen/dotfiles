@@ -114,7 +114,7 @@ install_packages() {
     'kdenlive'
     'obs-studio'
     'partitionmanager'
-    'quickemu-git'
+    'gnome-boxes'
     'qbittorrent'
     'jellyfin-server'
     'jellyfin-web'
