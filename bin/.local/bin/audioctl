@@ -1,43 +1,52 @@
 #!/bin/bash
 # audioctl.sh
-# Requires: wireplumber, pipewire, dunst, libnotify
 
-if [[ "$1" == "--speaker" ]]; then
-  wp_id="@DEFAULT_AUDIO_SINK@"
-  type="speaker"
-elif [[ "$1" == "--microphone" ]]; then
-  wp_id="@DEFAULT_AUDIO_SOURCE@"
-  type="microphone"
-fi
+export LC_ALL=C
 
-# Change the volume using wireplumber
+case "$1" in
+  --speaker)
+    wp_id="@DEFAULT_AUDIO_SINK@"
+    type="Speaker"
+    is_speaker=true
+    ;;
+  --microphone)
+    wp_id="@DEFAULT_AUDIO_SOURCE@"
+    type="Microphone"
+    is_speaker=false
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+
 if [[ "$2" == "toggle" ]]; then
-  wpctl set-mute "$wp_id" toggle >/dev/null
+  wpctl set-mute "$wp_id" toggle
 else
-  wpctl set-volume -l 1.50 "$wp_id" "$2" >/dev/null
+  wpctl set-volume -l 1.50 "$wp_id" "$2"
 fi
 
-# Query wireplumber for the current volume and whether or not the speaker is muted
-status="$(wpctl get-volume "$wp_id" | grep -o 'MUTED' || echo '')"
-volume="$(wpctl get-volume "$wp_id" | awk '{print $2 * 100}')"
+read -ra wp_output <<<"$(wpctl get-volume "$wp_id")"
 
-if [[ "$status" == "MUTED" ]]; then
-  dunstify \
-    -a audioctl \
-    -i audio-volume-muted \
-    -h string:x-dunst-stack-tag:"$type" \
-    "${type^}: ${volume}% — Muted"
+vol_float="${wp_output[1]}"
+vol_str="${vol_float/./}"
+vol_pct=$((10#$vol_str))
+
+if [[ "${wp_output[2]}" ]]; then
+  icon="audio-volume-muted"
+  text_suffix=" — Muted"
 else
-  dunstify \
-    -a audioctl \
-    -i audio-volume-high \
-    -h string:x-dunst-stack-tag:"$type" \
-    -h int:value:"$volume" \
-    "${type^}: ${volume}%"
+  icon="audio-volume-high"
+  text_suffix=""
+
+  if [[ "$is_speaker" == true && "$vol_pct" -gt 0 ]]; then
+    flock -n "/run/user/$UID/audioctl.lock" \
+      pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga &>/dev/null &
+  fi
 fi
 
-# Play the volume changed sound
-if [[ "$1" == "--speaker" && "$status" != "MUTED" && "$volume" != "0" ]]; then
-  flock -n /tmp/audio-volume-change.lock \
-    pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
-fi
+exec dunstify \
+  -a audioctl \
+  -i "$icon" \
+  -h "string:x-dunst-stack-tag:${type,,}" \
+  -h "int:value:$vol_pct" \
+  "${type}: ${vol_pct}%${text_suffix}"
