@@ -86,7 +86,7 @@
       "portable": "󰏲",
       "default": ["󰕿", "󰖀", "󰕾"],
     },
-    "on-click": "pavucontrol",
+    "on-click": "foot -T 'Audio Manager' wiremix",
   },
   "clock": {
     "timezone": "Asia/Jakarta",

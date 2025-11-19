@@ -64,7 +64,7 @@ install_packages() {
     'waybar'
     'rofi'
     'dunst'
-    'pavucontrol'
+    'wiremix'
     'bluetui'
     'impala'
     'rofi-emoji'
