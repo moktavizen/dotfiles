@@ -1,4 +1,5 @@
 [Added Associations]
+application/java-archive=org.kde.ark.desktop;
 application/pdf=chromium.desktop;
 audio/mpeg=org.kde.haruna.desktop;
 image/jpeg=org.kde.gwenview.desktop;
@@ -6,13 +7,14 @@ image/png=org.kde.gwenview.desktop;
 video/mp4=org.kde.haruna.desktop;
 
 [Default Applications]
+application/java-archive=org.kde.ark.desktop;
 application/pdf=chromium.desktop;
 audio/mpeg=org.kde.haruna.desktop;
 image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop;
-video/mp4=org.kde.haruna.desktop;
 text/html=chromium.desktop
+video/mp4=org.kde.haruna.desktop;
+x-scheme-handler/about=chromium.desktop
 x-scheme-handler/http=chromium.desktop
 x-scheme-handler/https=chromium.desktop
-x-scheme-handler/about=chromium.desktop
 x-scheme-handler/unknown=chromium.desktop
