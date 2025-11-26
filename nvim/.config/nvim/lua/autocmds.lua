@@ -33,12 +33,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Open help and docs in right vertical split',
-  pattern = { 'help', 'man', 'markdown' },
-  command = 'wincmd L',
-})
-
 vim.api.nvim_create_autocmd('BufWritePre', {
   desc = 'Removes trailing whitespace on save',
   callback = function()
