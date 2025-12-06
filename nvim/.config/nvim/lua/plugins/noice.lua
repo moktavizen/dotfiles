@@ -24,7 +24,7 @@ return {
     views = {
       hover = {
         border = {
-          padding = { left = 1, right = 1 },
+          padding = { 0, 1 },
         },
         win_options = {
           winblend = 0,
@@ -32,7 +32,7 @@ return {
       },
       mini = {
         border = {
-          padding = { left = 1, right = 1 },
+          padding = { 0, 1 },
         },
         win_options = {
           winblend = 0,
