@@ -23,6 +23,9 @@ return {
     -- Opaque pop-ups
     views = {
       hover = {
+        size = {
+          max_width = 80,
+        },
         border = {
           padding = { 0, 1 },
         },
