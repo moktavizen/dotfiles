@@ -2,6 +2,6 @@
 return {
   -- the only one that supports css variable
   'brenoprata10/nvim-highlight-colors',
-  event = 'VeryLazy',
+  ft = { 'html', 'css', 'javascript' },
   opts = {},
 }
