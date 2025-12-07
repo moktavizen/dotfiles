@@ -54,13 +54,13 @@ alias poweroff='pkill chromium && poweroff' # restore chromium session correctly
 alias reboot='pkill chromium && reboot'
 sf() {
   nvim "$(
-    fd -H -t f | fzf --preview \
+    fd -H -t f -E '.git' | fzf --preview \
       "bat --theme=base16 --color=always --style=numbers,changes {}"
   )"
 }
 sd() {
   cd "$(
-    fd -H -t d | fzf --preview \
+    fd -H -t d -E '.git' | fzf --preview \
       "eza -1 --icons=always --color=always {}"
   )"
 }
