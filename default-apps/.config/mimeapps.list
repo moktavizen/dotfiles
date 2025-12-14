@@ -1,6 +1,7 @@
 [Added Associations]
 application/java-archive=org.kde.ark.desktop;
 application/pdf=chromium.desktop;
+application/zip=org.kde.ark.desktop;
 audio/mpeg=org.kde.haruna.desktop;
 image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop;
@@ -9,6 +10,7 @@ video/mp4=org.kde.haruna.desktop;
 [Default Applications]
 application/java-archive=org.kde.ark.desktop;
 application/pdf=chromium.desktop;
+application/zip=org.kde.ark.desktop;
 audio/mpeg=org.kde.haruna.desktop;
 image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop;
