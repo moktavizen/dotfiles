@@ -18,13 +18,12 @@ configure_pacman() {
   sudo pacman -S --needed --noconfirm reflector
   sudo reflector --country Indonesia,Singapore --isos --sort rate --number 2 --save /etc/pacman.d/mirrorlist
 
-  sudo pacman -S --needed --noconfirm git base-devel rustup
-  rustup default stable
-  git clone https://aur.archlinux.org/paru.git
-  cd paru
+  sudo pacman -S --needed --noconfirm git base-devel
+  git clone https://aur.archlinux.org/yay.git
+  cd yay
   makepkg -si --noconfirm
   cd ..
-  rm -rf paru
+  rm -fr yay
 }
 
 install_packages() {
@@ -146,10 +145,10 @@ install_packages() {
     "${optional_deps[@]}"
   )
 
-  paru -Syyu --noconfirm
+  yay -Syyu --noconfirm
 
   echo "Installing ${#packages[@]} packages..."
-  paru -S --needed --noconfirm "${packages[@]}"
+  yay -S --needed --noconfirm "${packages[@]}"
 }
 
 configure_bootloader() {
