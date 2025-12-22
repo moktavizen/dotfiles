@@ -63,7 +63,6 @@ return {
         javascript = { 'biome-check' },
         typescript = { 'biome-check' },
         json = { 'biome-check' },
-        xml = { 'xmlformatter' },
       },
       format_on_save = { lsp_format = 'fallback', timeout_ms = 500 },
     },
