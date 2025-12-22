@@ -71,10 +71,10 @@ return {
   -- Syntax highlight, edit, and navigate code
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
     -- README stated no lazy
-    -- but if not lazy loaded, ts add 100ms additional startup time
-    event = 'VeryLazy',
+    -- See https://github.com/nvim-treesitter/nvim-treesitter#installation
+    lazy = false,
+    build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     opts = {
       auto_install = true, -- Requires `tree-sitter-cli`
