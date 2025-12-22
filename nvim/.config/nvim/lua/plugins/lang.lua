@@ -57,8 +57,9 @@ return {
       vim.lsp.config('lua_ls', {
         settings = {
           Lua = {
-            completion = {
-              callSnippet = 'Replace',
+            workspace = {
+              checkThirdParty = false,
+              library = { vim.env.VIMRUNTIME },
             },
           },
         },
@@ -158,18 +159,6 @@ return {
     opts = {
       -- Don't auto enable LSPs so we can lazy-load them via `nvim-lspconfig`
       automatic_enable = false,
-    },
-  },
-
-  -- Configures Lua LSP for Neovim config,
-  -- used for completion, annotations and signatures of Neovim apis
-  {
-    'folke/lazydev.nvim',
-    ft = 'lua', -- only load on lua files
-    opts = {
-      library = {
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-      },
     },
   },
 }
