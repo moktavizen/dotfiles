@@ -8,7 +8,9 @@ return {
   -- LSP
   {
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
+    -- Nvim team stance is user should not be responsible for lazy loading,
+    -- its the plugin dev responsibility.
+    lazy = false,
     config = function()
       -- NOTE: Step 2 - Configure the LSP if needed
       vim.lsp.config('lua_ls', {
