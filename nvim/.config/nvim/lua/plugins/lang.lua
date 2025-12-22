@@ -1,52 +1,9 @@
 -- Plugins that affects language support
 return {
-  -- Auto install package for LSPs and related tools
-  {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    dependencies = {
-      -- Listed as dependencies to ensure they load first
-      'mason-org/mason.nvim',
-      'mason-org/mason-lspconfig.nvim',
-    },
-    event = 'VeryLazy',
-    config = function()
-      -- NOTE: Step 1 - Install the LSP/formatter
-      local needed_tools = {
-        'lua_ls',
-        'bashls',
-        'emmet_language_server',
-        'html',
-        'cssls',
-        'ts_ls',
-        'stylua',
-        'shfmt',
-        'prettierd',
-        'biome',
-        'xmlformatter',
-      }
-      require('mason-tool-installer').setup({
-        ensure_installed = needed_tools,
-      })
-
-      -- See https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/39
-      vim.api.nvim_command('MasonToolsInstall')
-      vim.api.nvim_create_autocmd('User', {
-        desc = 'Start current buffer LSP after installing it',
-        pattern = 'MasonToolsUpdateCompleted',
-        callback = function()
-          vim.schedule(function()
-            vim.api.nvim_command('LspStart')
-          end)
-        end,
-      })
-
-      -- Cleanup unneeded tools
-      local installed_tools = require('mason-registry').get_all_package_names()
-      if #installed_tools > #needed_tools then
-        vim.api.nvim_command('MasonToolsClean')
-      end
-    end,
-  },
+  -- NOTE: Step 1 - Install the LSP/formatter using package manager
+  -- `pacman -S typescript-language-server`
+  -- `npm i -g vscode-langservers-extracted`
+  -- See `:h lspconfig-all` and `:h conform-formatters`
 
   -- LSP
   {
@@ -134,31 +91,6 @@ return {
     event = { 'InsertEnter', 'CmdLineEnter' },
     opts = {
       fuzzy = { implementation = 'rust' },
-    },
-  },
-
-  -- Package manager for LSPs and related tools
-  {
-    'mason-org/mason.nvim',
-    keys = {
-      { '<leader>cm', '<cmd>Mason<cr>', desc = 'Mason' },
-    },
-    opts = {
-      ui = { backdrop = 100 },
-    },
-  },
-
-  -- Translate LSP name to package name
-  {
-    'mason-org/mason-lspconfig.nvim',
-    dependencies = {
-      'mason-org/mason.nvim',
-      'neovim/nvim-lspconfig',
-    },
-    event = 'VeryLazy',
-    opts = {
-      -- Don't auto enable LSPs so we can lazy-load them via `nvim-lspconfig`
-      automatic_enable = false,
     },
   },
 }
