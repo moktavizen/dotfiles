@@ -47,3 +47,15 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'zsh',
   command = 'set filetype=bash',
 })
+
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
+  desc = 'Insert newline when hitting Enter before closing tags',
+  callback = function()
+    vim.keymap.set('i', '<CR>', function()
+      local line = vim.api.nvim_get_current_line()
+      local col = vim.api.nvim_win_get_cursor(0)[2]
+      local next_chars = line:sub(col + 1, col + 2)
+      return next_chars == '</' and '<CR><Esc>O' or '<CR>'
+    end, { buffer = true, expr = true })
+  end,
+})
