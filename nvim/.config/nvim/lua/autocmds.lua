@@ -48,8 +48,9 @@ vim.api.nvim_create_autocmd('FileType', {
   command = 'set filetype=bash',
 })
 
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
+vim.api.nvim_create_autocmd({ 'FileType' }, {
   desc = 'Insert newline when hitting Enter before closing tags',
+  pattern = 'html',
   callback = function()
     vim.keymap.set('i', '<CR>', function()
       local line = vim.api.nvim_get_current_line()
