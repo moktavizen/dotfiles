@@ -162,7 +162,7 @@ configure_display_manager() {
   sudo tee -a '/etc/greetd/config.toml' <<EOF
 
 [initial_session]
-command = "Hyprland > /dev/null"
+command = "start-hyprland > /dev/null"
 user = "$(whoami)"
 EOF
 }
