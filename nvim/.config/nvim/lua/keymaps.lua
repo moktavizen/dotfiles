@@ -12,7 +12,7 @@ map('n', '<C-K>', '<C-W><C-K>', { desc = 'Move focus to the upper window' })
 -- Only use this when making a colorscheme
 -- map('n', '<C-I>', '<Cmd>Inspect<CR>', { desc = 'Inspect highlight group under cursor' })
 
-map('n', '<Leader>ba', '<Cmd>b #<CR>', { desc = 'Switch to alternate buffer' })
+map('n', '<Leader>bb', '<Cmd>b #<CR>', { desc = 'Switch to other buffer' })
 
 map({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })
 map('n', '<Leader>cr', vim.lsp.buf.rename, { desc = 'Rename' })
