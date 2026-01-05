@@ -53,6 +53,9 @@ return {
         ['biome-check'] = {
           append_args = { '--indent-style=space' },
         },
+        prettier = {
+          append_args = { '--html-whitespace-sensitivity', 'ignore' },
+        },
       },
 
       -- NOTE: Step 3 - Map the formatter
@@ -60,7 +63,7 @@ return {
         lua = { 'stylua' },
         bash = { 'shfmt' },
         sh = { 'shfmt' },
-        html = { 'prettierd' },
+        html = { 'prettier' },
         css = { 'biome-check' },
         javascript = { 'biome-check' },
         typescript = { 'biome-check' },
