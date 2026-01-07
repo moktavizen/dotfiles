@@ -18,10 +18,6 @@ return {
     vim.g.loaded_netrwPlugin = 1
   end,
   config = function()
-    -- Improves motion
-    require('mini.ai').setup({ n_lines = 500 })
-    require('mini.surround').setup()
-
     -- Replaces nvim-web-devicons
     require('mini.icons').setup()
     MiniIcons.mock_nvim_web_devicons()
@@ -36,12 +32,6 @@ return {
 
     -- Replaces netrw and nvim-tree
     require('mini.files').setup()
-
-    -- Replaces nvim-autopairs
-    require('mini.pairs').setup()
-
-    -- Replaces vim-easy-align
-    require('mini.align').setup()
 
     -- Replaces todo-comments
     require('mini.hipatterns').setup({
