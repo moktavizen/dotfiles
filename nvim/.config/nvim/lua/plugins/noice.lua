@@ -28,7 +28,7 @@ return {
       hover = {
         size = {
           max_width = 80,
-          max_height = 6,
+          max_height = 16,
         },
         border = {
           padding = { 0, 1 },
