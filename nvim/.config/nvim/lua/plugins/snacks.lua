@@ -75,6 +75,7 @@ return {
         files = { hidden = true },
         grep = { hidden = true },
         buffers = { hidden = true },
+        explorer = { hidden = true },
       },
     },
     -- Yes, I know this dashboard is cringe
