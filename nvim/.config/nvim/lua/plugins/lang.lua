@@ -48,14 +48,6 @@ return {
           -- Google's shell style guide: shfmt -i 2 -ci -bn
           append_args = { '-i', '2', '-ci', '-bn' },
         },
-        -- Sometimes a formatter has several conform-formatters, we can specify the name
-        -- See `:h conform-formatters`
-        ['biome-check'] = {
-          append_args = { '--indent-style=space' },
-        },
-        prettier = {
-          append_args = { '--html-whitespace-sensitivity', 'ignore' },
-        },
       },
 
       -- NOTE: Step 3 - Map the formatter
@@ -63,11 +55,11 @@ return {
         lua = { 'stylua' },
         bash = { 'shfmt' },
         sh = { 'shfmt' },
-        html = { 'prettier' },
-        css = { 'biome-check' },
-        javascript = { 'biome-check' },
-        typescript = { 'biome-check' },
-        json = { 'biome-check' },
+        html = { 'oxfmt' },
+        css = { 'oxfmt' },
+        javascript = { 'oxfmt' },
+        typescript = { 'oxfmt' },
+        json = { 'oxfmt' },
       },
       format_on_save = { lsp_format = 'fallback', timeout_ms = 500 },
     },
