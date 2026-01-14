@@ -5,6 +5,7 @@ application/zip=org.kde.ark.desktop;
 audio/mpeg=org.kde.haruna.desktop;
 image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop;
+image/webp=org.kde.gwenview.desktop;
 video/mp4=org.kde.haruna.desktop;
 
 [Default Applications]
@@ -14,6 +15,7 @@ application/zip=org.kde.ark.desktop;
 audio/mpeg=org.kde.haruna.desktop;
 image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop;
+image/webp=org.kde.gwenview.desktop;
 text/html=chromium.desktop
 video/mp4=org.kde.haruna.desktop;
 x-scheme-handler/about=chromium.desktop
