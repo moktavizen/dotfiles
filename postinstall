@@ -45,9 +45,9 @@ install_packages() {
     'pacman-contrib'
   )
 
-  local hyprland=(
+  local desktop_env=(
     'hyprland'
-    'hyprpaper'
+    'swww'
     'hyprlock'
     'hyprpicker'
     'xdg-desktop-portal-hyprland'
@@ -138,7 +138,7 @@ install_packages() {
 
   local packages=(
     "${base[@]}"
-    "${hyprland[@]}"
+    "${desktop_env[@]}"
     "${theme[@]}"
     "${cli[@]}"
     "${gui_apps[@]}"
