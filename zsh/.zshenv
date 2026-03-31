@@ -17,3 +17,11 @@ export FZF_DEFAULT_OPTS="\
 --no-scrollbar \
 --layout reverse \
 --border"
+
+# pnpm
+export PNPM_HOME="/home/vizen/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
