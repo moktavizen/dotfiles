@@ -28,15 +28,16 @@
   border-radius: 32px;
 }
 
-#hardware #cpu,
-#hardware #temperature,
-#control #battery,
-#control #network,
-#control #bluetooth {
+#cpu,
+#temperature,
+#battery,
+#network,
+#bluetooth {
   margin-right: 16px;
 }
 
 /* Workspaces module is built different */
+/* We need to style each condition */
 
 #workspaces {
   padding: 0 9px;
