@@ -60,6 +60,7 @@ return {
         javascript = { 'oxfmt' },
         typescript = { 'oxfmt' },
         json = { 'oxfmt' },
+        jsonc = { 'oxfmt' },
         markdown = { 'oxfmt' },
       },
       format_on_save = { lsp_format = 'fallback', timeout_ms = 500 },
