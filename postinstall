@@ -40,7 +40,7 @@ install_packages() {
     'zsh'
     'zsh-autosuggestions'
     'zsh-syntax-highlighting'
-    'zsh-theme-powerlevel10k-git'
+    'oh-my-posh-bin'
     'man-db'
     'pacman-contrib'
   )
