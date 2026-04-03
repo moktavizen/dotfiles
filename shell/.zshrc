@@ -35,7 +35,7 @@ bindkey -s ^f "tmux-sessionizer\n"
 # Require fzf, fd, eza, bat to be installed
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
-alias ls='eza --icons=always --color=always'
+alias ls='eza -1 --icons=always --color=always'
 alias yayf='yay -Slq | fzf --preview "yay -Sii {}" | xargs -ro yay -S'
 alias update='yay'
 alias clean='yay -Qdttq | yay -Rns --noconfirm -'
