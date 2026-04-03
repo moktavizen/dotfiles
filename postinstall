@@ -225,8 +225,6 @@ configure_user_env() {
   cd dotfiles
   stow */
 
-  sudo usermod -s "$(which zsh)" "$(whoami)"
-
   nwg-look -a -x
 }
 

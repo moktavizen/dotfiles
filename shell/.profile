@@ -1,5 +1,6 @@
-# Env Variable
-# ------------------------------------------------------------------------------
+#
+# Exports
+#
 
 export PATH="$HOME/.local/bin:$PATH"
 export MANPAGER='nvim +Man!'

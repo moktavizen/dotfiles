@@ -1,8 +1,12 @@
-# Fetch
+#
+# Greeter
+#
+
 # fastfetch
 
-# ZSH Init Config
-# ------------------------------------------------------------------------------
+#
+# ZSH Configs
+#
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -17,17 +21,18 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+#
 # Keymaps
-# ------------------------------------------------------------------------------
+#
 
 bindkey ^y end-of-line
 bindkey -s ^f "tmux-sessionizer\n"
 
-# Alias
-# ------------------------------------------------------------------------------
+#
+# Aliases
+#
 
-# require fzf, fd, eza, bat to be installed
-alias sudo='sudo ' # make sudo detect alias
+# Require fzf, fd, eza, bat to be installed
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
 alias ls='eza --icons=always --color=always'
@@ -42,23 +47,32 @@ alias lazyvim='NVIM_APPNAME=lazyvim nvim'
 alias nvchad='NVIM_APPNAME=nvchad nvim'
 alias lg='lazygit'
 alias start-jellyfin='sudo systemctl start jellyfin'
-alias poweroff='pkill chromium && poweroff' # restore chromium session correctly
+
+# Make sudo detect alias
+alias sudo='sudo '
+
+# Restore chromium session correctly
+alias poweroff='pkill chromium && poweroff'
 alias reboot='pkill chromium && reboot'
+
+# Complex aliases
 sf() {
-  nvim "$(
+  file="$(
     fd -H -t f -E '.git' | fzf --preview \
       "bat --theme=base16 --color=always --style=numbers,changes {}"
   )"
+  [[ -n "${file}" ]] && nvim "${file}"
 }
 sd() {
-  cd "$(
+  dir="$(
     fd -H -t d -E '.git' | fzf --preview \
       "eza -1 --icons=always --color=always {}"
   )"
+  [[ -n "${dir}" ]] && cd "${dir}"
 }
 fgu() {
   fd -H -t d -g '.git' -E '**/.*/**/.git' \
-    -x echo '{//}' \; \
+    -x echo '{//}' ';' \
     -x git -C '{//}' -c color.ui=always status -s
 }
 mp4() {
@@ -102,8 +116,9 @@ ench264() {
   ffmpeg -i "$1" -c:v libx264 -preset medium -crf 19 -c:a libopus -b:a 128k "$2"
 }
 
-# Source
-# ------------------------------------------------------------------------------
+#
+# Sources
+#
 
 # ZSH Theme
 eval "$(oh-my-posh init zsh --config ~/.config/ansi.minimal.omp.json)"
