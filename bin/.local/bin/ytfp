@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#
+# `ytfp`: Search YouTube video using `fzf` and play it in `mpv`
+# Require `fzf`, `yt-dlp`, `chafa`, `mpv`
+#
+
+SEARCH_VID() {
+  yt-dlp --flat-playlist "ytsearch18:$1" --print \
+    $'%(thumbnails.0.url)s\t%(title)s\t%(channel)s\t%(view_count)s\t%(url)s' \
+    | grep 'watch?v='
+}
+RENDER_VID_INFO() {
+  curl -sL "$1" | chafa --format=sixels --clear --size=x14
+  echo "Title   : $2"
+  echo "Channel : $3"
+  echo "Views   : $4"
+}
+export -f SEARCH_VID RENDER_VID_INFO
+
+fzf --preview-window down --layout reverse --disabled --with-shell 'bash -c' \
+  --bind 'start:reload:SEARCH_VID fzf' \
+  --bind 'change:reload:sleep 0.3; SEARCH_VID {q} || true' \
+  --delimiter '\t' --with-nth 2 \
+  --preview 'RENDER_VID_INFO {1} {2} {3} {4}' \
+  --bind 'enter:execute-silent(mpv --fs {5})'
