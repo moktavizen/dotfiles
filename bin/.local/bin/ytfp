@@ -21,6 +21,7 @@ export -f SEARCH_VID RENDER_VID_INFO
 fzf --preview-window down --layout reverse --disabled --with-shell 'bash -c' \
   --bind 'start:reload:SEARCH_VID fzf' \
   --bind 'change:reload:sleep 0.3; SEARCH_VID {q} || true' \
+  --bind 'load:first' \
   --delimiter '\t' --with-nth 2 \
   --preview 'RENDER_VID_INFO {1} {2} {3} {4}' \
   --bind 'enter:execute-silent(mpv --fullscreen {5})'
