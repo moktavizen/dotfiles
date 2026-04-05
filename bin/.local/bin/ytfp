@@ -5,9 +5,10 @@
 #
 
 SEARCH_VID() {
-  yt-dlp --flat-playlist "ytsearch18:$1" --print \
+  yt-dlp "https://www.youtube.com/results?search_query=$1" \
+    --flat-playlist -I 1:20 -O \
     $'%(thumbnails.0.url)s\t%(title)s\t%(channel)s\t%(view_count)s\t%(url)s' \
-    | grep 'watch?v='
+    | grep -Ev 'playlist|channel'
 }
 RENDER_VID_INFO() {
   curl -sL "$1" | chafa --format=sixels --clear --size=x14
