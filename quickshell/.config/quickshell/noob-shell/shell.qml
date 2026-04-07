@@ -10,7 +10,7 @@ PanelWindow {
         property color background: "#cc1e1e1e"
         property color foreground: "#ebebeb"
         property color blue: "#97b4f2"
-        property color paleCyan: "#b6cad2"
+        property color paleCyan: "#b4c8d1"
         property color red: "#f2979c"
         property color yellow: "#f2d297"
     }
