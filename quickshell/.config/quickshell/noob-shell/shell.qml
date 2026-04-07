@@ -19,6 +19,7 @@ PanelWindow {
         property string family: "JetBrainsMonoNL Nerd Font Propo"
         property int pxSize: 14
         property int weight: 500
+        property real letterSpacing: -0.4
     }
     QtObject {
         id: bar
@@ -26,14 +27,14 @@ PanelWindow {
     }
     QtObject {
         id: group
-        property int vPad: 5
-        property int hPad: 16
+        property real vPad: 5.5
+        property real hPad: 15.5
         property int borderRadius: 999
         property int gap: 16
     }
     QtObject {
         id: module
-        property int gap: 8
+        property int gap: 9
     }
 
     component Group: Control {
@@ -65,6 +66,7 @@ PanelWindow {
                 font.family: typo.family
                 font.pixelSize: typo.pxSize
                 font.weight: typo.weight
+                font.letterSpacing: typo.letterSpacing
             }
 
             Text {
@@ -73,6 +75,7 @@ PanelWindow {
                 font.family: typo.family
                 font.pixelSize: typo.pxSize
                 font.weight: typo.weight
+                font.letterSpacing: typo.letterSpacing
             }
         }
     }
