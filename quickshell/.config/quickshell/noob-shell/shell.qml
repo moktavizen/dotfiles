@@ -1,4 +1,5 @@
 import Quickshell
+import Quickshell.Io
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -83,12 +84,32 @@ PanelWindow {
         }
     }
 
+    Process {
+        id: memProc
+        property string usedMem
+
+        command: ["sh", "-c", "free -h | awk 'NR==2{print $3+0}'"]
+        running: true
+        stdout: StdioCollector {
+            onStreamFinished: memProc.usedMem = `${this.text.trim()}GB`
+        }
+    }
+
     SystemClock {
         id: clockProc;
         property string dateTime
 
         precision: SystemClock.Minutes
         dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
+    }
+
+    Timer {
+        interval: 2000
+        running: true
+        repeat: true
+        onTriggered: {
+            memProc.running = true
+        }
     }
 
     color: theme.clear
@@ -147,7 +168,7 @@ PanelWindow {
                 id: memory
                 symbol: "󰘚"
                 symbolColor: theme.magenta
-                contentText: "2.5GB"
+                contentText: memProc.usedMem
             }
         }
 
