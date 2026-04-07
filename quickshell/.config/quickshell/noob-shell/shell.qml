@@ -95,6 +95,17 @@ PanelWindow {
         }
     }
 
+    Process {
+        id: cpuProc
+        property string usedCpu
+
+        command: ["sh", "-c", "echo $[100 - $(vmstat 1 2 | tail -1 | awk '{print $15}')]"]
+        running: true
+        stdout: StdioCollector {
+            onStreamFinished: cpuProc.usedCpu = `${this.text.trim()}%`
+        }
+    }
+
     SystemClock {
         id: clockProc;
         property string dateTime
@@ -109,6 +120,7 @@ PanelWindow {
         repeat: true
         onTriggered: {
             memProc.running = true
+            cpuProc.running = true
         }
     }
 
@@ -154,7 +166,7 @@ PanelWindow {
                 id: cpu
                 symbol: "󰍛"
                 symbolColor: theme.paleCyan
-                contentText: "23%"
+                contentText: cpuProc.usedCpu
             }
 
             Module {
