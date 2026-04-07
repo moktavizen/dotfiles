@@ -16,15 +16,19 @@ PanelWindow {
     property string fontFamily: "JetBrainsMonoNL Nerd Font Propo"
     property int fontPxSize: 14
     property int fontWeight: 500
-    property int gap: 8
+    property int barGap: 8
+    property int menuGap: 16
+    property int menuPadY: 5
+    property int menuPadX: 16
+    property int moduleGap: 8
 
     component Menu: Control {
         default property alias content: content.data
 
-        topPadding: 5
-        bottomPadding: 5
-        leftPadding: 16
-        rightPadding: 16
+        topPadding: bar.menuPadY
+        bottomPadding: bar.menuPadY
+        leftPadding: bar.menuPadX
+        rightPadding: bar.menuPadX
 
         background: Rectangle {
             color: bar.clrBg
@@ -33,7 +37,7 @@ PanelWindow {
 
         contentItem: RowLayout {
             id: content
-            spacing: 16
+            spacing: bar.menuGap
         }
     }
 
@@ -42,7 +46,7 @@ PanelWindow {
         property alias color: icon.color
         property alias text: text.text
 
-        spacing: 8
+        spacing: bar.moduleGap
 
         Text {
             id: icon
@@ -64,15 +68,15 @@ PanelWindow {
     anchors.top: true
     anchors.left: true
     anchors.right: true
-    implicitHeight: container.implicitHeight + gap
+    implicitHeight: container.implicitHeight + barGap
 
     RowLayout {
         id: container
         anchors.fill: parent
-        anchors.topMargin: bar.gap
-        anchors.leftMargin: bar.gap
-        anchors.rightMargin: bar.gap
-        spacing: bar.gap
+        anchors.topMargin: bar.barGap
+        anchors.leftMargin: bar.barGap
+        anchors.rightMargin: bar.barGap
+        spacing: bar.barGap
 
         Menu {
             Module {
