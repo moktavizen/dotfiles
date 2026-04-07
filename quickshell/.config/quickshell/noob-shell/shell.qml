@@ -4,87 +4,100 @@ import QtQuick.Layouts
 import QtQuick.Controls
 
 PanelWindow {
-    id: bar
+    QtObject {
+        id: colors
+        property color clear: "#00000000"
+        property color background: "#cc1e1e1e"
+        property color foreground: "#ebebeb"
+        property color blue: "#97b4f2"
+        property color paleCyan: "#b6cad2"
+        property color red: "#f2979c"
+        property color yellow: "#f2d297"
+    }
+    QtObject {
+        id: typo
+        property string family: "JetBrainsMonoNL Nerd Font Propo"
+        property int pxSize: 14
+        property int weight: 500
+    }
+    QtObject {
+        id: bar
+        property int gap: 8
+    }
+    QtObject {
+        id: group
+        property int padY: 5
+        property int padX: 16
+        property int borderRadius: 999
+        property int gap: 16
+    }
+    QtObject {
+        id: module
+        property int gap: 8
+    }
 
-    property color clrNone: "#00000000"
-    property color clrFg: "#ebebeb"
-    property color clrBg: "#cc1e1e1e"
-    property color clrWindowTitle: "#97b4f2"
-    property color clrCPU: "#b6cad2"
-    property color clrTemp: "#f2979c"
-    property color clrClock: "#f2d297"
-    property string fontFamily: "JetBrainsMonoNL Nerd Font Propo"
-    property int fontPxSize: 14
-    property int fontWeight: 500
-    property int barGap: 8
-    property int menuGap: 16
-    property int menuPadY: 5
-    property int menuPadX: 16
-    property int moduleGap: 8
-
-    component Menu: Control {
+    component Group: Control {
         default property alias content: content.data
 
-        topPadding: bar.menuPadY
-        bottomPadding: bar.menuPadY
-        leftPadding: bar.menuPadX
-        rightPadding: bar.menuPadX
+        topPadding: group.padY
+        bottomPadding: group.padY
+        leftPadding: group.padX
+        rightPadding: group.padX
 
         background: Rectangle {
-            color: bar.clrBg
-            radius: 999
+            color: colors.background
+            radius: group.borderRadius
         }
 
         contentItem: Row {
             id: content
-            spacing: bar.menuGap
+            spacing: group.gap
         }
     }
-
     component Module: AbstractButton {
         property alias iconSource: iconText.text
         property alias iconColor: iconText.color
         property alias contentText: content.text
 
         contentItem: Row {
-            spacing: bar.moduleGap
+            spacing: module.gap
 
             Text {
                 id: iconText
-                font.family: bar.fontFamily
-                font.pixelSize: bar.fontPxSize
-                font.weight: bar.fontWeight
+                font.family: typo.family
+                font.pixelSize: typo.pxSize
+                font.weight: typo.weight
             }
 
             Text {
                 id: content
-                color: bar.clrFg
-                font.family: bar.fontFamily
-                font.pixelSize: bar.fontPxSize
-                font.weight: bar.fontWeight
+                color: colors.foreground
+                font.family: typo.family
+                font.pixelSize: typo.pxSize
+                font.weight: typo.weight
             }
         }
     }
 
-    color: clrNone
+    color: colors.clear
     anchors.top: true
     anchors.left: true
     anchors.right: true
-    implicitHeight: container.implicitHeight + barGap
+    implicitHeight: container.implicitHeight + bar.gap
 
     RowLayout {
         id: container
         anchors.fill: parent
-        anchors.topMargin: bar.barGap
-        anchors.leftMargin: bar.barGap
-        anchors.rightMargin: bar.barGap
-        spacing: bar.barGap
+        anchors.topMargin: bar.gap
+        anchors.leftMargin: bar.gap
+        anchors.rightMargin: bar.gap
+        spacing: bar.gap
 
-        Menu {
+        Group {
             Module {
                 id: windowTitle
                 iconSource: "󰊠"
-                iconColor: bar.clrWindowTitle
+                iconColor: colors.blue
                 contentText: "vizen - zsh"
             }
         }
@@ -94,27 +107,27 @@ PanelWindow {
             Layout.fillWidth: true
         }
 
-        Menu {
+        Group {
             Module {
                 id: cpu
                 iconSource: "󰍛"
-                iconColor: bar.clrCPU
+                iconColor: colors.paleCyan
                 contentText: "1%"
             }
 
             Module {
                 id: temp
                 iconSource: ""
-                iconColor: bar.clrTemp
+                iconColor: colors.red
                 contentText: "53C"
             }
         }
 
-        Menu {
+        Group {
             Module {
                 id: clock
                 iconSource: "󰥔"
-                iconColor: bar.clrClock
+                iconColor: colors.yellow
                 contentText: "Sun Apr 05 06:32 PM"
             }
         }
