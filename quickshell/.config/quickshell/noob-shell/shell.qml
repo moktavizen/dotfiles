@@ -33,7 +33,7 @@ PanelWindow {
         property real vPad: 5.5
         property real hPad: 15.5
         property int borderRadius: 999
-        property int gap: 16
+        property int gap: 15
     }
     QtObject {
         id: module
@@ -102,7 +102,7 @@ PanelWindow {
                 id: windowTitle
                 iconSource: "󰊠"
                 iconColor: colors.blue
-                contentText: "vizen - zsh"
+                contentText: "Terminal"
             }
         }
 
@@ -116,21 +116,24 @@ PanelWindow {
                 id: cpu
                 iconSource: "󰍛"
                 iconColor: colors.paleCyan
-                contentText: "1%"
+                contentText: "23%"
             }
 
             Module {
                 id: temperature
                 iconSource: ""
                 iconColor: colors.red
-                contentText: "53C"
+                contentText: "50C"
             }
 
             Module {
                 id: memory
                 iconSource: "󰘚"
                 iconColor: colors.magenta
-                contentText: "3.2GB"
+                contentText: "2.5GB"
+            }
+        }
+
         Group {
             Module {
                 id: battery
