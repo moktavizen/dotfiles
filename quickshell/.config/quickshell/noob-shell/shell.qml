@@ -10,10 +10,12 @@ PanelWindow {
         property color background: "#cc1e1e1e"
         property color foreground: "#ebebeb"
         property color blue: "#97b4f2"
+        property color cyan: "#97d8f2"
         property color paleCyan: "#b4c8d1"
         property color red: "#f2979c"
         property color yellow: "#f2d297"
         property color magenta: "#cd97f2"
+        property color green: "#cdf297"
     }
     QtObject {
         id: typo
@@ -129,6 +131,32 @@ PanelWindow {
                 iconSource: "󰘚"
                 iconColor: colors.magenta
                 contentText: "3.2GB"
+        Group {
+            Module {
+                id: battery
+                iconSource: ""
+                iconColor: colors.green
+                contentText: "99%"
+            }
+
+            Module {
+                id: network
+                iconSource: "󰤨"
+                iconColor: colors.cyan
+                contentText: "1.2  MB/s"
+            }
+
+            Module {
+                id: bluetooth
+                iconSource: ""
+                iconColor: colors.blue
+                contentText: "on"
+            }
+            Module {
+                id: audio
+                iconSource: "󰕾"
+                iconColor: colors.red
+                contentText: "150%"
             }
         }
 
