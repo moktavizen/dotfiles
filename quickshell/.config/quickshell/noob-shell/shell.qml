@@ -35,13 +35,13 @@ PanelWindow {
             radius: 999
         }
 
-        contentItem: RowLayout {
+        contentItem: Row {
             id: content
             spacing: bar.menuGap
         }
     }
 
-    component Module: RowLayout {
+    component Module: Row {
         property alias icon: icon.text
         property alias color: icon.color
         property alias text: text.text
