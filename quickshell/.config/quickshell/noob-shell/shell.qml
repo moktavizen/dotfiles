@@ -99,6 +99,15 @@ PanelWindow {
 
         Group {
             Module {
+                id: workspaces
+                iconSource: "󰮯"
+                iconColor: colors.yellow
+                contentText: "• •"
+            }
+        }
+
+        Group {
+            Module {
                 id: windowTitle
                 iconSource: "󰊠"
                 iconColor: colors.blue
