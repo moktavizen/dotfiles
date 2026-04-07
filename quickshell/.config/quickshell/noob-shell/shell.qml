@@ -118,7 +118,7 @@ PanelWindow {
             }
 
             Module {
-                id: temp
+                id: temperature
                 iconSource: ""
                 iconColor: colors.red
                 contentText: "53C"
