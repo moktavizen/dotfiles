@@ -41,26 +41,28 @@ PanelWindow {
         }
     }
 
-    component Module: Row {
-        property alias icon: icon.text
-        property alias color: icon.color
-        property alias text: text.text
+    component Module: AbstractButton {
+        property alias iconSource: iconText.text
+        property alias iconColor: iconText.color
+        property alias contentText: content.text
 
-        spacing: bar.moduleGap
+        contentItem: Row {
+            spacing: bar.moduleGap
 
-        Text {
-            id: icon
-            font.family: bar.fontFamily
-            font.pixelSize: bar.fontPxSize
-            font.weight: bar.fontWeight
-        }
+            Text {
+                id: iconText
+                font.family: bar.fontFamily
+                font.pixelSize: bar.fontPxSize
+                font.weight: bar.fontWeight
+            }
 
-        Text {
-            id: text
-            color: bar.clrFg
-            font.family: bar.fontFamily
-            font.pixelSize: bar.fontPxSize
-            font.weight: bar.fontWeight
+            Text {
+                id: content
+                color: bar.clrFg
+                font.family: bar.fontFamily
+                font.pixelSize: bar.fontPxSize
+                font.weight: bar.fontWeight
+            }
         }
     }
 
@@ -81,9 +83,9 @@ PanelWindow {
         Menu {
             Module {
                 id: windowTitle
-                icon: "󰊠"
-                color: bar.clrWindowTitle
-                text: "vizen - zsh"
+                iconSource: "󰊠"
+                iconColor: bar.clrWindowTitle
+                contentText: "vizen - zsh"
             }
         }
 
@@ -95,25 +97,25 @@ PanelWindow {
         Menu {
             Module {
                 id: cpu
-                icon: "󰍛"
-                color: bar.clrCPU
-                text: "1%"
+                iconSource: "󰍛"
+                iconColor: bar.clrCPU
+                contentText: "1%"
             }
 
             Module {
                 id: temp
-                icon: ""
-                color: bar.clrTemp
-                text: "53C"
+                iconSource: ""
+                iconColor: bar.clrTemp
+                contentText: "53C"
             }
         }
 
         Menu {
             Module {
                 id: clock
-                icon: "󰥔"
-                color: bar.clrClock
-                text: "Sun Apr 05 06:32 PM"
+                iconSource: "󰥔"
+                iconColor: bar.clrClock
+                contentText: "Sun Apr 05 06:32 PM"
             }
         }
     }
