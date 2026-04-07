@@ -85,17 +85,6 @@ PanelWindow {
     }
 
     Process {
-        id: memProc
-        property string memUsage
-
-        command: ["sh", "-c", "free -h | awk 'NR==2{print $3+0}'"]
-        running: true
-        stdout: StdioCollector {
-            onStreamFinished: memProc.memUsage = `${this.text.trim()}GB`
-        }
-    }
-
-    Process {
         id: cpuProc
         property string cpuUsage
 
@@ -117,6 +106,17 @@ PanelWindow {
         }
     }
 
+    Process {
+        id: memProc
+        property string memUsage
+
+        command: ["sh", "-c", "free -h | awk 'NR == 2 {print $3+0}'"]
+        running: true
+        stdout: StdioCollector {
+            onStreamFinished: memProc.memUsage = `${this.text.trim()}GB`
+        }
+    }
+
     SystemClock {
         id: clockProc;
         property string dateTime
@@ -130,9 +130,9 @@ PanelWindow {
         running: true
         repeat: true
         onTriggered: {
-            memProc.running = true
             cpuProc.running = true
             tempProc.running = true
+            memProc.running = true
         }
     }
 
