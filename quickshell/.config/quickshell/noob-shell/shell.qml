@@ -86,23 +86,23 @@ PanelWindow {
 
     Process {
         id: memProc
-        property string usedMem
+        property string memUsage
 
         command: ["sh", "-c", "free -h | awk 'NR==2{print $3+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: memProc.usedMem = `${this.text.trim()}GB`
+            onStreamFinished: memProc.memUsage = `${this.text.trim()}GB`
         }
     }
 
     Process {
         id: cpuProc
-        property string usedCpu
+        property string cpuUsage
 
         command: ["sh", "-c", "echo $[100 - $(vmstat 1 2 | tail -1 | awk '{print $15}')]"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: cpuProc.usedCpu = `${this.text.trim()}%`
+            onStreamFinished: cpuProc.cpuUsage = `${this.text.trim()}%`
         }
     }
 
@@ -166,7 +166,7 @@ PanelWindow {
                 id: cpu
                 symbol: "󰍛"
                 symbolColor: theme.paleCyan
-                contentText: cpuProc.usedCpu
+                contentText: cpuProc.cpuUsage
             }
 
             Module {
@@ -180,7 +180,7 @@ PanelWindow {
                 id: memory
                 symbol: "󰘚"
                 symbolColor: theme.magenta
-                contentText: memProc.usedMem
+                contentText: memProc.memUsage
             }
         }
 
