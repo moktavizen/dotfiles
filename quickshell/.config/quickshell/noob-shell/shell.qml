@@ -106,6 +106,17 @@ PanelWindow {
         }
     }
 
+    Process {
+        id: tempProc
+        property string cpuTemp
+
+        command: ["sh", "-c", "sensors | awk '/id 0/ {print $4+0}'"]
+        running: true
+        stdout: StdioCollector {
+            onStreamFinished: tempProc.cpuTemp = `${this.text.trim()}C`
+        }
+    }
+
     SystemClock {
         id: clockProc;
         property string dateTime
@@ -121,6 +132,7 @@ PanelWindow {
         onTriggered: {
             memProc.running = true
             cpuProc.running = true
+            tempProc.running = true
         }
     }
 
@@ -173,7 +185,7 @@ PanelWindow {
                 id: temperature
                 symbol: ""
                 symbolColor: theme.red
-                contentText: "50C"
+                contentText: tempProc.cpuTemp
             }
 
             Module {
