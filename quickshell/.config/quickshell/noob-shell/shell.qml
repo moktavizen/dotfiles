@@ -83,6 +83,14 @@ PanelWindow {
         }
     }
 
+    SystemClock {
+        id: clockProc;
+        property string dateTime
+
+        precision: SystemClock.Minutes
+        dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
+    }
+
     color: theme.clear
     anchors.top: true
     anchors.left: true
@@ -177,7 +185,7 @@ PanelWindow {
                 id: clock
                 symbol: "󰥔"
                 symbolColor: theme.yellow
-                contentText: "Sun Apr 05 06:32 PM"
+                contentText: clockProc.dateTime
             }
         }
     }
