@@ -13,6 +13,7 @@ PanelWindow {
         property color paleCyan: "#b4c8d1"
         property color red: "#f2979c"
         property color yellow: "#f2d297"
+        property color magenta: "#cd97f2"
     }
     QtObject {
         id: typo
@@ -121,6 +122,13 @@ PanelWindow {
                 iconSource: ""
                 iconColor: colors.red
                 contentText: "53C"
+            }
+
+            Module {
+                id: memory
+                iconSource: "󰘚"
+                iconColor: colors.magenta
+                contentText: "3.2GB"
             }
         }
 
