@@ -26,8 +26,8 @@ PanelWindow {
     }
     QtObject {
         id: group
-        property int padY: 5
-        property int padX: 16
+        property int vPad: 5
+        property int hPad: 16
         property int borderRadius: 999
         property int gap: 16
     }
@@ -39,10 +39,8 @@ PanelWindow {
     component Group: Control {
         default property alias content: content.data
 
-        topPadding: group.padY
-        bottomPadding: group.padY
-        leftPadding: group.padX
-        rightPadding: group.padX
+        verticalPadding: group.vPad;
+        horizontalPadding: group.hPad;
 
         background: Rectangle {
             color: colors.background
