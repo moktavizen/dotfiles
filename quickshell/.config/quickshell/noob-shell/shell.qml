@@ -5,7 +5,7 @@ import QtQuick.Controls
 
 PanelWindow {
     QtObject {
-        id: colors
+        id: theme
         property color clear: "#00000000"
         property color background: "#cc1e1e1e"
         property color foreground: "#ebebeb"
@@ -47,7 +47,7 @@ PanelWindow {
         horizontalPadding: group.hPad;
 
         background: Rectangle {
-            color: colors.background
+            color: theme.background
             radius: group.borderRadius
         }
 
@@ -57,8 +57,8 @@ PanelWindow {
         }
     }
     component Module: AbstractButton {
-        property alias iconSource: iconText.text
-        property alias iconColor: iconText.color
+        property alias symbol: iconText.text
+        property alias symbolColor: iconText.color
         property alias contentText: content.text
 
         contentItem: Row {
@@ -74,7 +74,7 @@ PanelWindow {
 
             Text {
                 id: content
-                color: colors.foreground
+                color: theme.foreground
                 font.family: typo.family
                 font.pixelSize: typo.pxSize
                 font.weight: typo.weight
@@ -83,7 +83,7 @@ PanelWindow {
         }
     }
 
-    color: colors.clear
+    color: theme.clear
     anchors.top: true
     anchors.left: true
     anchors.right: true
@@ -100,8 +100,8 @@ PanelWindow {
         Group {
             Module {
                 id: workspaces
-                iconSource: "󰮯"
-                iconColor: colors.yellow
+                symbol: "󰮯"
+                symbolColor: theme.yellow
                 contentText: "• •"
             }
         }
@@ -109,8 +109,8 @@ PanelWindow {
         Group {
             Module {
                 id: windowTitle
-                iconSource: "󰊠"
-                iconColor: colors.blue
+                symbol: "󰊠"
+                symbolColor: theme.blue
                 contentText: "Terminal"
             }
         }
@@ -123,22 +123,22 @@ PanelWindow {
         Group {
             Module {
                 id: cpu
-                iconSource: "󰍛"
-                iconColor: colors.paleCyan
+                symbol: "󰍛"
+                symbolColor: theme.paleCyan
                 contentText: "23%"
             }
 
             Module {
                 id: temperature
-                iconSource: ""
-                iconColor: colors.red
+                symbol: ""
+                symbolColor: theme.red
                 contentText: "50C"
             }
 
             Module {
                 id: memory
-                iconSource: "󰘚"
-                iconColor: colors.magenta
+                symbol: "󰘚"
+                symbolColor: theme.magenta
                 contentText: "2.5GB"
             }
         }
@@ -146,28 +146,28 @@ PanelWindow {
         Group {
             Module {
                 id: battery
-                iconSource: ""
-                iconColor: colors.green
+                symbol: ""
+                symbolColor: theme.green
                 contentText: "99%"
             }
 
             Module {
                 id: network
-                iconSource: "󰤨"
-                iconColor: colors.cyan
+                symbol: "󰤨"
+                symbolColor: theme.cyan
                 contentText: "1.2  MB/s"
             }
 
             Module {
                 id: bluetooth
-                iconSource: ""
-                iconColor: colors.blue
+                symbol: ""
+                symbolColor: theme.blue
                 contentText: "on"
             }
             Module {
                 id: audio
-                iconSource: "󰕾"
-                iconColor: colors.red
+                symbol: "󰕾"
+                symbolColor: theme.red
                 contentText: "150%"
             }
         }
@@ -175,8 +175,8 @@ PanelWindow {
         Group {
             Module {
                 id: clock
-                iconSource: "󰥔"
-                iconColor: colors.yellow
+                symbol: "󰥔"
+                symbolColor: theme.yellow
                 contentText: "Sun Apr 05 06:32 PM"
             }
         }
