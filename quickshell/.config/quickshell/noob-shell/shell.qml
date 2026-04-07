@@ -86,9 +86,9 @@ PanelWindow {
 
     Process {
         id: cpuProc
-        property string cpuUsage
+        property string cpuUsage: "0%"
 
-        command: ["sh", "-c", "echo $[100 - $(vmstat 1 2 | tail -1 | awk '{print $15}')]"]
+        command: ["sh", "-c", "vmstat 1 2 | awk 'END {print 100 - $15}'"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: cpuProc.cpuUsage = `${this.text.trim()}%`
@@ -97,7 +97,7 @@ PanelWindow {
 
     Process {
         id: tempProc
-        property string cpuTemp
+        property string cpuTemp: "0C"
 
         command: ["sh", "-c", "sensors | awk '/id 0/ {print $4+0}'"]
         running: true
@@ -108,9 +108,9 @@ PanelWindow {
 
     Process {
         id: memProc
-        property string memUsage
+        property string memUsage: "0GB"
 
-        command: ["sh", "-c", "free -h | awk 'NR == 2 {print $3+0}'"]
+        command: ["sh", "-c", "free -h | awk '/Mem/ {print $3+0}'"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: memProc.memUsage = `${this.text.trim()}GB`
@@ -119,10 +119,9 @@ PanelWindow {
 
     SystemClock {
         id: clockProc;
-        property string dateTime
+        property string dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
 
         precision: SystemClock.Minutes
-        dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
     }
 
     Timer {
