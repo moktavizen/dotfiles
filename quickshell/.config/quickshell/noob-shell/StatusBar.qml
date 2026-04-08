@@ -156,14 +156,14 @@ Scope {
     QtObject {
         id: btooProc
         property string powerState: {
-            Bluetooth.defaultAdapter.state == "1" ? "On" : "Off"
+            Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
         }
     }
     PwObjectTracker {
         id: volProc
         objects: [Pipewire.defaultAudioSink]
         property string volLevel: {
-            `${Math.round(Pipewire.defaultAudioSink.audio.volume * 100)}%`
+            `${Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)}%`
         }
     }
     SystemClock {
