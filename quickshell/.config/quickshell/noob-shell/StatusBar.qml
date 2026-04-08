@@ -3,6 +3,7 @@ import Quickshell.Io
 import Quickshell.Services.UPower
 import Quickshell.Bluetooth
 import Quickshell.Services.Pipewire
+import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -87,6 +88,23 @@ Scope {
         }
     }
 
+    Connections {
+        id: windowProc
+        property string winTitle
+
+        target: Hyprland
+        function onRawEvent(event) {
+            if (event.name === "activewindowv2") {
+                const title = Hyprland.activeToplevel.title
+                windowProc.winTitle = title.length > 70 ? `${title.slice(0, 70)}…` : title;
+            } else if (event.name === "workspacev2") {
+                const windowCount = Hyprland.focusedWorkspace.toplevels.values.length
+                if (windowCount === 0) {
+                    windowProc.winTitle = "No Window"
+                }
+            }
+        }
+    }
     Process {
         id: cpuProc
         property string cpuUsage: "0%"
@@ -202,7 +220,7 @@ Scope {
                         id: windowTitle
                         symbol: "󰊠"
                         symbolColor: theme.blue
-                        contentText: "Terminal"
+                        contentText: windowProc.winTitle
                     }
                 }
 
