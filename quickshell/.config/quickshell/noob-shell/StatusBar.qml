@@ -1,9 +1,9 @@
 import Quickshell
 import Quickshell.Io
-import Quickshell.Services.UPower
-import Quickshell.Bluetooth
-import Quickshell.Services.Pipewire
 import Quickshell.Hyprland
+import Quickshell.Bluetooth
+import Quickshell.Services.UPower
+import Quickshell.Services.Pipewire
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
