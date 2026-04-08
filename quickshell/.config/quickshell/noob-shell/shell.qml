@@ -4,7 +4,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-PanelWindow {
+Scope {
     QtObject {
         id: theme
         property color clear: "#00000000"
@@ -94,7 +94,6 @@ PanelWindow {
             onStreamFinished: cpuProc.cpuUsage = `${this.text.trim()}%`
         }
     }
-
     Process {
         id: tempProc
         property string cpuTemp: "0C"
@@ -105,7 +104,6 @@ PanelWindow {
             onStreamFinished: tempProc.cpuTemp = `${this.text.trim()}C`
         }
     }
-
     Process {
         id: memProc
         property string memUsage: "0GB"
@@ -116,14 +114,12 @@ PanelWindow {
             onStreamFinished: memProc.memUsage = `${this.text.trim()}GB`
         }
     }
-
     SystemClock {
         id: clockProc;
         property string dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
 
         precision: SystemClock.Minutes
     }
-
     Timer {
         interval: 2000
         running: true
@@ -135,101 +131,107 @@ PanelWindow {
         }
     }
 
-    color: theme.clear
-    anchors.top: true
-    anchors.left: true
-    anchors.right: true
-    implicitHeight: container.implicitHeight + bar.gap
+    Variants {
+        model: Quickshell.screens
 
-    RowLayout {
-        id: container
-        anchors.fill: parent
-        anchors.topMargin: bar.gap
-        anchors.leftMargin: bar.gap
-        anchors.rightMargin: bar.gap
-        spacing: bar.gap
+        PanelWindow {
+            color: theme.clear
+            anchors.top: true
+            anchors.left: true
+            anchors.right: true
+            implicitHeight: container.implicitHeight + bar.gap
 
-        Group {
-            Module {
-                id: workspaces
-                symbol: "󰮯"
-                symbolColor: theme.yellow
-                contentText: "• •"
-            }
-        }
+            RowLayout {
+                id: container
+                anchors.fill: parent
+                anchors.topMargin: bar.gap
+                anchors.leftMargin: bar.gap
+                anchors.rightMargin: bar.gap
+                spacing: bar.gap
 
-        Group {
-            Module {
-                id: windowTitle
-                symbol: "󰊠"
-                symbolColor: theme.blue
-                contentText: "Terminal"
-            }
-        }
+                Group {
+                    Module {
+                        id: workspaces
+                        symbol: "󰮯"
+                        symbolColor: theme.yellow
+                        contentText: "• •"
+                    }
+                }
 
-        Item {
-            id: spacer
-            Layout.fillWidth: true
-        }
+                Group {
+                    Module {
+                        id: windowTitle
+                        symbol: "󰊠"
+                        symbolColor: theme.blue
+                        contentText: "Terminal"
+                    }
+                }
 
-        Group {
-            Module {
-                id: cpu
-                symbol: "󰍛"
-                symbolColor: theme.paleCyan
-                contentText: cpuProc.cpuUsage
-            }
+                Item {
+                    id: spacer
+                    Layout.fillWidth: true
+                }
 
-            Module {
-                id: temperature
-                symbol: ""
-                symbolColor: theme.red
-                contentText: tempProc.cpuTemp
-            }
+                Group {
+                    Module {
+                        id: cpu
+                        symbol: "󰍛"
+                        symbolColor: theme.paleCyan
+                        contentText: cpuProc.cpuUsage
+                    }
 
-            Module {
-                id: memory
-                symbol: "󰘚"
-                symbolColor: theme.magenta
-                contentText: memProc.memUsage
-            }
-        }
+                    Module {
+                        id: temperature
+                        symbol: ""
+                        symbolColor: theme.red
+                        contentText: tempProc.cpuTemp
+                    }
 
-        Group {
-            Module {
-                id: battery
-                symbol: ""
-                symbolColor: theme.green
-                contentText: "99%"
-            }
+                    Module {
+                        id: memory
+                        symbol: "󰘚"
+                        symbolColor: theme.magenta
+                        contentText: memProc.memUsage
+                    }
+                }
 
-            Module {
-                id: network
-                symbol: "󰤨"
-                symbolColor: theme.cyan
-                contentText: "1.2  MB/s"
-            }
+                Group {
+                    Module {
+                        id: battery
+                        symbol: ""
+                        symbolColor: theme.green
+                        contentText: "99%"
+                    }
 
-            Module {
-                id: bluetooth
-                symbol: ""
-                symbolColor: theme.blue
-                contentText: "on"
-            }
-            Module {
-                id: audio
-                symbol: "󰕾"
-                symbolColor: theme.red
-                contentText: "150%"
-            }
-        }
+                    Module {
+                        id: network
+                        symbol: "󰤨"
+                        symbolColor: theme.cyan
+                        contentText: "1.2  MB/s"
+                    }
 
-        Group {
-            Module {
-                id: clock
-                symbol: "󰥔"
-                symbolColor: theme.yellow
-                contentText: clockProc.dateTime
+                    Module {
+                        id: bluetooth
+                        symbol: ""
+                        symbolColor: theme.blue
+                        contentText: "on"
+                    }
+                    Module {
+                        id: audio
+                        symbol: "󰕾"
+                        symbolColor: theme.red
+                        contentText: "150%"
+                    }
+                }
+
+                Group {
+                    Module {
+                        id: clock
+                        symbol: "󰥔"
+                        symbolColor: theme.yellow
+                        contentText: clockProc.dateTime
+                    }
+                }
             }
         }
     }
