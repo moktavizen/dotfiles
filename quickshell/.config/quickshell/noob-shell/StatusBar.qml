@@ -1,5 +1,6 @@
 import Quickshell
 import Quickshell.Io
+import Quickshell.Services.UPower
 import Quickshell.Bluetooth
 import Quickshell.Services.Pipewire
 import QtQuick
@@ -116,14 +117,10 @@ Scope {
             onStreamFinished: memProc.memUsage = `${this.text.trim()}GB`
         }
     }
-    Process {
+    QtObject {
         id: battProc
-        property string batt: "00%"
-
-        command: ["sh", "-c", "cat /sys/class/power_supply/BAT0/capacity"]
-        running: true
-        stdout: StdioCollector {
-            onStreamFinished: battProc.batt = `${this.text.trim()}%`
+        property string battPercentage: {
+            `${UPower.displayDevice.percentage * 100}%`
         }
     }
     QtObject {
@@ -229,7 +226,7 @@ Scope {
                         id: battery
                         symbol: ""
                         symbolColor: theme.green
-                        contentText: battProc.batt
+                        contentText: battProc.battPercentage
                     }
 
                     Module {
