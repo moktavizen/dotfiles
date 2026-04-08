@@ -161,6 +161,9 @@ Scope {
         model: Quickshell.screens
 
         PanelWindow {
+            property var modelData
+            screen: modelData
+
             color: theme.clear
             anchors.top: true
             anchors.left: true
