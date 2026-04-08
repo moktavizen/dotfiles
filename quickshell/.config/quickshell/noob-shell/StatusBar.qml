@@ -145,11 +145,16 @@ Scope {
         id: netwProc
         property string downByte: "0.0MB/s"
 
-        command: ["sh", "-c", "ifstat wlan0 | awk '/wlan0/ && $6 ~ /K$/ {print $6+0}'"]
+        command: ["sh", "-c", "ifstat | awk '/wlan0/ {print $6}'"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                netwProc.downByte = `${Number(text.trim() / 2048).toFixed(1)}MB/s`
+                const out = text.trim()
+                const timerSec = 2
+                const downMBps = out.includes("K")
+                    ? parseInt(out) / 1024 / timerSec
+                    : parseInt(out) / 1024 / 1024 / timerSec
+                netwProc.downByte = `${downMBps.toFixed(1)}MB/s`
             }
         }
     }
