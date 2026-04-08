@@ -1,6 +1,7 @@
 import Quickshell
 import Quickshell.Io
 import Quickshell.Bluetooth
+import Quickshell.Services.Pipewire
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -129,6 +130,12 @@ Scope {
         id: btooProc
         property string powerState: Bluetooth.defaultAdapter.state == "1" ? "On" : "Off"
     }
+    PwObjectTracker {
+        id: volProc
+        objects: Pipewire.defaultAudioSink
+
+        property string volLevel: `${Math.round(Pipewire.defaultAudioSink.audio.volume * 100)}%`
+    }
     SystemClock {
         id: clockProc;
         property string dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
@@ -235,7 +242,7 @@ Scope {
                         id: audio
                         symbol: "󰕾"
                         symbolColor: theme.red
-                        contentText: "150%"
+                        contentText: volProc.volLevel
                     }
                 }
 
