@@ -123,6 +123,18 @@ Scope {
             `${UPower.displayDevice.percentage * 100}%`
         }
     }
+    Process {
+        id: netwProc
+        property string downByte: "0.0MB/s"
+
+        command: ["sh", "-c", "ifstat wlan0 | awk '/wlan0/ && $6 ~ /K$/ {print $6+0}'"]
+        running: true
+        stdout: StdioCollector {
+            onStreamFinished: {
+                netwProc.downByte = `${Number(this.text.trim() / 2048).toFixed(1)}MB/s`
+            }
+        }
+    }
     QtObject {
         id: btooProc
         property string powerState: {
@@ -151,6 +163,7 @@ Scope {
             cpuProc.running = true
             tempProc.running = true
             memProc.running = true
+            netwProc.running = true
         }
     }
 
@@ -233,7 +246,7 @@ Scope {
                         id: network
                         symbol: "󰤨"
                         symbolColor: theme.cyan
-                        contentText: "1.2  MB/s"
+                        contentText: netwProc.downByte
                     }
 
                     Module {
