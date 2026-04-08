@@ -175,7 +175,7 @@ Scope {
         id: clockProc;
         precision: SystemClock.Minutes
         property string dateTime: {
-            Qt.formatDateTime(date, "ddd MMM dd hh:mm AP")
+            Qt.formatDateTime(date, "ddd MMM d h:mm AP")
         }
     }
     Timer {
