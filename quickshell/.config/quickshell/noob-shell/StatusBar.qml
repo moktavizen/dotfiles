@@ -161,7 +161,7 @@ Scope {
     }
     PwObjectTracker {
         id: volProc
-        objects: Pipewire.defaultAudioSink
+        objects: [Pipewire.defaultAudioSink]
         property string volLevel: {
             `${Math.round(Pipewire.defaultAudioSink.audio.volume * 100)}%`
         }
