@@ -94,7 +94,7 @@ Scope {
         command: ["sh", "-c", "vmstat 1 2 | awk 'END {print 100 - $15}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: cpuProc.cpuUsage = `${this.text.trim()}%`
+            onStreamFinished: cpuProc.cpuUsage = `${text.trim()}%`
         }
     }
     Process {
@@ -104,7 +104,7 @@ Scope {
         command: ["sh", "-c", "sensors | awk '/id 0/ {print $4+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: tempProc.cpuTemp = `${this.text.trim()}C`
+            onStreamFinished: tempProc.cpuTemp = `${text.trim()}C`
         }
     }
     Process {
@@ -114,7 +114,7 @@ Scope {
         command: ["sh", "-c", "free -h | awk '/Mem/ {print $3+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: memProc.memUsage = `${this.text.trim()}GB`
+            onStreamFinished: memProc.memUsage = `${text.trim()}GB`
         }
     }
     QtObject {
@@ -131,7 +131,7 @@ Scope {
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                netwProc.downByte = `${Number(this.text.trim() / 2048).toFixed(1)}MB/s`
+                netwProc.downByte = `${Number(text.trim() / 2048).toFixed(1)}MB/s`
             }
         }
     }
@@ -152,7 +152,7 @@ Scope {
         id: clockProc;
         precision: SystemClock.Minutes
         property string dateTime: {
-            Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
+            Qt.formatDateTime(date, "ddd MMM dd hh:mm AP")
         }
     }
     Timer {
