@@ -114,6 +114,16 @@ Scope {
             onStreamFinished: memProc.memUsage = `${this.text.trim()}GB`
         }
     }
+    Process {
+        id: battProc
+        property string batt: "99%"
+
+        command: ["sh", "-c", "cat /sys/class/power_supply/BAT0/capacity"]
+        running: true
+        stdout: StdioCollector {
+            onStreamFinished: battProc.batt = `${this.text.trim()}%`
+        }
+    }
     SystemClock {
         id: clockProc;
         property string dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
@@ -200,7 +210,7 @@ Scope {
                         id: battery
                         symbol: ""
                         symbolColor: theme.green
-                        contentText: "99%"
+                        contentText: battProc.batt
                     }
 
                     Module {
