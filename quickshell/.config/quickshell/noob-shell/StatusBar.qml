@@ -1,5 +1,6 @@
 import Quickshell
 import Quickshell.Io
+import Quickshell.Bluetooth
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -124,6 +125,10 @@ Scope {
             onStreamFinished: battProc.batt = `${this.text.trim()}%`
         }
     }
+    QtObject {
+        id: btooProc
+        property string powerState: Bluetooth.defaultAdapter.state == "1" ? "On" : "Off"
+    }
     SystemClock {
         id: clockProc;
         property string dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
@@ -224,7 +229,7 @@ Scope {
                         id: bluetooth
                         symbol: ""
                         symbolColor: theme.blue
-                        contentText: "on"
+                        contentText: btooProc.powerState
                     }
                     Module {
                         id: audio
