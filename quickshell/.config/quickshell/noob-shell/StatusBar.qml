@@ -128,19 +128,23 @@ Scope {
     }
     QtObject {
         id: btooProc
-        property string powerState: Bluetooth.defaultAdapter.state == "1" ? "On" : "Off"
+        property string powerState: {
+            Bluetooth.defaultAdapter.state == "1" ? "On" : "Off"
+        }
     }
     PwObjectTracker {
         id: volProc
         objects: Pipewire.defaultAudioSink
-
-        property string volLevel: `${Math.round(Pipewire.defaultAudioSink.audio.volume * 100)}%`
+        property string volLevel: {
+            `${Math.round(Pipewire.defaultAudioSink.audio.volume * 100)}%`
+        }
     }
     SystemClock {
         id: clockProc;
-        property string dateTime: Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
-
         precision: SystemClock.Minutes
+        property string dateTime: {
+            Qt.formatDateTime(this.date, "ddd MMM dd hh:mm AP")
+        }
     }
     Timer {
         interval: 2000
