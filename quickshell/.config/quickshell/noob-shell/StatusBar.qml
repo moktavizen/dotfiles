@@ -96,7 +96,7 @@ Scope {
     }
     Process {
         id: tempProc
-        property string cpuTemp: "0C"
+        property string cpuTemp: "00C"
 
         command: ["sh", "-c", "sensors | awk '/id 0/ {print $4+0}'"]
         running: true
@@ -106,7 +106,7 @@ Scope {
     }
     Process {
         id: memProc
-        property string memUsage: "0GB"
+        property string memUsage: "0.0GB"
 
         command: ["sh", "-c", "free -h | awk '/Mem/ {print $3+0}'"]
         running: true
@@ -116,7 +116,7 @@ Scope {
     }
     Process {
         id: battProc
-        property string batt: "99%"
+        property string batt: "00%"
 
         command: ["sh", "-c", "cat /sys/class/power_supply/BAT0/capacity"]
         running: true
