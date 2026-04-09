@@ -40,10 +40,6 @@ Scope {
         property int borderRadius: 999
         property int gap: 15
     }
-    QtObject {
-        id: module
-        property int gap: 9
-    }
 
     Connections {
         id: windowProc
@@ -164,29 +160,18 @@ Scope {
         }
     }
     component Module: AbstractButton {
-        property alias symbol: iconText.text
-        property alias symbolColor: iconText.color
-        property alias contentText: content.text
+        property string symbol
+        property color symbolColor
+        property string contentText
 
-        contentItem: Row {
-            spacing: module.gap
-
-            Text {
-                id: iconText
-                font.family: typo.family
-                font.pixelSize: typo.pxSize
-                font.weight: typo.weight
-                font.letterSpacing: typo.letterSpacing
-            }
-
-            Text {
-                id: content
-                color: theme.foreground
-                font.family: typo.family
-                font.pixelSize: typo.pxSize
-                font.weight: typo.weight
-                font.letterSpacing: typo.letterSpacing
-            }
+        contentItem: Text {
+            color: theme.foreground
+            font.family: typo.family
+            font.pixelSize: typo.pxSize
+            font.weight: typo.weight
+            font.letterSpacing: typo.letterSpacing
+            textFormat: Text.StyledText
+            text: `<font color="${symbolColor}">${symbol}</font> ${contentText}`
         }
     }
 
