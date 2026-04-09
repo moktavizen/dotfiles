@@ -146,6 +146,7 @@ Scope {
     component Group: Control {
         default property alias content: content.data
 
+        Layout.preferredHeight: 30
         verticalPadding: group.vPad;
         horizontalPadding: group.hPad;
 
