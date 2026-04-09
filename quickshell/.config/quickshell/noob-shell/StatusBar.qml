@@ -100,7 +100,7 @@ Scope {
             } else if (event.name === "workspacev2") {
                 const windowCount = Hyprland.focusedWorkspace.toplevels.values.length
                 if (windowCount === 0) {
-                    windowProc.winTitle = "No Window"
+                    windowProc.winTitle = "Empty"
                 }
             }
         }
