@@ -149,7 +149,7 @@ Scope {
             radius: group.borderRadius
         }
 
-        contentItem: Row {
+        contentItem: RowLayout {
             id: content
             spacing: group.gap
         }
@@ -159,6 +159,7 @@ Scope {
         property color symbolColor
         property string contentText
 
+        Layout.maximumWidth: 600
         contentItem: Text {
             color: theme.foreground
             font.family: typo.family
@@ -167,6 +168,7 @@ Scope {
             font.letterSpacing: typo.letterSpacing
             textFormat: Text.StyledText
             text: `<font color="${symbolColor}">${symbol}</font> ${contentText}`
+            elide: Text.ElideMiddle
         }
     }
 
