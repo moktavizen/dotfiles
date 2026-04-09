@@ -41,21 +41,15 @@ Scope {
         property int gap: 15
     }
 
-    Connections {
+    QtObject {
         id: windowProc
-        property string winTitle
-
-        target: Hyprland
-        function onRawEvent(event) {
-            if (event.name === "activewindowv2") {
-                const title = Hyprland.activeToplevel.title
-                windowProc.winTitle = title.length > 70 ? `${title.slice(0, 70)}…` : title;
-            } else if (event.name === "workspacev2") {
-                const windowCount = Hyprland.focusedWorkspace.toplevels.values.length
-                if (windowCount === 0) {
-                    windowProc.winTitle = "Empty"
-                }
+        property string winTitle: {
+            const title = Hyprland.activeToplevel?.title || ""
+            const wsWindows = Hyprland.focusedWorkspace?.toplevels.values
+            if (wsWindows?.length === 0){
+                return "Empty"
             }
+            return title
         }
     }
     Process {
