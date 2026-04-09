@@ -4,6 +4,7 @@ import Quickshell.Hyprland
 import Quickshell.Bluetooth
 import Quickshell.Services.UPower
 import Quickshell.Services.Pipewire
+import Quickshell.Services.SystemTray
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -171,6 +172,14 @@ Scope {
             elide: Text.ElideMiddle
         }
     }
+    component TrayItem: AbstractButton {
+        contentItem: Image {
+            source: SystemTray.items.values[0]?.icon ?? ""
+            sourceSize.width: 16
+            sourceSize.height: 16
+        }
+    }
+
 
     Variants {
         model: Quickshell.screens
@@ -214,6 +223,11 @@ Scope {
                 Item {
                     id: spacer
                     Layout.fillWidth: true
+                }
+
+                Group {
+                    id: tray
+                    TrayItem {}
                 }
 
                 Group {
