@@ -45,49 +45,6 @@ Scope {
         property int gap: 9
     }
 
-    component Group: Control {
-        default property alias content: content.data
-
-        verticalPadding: group.vPad;
-        horizontalPadding: group.hPad;
-
-        background: Rectangle {
-            color: theme.background
-            radius: group.borderRadius
-        }
-
-        contentItem: Row {
-            id: content
-            spacing: group.gap
-        }
-    }
-    component Module: AbstractButton {
-        property alias symbol: iconText.text
-        property alias symbolColor: iconText.color
-        property alias contentText: content.text
-
-        contentItem: Row {
-            spacing: module.gap
-
-            Text {
-                id: iconText
-                font.family: typo.family
-                font.pixelSize: typo.pxSize
-                font.weight: typo.weight
-                font.letterSpacing: typo.letterSpacing
-            }
-
-            Text {
-                id: content
-                color: theme.foreground
-                font.family: typo.family
-                font.pixelSize: typo.pxSize
-                font.weight: typo.weight
-                font.letterSpacing: typo.letterSpacing
-            }
-        }
-    }
-
     Connections {
         id: windowProc
         property string winTitle
@@ -187,6 +144,49 @@ Scope {
             tempProc.running = true
             memProc.running = true
             netwProc.running = true
+        }
+    }
+
+    component Group: Control {
+        default property alias content: content.data
+
+        verticalPadding: group.vPad;
+        horizontalPadding: group.hPad;
+
+        background: Rectangle {
+            color: theme.background
+            radius: group.borderRadius
+        }
+
+        contentItem: Row {
+            id: content
+            spacing: group.gap
+        }
+    }
+    component Module: AbstractButton {
+        property alias symbol: iconText.text
+        property alias symbolColor: iconText.color
+        property alias contentText: content.text
+
+        contentItem: Row {
+            spacing: module.gap
+
+            Text {
+                id: iconText
+                font.family: typo.family
+                font.pixelSize: typo.pxSize
+                font.weight: typo.weight
+                font.letterSpacing: typo.letterSpacing
+            }
+
+            Text {
+                id: content
+                color: theme.foreground
+                font.family: typo.family
+                font.pixelSize: typo.pxSize
+                font.weight: typo.weight
+                font.letterSpacing: typo.letterSpacing
+            }
         }
     }
 
