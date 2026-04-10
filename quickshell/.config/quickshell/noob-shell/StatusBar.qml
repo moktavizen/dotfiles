@@ -43,6 +43,10 @@ Scope {
     }
 
     QtObject {
+        id: workspaceProc
+        property var workspaces: Hyprland.workspaces.values
+    }
+    QtObject {
         id: windowProc
         property string winTitle: {
             const title = Hyprland.activeToplevel?.title ?? ""
@@ -173,6 +177,20 @@ Scope {
             elide: Text.ElideMiddle
         }
     }
+    component Workspace: AbstractButton {
+        required property var modelData
+
+        width: 18
+        contentItem: Text {
+            color: modelData.active? theme.yellow : theme.foreground
+            font.family: typo.family
+            font.pixelSize: typo.pxSize
+            font.weight: typo.weight
+            font.letterSpacing: typo.letterSpacing
+            text: modelData.active ? "󰮯" : "•"
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
     component TrayItem: AbstractButton {
         required property var modelData
         contentItem: Image {
@@ -204,11 +222,13 @@ Scope {
                 spacing: bar.gap
 
                 Group {
-                    Module {
-                        id: workspaces
-                        symbol: "󰮯"
-                        symbolColor: theme.yellow
-                        contentText: "• •"
+                    horizontalPadding: 10
+                    contentItem: Row {
+                        Repeater {
+                            id: workspaces
+                            model: workspaceProc.workspaces
+                            Workspace {}
+                        }
                     }
                 }
 
