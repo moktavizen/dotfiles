@@ -12,7 +12,6 @@ import QtQuick.Controls
 Scope {
     QtObject {
         id: theme
-        property color clear: "#00000000"
         property color background: "#cc1e1e1e"
         property color foreground: "#ebebeb"
         property color blue: "#97b4f2"
@@ -220,7 +219,7 @@ Scope {
             property var modelData
             screen: modelData
 
-            color: theme.clear
+            color: "transparent"
             anchors.top: true
             anchors.left: true
             anchors.right: true
