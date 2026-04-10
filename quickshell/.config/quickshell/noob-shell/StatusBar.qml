@@ -145,6 +145,7 @@ Scope {
 
     component Group: Control {
         default property alias content: content.data
+        property int gap: group.gap
 
         Layout.preferredHeight: 30
         verticalPadding: group.vPad;
@@ -155,9 +156,9 @@ Scope {
             radius: group.borderRadius
         }
 
-        contentItem: RowLayout {
+        contentItem: Row {
             id: content
-            spacing: group.gap
+            spacing: gap
         }
     }
     component Module: AbstractButton {
@@ -165,7 +166,6 @@ Scope {
         property color symbolColor
         property string contentText
 
-        Layout.maximumWidth: 600
         contentItem: Text {
             color: theme.foreground
             font.family: typo.family
@@ -222,22 +222,24 @@ Scope {
                 spacing: bar.gap
 
                 Group {
+                    gap: 0
                     horizontalPadding: 10
-                    contentItem: Row {
-                        Repeater {
-                            id: workspaces
-                            model: workspaceProc.workspaces
-                            Workspace {}
-                        }
+                    Repeater {
+                        id: workspaces
+                        model: workspaceProc.workspaces
+                        Workspace {}
                     }
                 }
 
                 Group {
-                    Module {
-                        id: windowTitle
-                        symbol: "󰊠"
-                        symbolColor: theme.blue
-                        contentText: windowProc.winTitle
+                    contentItem: RowLayout {
+                        Module {
+                            id: windowTitle
+                            symbol: "󰊠"
+                            symbolColor: theme.blue
+                            contentText: windowProc.winTitle
+                            Layout.maximumWidth: 600
+                        }
                     }
                 }
 
