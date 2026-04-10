@@ -175,8 +175,10 @@ Scope {
         property string symbol
         property color symbolColor
         property string contentText
+        property alias elide: moduleText.elide
 
         contentItem: Text {
+            id: moduleText
             color: theme.foreground
             font.family: typo.family
             font.pixelSize: typo.pxSize
@@ -184,7 +186,6 @@ Scope {
             font.letterSpacing: typo.letterSpacing
             textFormat: Text.StyledText
             text: `<font color="${symbolColor}">${symbol}</font> ${contentText}`
-            elide: Text.ElideMiddle
         }
     }
     component TrayItem: AbstractButton {
@@ -235,6 +236,7 @@ Scope {
                             symbolColor: theme.blue
                             contentText: windowProc.winTitle
                             Layout.maximumWidth: 600
+                            elide: Text.ElideMiddle
                         }
                     }
                 }
