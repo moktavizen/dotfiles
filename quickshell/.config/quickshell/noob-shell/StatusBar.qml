@@ -185,6 +185,7 @@ Scope {
         property color symbolColor
         property string contentText
         property alias elide: moduleText.elide
+        property string onClickCmd
 
         contentItem: Text {
             id: moduleText
@@ -195,6 +196,15 @@ Scope {
             font.letterSpacing: typo.letterSpacing
             textFormat: Text.StyledText
             text: `<font color="${symbolColor}">${symbol}</font> ${contentText}`
+        }
+
+        onClicked: {
+            if (onClickCmd === "") return
+            Quickshell.execDetached(["sh", "-c", onClickCmd])
+        }
+        HoverHandler {
+            enabled: onClickCmd !== ""
+            cursorShape: Qt.PointingHandCursor
         }
     }
     component TrayItem: AbstractButton {
@@ -270,6 +280,7 @@ Scope {
                         symbol: "󰍛"
                         symbolColor: theme.paleCyan
                         contentText: cpuProc.cpuUsage
+                        onClickCmd: "foot -T 'Task Manager' btop"
                     }
 
                     Module {
@@ -277,6 +288,7 @@ Scope {
                         symbol: ""
                         symbolColor: theme.red
                         contentText: tempProc.cpuTemp
+                        onClickCmd: "foot -T 'Task Manager' btop"
                     }
 
                     Module {
@@ -284,6 +296,7 @@ Scope {
                         symbol: "󰘚"
                         symbolColor: theme.magenta
                         contentText: memProc.memUsage
+                        onClickCmd: "foot -T 'Task Manager' btop"
                     }
                 }
 
@@ -293,6 +306,7 @@ Scope {
                         symbol: ""
                         symbolColor: theme.green
                         contentText: battProc.percentage
+                        onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
                     }
 
                     Module {
@@ -300,6 +314,7 @@ Scope {
                         symbol: "󰤨"
                         symbolColor: theme.cyan
                         contentText: netwProc.downByte
+                        onClickCmd: "foot -T 'WiFi Manager' impala"
                     }
 
                     Module {
@@ -307,12 +322,14 @@ Scope {
                         symbol: ""
                         symbolColor: theme.blue
                         contentText: btooProc.powerState
+                        onClickCmd: "foot -T 'Bluetooth Manager' bluetui"
                     }
                     Module {
                         id: audio
                         symbol: "󰕾"
                         symbolColor: theme.red
                         contentText: volProc.volLevel
+                        onClickCmd: "foot -T 'Audio Manager' wiremix"
                     }
                 }
 
@@ -322,6 +339,7 @@ Scope {
                         symbol: "󰥔"
                         symbolColor: theme.yellow
                         contentText: clockProc.dateTime
+                        onClickCmd: "foot -T 'Calendar' sh -c 'cal --year; read'"
                     }
                 }
             }
