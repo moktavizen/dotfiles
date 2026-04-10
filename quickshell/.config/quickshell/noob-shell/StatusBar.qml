@@ -160,7 +160,7 @@ Scope {
             spacing: group.gap
         }
     }
-    component WorkspaceButton: AbstractButton {
+    component Workspace: AbstractButton {
         required property var modelData
         required property int index
 
@@ -181,9 +181,7 @@ Scope {
         }
     }
     component Module: AbstractButton {
-        property string symbol
-        property color symbolColor
-        property string contentText
+        property alias format: moduleText.text
         property alias elide: moduleText.elide
         property string onClickCmd
 
@@ -195,7 +193,6 @@ Scope {
             font.weight: typo.weight
             font.letterSpacing: typo.letterSpacing
             textFormat: Text.StyledText
-            text: `<font color="${symbolColor}">${symbol}</font> ${contentText}`
         }
 
         onClicked: {
@@ -243,7 +240,7 @@ Scope {
                     Repeater {
                         id: workspaces
                         model: workspaceProc.workspaces
-                        WorkspaceButton {}
+                        Workspace {}
                     }
                 }
 
@@ -251,9 +248,7 @@ Scope {
                     contentItem: RowLayout {
                         Module {
                             id: windowTitle
-                            symbol: "󰊠"
-                            symbolColor: theme.blue
-                            contentText: windowProc.winTitle
+                            format: `<font color="${theme.blue}">󰊠</font> ${windowProc.winTitle}`
                             Layout.maximumWidth: 600
                             elide: Text.ElideMiddle
                         }
@@ -277,25 +272,19 @@ Scope {
                 Group {
                     Module {
                         id: cpu
-                        symbol: "󰍛"
-                        symbolColor: theme.paleCyan
-                        contentText: cpuProc.cpuUsage
+                        format: `<font color="${theme.paleCyan}">󰍛</font> ${cpuProc.cpuUsage}`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
 
                     Module {
                         id: temperature
-                        symbol: ""
-                        symbolColor: theme.red
-                        contentText: tempProc.cpuTemp
+                        format: `<font color="${theme.red}"></font> ${tempProc.cpuTemp}`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
 
                     Module {
                         id: memory
-                        symbol: "󰘚"
-                        symbolColor: theme.magenta
-                        contentText: memProc.memUsage
+                        format: `<font color="${theme.magenta}">󰘚</font> ${memProc.memUsage}`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                 }
@@ -303,32 +292,24 @@ Scope {
                 Group {
                     Module {
                         id: battery
-                        symbol: ""
-                        symbolColor: theme.green
-                        contentText: battProc.percentage
+                        format: `<font color="${theme.green}"></font> ${battProc.percentage}`
                         onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
                     }
 
                     Module {
                         id: network
-                        symbol: "󰤨"
-                        symbolColor: theme.cyan
-                        contentText: netwProc.downByte
+                        format: `<font color="${theme.cyan}">󰤨</font> ${netwProc.downByte}`
                         onClickCmd: "foot -T 'WiFi Manager' impala"
                     }
 
                     Module {
                         id: bluetooth
-                        symbol: ""
-                        symbolColor: theme.blue
-                        contentText: btooProc.powerState
+                        format: `<font color="${theme.blue}"></font> ${btooProc.powerState}`
                         onClickCmd: "foot -T 'Bluetooth Manager' bluetui"
                     }
                     Module {
                         id: audio
-                        symbol: "󰕾"
-                        symbolColor: theme.red
-                        contentText: volProc.volLevel
+                        format: `<font color="${theme.red}">󰕾</font> ${volProc.volLevel}`
                         onClickCmd: "foot -T 'Audio Manager' wiremix"
                     }
                 }
@@ -336,9 +317,7 @@ Scope {
                 Group {
                     Module {
                         id: clock
-                        symbol: "󰥔"
-                        symbolColor: theme.yellow
-                        contentText: clockProc.dateTime
+                        format: `<font color="${theme.yellow}">󰥔</font> ${clockProc.dateTime}`
                         onClickCmd: "foot -T 'Calendar' sh -c 'cal --year; read'"
                     }
                 }
