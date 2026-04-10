@@ -18,6 +18,7 @@ visiblePlugin=stereo_tools#0
 height=844
 lastLoadedInputPreset=noise-reduction
 lastLoadedOutputPreset=mono-speaker
+showTrayIcon=false
 visiblePage=inputPage
 visiblePresetSheetPage=autoloadingPage
 width=1582
