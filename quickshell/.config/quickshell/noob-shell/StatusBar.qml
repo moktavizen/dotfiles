@@ -90,9 +90,7 @@ Scope {
     }
     QtObject {
         id: battProc
-        property string battPercentage: {
-            `${UPower.displayDevice.percentage * 100}%`
-        }
+        property string percentage: `${UPower.displayDevice.percentage * 100}%`
     }
     Process {
         id: netwProc
@@ -127,9 +125,7 @@ Scope {
     SystemClock {
         id: clockProc;
         precision: SystemClock.Minutes
-        property string dateTime: {
-            Qt.formatDateTime(date, "ddd MMM d h:mm AP")
-        }
+        property string dateTime: Qt.formatDateTime(date, "ddd MMM d h:mm AP")
     }
     Timer {
         interval: 2000
@@ -145,7 +141,7 @@ Scope {
 
     component Group: Control {
         default property alias content: content.data
-        property int gap: group.gap
+        property alias gap: content.spacing
 
         Layout.preferredHeight: 30
         verticalPadding: group.vPad;
@@ -158,7 +154,21 @@ Scope {
 
         contentItem: Row {
             id: content
-            spacing: gap
+            spacing: group.gap
+        }
+    }
+    component Workspace: AbstractButton {
+        required property var modelData
+
+        width: 18
+        contentItem: Text {
+            color: modelData.active ? theme.yellow : theme.foreground
+            font.family: typo.family
+            font.pixelSize: typo.pxSize
+            font.weight: typo.weight
+            font.letterSpacing: typo.letterSpacing
+            text: modelData.active ? "󰮯" : "•"
+            horizontalAlignment: Text.AlignHCenter
         }
     }
     component Module: AbstractButton {
@@ -175,20 +185,6 @@ Scope {
             textFormat: Text.StyledText
             text: `<font color="${symbolColor}">${symbol}</font> ${contentText}`
             elide: Text.ElideMiddle
-        }
-    }
-    component Workspace: AbstractButton {
-        required property var modelData
-
-        width: 18
-        contentItem: Text {
-            color: modelData.active? theme.yellow : theme.foreground
-            font.family: typo.family
-            font.pixelSize: typo.pxSize
-            font.weight: typo.weight
-            font.letterSpacing: typo.letterSpacing
-            text: modelData.active ? "󰮯" : "•"
-            horizontalAlignment: Text.AlignHCenter
         }
     }
     component TrayItem: AbstractButton {
@@ -285,7 +281,7 @@ Scope {
                         id: battery
                         symbol: ""
                         symbolColor: theme.green
-                        contentText: battProc.battPercentage
+                        contentText: battProc.percentage
                     }
 
                     Module {
