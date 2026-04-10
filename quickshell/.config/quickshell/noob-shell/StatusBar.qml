@@ -45,6 +45,9 @@ Scope {
     QtObject {
         id: workspaceProc
         property var workspaces: Hyprland.workspaces.values
+        function goToWorkspace(n) {
+            Hyprland.dispatch("workspace " + (n + 1))
+        }
     }
     QtObject {
         id: windowProc
@@ -157,8 +160,9 @@ Scope {
             spacing: group.gap
         }
     }
-    component Workspace: AbstractButton {
+    component WorkspaceButton: AbstractButton {
         required property var modelData
+        required property int index
 
         width: 18
         contentItem: Text {
@@ -169,6 +173,11 @@ Scope {
             font.letterSpacing: typo.letterSpacing
             text: modelData.active ? "󰮯" : "•"
             horizontalAlignment: Text.AlignHCenter
+        }
+
+        onClicked: workspaceProc.goToWorkspace(index)
+        HoverHandler {
+            cursorShape: Qt.PointingHandCursor
         }
     }
     component Module: AbstractButton {
@@ -224,7 +233,7 @@ Scope {
                     Repeater {
                         id: workspaces
                         model: workspaceProc.workspaces
-                        Workspace {}
+                        WorkspaceButton {}
                     }
                 }
 
