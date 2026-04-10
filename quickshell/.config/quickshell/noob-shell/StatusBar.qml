@@ -147,7 +147,6 @@ Scope {
         default property alias content: content.data
         property alias gap: content.spacing
 
-        Layout.preferredHeight: 30
         verticalPadding: group.vPad;
         horizontalPadding: group.hPad;
 
@@ -246,6 +245,7 @@ Scope {
                 }
 
                 Group {
+                    Layout.maximumHeight: 30
                     contentItem: RowLayout {
                         Module {
                             id: windowTitle
