@@ -60,6 +60,7 @@ Scope {
     QtObject {
         id: trayProc
         property var items: SystemTray.items.values
+        property bool hasItems: trayProc.items.length > 0
     }
     Process {
         id: cpuProc
@@ -261,7 +262,7 @@ Scope {
                 }
 
                 Group {
-                    visible: trayProc.items.length > 0 ? true : false
+                    visible: trayProc.hasItems
                     Repeater {
                         id: systemTray
                         model: trayProc.items
