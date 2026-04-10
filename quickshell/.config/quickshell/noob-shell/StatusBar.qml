@@ -276,13 +276,11 @@ Scope {
                         format: `<font color="${theme.paleCyan}">󰍛</font> ${cpuProc.cpuUsage}`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
-
                     Module {
                         id: temperature
                         format: `<font color="${theme.red}"></font> ${tempProc.cpuTemp}`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
-
                     Module {
                         id: memory
                         format: `<font color="${theme.magenta}">󰘚</font> ${memProc.memUsage}`
@@ -296,13 +294,11 @@ Scope {
                         format: `<font color="${theme.green}"></font> ${battProc.percentage}`
                         onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
                     }
-
                     Module {
                         id: network
                         format: `<font color="${theme.cyan}">󰤨</font> ${netwProc.downByte}`
                         onClickCmd: "foot -T 'WiFi Manager' impala"
                     }
-
                     Module {
                         id: bluetooth
                         format: `<font color="${theme.blue}"></font> ${btooProc.powerState}`
