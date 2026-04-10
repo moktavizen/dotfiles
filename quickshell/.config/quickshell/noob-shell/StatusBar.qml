@@ -50,6 +50,10 @@ Scope {
             return wsWindows?.length ? title : "Empty"
         }
     }
+    QtObject {
+        id: trayProc
+        property var items: SystemTray.items.values
+    }
     Process {
         id: cpuProc
         property string cpuUsage: "0%"
@@ -170,13 +174,13 @@ Scope {
         }
     }
     component TrayItem: AbstractButton {
+        required property var modelData
         contentItem: Image {
-            source: SystemTray.items.values[0]?.icon ?? ""
+            source: modelData.icon
             sourceSize.width: 16
             sourceSize.height: 16
         }
     }
-
 
     Variants {
         model: Quickshell.screens
@@ -223,8 +227,12 @@ Scope {
                 }
 
                 Group {
-                    id: tray
-                    TrayItem {}
+                    visible: trayProc.items.length > 0 ? true : false
+                    Repeater {
+                        id: systemTray
+                        model: trayProc.items
+                        TrayItem {}
+                    }
                 }
 
                 Group {
