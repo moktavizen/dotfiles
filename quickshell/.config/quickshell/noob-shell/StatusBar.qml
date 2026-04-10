@@ -49,7 +49,7 @@ Scope {
     QtObject {
         id: windowProc
         property string winTitle: {
-            const title = Hyprland.activeToplevel?.title ?? ""
+            const title = Hyprland.activeToplevel?.wayland.title ?? ""
             const wsWindows = Hyprland.focusedWorkspace?.toplevels.values
             return wsWindows?.length ? title : "Empty"
         }
