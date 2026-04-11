@@ -195,7 +195,7 @@ Scope {
         contentItem: RowLayout {
             Module {
                 id: windowModule
-                Layout.maximumWidth: 600
+                Layout.maximumWidth: 603
                 elide: Text.ElideMiddle
             }
         }
