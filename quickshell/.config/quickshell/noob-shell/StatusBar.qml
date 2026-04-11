@@ -27,6 +27,7 @@ Scope {
         weight: 500,
         letterSpacing: -0.4,
     })
+    property int refreshSec: 2
 
     property var workspaces: Hyprland.workspaces.values
     function goToWorkspace(n) {
@@ -81,10 +82,9 @@ Scope {
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                const timerSec = 2
                 downloadMBps = text.includes("K")
-                    ? parseInt(text) / 1024 / timerSec
-                    : parseInt(text) / 1024 / 1024 / timerSec
+                    ? parseInt(text) / 1024 / refreshSec
+                    : parseInt(text) / 1024 / 1024 / refreshSec
             }
         }
     }
@@ -107,7 +107,7 @@ Scope {
     property string dateTime: Qt.formatDateTime(clock.date, "ddd MMM d h:mm AP")
 
     Timer {
-        interval: 2000
+        interval: refreshSec * 1000
         running: true
         repeat: true
         onTriggered: {
