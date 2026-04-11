@@ -42,64 +42,62 @@ Scope {
     property var trayItems: SystemTray.items.values
     property bool hasTrayItems: trayItems.length > 0
 
-    property string cpuUsage: "0%"
+    property int cpuUsage
     Process {
         id: cpuProc
         command: ["sh", "-c", "vmstat 1 2 | awk 'END {print 100 - $15}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: cpuUsage = `${text.trim()}%`
+            onStreamFinished: cpuUsage = text
         }
     }
 
-    property string cpuTemp: "00C"
+    property int cpuTemp
     Process {
         id: tempProc
         command: ["sh", "-c", "sensors | awk '/id 0/ {print $4+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: cpuTemp = `${text.trim()}C`
+            onStreamFinished: cpuTemp = text
         }
     }
 
-    property string memUsage: "0.0GB"
+    property real memUsed
     Process {
         id: memProc
         command: ["sh", "-c", "free -h | awk '/Mem/ {print $3+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: memUsage = `${text.trim()}GB`
+            onStreamFinished: memUsed = text
         }
     }
 
-    property string percentage: `${UPower.displayDevice.percentage * 100}%`
+    property int battCapacity: UPower.displayDevice.percentage * 100
 
-    property string downByte: "0.0MB/s"
+    property real downloadMBps
     Process {
         id: netwProc
         command: ["sh", "-c", "ifstat | awk '/wlan0/ {print $6}'"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                const out = text.trim()
                 const timerSec = 2
-                const downMBps = out.includes("K")
-                    ? parseInt(out) / 1024 / timerSec
-                    : parseInt(out) / 1024 / 1024 / timerSec
-                downByte = `${downMBps.toFixed(1)}MB/s`
+                downloadMBps = text.includes("K")
+                    ? parseInt(text) / 1024 / timerSec
+                    : parseInt(text) / 1024 / 1024 / timerSec
             }
         }
     }
 
-    property string powerState: {
+    property string btStatus: {
         Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
     }
 
     PwObjectTracker {
         objects: [Pipewire.defaultAudioSink]
     }
-    property string volLevel: {
-        `${Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)}%`
+    property int speakerVolume: {
+        Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)
     }
 
     SystemClock {
@@ -137,24 +135,38 @@ Scope {
             spacing: 15
         }
     }
-    component Workspace: AbstractButton {
-        required property var modelData
-        required property int index
+    component ThemedText: Text {
+        color: theme.foreground
+        font.family: typo.family
+        font.pixelSize: typo.pxSize
+        font.weight: typo.weight
+        font.letterSpacing: typo.letterSpacing
+    }
+    component HyprWorkspaces: Group {
+        property string activeIcon
+        property string defaultIcon
+        property string activeColor
 
-        width: 18
-        contentItem: Text {
-            color: modelData.active ? theme.yellow : theme.foreground
-            font.family: typo.family
-            font.pixelSize: typo.pxSize
-            font.weight: typo.weight
-            font.letterSpacing: typo.letterSpacing
-            text: modelData.active ? "󰮯" : "•"
-            horizontalAlignment: Text.AlignHCenter
-        }
+        gap: 0
+        horizontalPadding: 10
+        Repeater {
+            model: workspaces
+            AbstractButton {
+                required property var modelData
+                required property int index
 
-        onClicked: goToWorkspace(index)
-        HoverHandler {
-            cursorShape: Qt.PointingHandCursor
+                width: 18
+                contentItem: ThemedText {
+                    color: modelData.active ? activeColor : theme.foreground
+                    text: modelData.active ? activeIcon : defaultIcon
+                    horizontalAlignment: Text.AlignHCenter
+                }
+
+                onClicked: goToWorkspace(index)
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
+                }
+            }
         }
     }
     component Module: AbstractButton {
@@ -162,13 +174,8 @@ Scope {
         property alias elide: moduleText.elide
         property string onClickCmd
 
-        contentItem: Text {
+        contentItem: ThemedText {
             id: moduleText
-            color: theme.foreground
-            font.family: typo.family
-            font.pixelSize: typo.pxSize
-            font.weight: typo.weight
-            font.letterSpacing: typo.letterSpacing
             textFormat: Text.StyledText
         }
 
@@ -181,12 +188,32 @@ Scope {
             cursorShape: Qt.PointingHandCursor
         }
     }
-    component TrayItem: AbstractButton {
-        required property var modelData
-        contentItem: Image {
-            source: modelData.icon
-            sourceSize.width: 16
-            sourceSize.height: 16
+    component HyprWindow: Group {
+        property alias format: windowModule.format
+
+        Layout.maximumHeight: 30
+        contentItem: RowLayout {
+            Module {
+                id: windowModule
+                Layout.maximumWidth: 600
+                elide: Text.ElideMiddle
+            }
+        }
+    }
+    component Tray: Group {
+        property int iconSize
+
+        visible: hasTrayItems
+        Repeater {
+            model: trayItems
+            AbstractButton {
+                required property var modelData
+                contentItem: Image {
+                    source: modelData.icon
+                    sourceSize.width: iconSize
+                    sourceSize.height: iconSize
+                }
+            }
         }
     }
 
@@ -211,68 +238,54 @@ Scope {
                 anchors.rightMargin: 8
                 spacing: 8
 
-                Group {
-                    gap: 0
-                    horizontalPadding: 10
-                    Repeater {
-                        model: workspaces
-                        Workspace {}
-                    }
+                HyprWorkspaces {
+                    activeIcon: "󰮯"
+                    defaultIcon: "•"
+                    activeColor: theme.yellow
                 }
 
-                Group {
-                    Layout.maximumHeight: 30
-                    contentItem: RowLayout {
-                        Module {
-                            format: `<font color="${theme.blue}">󰊠</font> ${winTitle}`
-                            Layout.maximumWidth: 600
-                            elide: Text.ElideMiddle
-                        }
-                    }
+                HyprWindow {
+                    format: `<font color="${theme.blue}">󰊠</font> ${winTitle}`
                 }
 
                 Item {
                     Layout.fillWidth: true
                 }
 
+                Tray {
+                    iconSize: 16
+                }
+
                 Group {
-                    visible: hasTrayItems
-                    Repeater {
-                        model: trayItems
-                        TrayItem {}
+                    Module {
+                        format: `<font color="${theme.paleCyan}">󰍛</font> ${cpuUsage}%`
+                        onClickCmd: "foot -T 'Task Manager' btop"
+                    }
+                    Module {
+                        format: `<font color="${theme.red}"></font> ${cpuTemp}C`
+                        onClickCmd: "foot -T 'Task Manager' btop"
+                    }
+                    Module {
+                        format: `<font color="${theme.magenta}">󰘚</font> ${memUsed}GB`
+                        onClickCmd: "foot -T 'Task Manager' btop"
                     }
                 }
 
                 Group {
                     Module {
-                        format: `<font color="${theme.paleCyan}">󰍛</font> ${cpuUsage}`
-                        onClickCmd: "foot -T 'Task Manager' btop"
-                    }
-                    Module {
-                        format: `<font color="${theme.red}"></font> ${cpuTemp}`
-                        onClickCmd: "foot -T 'Task Manager' btop"
-                    }
-                    Module {
-                        format: `<font color="${theme.magenta}">󰘚</font> ${memUsage}`
-                        onClickCmd: "foot -T 'Task Manager' btop"
-                    }
-                }
-
-                Group {
-                    Module {
-                        format: `<font color="${theme.green}"></font> ${percentage}`
+                        format: `<font color="${theme.green}"></font> ${battCapacity}%`
                         onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
                     }
                     Module {
-                        format: `<font color="${theme.cyan}">󰤨</font> ${downByte}`
+                        format: `<font color="${theme.cyan}">󰤨</font> ${downloadMBps.toFixed(1)}MB/s`
                         onClickCmd: "foot -T 'WiFi Manager' impala"
                     }
                     Module {
-                        format: `<font color="${theme.blue}"></font> ${powerState}`
+                        format: `<font color="${theme.blue}"></font> ${btStatus}`
                         onClickCmd: "foot -T 'Bluetooth Manager' bluetui"
                     }
                     Module {
-                        format: `<font color="${theme.red}">󰕾</font> ${volLevel}`
+                        format: `<font color="${theme.red}">󰕾</font> ${speakerVolume}%`
                         onClickCmd: "foot -T 'Audio Manager' wiremix"
                     }
                 }
