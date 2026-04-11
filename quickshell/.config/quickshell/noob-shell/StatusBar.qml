@@ -10,95 +10,73 @@ import QtQuick.Layouts
 import QtQuick.Controls
 
 Scope {
-    QtObject {
-        id: theme
-        property color background: "#cc1e1e1e"
-        property color foreground: "#ebebeb"
-        property color blue: "#97b4f2"
-        property color cyan: "#97d8f2"
-        property color paleCyan: "#b4c8d1"
-        property color red: "#f2979c"
-        property color yellow: "#f2d297"
-        property color magenta: "#cd97f2"
-        property color green: "#cdf297"
-    }
-    QtObject {
-        id: typo
-        property string family: "JetBrainsMonoNL Nerd Font Propo"
-        property int pxSize: 14
-        property int weight: 500
-        property real letterSpacing: -0.4
-    }
-    QtObject {
-        id: bar
-        property int gap: 8
-    }
-    QtObject {
-        id: group
-        property real vPad: 5.5
-        property real hPad: 15.5
-        property int borderRadius: 999
-        property int gap: 15
+    property var theme: ({
+        background: "#cc1e1e1e",
+        foreground: "#ebebeb",
+        blue: "#97b4f2",
+        cyan: "#97d8f2",
+        paleCyan: "#b4c8d1",
+        red: "#f2979c",
+        yellow: "#f2d297",
+        magenta: "#cd97f2",
+        green: "#cdf297",
+    })
+    property var typo: ({
+        family: "JetBrainsMonoNL Nerd Font Propo",
+        pxSize: 14,
+        weight: 500,
+        letterSpacing: -0.4,
+    })
+
+    property var workspaces: Hyprland.workspaces.values
+    function goToWorkspace(n) {
+        Hyprland.dispatch("workspace " + (n + 1))
     }
 
-    QtObject {
-        id: workspaceProc
-        property var workspaces: Hyprland.workspaces.values
-        function goToWorkspace(n) {
-            Hyprland.dispatch("workspace " + (n + 1))
-        }
+    property string winTitle: {
+        const title = Hyprland.activeToplevel?.wayland?.title ?? ""
+        const wsWindows = Hyprland.focusedWorkspace?.toplevels.values
+        return wsWindows?.length ? title : "Empty"
     }
-    QtObject {
-        id: windowProc
-        property string winTitle: {
-            const title = Hyprland.activeToplevel?.wayland?.title ?? ""
-            const wsWindows = Hyprland.focusedWorkspace?.toplevels.values
-            return wsWindows?.length ? title : "Empty"
-        }
-    }
-    QtObject {
-        id: trayProc
-        property var items: SystemTray.items.values
-        property bool hasItems: trayProc.items.length > 0
-    }
+
+    property var trayItems: SystemTray.items.values
+    property bool hasTrayItems: trayItems.length > 0
+
+    property string cpuUsage: "0%"
     Process {
         id: cpuProc
-        property string cpuUsage: "0%"
-
         command: ["sh", "-c", "vmstat 1 2 | awk 'END {print 100 - $15}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: cpuProc.cpuUsage = `${text.trim()}%`
+            onStreamFinished: cpuUsage = `${text.trim()}%`
         }
     }
+
+    property string cpuTemp: "00C"
     Process {
         id: tempProc
-        property string cpuTemp: "00C"
-
         command: ["sh", "-c", "sensors | awk '/id 0/ {print $4+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: tempProc.cpuTemp = `${text.trim()}C`
+            onStreamFinished: cpuTemp = `${text.trim()}C`
         }
     }
+
+    property string memUsage: "0.0GB"
     Process {
         id: memProc
-        property string memUsage: "0.0GB"
-
         command: ["sh", "-c", "free -h | awk '/Mem/ {print $3+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: memProc.memUsage = `${text.trim()}GB`
+            onStreamFinished: memUsage = `${text.trim()}GB`
         }
     }
-    QtObject {
-        id: battProc
-        property string percentage: `${UPower.displayDevice.percentage * 100}%`
-    }
+
+    property string percentage: `${UPower.displayDevice.percentage * 100}%`
+
+    property string downByte: "0.0MB/s"
     Process {
         id: netwProc
-        property string downByte: "0.0MB/s"
-
         command: ["sh", "-c", "ifstat | awk '/wlan0/ {print $6}'"]
         running: true
         stdout: StdioCollector {
@@ -108,28 +86,28 @@ Scope {
                 const downMBps = out.includes("K")
                     ? parseInt(out) / 1024 / timerSec
                     : parseInt(out) / 1024 / 1024 / timerSec
-                netwProc.downByte = `${downMBps.toFixed(1)}MB/s`
+                downByte = `${downMBps.toFixed(1)}MB/s`
             }
         }
     }
-    QtObject {
-        id: btooProc
-        property string powerState: {
-            Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
-        }
+
+    property string powerState: {
+        Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
     }
+
     PwObjectTracker {
-        id: volProc
         objects: [Pipewire.defaultAudioSink]
-        property string volLevel: {
-            `${Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)}%`
-        }
     }
+    property string volLevel: {
+        `${Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)}%`
+    }
+
     SystemClock {
-        id: clockProc;
+        id: clock;
         precision: SystemClock.Minutes
-        property string dateTime: Qt.formatDateTime(date, "ddd MMM d h:mm AP")
     }
+    property string dateTime: Qt.formatDateTime(clock.date, "ddd MMM d h:mm AP")
+
     Timer {
         interval: 2000
         running: true
@@ -146,17 +124,17 @@ Scope {
         default property alias content: content.data
         property alias gap: content.spacing
 
-        verticalPadding: group.vPad;
-        horizontalPadding: group.hPad;
+        verticalPadding: 5.5;
+        horizontalPadding: 15.5;
 
         background: Rectangle {
             color: theme.background
-            radius: group.borderRadius
+            radius: 999
         }
 
         contentItem: Row {
             id: content
-            spacing: group.gap
+            spacing: 15
         }
     }
     component Workspace: AbstractButton {
@@ -174,7 +152,7 @@ Scope {
             horizontalAlignment: Text.AlignHCenter
         }
 
-        onClicked: workspaceProc.goToWorkspace(index)
+        onClicked: goToWorkspace(index)
         HoverHandler {
             cursorShape: Qt.PointingHandCursor
         }
@@ -223,22 +201,21 @@ Scope {
             anchors.top: true
             anchors.left: true
             anchors.right: true
-            implicitHeight: container.implicitHeight + bar.gap
+            implicitHeight: container.implicitHeight + 8
 
             RowLayout {
                 id: container
                 anchors.fill: parent
-                anchors.topMargin: bar.gap
-                anchors.leftMargin: bar.gap
-                anchors.rightMargin: bar.gap
-                spacing: bar.gap
+                anchors.topMargin: 8
+                anchors.leftMargin: 8
+                anchors.rightMargin: 8
+                spacing: 8
 
                 Group {
                     gap: 0
                     horizontalPadding: 10
                     Repeater {
-                        id: workspaces
-                        model: workspaceProc.workspaces
+                        model: workspaces
                         Workspace {}
                     }
                 }
@@ -247,8 +224,7 @@ Scope {
                     Layout.maximumHeight: 30
                     contentItem: RowLayout {
                         Module {
-                            id: windowTitle
-                            format: `<font color="${theme.blue}">󰊠</font> ${windowProc.winTitle}`
+                            format: `<font color="${theme.blue}">󰊠</font> ${winTitle}`
                             Layout.maximumWidth: 600
                             elide: Text.ElideMiddle
                         }
@@ -256,64 +232,54 @@ Scope {
                 }
 
                 Item {
-                    id: spacer
                     Layout.fillWidth: true
                 }
 
                 Group {
-                    visible: trayProc.hasItems
+                    visible: hasTrayItems
                     Repeater {
-                        id: systemTray
-                        model: trayProc.items
+                        model: trayItems
                         TrayItem {}
                     }
                 }
 
                 Group {
                     Module {
-                        id: cpu
-                        format: `<font color="${theme.paleCyan}">󰍛</font> ${cpuProc.cpuUsage}`
+                        format: `<font color="${theme.paleCyan}">󰍛</font> ${cpuUsage}`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                     Module {
-                        id: temperature
-                        format: `<font color="${theme.red}"></font> ${tempProc.cpuTemp}`
+                        format: `<font color="${theme.red}"></font> ${cpuTemp}`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                     Module {
-                        id: memory
-                        format: `<font color="${theme.magenta}">󰘚</font> ${memProc.memUsage}`
+                        format: `<font color="${theme.magenta}">󰘚</font> ${memUsage}`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                 }
 
                 Group {
                     Module {
-                        id: battery
-                        format: `<font color="${theme.green}"></font> ${battProc.percentage}`
+                        format: `<font color="${theme.green}"></font> ${percentage}`
                         onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
                     }
                     Module {
-                        id: network
-                        format: `<font color="${theme.cyan}">󰤨</font> ${netwProc.downByte}`
+                        format: `<font color="${theme.cyan}">󰤨</font> ${downByte}`
                         onClickCmd: "foot -T 'WiFi Manager' impala"
                     }
                     Module {
-                        id: bluetooth
-                        format: `<font color="${theme.blue}"></font> ${btooProc.powerState}`
+                        format: `<font color="${theme.blue}"></font> ${powerState}`
                         onClickCmd: "foot -T 'Bluetooth Manager' bluetui"
                     }
                     Module {
-                        id: audio
-                        format: `<font color="${theme.red}">󰕾</font> ${volProc.volLevel}`
+                        format: `<font color="${theme.red}">󰕾</font> ${volLevel}`
                         onClickCmd: "foot -T 'Audio Manager' wiremix"
                     }
                 }
 
                 Group {
                     Module {
-                        id: clock
-                        format: `<font color="${theme.yellow}">󰥔</font> ${clockProc.dateTime}`
+                        format: `<font color="${theme.yellow}">󰥔</font> ${dateTime}`
                         onClickCmd: "foot -T 'Calendar' sh -c 'cal --year; read'"
                     }
                 }
