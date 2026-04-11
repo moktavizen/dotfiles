@@ -29,7 +29,7 @@ Scope {
     })
     property int refreshSec: 2
 
-    property var workspaces: Hyprland.workspaces.values
+    property var workspaceModel: Hyprland.workspaces
     function goToWorkspace(n) {
         Hyprland.dispatch("workspace " + (n + 1))
     }
@@ -40,7 +40,7 @@ Scope {
         return wsWindows?.length ? title : "Empty"
     }
 
-    property var trayItems: SystemTray.items.values
+    property var trayItemModel: SystemTray.items
 
     property int cpuUsage
     Process {
@@ -145,7 +145,7 @@ Scope {
         gap: 0
         horizontalPadding: 10
         Repeater {
-            model: workspaces
+            model: workspaceModel
             Rectangle {
                 required property var modelData
                 required property int index
@@ -206,7 +206,7 @@ Scope {
         visible: trayRepeater.count > 0
         Repeater {
             id: trayRepeater
-            model: trayItems
+            model: trayItemModel
             Image {
                 required property var modelData
 
