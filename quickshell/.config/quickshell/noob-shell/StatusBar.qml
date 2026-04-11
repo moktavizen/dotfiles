@@ -202,6 +202,7 @@ Scope {
     }
     component Tray: Group {
         property int iconSize
+        property var parentWindow
 
         visible: hasTrayItems
         Repeater {
@@ -215,7 +216,15 @@ Scope {
                 anchors.verticalCenter: parent.verticalCenter
 
                 TapHandler {
-                    onTapped: modelData.activate();
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                    onTapped: (eventPoint, button) => {
+                        if (button === Qt.LeftButton) {
+                            modelData.activate();
+                        } else {
+                            if (!modelData.hasMenu) return
+                            modelData.display(parentWindow, eventPoint.scenePosition.x, eventPoint.scenePosition.y);
+                        }
+                    }
                 }
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
@@ -228,6 +237,7 @@ Scope {
         model: Quickshell.screens
 
         PanelWindow {
+            id: barWindow
             property var modelData
             screen: modelData
 
@@ -264,6 +274,7 @@ Scope {
                 Tray {
                     Layout.preferredHeight: wsGroup.height
                     iconSize: 16
+                    parentWindow: barWindow
                 }
 
                 Group {
