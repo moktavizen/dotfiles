@@ -192,7 +192,6 @@ Scope {
     component HyprWindow: Group {
         property alias format: windowModule.format
 
-        Layout.maximumHeight: 30
         contentItem: RowLayout {
             Module {
                 id: windowModule
@@ -207,18 +206,13 @@ Scope {
         visible: hasTrayItems
         Repeater {
             model: trayItems
-            Rectangle {
+            Image {
                 required property var modelData
 
-                width: childrenRect.width
-                height: childrenRect.height
-                color: "transparent"
-
-                Image {
-                    source: modelData.icon
-                    sourceSize.width: iconSize
-                    sourceSize.height: iconSize
-                }
+                source: modelData.icon
+                sourceSize.width: iconSize
+                sourceSize.height: iconSize
+                anchors.verticalCenter: parent.verticalCenter
 
                 TapHandler {
                     onTapped: modelData.activate();
@@ -252,6 +246,7 @@ Scope {
                 spacing: 8
 
                 HyprWorkspaces {
+                    id: wsGroup
                     activeIcon: "󰮯"
                     defaultIcon: "•"
                     activeColor: theme.yellow
@@ -259,6 +254,7 @@ Scope {
 
                 HyprWindow {
                     format: `<font color="${theme.blue}">󰊠</font> ${winTitle}`
+                    Layout.maximumHeight: wsGroup.height
                 }
 
                 Item {
@@ -266,6 +262,7 @@ Scope {
                 }
 
                 Tray {
+                    Layout.preferredHeight: wsGroup.height
                     iconSize: 16
                 }
 
