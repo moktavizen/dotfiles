@@ -41,7 +41,6 @@ Scope {
     }
 
     property var trayItems: SystemTray.items.values
-    property bool hasTrayItems: trayItems.length > 0
 
     property int cpuUsage
     Process {
@@ -204,8 +203,9 @@ Scope {
         property int iconSize
         property var parentWindow
 
-        visible: hasTrayItems
+        visible: trayRepeater.count > 0
         Repeater {
+            id: trayRepeater
             model: trayItems
             Image {
                 required property var modelData
