@@ -89,16 +89,12 @@ Scope {
         }
     }
 
-    property string btStatus: {
-        Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
-    }
+    property string btStatus: Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
 
     PwObjectTracker {
         objects: [Pipewire.defaultAudioSink]
     }
-    property int speakerVolume: {
-        Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)
-    }
+    property int speakerVolume: Math.round(Pipewire.defaultAudioSink?.audio.volume * 100)
 
     SystemClock {
         id: clock;
