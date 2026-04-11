@@ -219,6 +219,13 @@ Scope {
                     sourceSize.width: iconSize
                     sourceSize.height: iconSize
                 }
+
+                TapHandler {
+                    onTapped: modelData.activate();
+                }
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
+                }
             }
         }
     }
