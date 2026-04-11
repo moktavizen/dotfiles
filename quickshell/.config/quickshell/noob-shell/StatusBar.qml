@@ -147,37 +147,42 @@ Scope {
         horizontalPadding: 10
         Repeater {
             model: workspaces
-            AbstractButton {
+            Rectangle {
                 required property var modelData
                 required property int index
 
-                width: 18
-                contentItem: ThemedText {
+                width: childrenRect.width
+                height: childrenRect.height
+                color: "transparent"
+
+                ThemedText {
+                    width: 18
                     color: modelData.active ? activeColor : theme.foreground
                     text: modelData.active ? activeIcon : defaultIcon
                     horizontalAlignment: Text.AlignHCenter
                 }
 
-                onClicked: goToWorkspace(index)
+                TapHandler {
+                    onTapped: goToWorkspace(index)
+                }
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                 }
             }
         }
     }
-    component Module: AbstractButton {
+    component Module: ThemedText {
         property alias format: moduleText.text
-        property alias elide: moduleText.elide
         property string onClickCmd
 
-        contentItem: ThemedText {
-            id: moduleText
-            textFormat: Text.StyledText
-        }
+        id: moduleText
+        textFormat: Text.StyledText
 
-        onClicked: {
-            if (onClickCmd === "") return
-            Quickshell.execDetached(["sh", "-c", onClickCmd])
+        TapHandler {
+            onTapped: {
+                if (onClickCmd === "") return
+                Quickshell.execDetached(["sh", "-c", onClickCmd])
+            }
         }
         HoverHandler {
             enabled: onClickCmd !== ""
@@ -202,9 +207,14 @@ Scope {
         visible: hasTrayItems
         Repeater {
             model: trayItems
-            AbstractButton {
+            Rectangle {
                 required property var modelData
-                contentItem: Image {
+
+                width: childrenRect.width
+                height: childrenRect.height
+                color: "transparent"
+
+                Image {
                     source: modelData.icon
                     sourceSize.width: iconSize
                     sourceSize.height: iconSize
