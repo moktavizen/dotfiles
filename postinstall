@@ -60,7 +60,7 @@ install_packages() {
     'tlp'
     'foot'
     'foot-terminfo'
-    'waybar'
+    'quickshell'
     'rofi'
     'dunst'
     'wiremix'
