@@ -124,9 +124,6 @@ install_packages() {
     'calf'               # easyeffects     : mono speaker, since left broke
     'tree-sitter-cli'    # nvim            : tree-sitter auto_install
     'ripgrep'            # nvim            : snacks.picker
-    'wget'               # nvim            : mason
-    'unzip'              # nvim            : mason
-    'npm'                # nvim            : mason
     '7zip'               # ark             : 7zip format
     'unrar'              # ark             : RAR format
     'kimageformats'      # gwenview        : support additional formats
