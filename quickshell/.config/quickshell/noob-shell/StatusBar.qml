@@ -238,7 +238,7 @@ Scope {
 
         PanelWindow {
             id: barWindow
-            property var modelData
+            required property var modelData
             screen: modelData
 
             color: "transparent"
