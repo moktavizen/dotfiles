@@ -136,6 +136,7 @@ Scope {
         font.pixelSize: typo.pxSize
         font.weight: typo.weight
         font.letterSpacing: typo.letterSpacing
+        renderType: Text.NativeRendering
     }
     component HyprWorkspaces: Group {
         property string activeIcon
