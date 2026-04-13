@@ -148,18 +148,13 @@ install_packages() {
   yay -S --needed --noconfirm "${packages[@]}"
 }
 
-configure_bootloader() {
-  sudo sed -i '/^timeout/s/^/#/' /boot/loader/loader.conf
-  sudo sed -i '/^options / {/ quiet/! s/$/ quiet/}' /boot/loader/entries/*_linux-lts.conf
-}
-
 configure_display_manager() {
   sudo systemctl enable greetd.service
 
   sudo tee -a '/etc/greetd/config.toml' <<EOF
 
 [initial_session]
-command = "start-hyprland > /dev/null"
+command = "start-hyprland &>/dev/null"
 user = "$(whoami)"
 EOF
 }
@@ -225,16 +220,27 @@ configure_user_env() {
   nwg-look -a -x
 }
 
+configure_bootloader() {
+  sudo sed -i '/^timeout/s/^/#/' /boot/loader/loader.conf
+  sudo sed -i 's/$/ module_blacklist=iTCO_wdt quiet/' /etc/kernel/cmdline
+  sudo sed -i '/^HOOKS=/ {s/base udev/systemd/; s/keymap consolefont/sd-vconsole/; s/ fsck//}' /etc/mkinitcpio.conf
+
+  sudo cp ~/.config/wallpapers/bootctl/splash-memepad.bmp /usr/share/systemd/bootctl/
+  sudo sed -i 's/splash-arch/splash-memepad/' /etc/mkinitcpio.d/linux.preset
+
+  sudo mkinitcpio -P
+}
+
 main() {
   configure_pacman
   install_packages
-  configure_bootloader
   configure_display_manager
   configure_locale
   configure_network
   configure_fan_control
   enable_systemd_units
   configure_user_env
+  configure_bootloader
 
   echo 'Post installation process complete!'
   echo 'You may reboot!'
