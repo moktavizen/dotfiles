@@ -109,14 +109,8 @@ install_packages() {
     'ark'
     'gwenview'
     'haruna'
-    'inkscape'
-    'kdenlive'
     'obs-studio'
     'partitionmanager'
-    'gnome-boxes'
-    'qbittorrent'
-    'jellyfin-server'
-    'jellyfin-web'
   )
 
   local optional_deps=(
