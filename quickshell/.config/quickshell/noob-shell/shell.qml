@@ -8,5 +8,5 @@ import Quickshell
 import qs.Modules.StatusBar
 
 Scope {
-  StatusBar {}
+    StatusBar {}
 }

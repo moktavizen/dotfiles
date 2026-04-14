@@ -47,9 +47,7 @@ Singleton {
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                downloadMBps = text.includes("K")
-                ? parseInt(text) / 1024 / refreshSec
-                : parseInt(text) / 1024 / 1024 / refreshSec
+                downloadMBps = text.includes("K") ? parseInt(text) / 1024 / refreshSec : parseInt(text) / 1024 / 1024 / refreshSec;
             }
         }
     }
@@ -61,10 +59,10 @@ Singleton {
         running: true
         repeat: true
         onTriggered: {
-            cpuProc.running = true
-            tempProc.running = true
-            memProc.running = true
-            netwProc.running = true
+            cpuProc.running = true;
+            tempProc.running = true;
+            memProc.running = true;
+            netwProc.running = true;
         }
     }
 }

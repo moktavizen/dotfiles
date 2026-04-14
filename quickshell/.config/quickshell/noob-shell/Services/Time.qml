@@ -5,7 +5,7 @@ import QtQuick
 
 Singleton {
     SystemClock {
-        id: clock;
+        id: clock
         precision: SystemClock.Minutes
     }
 
