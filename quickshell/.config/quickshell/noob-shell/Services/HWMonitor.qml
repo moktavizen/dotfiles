@@ -48,9 +48,13 @@ Singleton {
         command: ["sh", "-c", "ifstat | awk '/wlan0/ {print $6}'"]
         running: true
         stdout: StdioCollector {
+            // qmlformat off
             onStreamFinished: {
-                root.downloadMBps = text.includes("K") ? parseInt(text) / 1024 / root.refreshSec : parseInt(text) / 1024 / 1024 / root.refreshSec;
+                root.downloadMBps = text.includes("K")
+                    ? parseInt(text) / 1024 / root.refreshSec
+                    : parseInt(text) / 1024 / 1024 / root.refreshSec;
             }
+            // qmlformat on
         }
     }
 
