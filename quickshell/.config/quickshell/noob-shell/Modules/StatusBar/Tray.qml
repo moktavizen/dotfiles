@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 
+import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 import QtQuick
 
@@ -12,13 +13,12 @@ Loader {
     sourceComponent: Group {
         Repeater {
             model: SystemTray.items
-            Image {
+            IconImage {
                 id: trayItem
                 required property var modelData
 
                 source: modelData.icon
-                sourceSize.width: root.iconSize
-                sourceSize.height: root.iconSize
+                implicitSize: root.iconSize
                 anchors.verticalCenter: parent.verticalCenter
 
                 TapHandler {
