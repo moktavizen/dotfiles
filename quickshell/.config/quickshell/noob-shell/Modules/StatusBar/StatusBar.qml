@@ -1,0 +1,93 @@
+import Quickshell
+import QtQuick
+import QtQuick.Layouts
+import qs.Common
+import qs.Services
+
+Variants {
+    model: Quickshell.screens
+
+    PanelWindow {
+        id: barWindow
+        required property var modelData
+        screen: modelData
+
+        color: "transparent"
+        anchors.top: true
+        anchors.left: true
+        anchors.right: true
+        implicitHeight: container.implicitHeight + 8
+
+        RowLayout {
+            id: container
+            anchors.fill: parent
+            anchors.topMargin: 8
+            anchors.leftMargin: 8
+            anchors.rightMargin: 8
+            spacing: 8
+
+            HyprWorkspaces {
+                id: wsGroup
+                activeIcon: "󰮯"
+                defaultIcon: "•"
+                activeColor: Theme.yellow
+            }
+
+            HyprWindow {
+                format: `<font color="${Theme.blue}">󰊠</font> ${Hypr.winTitle}`
+                Layout.maximumHeight: wsGroup.height
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            Tray {
+                Layout.preferredHeight: wsGroup.height
+                iconSize: 16
+                parentWindow: barWindow
+            }
+
+            Group {
+                Module {
+                    format: `<font color="${Theme.paleCyan}">󰍛</font> ${HWMonitor.cpuUsage}%`
+                    onClickCmd: "foot -T 'Task Manager' btop"
+                }
+                Module {
+                    format: `<font color="${Theme.red}"></font> ${HWMonitor.cpuTemp}C`
+                    onClickCmd: "foot -T 'Task Manager' btop"
+                }
+                Module {
+                    format: `<font color="${Theme.magenta}">󰘚</font> ${HWMonitor.memUsed}GB`
+                    onClickCmd: "foot -T 'Task Manager' btop"
+                }
+            }
+
+            Group {
+                Module {
+                    format: `<font color="${Theme.green}"></font> ${HWMonitor.battCapacity}%`
+                    onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
+                }
+                Module {
+                    format: `<font color="${Theme.cyan}">󰤨</font> ${HWMonitor.downloadMBps.toFixed(1)}MB/s`
+                    onClickCmd: "foot -T 'WiFi Manager' impala"
+                }
+                Module {
+                    format: `<font color="${Theme.blue}"></font> ${HWMonitor.btStatus}`
+                    onClickCmd: "foot -T 'Bluetooth Manager' bluetui"
+                }
+                Module {
+                    format: `<font color="${Theme.red}">󰕾</font> ${Audio.speakerVolume}%`
+                    onClickCmd: "foot -T 'Audio Manager' wiremix"
+                }
+            }
+
+            Group {
+                Module {
+                    format: `<font color="${Theme.yellow}">󰥔</font> ${Time.dateTime}`
+                    onClickCmd: "foot -T 'Calendar' sh -c 'cal --year; read'"
+                }
+            }
+        }
+    }
+}

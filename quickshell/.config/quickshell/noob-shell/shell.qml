@@ -5,6 +5,7 @@
 //@ pragma UseQApplication
 
 import Quickshell
+import qs.Modules.StatusBar
 
 Scope {
   StatusBar {}
