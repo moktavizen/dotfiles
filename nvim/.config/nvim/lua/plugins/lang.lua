@@ -23,6 +23,9 @@ return {
           },
         },
       })
+      vim.lsp.config('qmlls', {
+        cmd = { 'qmlls6' },
+      })
 
       -- NOTE: Step 3 - Enable the LSP
       vim.lsp.enable({
@@ -32,6 +35,7 @@ return {
         'html',
         'cssls',
         'ts_ls',
+        'qmlls',
       })
     end,
   },
