@@ -1,11 +1,14 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import qs.Common
 import qs.Services
 
 Group {
+    id: root
     property string activeIcon
     property string defaultIcon
-    property string activeColor
+    property color activeColor
 
     gap: 0
     horizontalPadding: 10
@@ -13,6 +16,7 @@ Group {
     Repeater {
         model: Hypr.workspaces
         Rectangle {
+            id: workspace
             required property var modelData
             required property int index
 
@@ -22,13 +26,13 @@ Group {
 
             ThemedText {
                 width: 18
-                color: modelData.active ? activeColor : Theme.foreground
-                text: modelData.active ? activeIcon : defaultIcon
+                color: workspace.modelData.active ? root.activeColor : Theme.foreground
+                text: workspace.modelData.active ? root.activeIcon : root.defaultIcon
                 horizontalAlignment: Text.AlignHCenter
             }
 
             TapHandler {
-                onTapped: Hypr.goToWorkspace(index)
+                onTapped: Hypr.goToWorkspace(workspace.index)
             }
             HoverHandler {
                 cursorShape: Qt.PointingHandCursor

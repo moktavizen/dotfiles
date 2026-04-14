@@ -1,7 +1,10 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell.Services.SystemTray
 import QtQuick
 
 Loader {
+    id: root
     property int iconSize
     property var parentWindow
 
@@ -10,22 +13,23 @@ Loader {
         Repeater {
             model: SystemTray.items
             Image {
+                id: trayItem
                 required property var modelData
 
                 source: modelData.icon
-                sourceSize.width: iconSize
-                sourceSize.height: iconSize
+                sourceSize.width: root.iconSize
+                sourceSize.height: root.iconSize
                 anchors.verticalCenter: parent.verticalCenter
 
                 TapHandler {
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                     onTapped: (eventPoint, button) => {
                         if (button === Qt.LeftButton) {
-                            modelData.activate();
+                            trayItem.modelData.activate();
                         } else {
-                            if (!modelData.hasMenu)
+                            if (!trayItem.modelData.hasMenu)
                                 return;
-                            modelData.display(parentWindow, eventPoint.scenePosition.x, eventPoint.scenePosition.y);
+                            trayItem.modelData.display(root.parentWindow, eventPoint.scenePosition.x, eventPoint.scenePosition.y);
                         }
                     }
                 }

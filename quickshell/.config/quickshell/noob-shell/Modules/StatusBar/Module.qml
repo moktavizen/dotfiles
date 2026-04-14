@@ -1,20 +1,21 @@
+import Quickshell
 import QtQuick
 
 ThemedText {
-    id: moduleText
-    property alias format: moduleText.text
+    id: root
+    property alias format: root.text
     property string onClickCmd
     textFormat: Text.StyledText
 
     TapHandler {
         onTapped: {
-            if (onClickCmd === "")
+            if (root.onClickCmd === "")
                 return;
-            Quickshell.execDetached(["sh", "-c", onClickCmd]);
+            Quickshell.execDetached(["sh", "-c", root.onClickCmd]);
         }
     }
     HoverHandler {
-        enabled: onClickCmd !== ""
+        enabled: root.onClickCmd !== ""
         cursorShape: Qt.PointingHandCursor
     }
 }

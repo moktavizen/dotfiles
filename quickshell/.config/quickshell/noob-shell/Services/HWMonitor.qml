@@ -7,14 +7,16 @@ import Quickshell.Services.UPower
 import QtQuick
 
 Singleton {
+    id: root
     property int refreshSec: 2
+
     property int cpuUsage
     Process {
         id: cpuProc
         command: ["sh", "-c", "vmstat 1 2 | awk 'END {print 100 - $15}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: cpuUsage = text
+            onStreamFinished: root.cpuUsage = text
         }
     }
 
@@ -24,7 +26,7 @@ Singleton {
         command: ["sh", "-c", "sensors | awk '/id 0/ {print $4+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: cpuTemp = text
+            onStreamFinished: root.cpuTemp = text
         }
     }
 
@@ -34,7 +36,7 @@ Singleton {
         command: ["sh", "-c", "free -h | awk '/Mem/ {print $3+0}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: memUsed = text
+            onStreamFinished: root.memUsed = text
         }
     }
 
@@ -47,7 +49,7 @@ Singleton {
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                downloadMBps = text.includes("K") ? parseInt(text) / 1024 / refreshSec : parseInt(text) / 1024 / 1024 / refreshSec;
+                root.downloadMBps = text.includes("K") ? parseInt(text) / 1024 / root.refreshSec : parseInt(text) / 1024 / 1024 / root.refreshSec;
             }
         }
     }
@@ -55,7 +57,7 @@ Singleton {
     property string btStatus: Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
 
     Timer {
-        interval: refreshSec * 1000
+        interval: root.refreshSec * 1000
         running: true
         repeat: true
         onTriggered: {
