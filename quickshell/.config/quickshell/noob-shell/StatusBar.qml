@@ -29,6 +29,8 @@ Scope {
     })
     property int refreshSec: 2
 
+    property var connectedMonitors: Quickshell.screens
+
     property var workspaceModel: Hyprland.workspaces
     function goToWorkspace(n) {
         Hyprland.dispatch("workspace " + (n + 1))
@@ -236,7 +238,7 @@ Scope {
     }
 
     Variants {
-        model: Quickshell.screens
+        model: connectedMonitors
 
         PanelWindow {
             id: barWindow
