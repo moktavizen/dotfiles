@@ -41,6 +41,7 @@ Scope {
     }
 
     property var trayItemModel: SystemTray.items
+    property bool hasTrayItems: trayItemModel.values.length > 0
 
     property int cpuUsage
     Process {
@@ -200,35 +201,35 @@ Scope {
             }
         }
     }
-    component Tray: Group {
+    component Tray: Loader {
         property int iconSize
-        property var parentWindow
 
-        visible: trayRepeater.count > 0
-        Repeater {
-            id: trayRepeater
-            model: trayItemModel
-            Image {
-                required property var modelData
+        active: hasTrayItems
+        sourceComponent: Group {
+            Repeater {
+                model: trayItemModel
+                Image {
+                    required property var modelData
 
-                source: modelData.icon
-                sourceSize.width: iconSize
-                sourceSize.height: iconSize
-                anchors.verticalCenter: parent.verticalCenter
+                    source: modelData.icon
+                    sourceSize.width: iconSize
+                    sourceSize.height: iconSize
+                    anchors.verticalCenter: parent.verticalCenter
 
-                TapHandler {
-                    acceptedButtons: Qt.LeftButton | Qt.RightButton
-                    onTapped: (eventPoint, button) => {
-                        if (button === Qt.LeftButton) {
-                            modelData.activate();
-                        } else {
-                            if (!modelData.hasMenu) return
-                            modelData.display(parentWindow, eventPoint.scenePosition.x, eventPoint.scenePosition.y);
+                    TapHandler {
+                        acceptedButtons: Qt.LeftButton | Qt.RightButton
+                        onTapped: (eventPoint, button) => {
+                            if (button === Qt.LeftButton) {
+                                modelData.activate();
+                            } else {
+                                if (!modelData.hasMenu) return
+                                modelData.display(barWindow, eventPoint.scenePosition.x, eventPoint.scenePosition.y);
+                            }
                         }
                     }
-                }
-                HoverHandler {
-                    cursorShape: Qt.PointingHandCursor
+                    HoverHandler {
+                        cursorShape: Qt.PointingHandCursor
+                    }
                 }
             }
         }
@@ -275,7 +276,6 @@ Scope {
                 Tray {
                     Layout.preferredHeight: wsGroup.height
                     iconSize: 16
-                    parentWindow: barWindow
                 }
 
                 Group {
