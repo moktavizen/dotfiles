@@ -7,7 +7,7 @@ import QtQuick
 Singleton {
     property var workspaces: Hyprland.workspaces
 
-    function goToWorkspace(n: int) {
+    function goToWorkspace(n: int): void {
         Hyprland.dispatch("workspace " + (n + 1));
     }
 
