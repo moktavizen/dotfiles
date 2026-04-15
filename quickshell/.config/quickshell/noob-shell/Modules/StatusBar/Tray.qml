@@ -19,7 +19,7 @@ Loader {
 
                 source: modelData.icon
                 implicitSize: root.iconSize
-                anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenter: parent?.verticalCenter
 
                 TapHandler {
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
