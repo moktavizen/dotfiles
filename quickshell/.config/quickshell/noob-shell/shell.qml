@@ -6,7 +6,9 @@
 
 import Quickshell
 import qs.Modules.StatusBar
+import qs.Modules.Launcher
 
 Scope {
     StatusBar {}
+    Launcher {}
 }
