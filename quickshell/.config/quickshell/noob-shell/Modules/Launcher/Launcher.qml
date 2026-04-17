@@ -28,7 +28,7 @@ Scope {
             color: "transparent"
             focusable: true
 
-            property string query: ""
+            property string q: ""
 
             function launchSelected(desktopEntry) {
                 desktopEntry.execute();
@@ -67,7 +67,7 @@ Scope {
 
                                 Component.onCompleted: forceActiveFocus()
                                 onTextChanged: {
-                                    launcher.query = text;
+                                    launcher.q = text;
                                     listView.currentIndex = 0;
                                 }
                             }
@@ -86,7 +86,7 @@ Scope {
                     }
                     ListView {
                         id: listView
-                        property int elementCount
+                        property int elementCount: DesktopEntries.applications.values.length
 
                         Layout.fillWidth: true
                         implicitHeight: 353
@@ -95,20 +95,13 @@ Scope {
                         spacing: 2
                         clip: true
                         highlightMoveDuration: 0
+                        // qmlformat off
                         model: ScriptModel {
-                            values: {
-                                const apps = DesktopEntries.applications.values;
-                                const q = launcher.query;
-
-                                listView.elementCount = apps.length;
-
-                                if (q === "") {
-                                    return apps;
-                                } else {
-                                    return apps.filter(d => d.name && d.name.toLowerCase().includes(q));
-                                }
-                            }
+                            values: DesktopEntries.applications.values
+                                .filter(d => d.name.toLowerCase().includes(launcher.q.toLowerCase()))
+                                .sort((a, b) => a.name.localeCompare(b.name))
                         }
+                        // qmlformat on
                         delegate: Control {
                             id: element
                             required property var modelData
