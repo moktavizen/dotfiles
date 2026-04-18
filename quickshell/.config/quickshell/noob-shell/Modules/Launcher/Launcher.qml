@@ -144,8 +144,14 @@ Scope {
 
                     if (isCtrl && isN) {
                         listView.currentIndex++;
+                        if (listView.currentIndex > listView.count - 1) {
+                            listView.currentIndex = 0;
+                        }
                     } else if (isCtrl && isP) {
                         listView.currentIndex--;
+                        if (listView.currentIndex < 0) {
+                            listView.currentIndex = listView.count - 1;
+                        }
                     } else if (isReturn || isEnter) {
                         launcher.launchSelected(listView.model.values[listView.currentIndex]);
                     } else if (isEsc || (isCtrl && isSqBracketLeft)) {
