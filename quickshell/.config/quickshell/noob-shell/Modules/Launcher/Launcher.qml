@@ -134,6 +134,25 @@ Scope {
                         }
                     }
                 }
+                Keys.onPressed: event => {
+                    const isCtrl = event.modifiers & Qt.ControlModifier;
+                    const isN = event.key === Qt.Key_N;
+                    const isP = event.key === Qt.Key_P;
+                    const isReturn = event.key === Qt.Key_Return;
+                    const isEnter = event.key === Qt.Key_Enter;
+                    const isEsc = event.key === Qt.Key_Escape;
+                    const isSqBracketLeft = event.key === Qt.Key_BracketLeft;
+
+                    if (isCtrl && isN) {
+                        listView.currentIndex++;
+                    } else if (isCtrl && isP) {
+                        listView.currentIndex--;
+                    } else if (isReturn || isEnter) {
+                        launcher.launchSelected(listView.currentItem.modelData);
+                    } else if (isEsc || (isCtrl && isSqBracketLeft)) {
+                        ipc.toggle();
+                    }
+                }
             }
         }
     }
