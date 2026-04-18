@@ -131,30 +131,31 @@ Scope {
                         }
                     }
                 }
-                Keys.onPressed: event => {
-                    const isCtrl = event.modifiers & Qt.ControlModifier;
-                    const isN = event.key === Qt.Key_N;
-                    const isP = event.key === Qt.Key_P;
-                    const isReturn = event.key === Qt.Key_Return;
-                    const isEnter = event.key === Qt.Key_Enter;
-                    const isEsc = event.key === Qt.Key_Escape;
-                    const isSqBracketLeft = event.key === Qt.Key_BracketLeft;
-
-                    if (isCtrl && isN) {
+                Shortcut {
+                    sequence: "Ctrl+J"
+                    onActivated: {
                         listView.currentIndex++;
                         if (listView.currentIndex > listView.count - 1) {
                             listView.currentIndex = 0;
                         }
-                    } else if (isCtrl && isP) {
+                    }
+                }
+                Shortcut {
+                    sequence: "Ctrl+K"
+                    onActivated: {
                         listView.currentIndex--;
                         if (listView.currentIndex < 0) {
                             listView.currentIndex = listView.count - 1;
                         }
-                    } else if (isReturn || isEnter) {
-                        launcher.launchSelected(listView.model.values[listView.currentIndex]);
-                    } else if (isEsc || (isCtrl && isSqBracketLeft)) {
-                        ipc.toggle();
                     }
+                }
+                Shortcut {
+                    sequences: ["Return", "Enter"]
+                    onActivated: launcher.launchSelected(listView.model.values[listView.currentIndex])
+                }
+                Shortcut {
+                    sequences: ["Esc", "Ctrl+["]
+                    onActivated: ipc.toggle()
                 }
             }
         }
