@@ -89,9 +89,11 @@ Scope {
                     }
                     ListView {
                         id: listView
+                        property int lines: 7
+
                         Layout.fillWidth: true
-                        implicitHeight: 334
                         spacing: 2
+                        implicitHeight: (currentItem?.implicitHeight * lines) + (spacing * (lines - 1))
                         clip: true
                         highlightMoveDuration: 0
                         model: ScriptModel {
