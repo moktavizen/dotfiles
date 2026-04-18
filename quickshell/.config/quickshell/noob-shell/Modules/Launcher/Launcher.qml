@@ -9,6 +9,11 @@ import QtQuick.Controls
 import qs.Common
 
 Scope {
+    id: root
+    // We get apps outside LazyLoader to prevent expensive calculation when
+    // first time loading the launcher
+    property var apps: DesktopEntries.applications.values
+
     IpcHandler {
         id: ipc
         target: "launcher"
@@ -72,7 +77,7 @@ Scope {
                                 }
                             }
                             ThemedText {
-                                text: `${listView.count}/${listView.elementCount}`
+                                text: `${listView.count}/${root.apps.length}`
                             }
                         }
                     }
@@ -86,8 +91,6 @@ Scope {
                     }
                     ListView {
                         id: listView
-                        property int elementCount: DesktopEntries.applications.values.length
-
                         Layout.fillWidth: true
                         implicitHeight: 353
                         topMargin: 12
@@ -95,13 +98,13 @@ Scope {
                         spacing: 2
                         clip: true
                         highlightMoveDuration: 0
-                        // qmlformat off
                         model: ScriptModel {
-                            values: DesktopEntries.applications.values
+                            // qmlformat off
+                            values: root.apps
                                 .filter(d => d.name.toLowerCase().includes(launcher.q.toLowerCase()))
                                 .sort((a, b) => a.name.localeCompare(b.name))
+                            // qmlformat on
                         }
-                        // qmlformat on
                         delegate: Control {
                             id: element
                             required property var modelData
