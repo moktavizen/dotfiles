@@ -8,7 +8,7 @@ import Quickshell
 import qs.Modules.StatusBar
 import qs.Modules.Launcher
 
-Scope {
+ShellRoot {
     StatusBar {}
     Launcher {}
 }
