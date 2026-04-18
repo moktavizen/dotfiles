@@ -10,9 +10,9 @@ import qs.Common
 
 Scope {
     id: root
-    // We get apps outside LazyLoader to prevent expensive calculation when
-    // first time loading the launcher
-    property var apps: DesktopEntries.applications.values
+    // We get sortedApps outside LazyLoader to prevent expensive calculation when
+    // loading the launcher for the first time
+    property var sortedApps: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name))
 
     IpcHandler {
         id: ipc
@@ -77,7 +77,7 @@ Scope {
                                 }
                             }
                             ThemedText {
-                                text: `${listView.count}/${root.apps.length}`
+                                text: `${listView.count}/${root.sortedApps.length}`
                             }
                         }
                     }
@@ -99,11 +99,7 @@ Scope {
                         clip: true
                         highlightMoveDuration: 0
                         model: ScriptModel {
-                            // qmlformat off
-                            values: root.apps
-                                .filter(d => d.name.toLowerCase().includes(launcher.q.toLowerCase()))
-                                .sort((a, b) => a.name.localeCompare(b.name))
-                            // qmlformat on
+                            values: root.sortedApps.filter(app => app.name.toLowerCase().includes(launcher.q.toLowerCase()))
                         }
                         delegate: Control {
                             id: element
