@@ -44,7 +44,7 @@ Scope {
                 id: content
                 implicitWidth: 666
 
-                horizontalPadding: 8
+                padding: 8
                 background: Rectangle {
                     color: Theme.background
                     radius: 12
@@ -55,9 +55,9 @@ Scope {
                     spacing: 0
                     Control {
                         Layout.fillWidth: true
+                        topPadding: 10
+                        bottomPadding: 4
                         horizontalPadding: 12
-                        topPadding: 18
-                        bottomPadding: 12
                         contentItem: RowLayout {
                             spacing: 8
                             IconImage {
@@ -83,7 +83,7 @@ Scope {
                     }
                     MenuSeparator {
                         Layout.fillWidth: true
-                        verticalPadding: 0
+                        verticalPadding: 8
                         contentItem: Rectangle {
                             implicitHeight: 1
                             color: Theme.border
@@ -92,9 +92,7 @@ Scope {
                     ListView {
                         id: listView
                         Layout.fillWidth: true
-                        implicitHeight: 353
-                        topMargin: 12
-                        bottomMargin: 8
+                        implicitHeight: 334
                         spacing: 2
                         clip: true
                         highlightMoveDuration: 0
