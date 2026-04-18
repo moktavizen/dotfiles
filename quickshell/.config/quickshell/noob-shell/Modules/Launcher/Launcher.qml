@@ -151,7 +151,7 @@ Scope {
                     } else if (isCtrl && isP) {
                         listView.currentIndex--;
                     } else if (isReturn || isEnter) {
-                        launcher.launchSelected(listView.currentItem.modelData);
+                        launcher.launchSelected(listView.model.values[listView.currentIndex]);
                     } else if (isEsc || (isCtrl && isSqBracketLeft)) {
                         ipc.toggle();
                     }
