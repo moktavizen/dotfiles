@@ -9,4 +9,6 @@ TextField {
     font.weight: Theme.fontWeight
     font.letterSpacing: 0.4
     renderType: Text.NativeRendering
+    padding: 0
+    background: null
 }

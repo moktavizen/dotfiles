@@ -66,9 +66,7 @@ Scope {
                             }
                             ThemedTextField {
                                 Layout.fillWidth: true
-                                padding: 0
                                 placeholderText: "Search..."
-                                background: null
 
                                 Component.onCompleted: forceActiveFocus()
                                 onTextChanged: {
