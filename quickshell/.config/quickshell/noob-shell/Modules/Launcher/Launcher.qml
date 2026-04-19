@@ -13,13 +13,23 @@ Scope {
     // We get sortedApps outside LazyLoader to prevent expensive calculation when
     // loading the launcher for the first time
     property var sortedApps: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name))
+    property var emojis: []
+    property string mode
 
     IpcHandler {
         id: ipc
         target: "launcher"
 
-        function toggle(): void {
-            loader.active = !loader.active;
+        function reveal(mode: string): void {
+            if (loader.active) {
+                return;
+            }
+            root.mode = mode;
+            loader.active = true;
+        }
+
+        function hide(): void {
+            loader.active = false;
         }
     }
 
@@ -34,10 +44,28 @@ Scope {
             focusable: true
 
             property string q: ""
+            // qmlformat off
+            property var entries: {
+                switch (root.mode) {
+                    case "drun":
+                        return root.sortedApps;
+                    case "emojis":
+                        return root.emojis;
+                }
+            }
+            property var filterEntries: {
+                switch (root.mode) {
+                    case "drun":
+                        return app => app.name.toLowerCase().includes(launcher.q.toLowerCase())
+                    case "emoji":
+                        return;
+                }
+            }
+            // qmlformat on
 
             function launchSelected(desktopEntry) {
                 desktopEntry.execute();
-                ipc.toggle();
+                ipc.hide();
             }
 
             Control {
@@ -75,7 +103,7 @@ Scope {
                                 }
                             }
                             ThemedText {
-                                text: `${listView.count}/${root.sortedApps.length}`
+                                text: `${listView.count}/${launcher.entries.length}`
                             }
                         }
                     }
@@ -97,7 +125,7 @@ Scope {
                         clip: true
                         highlightMoveDuration: 0
                         model: ScriptModel {
-                            values: root.sortedApps.filter(app => app.name.toLowerCase().includes(launcher.q.toLowerCase()))
+                            values: launcher.entries.filter(launcher.filterEntries)
                         }
                         delegate: Control {
                             id: element
@@ -155,7 +183,7 @@ Scope {
                 }
                 Shortcut {
                     sequences: ["Esc", "Ctrl+["]
-                    onActivated: ipc.toggle()
+                    onActivated: ipc.hide()
                 }
             }
         }
