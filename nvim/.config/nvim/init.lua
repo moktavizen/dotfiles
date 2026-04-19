@@ -75,13 +75,29 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
-vim.lsp.enable({ 'lua_ls' })
+-- Enable even if not in a project/workspace
+vim.lsp.config('oxlint', {
+  root_markers = {},
+  workspace_required = false,
+})
+vim.lsp.enable({
+  'lua_ls',
+  'ts_ls',
+  'oxlint',
+})
 
 -- Formatter
 vim.pack.add({ 'https://github.com/stevearc/conform.nvim' })
 require('conform').setup({
   formatters_by_ft = {
     lua = { 'stylua' },
+    markdown = { 'oxfmt' },
+    html = { 'oxfmt' },
+    css = { 'oxfmt' },
+    javascript = { 'oxfmt' },
+    typescript = { 'oxfmt' },
+    json = { 'oxfmt' },
+    jsonc = { 'oxfmt' },
   },
   format_on_save = { lsp_format = 'fallback', timeout_ms = 500 },
 })
