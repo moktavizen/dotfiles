@@ -22,9 +22,6 @@ vim.o.smartcase = true
 vim.o.inccommand = 'split'
 vim.o.updatetime = 250
 
-vim.o.spell = true
-vim.o.spelllang = 'en_us'
-
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
@@ -33,6 +30,9 @@ vim.o.smartindent = true
 
 vim.o.splitright = true
 vim.o.splitbelow = true
+
+vim.o.spell = true
+vim.o.spelllang = 'en_us'
 
 vim.o.number = true
 vim.o.numberwidth = 1
@@ -91,7 +91,7 @@ vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
 
 -- Code completion
 vim.pack.add({
-  { src = 'https://github.com/saghen/blink.cmp', version = 'v1.10.2' },
+  { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') },
 })
 require('blink.cmp').setup({
   fuzzy = { implementation = 'rust' },
