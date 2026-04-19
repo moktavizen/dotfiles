@@ -88,6 +88,20 @@ require('conform').setup({
 
 -- Syntax highlight
 vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
+-- Auto install parser and start `nvim-treesitter`
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(ev)
+    local ts = require('nvim-treesitter')
+    local lang = vim.treesitter.language.get_lang(ev.match)
+    if not vim.tbl_contains(ts.get_available(), lang) then
+      return
+    end
+    if not vim.tbl_contains(ts.get_installed(), lang) then
+      ts.install(lang):wait()
+    end
+    vim.treesitter.start()
+  end,
+})
 
 -- Code completion
 vim.pack.add({
@@ -155,21 +169,6 @@ end, { desc = 'Toggle Floating File Explorer' })
 --
 -- Autocommands
 --
-
--- Auto install parser and start `nvim-treesitter`
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function(ev)
-    local ts = require('nvim-treesitter')
-    local lang = vim.treesitter.language.get_lang(ev.match)
-    if not vim.tbl_contains(ts.get_available(), lang) then
-      return
-    end
-    if not vim.tbl_contains(ts.get_installed(), lang) then
-      ts.install(lang):wait()
-    end
-    vim.treesitter.start()
-  end,
-})
 
 -- From `:h lua-guide-autocommand-create`
 vim.api.nvim_create_autocmd('TextYankPost', {
