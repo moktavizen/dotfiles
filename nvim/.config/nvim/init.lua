@@ -80,6 +80,7 @@ vim.lsp.config('oxlint', {
 })
 vim.lsp.enable({
   'lua_ls',
+  'emmet_language_server',
   'ts_ls',
   'oxlint',
 })
