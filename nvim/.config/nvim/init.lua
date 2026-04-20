@@ -140,6 +140,7 @@ require('blink.cmp').setup({
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
+require('mini.align').setup()
 require('mini.diff').setup({
   view = {
     style = 'sign',
