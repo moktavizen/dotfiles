@@ -101,8 +101,19 @@ require('conform').setup({
 })
 
 -- Syntax highlight
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == 'nvim-treesitter' and kind == 'update' then
+      if not ev.data.active then
+        vim.cmd.packadd('nvim-treesitter')
+      end
+      vim.cmd('TSUpdate')
+    end
+  end,
+})
 vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
--- Auto install parser and start `nvim-treesitter`
+-- Auto install missing parser and enable Tree-sitter highlighting
 vim.api.nvim_create_autocmd('FileType', {
   callback = function(ev)
     local ts = require('nvim-treesitter')
