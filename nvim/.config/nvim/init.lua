@@ -4,7 +4,6 @@
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-
 vim.o.clipboard = 'unnamedplus'
 
 vim.o.undofile = true
@@ -13,7 +12,6 @@ vim.o.swapfile = false
 vim.o.wrap = false
 vim.o.linebreak = true
 vim.o.breakindent = true
-
 vim.o.scrolloff = 10
 
 vim.o.ignorecase = true
