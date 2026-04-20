@@ -181,7 +181,7 @@ vim.keymap.set('n', '<leader>e', function()
 end, { desc = 'Toggle Floating File Explorer' })
 
 --
--- Autocommands
+-- Auto commands
 --
 
 -- From `:h lua-guide-autocommand-create`
@@ -191,3 +191,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
   desc = 'Briefly highlight yanked text',
 })
+
+--
+-- User commands
+--
+
+vim.api.nvim_create_user_command('Uindent', function(opts)
+  local size = tonumber(opts.args)
+  vim.o.tabstop = size
+  vim.o.softtabstop = size
+  vim.o.shiftwidth = size
+  print('Indentation set to ' .. size)
+end, { nargs = 1 })
