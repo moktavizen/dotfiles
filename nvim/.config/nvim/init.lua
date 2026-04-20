@@ -78,11 +78,15 @@ vim.lsp.config('oxlint', {
   root_markers = {},
   workspace_required = false,
 })
+vim.lsp.config('qmlls', {
+  cmd = { 'qmlls6' },
+})
 vim.lsp.enable({
   'lua_ls',
   'emmet_language_server',
   'ts_ls',
   'oxlint',
+  'qmlls',
 })
 
 -- Formatter
