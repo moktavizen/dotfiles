@@ -18,7 +18,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 vim.o.inccommand = 'split'
-vim.o.updatetime = 250
+vim.o.updatetime = 300
 
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
