@@ -14,7 +14,7 @@ Group {
     horizontalPadding: 10
 
     Repeater {
-        model: Hypr.workspaces
+        model: WMan.workspaces
         Rectangle {
             id: workspace
             required property var modelData
@@ -26,13 +26,13 @@ Group {
 
             ThemedText {
                 width: 18
-                color: workspace.modelData.active ? root.activeColor : Theme.foreground
-                text: workspace.modelData.active ? root.activeIcon : root.defaultIcon
+                color: workspace.modelData.is_active ? root.activeColor : Theme.foreground
+                text: workspace.modelData.is_active ? root.activeIcon : root.defaultIcon
                 horizontalAlignment: Text.AlignHCenter
             }
 
             TapHandler {
-                onTapped: Hypr.goToWorkspace(workspace.index)
+                onTapped: WMan.goToWorkspace(workspace.index)
             }
             HoverHandler {
                 cursorShape: Qt.PointingHandCursor

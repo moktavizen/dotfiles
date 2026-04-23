@@ -26,15 +26,15 @@ Variants {
             anchors.rightMargin: 8
             spacing: 8
 
-            HyprWorkspaces {
+            WmWorkspaces {
                 activeIcon: "󰮯"
                 defaultIcon: "•"
                 activeColor: Theme.yellow
                 Layout.preferredHeight: hwGroup.height
             }
 
-            HyprWindow {
-                format: `<font color="${Theme.blue}">󰊠</font> ${Hypr.winTitle}`
+            WmWindow {
+                format: `<font color="${Theme.blue}">󰊠</font> ${WMan.winTitle}`
                 Layout.maximumHeight: hwGroup.height
             }
 
