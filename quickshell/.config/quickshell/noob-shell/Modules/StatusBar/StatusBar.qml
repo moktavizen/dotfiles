@@ -27,15 +27,15 @@ Variants {
             spacing: 8
 
             HyprWorkspaces {
-                id: wsGroup
                 activeIcon: "󰮯"
                 defaultIcon: "•"
                 activeColor: Theme.yellow
+                Layout.preferredHeight: hwGroup.height
             }
 
             HyprWindow {
                 format: `<font color="${Theme.blue}">󰊠</font> ${Hypr.winTitle}`
-                Layout.maximumHeight: wsGroup.height
+                Layout.maximumHeight: hwGroup.height
             }
 
             Item {
@@ -43,12 +43,13 @@ Variants {
             }
 
             Tray {
-                Layout.preferredHeight: wsGroup.height
+                Layout.preferredHeight: hwGroup.height
                 iconSize: 16
                 parentWindow: barWindow
             }
 
             Group {
+                id: hwGroup
                 Module {
                     format: `<font color="${Theme.paleCyan}">󰍛</font> ${HWMonitor.cpuUsage}%`
                     onClickCmd: "foot -T 'Task Manager' btop"
