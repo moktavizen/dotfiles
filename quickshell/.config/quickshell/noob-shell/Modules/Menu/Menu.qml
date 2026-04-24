@@ -7,28 +7,67 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import qs.Common
+import qs.Services
 
 Scope {
     id: root
-    // We get sortedApps outside LazyLoader to prevent expensive calculation when
-    // loading the launcher for the first time
-    property var sortedApps: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name))
-    property var emojis: []
+    // We get `apps` outside `LazyLoader` to prevent expensive calculation when
+    // loading the menu for the first time
+    property var apps: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name))
+    property var emojis: Emoji.emojis
+
     property string mode
+    property var items
+    property bool hasIcon
+    property var getIcon
+    property var getText
+    property var getSearchKey
+    property var action
 
     IpcHandler {
         id: ipc
-        target: "launcher"
+        target: "menu"
 
-        function reveal(mode: string): void {
+        function open(mode: string): void {
             if (loader.active) {
                 return;
             }
+
             root.mode = mode;
+            // qmlformat off
+            switch (root.mode) {
+                case "app":
+                    root.items = root.apps;
+                    root.hasIcon = true;
+                    root.getIcon = item => Quickshell.iconPath(item.icon || "unknown");
+                    root.getText = item => item.name;
+                    root.getSearchKey = item => item.name;
+                    root.action = item => item.execute();
+                    break;
+                case "emoji":
+                    root.items = root.emojis;
+                    root.hasIcon = false;
+                    root.getIcon = item => "";
+                    root.getText = item => `${item.e} - ${item.n}`;
+                    root.getSearchKey = item => item.k;
+                    root.action = item => Quickshell.execDetached(["wl-copy", item.e]);
+                    break;
+                case "clipboard":
+                    Cliphist.running = true;
+                    root.items = Qt.binding(() => Cliphist.clipboard);
+                    root.hasIcon = false;
+                    root.getIcon = item => "";
+                    root.getText = item => item.split("\t")[1]
+                    root.getSearchKey = item => item;
+                    root.action = item => Quickshell.execDetached(["sh", "-c", `cliphist decode ${item} | wl-copy`]);
+                    break;
+            }
+            // qmlformat off
+
             loader.active = true;
         }
 
-        function hide(): void {
+        function close(): void {
             loader.active = false;
         }
     }
@@ -37,35 +76,17 @@ Scope {
         id: loader
 
         PanelWindow {
-            id: launcher
+            id: window
             implicitWidth: content.implicitWidth
             implicitHeight: content.implicitHeight
             color: "transparent"
             focusable: true
 
             property string q: ""
-            // qmlformat off
-            property var entries: {
-                switch (root.mode) {
-                    case "drun":
-                        return root.sortedApps;
-                    case "emojis":
-                        return root.emojis;
-                }
-            }
-            property var filterEntries: {
-                switch (root.mode) {
-                    case "drun":
-                        return app => app.name.toLowerCase().includes(launcher.q.toLowerCase())
-                    case "emoji":
-                        return;
-                }
-            }
-            // qmlformat on
 
-            function launchSelected(desktopEntry) {
-                desktopEntry.execute();
-                ipc.hide();
+            function selectItem(item) {
+                root.action(item);
+                ipc.close();
             }
 
             Control {
@@ -98,12 +119,12 @@ Scope {
 
                                 Component.onCompleted: forceActiveFocus()
                                 onTextChanged: {
-                                    launcher.q = text;
+                                    window.q = text;
                                     listView.currentIndex = 0;
                                 }
                             }
                             ThemedText {
-                                text: `${listView.count}/${launcher.entries.length}`
+                                text: `${listView.count}/${root.items.length}`
                             }
                         }
                     }
@@ -124,11 +145,27 @@ Scope {
                         implicitHeight: (currentItem?.implicitHeight * lines) + (spacing * (lines - 1))
                         clip: true
                         highlightMoveDuration: 0
+                        onCountChanged: {
+                            if (count > 0) {
+                                currentIndex = 0;
+                            }
+                        }
                         model: ScriptModel {
-                            values: launcher.entries.filter(launcher.filterEntries)
+                            values: {
+                                function hasWords(str, sentence) {
+                                    const nStr = str.toLowerCase();
+                                    const nWords = sentence.toLowerCase().split(" ");
+                                    return nWords.every(word => nStr.includes(word));
+                                }
+
+                                return root.items.filter(item => {
+                                    const searchKey = root.getSearchKey(item);
+                                    return hasWords(searchKey, window.q);
+                                });
+                            }
                         }
                         delegate: Control {
-                            id: element
+                            id: delegateItem
                             required property var modelData
                             required property int index
 
@@ -137,17 +174,18 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    source: Quickshell.iconPath(element.modelData.icon || "unknown")
+                                    visible: root.hasIcon
+                                    source: root.getIcon(delegateItem.modelData)
                                     implicitSize: 24
                                 }
                                 ThemedText {
                                     Layout.fillWidth: true
-                                    text: element.modelData.name
+                                    text: root.getText(delegateItem.modelData)
                                 }
                             }
                             TapHandler {
-                                onTapped: listView.currentIndex = element.index
-                                onDoubleTapped: launcher.launchSelected(element.modelData)
+                                onTapped: listView.currentIndex = delegateItem.index
+                                onDoubleTapped: window.selectItem(delegateItem.modelData)
                             }
                             HoverHandler {
                                 cursorShape: Qt.PointingHandCursor
@@ -179,11 +217,11 @@ Scope {
                 }
                 Shortcut {
                     sequences: ["Return", "Enter"]
-                    onActivated: launcher.launchSelected(listView.model.values[listView.currentIndex])
+                    onActivated: window.selectItem(listView.model.values[listView.currentIndex])
                 }
                 Shortcut {
                     sequences: ["Esc", "Ctrl+["]
-                    onActivated: ipc.hide()
+                    onActivated: ipc.close()
                 }
             }
         }

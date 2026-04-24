@@ -6,9 +6,9 @@
 
 import Quickshell
 import qs.Modules.StatusBar
-import qs.Modules.Launcher
+import qs.Modules.Menu
 
 ShellRoot {
     StatusBar {}
-    Launcher {}
+    Menu {}
 }
