@@ -11,6 +11,7 @@ import qs.Services
 
 Scope {
     id: root
+    // We get the list data here to prevent race condition with list highlight
     property var apps: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name))
     property var emojis: Emoji.emojis
     property var clipboard: Cliphist.clipboard
@@ -22,29 +23,26 @@ Scope {
         case "app":
             return {
                 items: root.apps,
-                hasIcon: true,
                 getIcon: item => Quickshell.iconPath(item.icon || "unknown"),
                 getText: item => item.name,
                 getSearchKey: item => item.name,
-                action: item => item.execute()
+                applyAction: item => item.execute()
             };
         case "emoji":
             return {
                 items: root.emojis,
-                hasIcon: false,
                 getIcon: item => "",
                 getText: item => `${item.e} - ${item.n}`,
                 getSearchKey: item => item.k,
-                action: item => Quickshell.execDetached(["wl-copy", item.e])
+                applyAction: item => Quickshell.execDetached(["wl-copy", item.e])
             };
         case "clipboard":
             return {
                 items: root.clipboard,
-                hasIcon: false,
                 getIcon: item => "",
                 getText: item => item.split("\t")[1],
                 getSearchKey: item => item,
-                action: item => Quickshell.execDetached(["sh", "-c", `cliphist decode ${item} | wl-copy`])
+                applyAction: item => Quickshell.execDetached(["sh", "-c", `cliphist decode ${item} | wl-copy`])
             };
         }
     }
@@ -81,7 +79,7 @@ Scope {
             property string q: ""
 
             function selectItem(item) {
-                root.state.action(item);
+                root.state.applyAction(item);
                 ipc.close();
             }
 
@@ -165,7 +163,7 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    visible: root.state.hasIcon
+                                    visible: root.state.getIcon(delegateItem.modelData) !== ""
                                     source: root.state.getIcon(delegateItem.modelData)
                                     implicitSize: 24
                                 }
