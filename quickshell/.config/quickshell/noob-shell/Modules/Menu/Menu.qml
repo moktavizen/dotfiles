@@ -55,9 +55,7 @@ Scope {
             if (loader.active) {
                 return;
             }
-
             root.mode = mode;
-
             loader.active = true;
         }
 
