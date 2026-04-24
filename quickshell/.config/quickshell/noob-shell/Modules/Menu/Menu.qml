@@ -31,15 +31,15 @@ Scope {
         case "emoji":
             return {
                 items: root.emojis,
-                getIcon: item => "",
-                getText: item => `${item.e} - ${item.n}`,
+                getIcon: item => Quickshell.iconPath("arrow-right"),
+                getText: item => `${item.e} ${item.n}`,
                 getSearchKey: item => item.k,
                 applyAction: item => Quickshell.execDetached(["wl-copy", item.e])
             };
         case "clipboard":
             return {
                 items: root.clipboard,
-                getIcon: item => "",
+                getIcon: item => Quickshell.iconPath("arrow-right"),
                 getText: item => item.split("\t")[1],
                 getSearchKey: item => item,
                 applyAction: item => Quickshell.execDetached(["sh", "-c", `cliphist decode ${item} | wl-copy`])
@@ -161,7 +161,6 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    visible: root.state.getIcon(delegateItem.modelData) !== ""
                                     source: root.state.getIcon(delegateItem.modelData)
                                     implicitSize: 24
                                 }
