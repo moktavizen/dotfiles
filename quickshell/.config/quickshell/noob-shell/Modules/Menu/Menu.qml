@@ -11,18 +11,43 @@ import qs.Services
 
 Scope {
     id: root
-    // We get `apps` outside `LazyLoader` to prevent expensive calculation when
-    // loading the menu for the first time
     property var apps: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name))
     property var emojis: Emoji.emojis
+    property var clipboard: Cliphist.clipboard
 
     property string mode
-    property var items
-    property bool hasIcon
-    property var getIcon
-    property var getText
-    property var getSearchKey
-    property var action
+
+    property var state: {
+        switch (root.mode) {
+        case "app":
+            return {
+                items: root.apps,
+                hasIcon: true,
+                getIcon: item => Quickshell.iconPath(item.icon || "unknown"),
+                getText: item => item.name,
+                getSearchKey: item => item.name,
+                action: item => item.execute()
+            };
+        case "emoji":
+            return {
+                items: root.emojis,
+                hasIcon: false,
+                getIcon: item => "",
+                getText: item => `${item.e} - ${item.n}`,
+                getSearchKey: item => item.k,
+                action: item => Quickshell.execDetached(["wl-copy", item.e])
+            };
+        case "clipboard":
+            return {
+                items: root.clipboard,
+                hasIcon: false,
+                getIcon: item => "",
+                getText: item => item.split("\t")[1],
+                getSearchKey: item => item,
+                action: item => Quickshell.execDetached(["sh", "-c", `cliphist decode ${item} | wl-copy`])
+            };
+        }
+    }
 
     IpcHandler {
         id: ipc
@@ -34,35 +59,6 @@ Scope {
             }
 
             root.mode = mode;
-            // qmlformat off
-            switch (root.mode) {
-                case "app":
-                    root.items = root.apps;
-                    root.hasIcon = true;
-                    root.getIcon = item => Quickshell.iconPath(item.icon || "unknown");
-                    root.getText = item => item.name;
-                    root.getSearchKey = item => item.name;
-                    root.action = item => item.execute();
-                    break;
-                case "emoji":
-                    root.items = root.emojis;
-                    root.hasIcon = false;
-                    root.getIcon = item => "";
-                    root.getText = item => `${item.e} - ${item.n}`;
-                    root.getSearchKey = item => item.k;
-                    root.action = item => Quickshell.execDetached(["wl-copy", item.e]);
-                    break;
-                case "clipboard":
-                    Cliphist.running = true;
-                    root.items = Qt.binding(() => Cliphist.clipboard);
-                    root.hasIcon = false;
-                    root.getIcon = item => "";
-                    root.getText = item => item.split("\t")[1]
-                    root.getSearchKey = item => item;
-                    root.action = item => Quickshell.execDetached(["sh", "-c", `cliphist decode ${item} | wl-copy`]);
-                    break;
-            }
-            // qmlformat off
 
             loader.active = true;
         }
@@ -85,7 +81,7 @@ Scope {
             property string q: ""
 
             function selectItem(item) {
-                root.action(item);
+                root.state.action(item);
                 ipc.close();
             }
 
@@ -124,7 +120,7 @@ Scope {
                                 }
                             }
                             ThemedText {
-                                text: `${listView.count}/${root.items.length}`
+                                text: `${listView.count}/${root.state.items.length}`
                             }
                         }
                     }
@@ -145,11 +141,6 @@ Scope {
                         implicitHeight: (currentItem?.implicitHeight * lines) + (spacing * (lines - 1))
                         clip: true
                         highlightMoveDuration: 0
-                        onCountChanged: {
-                            if (count > 0) {
-                                currentIndex = 0;
-                            }
-                        }
                         model: ScriptModel {
                             values: {
                                 function hasWords(str, sentence) {
@@ -158,8 +149,8 @@ Scope {
                                     return nWords.every(word => nStr.includes(word));
                                 }
 
-                                return root.items.filter(item => {
-                                    const searchKey = root.getSearchKey(item);
+                                return root.state.items.filter(item => {
+                                    const searchKey = root.state.getSearchKey(item);
                                     return hasWords(searchKey, window.q);
                                 });
                             }
@@ -174,13 +165,13 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    visible: root.hasIcon
-                                    source: root.getIcon(delegateItem.modelData)
+                                    visible: root.state.hasIcon
+                                    source: root.state.getIcon(delegateItem.modelData)
                                     implicitSize: 24
                                 }
                                 ThemedText {
                                     Layout.fillWidth: true
-                                    text: root.getText(delegateItem.modelData)
+                                    text: root.state.getText(delegateItem.modelData)
                                 }
                             }
                             TapHandler {
