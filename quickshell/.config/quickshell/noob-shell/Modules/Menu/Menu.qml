@@ -206,7 +206,11 @@ Scope {
                 }
                 Shortcut {
                     sequences: ["Return", "Enter"]
-                    onActivated: window.selectItem(listView.model.values[listView.currentIndex])
+                    onActivated: {
+                        if (listView.currentItem !== null) {
+                            window.selectItem(listView.model.values[listView.currentIndex]);
+                        }
+                    }
                 }
                 Shortcut {
                     sequences: ["Esc", "Ctrl+["]
