@@ -23,7 +23,7 @@ Scope {
         case "app":
             return {
                 items: root.apps,
-                getIcon: item => Quickshell.iconPath(item.icon || "unknown"),
+                getIcon: item => Quickshell.iconPath(item.icon || "dialog-question"),
                 getText: item => item.name,
                 getSearchKey: item => item.name,
                 applyAction: item => item.execute()
