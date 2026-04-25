@@ -30,10 +30,10 @@ Singleton {
         }
     }
 
-    property real memUsed
+    property string memUsed
     Process {
         id: memProc
-        command: ["sh", "-c", "free -h | awk '/Mem/ {print $3+0}'"]
+        command: ["sh", "-c", "free -h | awk '/Mem/ {print $3}'"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: root.memUsed = text

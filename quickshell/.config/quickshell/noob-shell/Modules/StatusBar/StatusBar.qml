@@ -59,7 +59,7 @@ Variants {
                     onClickCmd: "foot -T 'Task Manager' btop"
                 }
                 Module {
-                    format: `<font color="${Theme.magenta}">󰘚</font> ${HWMonitor.memUsed}GB`
+                    format: `<font color="${Theme.magenta}">󰘚</font> ${HWMonitor.memUsed.replace("i", "B")}`
                     onClickCmd: "foot -T 'Task Manager' btop"
                 }
             }
