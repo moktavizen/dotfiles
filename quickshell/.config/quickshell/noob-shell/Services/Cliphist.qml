@@ -2,7 +2,6 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Io
-import QtQml
 
 Singleton {
     id: root
@@ -18,7 +17,7 @@ Singleton {
     }
 
     FileView {
-        path: Qt.resolvedUrl("/home/vizen/.cache/cliphist/db")
+        path: Quickshell.env("HOME") + "/.cache/cliphist/db"
         watchChanges: true
         onFileChanged: cliphistProc.running = true
     }
