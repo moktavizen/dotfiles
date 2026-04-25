@@ -8,7 +8,7 @@ Group {
         Module {
             id: windowModule
             Layout.maximumWidth: 603
-            elide: Text.ElideMiddle
+            elide: Text.ElideRight
         }
     }
 }

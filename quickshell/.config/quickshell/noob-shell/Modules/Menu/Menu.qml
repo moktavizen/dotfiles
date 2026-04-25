@@ -167,6 +167,7 @@ Scope {
                                 ThemedText {
                                     Layout.fillWidth: true
                                     text: root.state.getText(delegateItem.modelData)
+                                    elide: Text.ElideRight
                                 }
                             }
                             TapHandler {
