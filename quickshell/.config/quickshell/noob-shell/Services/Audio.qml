@@ -2,7 +2,6 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Services.Pipewire
-import QtQuick
 
 Singleton {
     PwObjectTracker {
