@@ -23,26 +23,26 @@ Scope {
         case "app":
             return {
                 items: root.apps,
-                getIcon: item => Quickshell.iconPath(item.icon || "dialog-question"),
-                getText: item => item.name,
-                getSearchKey: item => item.name,
-                applyAction: item => item.execute()
+                getIcon: app => Quickshell.iconPath(app.icon || "dialog-question"),
+                getText: app => app.name,
+                getSearchKey: app => app.name,
+                applyAction: app => app.execute()
             };
         case "emoji":
             return {
                 items: root.emojis,
-                getIcon: item => Quickshell.iconPath("arrow-right"),
-                getText: item => `${item.e} ${item.n}`,
-                getSearchKey: item => item.k,
-                applyAction: item => Quickshell.execDetached(["wl-copy", item.e])
+                getIcon: () => Quickshell.iconPath("arrow-right"),
+                getText: emoji => `${emoji.e} ${emoji.n}`,
+                getSearchKey: emoji => emoji.k,
+                applyAction: emoji => Quickshell.execDetached(["wl-copy", emoji.e])
             };
         case "clipboard":
             return {
                 items: root.clipboard,
-                getIcon: item => Quickshell.iconPath("arrow-right"),
-                getText: item => item.split("\t")[1],
-                getSearchKey: item => item,
-                applyAction: item => Quickshell.execDetached(["sh", "-c", `cliphist decode ${item} | wl-copy`])
+                getIcon: () => Quickshell.iconPath("arrow-right"),
+                getText: cbItem => cbItem.split("\t")[1],
+                getSearchKey: cbItem => cbItem,
+                applyAction: cbItem => Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbItem} | wl-copy`])
             };
         }
     }
