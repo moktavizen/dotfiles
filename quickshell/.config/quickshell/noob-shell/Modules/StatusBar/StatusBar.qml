@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
@@ -13,7 +15,33 @@ Variants {
         required property var modelData
         screen: modelData
 
-        WlrLayershell.namespace: "noobshell-status-bar"
+        WlrLayershell.namespace: "noob-statusbar"
+        BackgroundEffect.blurRegion: Region {
+            Region {
+                item: wsGroup.background
+                radius: wsGroup.background.radius
+            }
+            Region {
+                item: winGroup.background
+                radius: winGroup.background.radius
+            }
+            Region {
+                item: trayLoader.item.background
+                radius: trayLoader.item.background.radius
+            }
+            Region {
+                item: hwGroup.background
+                radius: hwGroup.background.radius
+            }
+            Region {
+                item: controlGroup.background
+                radius: controlGroup.background.radius
+            }
+            Region {
+                item: clockGroup.background
+                radius: clockGroup.background.radius
+            }
+        }
         color: "transparent"
         anchors.top: true
         anchors.left: true
@@ -29,6 +57,7 @@ Variants {
             spacing: 8
 
             WmWorkspaces {
+                id: wsGroup
                 activeIcon: "󰮯"
                 defaultIcon: "•"
                 activeColor: Theme.yellow
@@ -36,6 +65,7 @@ Variants {
             }
 
             WmWindow {
+                id: winGroup
                 format: `<font color="${Theme.blue}">󰊠</font> ${WMan.winTitle}`
                 Layout.maximumHeight: hwGroup.height
             }
@@ -45,6 +75,7 @@ Variants {
             }
 
             Tray {
+                id: trayLoader
                 Layout.preferredHeight: hwGroup.height
                 iconSize: 16
                 parentWindow: barWindow
@@ -67,6 +98,7 @@ Variants {
             }
 
             Group {
+                id: controlGroup
                 Module {
                     format: `<font color="${Theme.green}"></font> ${HWMonitor.battCapacity}%`
                     onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
@@ -86,6 +118,7 @@ Variants {
             }
 
             Group {
+                id: clockGroup
                 Module {
                     format: `<font color="${Theme.yellow}">󰥔</font> ${Time.dateTime}`
                     onClickCmd: "foot -T 'Calendar' sh -c 'cal --year; read'"

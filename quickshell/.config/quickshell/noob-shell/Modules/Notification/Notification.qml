@@ -41,7 +41,11 @@ Scope {
 
         PanelWindow {
             WlrLayershell.layer: WlrLayer.Overlay
-            WlrLayershell.namespace: "noobshell-notif"
+            WlrLayershell.namespace: "noob-notif"
+            BackgroundEffect.blurRegion: Region {
+                item: content.background
+                radius: content.background.radius
+            }
             anchors.top: true
             anchors.right: true
             margins.top: 16

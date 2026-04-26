@@ -11,7 +11,7 @@ Variants {
 
         WlrLayershell.layer: WlrLayer.Background
         WlrLayershell.exclusionMode: ExclusionMode.Ignore
-        WlrLayershell.namespace: "noobshell-wallpaper"
+        WlrLayershell.namespace: "noob-wallpaper"
         anchors.top: true
         anchors.bottom: true
         anchors.left: true

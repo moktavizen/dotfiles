@@ -71,7 +71,11 @@ Scope {
         PanelWindow {
             id: window
             WlrLayershell.layer: WlrLayer.Overlay
-            WlrLayershell.namespace: "noobshell-menu"
+            WlrLayershell.namespace: "noob-menu"
+            BackgroundEffect.blurRegion: Region {
+                item: content.background
+                radius: content.background.radius
+            }
             implicitWidth: content.implicitWidth
             implicitHeight: content.implicitHeight
             color: "transparent"
