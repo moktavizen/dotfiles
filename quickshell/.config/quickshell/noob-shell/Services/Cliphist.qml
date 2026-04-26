@@ -18,6 +18,7 @@ Singleton {
 
     FileView {
         path: Quickshell.env("HOME") + "/.cache/cliphist/db"
+        preload: false
         watchChanges: true
         onFileChanged: cliphistProc.running = true
     }
