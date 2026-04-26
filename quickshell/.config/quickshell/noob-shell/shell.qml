@@ -5,11 +5,13 @@
 //@ pragma UseQApplication
 
 import Quickshell
+import qs.Modules.Wallpaper
 import qs.Modules.StatusBar
 import qs.Modules.Menu
 import qs.Modules.Notification
 
 ShellRoot {
+    Wallpaper {}
     StatusBar {}
     Menu {}
     Notification {}
