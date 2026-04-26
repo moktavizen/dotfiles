@@ -42,7 +42,7 @@ Scope {
                 getIcon: () => Quickshell.iconPath("arrow-right"),
                 getText: cbItem => cbItem.split("\t")[1],
                 getSearchKey: cbItem => cbItem,
-                applyAction: cbItem => Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbItem} | wl-copy`])
+                applyAction: cbItem => Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbItem.split("\t")[0]} | wl-copy`])
             };
         }
     }
