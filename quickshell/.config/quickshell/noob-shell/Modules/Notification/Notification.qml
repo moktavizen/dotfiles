@@ -19,7 +19,7 @@ Scope {
         onNotification: notification => {
             notification.tracked = true;
             root.notif = notification;
-            loader.loading = true;
+            loader.active = true;
             timer.running = true;
         }
     }
