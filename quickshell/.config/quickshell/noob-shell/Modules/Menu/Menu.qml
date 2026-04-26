@@ -86,12 +86,7 @@ Scope {
                 implicitWidth: 666
 
                 padding: 8
-                background: Rectangle {
-                    color: Theme.background
-                    radius: 12
-                    border.width: 1
-                    border.color: Theme.border
-                }
+                background: RoundedRect {}
                 contentItem: ColumnLayout {
                     spacing: 0
                     Control {
@@ -116,6 +111,8 @@ Scope {
                                 }
                             }
                             ThemedText {
+                                font.pixelSize: 16
+                                font.letterSpacing: 0.4
                                 text: `${listView.count}/${root.state.items.length}`
                             }
                         }
@@ -165,6 +162,8 @@ Scope {
                                     implicitSize: 24
                                 }
                                 ThemedText {
+                                    font.pixelSize: 16
+                                    font.letterSpacing: 0.4
                                     Layout.fillWidth: true
                                     text: root.state.getText(delegateItem.modelData)
                                     elide: Text.ElideRight

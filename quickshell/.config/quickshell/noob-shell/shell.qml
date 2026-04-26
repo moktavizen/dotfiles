@@ -7,8 +7,10 @@
 import Quickshell
 import qs.Modules.StatusBar
 import qs.Modules.Menu
+import qs.Modules.Notification
 
 ShellRoot {
     StatusBar {}
     Menu {}
+    Notification {}
 }
