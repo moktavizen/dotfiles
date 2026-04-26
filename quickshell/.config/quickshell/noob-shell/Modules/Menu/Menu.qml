@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import Quickshell
 import Quickshell.Io
 import Quickshell.Widgets
+import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -69,6 +70,8 @@ Scope {
 
         PanelWindow {
             id: window
+            WlrLayershell.layer: WlrLayer.Overlay
+            WlrLayershell.namespace: "noobshell-menu"
             implicitWidth: content.implicitWidth
             implicitHeight: content.implicitHeight
             color: "transparent"

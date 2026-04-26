@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell.Widgets
+import Quickshell.Wayland
 import Quickshell.Services.Notifications
 import qs.Common
 
@@ -39,6 +40,8 @@ Scope {
         id: loader
 
         PanelWindow {
+            WlrLayershell.layer: WlrLayer.Overlay
+            WlrLayershell.namespace: "noobshell-notif"
             anchors.top: true
             anchors.right: true
             margins.top: 16

@@ -1,6 +1,7 @@
 import Quickshell
 import QtQuick
 import QtQuick.Layouts
+import Quickshell.Wayland
 import qs.Common
 import qs.Services
 
@@ -12,6 +13,7 @@ Variants {
         required property var modelData
         screen: modelData
 
+        WlrLayershell.namespace: "noobshell-status-bar"
         color: "transparent"
         anchors.top: true
         anchors.left: true
