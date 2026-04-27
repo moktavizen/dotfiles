@@ -92,6 +92,13 @@ vim.lsp.enable({
 -- Formatter
 vim.pack.add({ 'https://github.com/stevearc/conform.nvim' })
 require('conform').setup({
+  formatters = {
+    shfmt = {
+      -- Google's shell style guide: shfmt -i 2 -ci -bn
+      append_args = { '-i', '2', '-ci', '-bn' },
+    },
+  },
+
   formatters_by_ft = {
     lua = { 'stylua' },
     markdown = { 'oxfmt' },
@@ -101,6 +108,8 @@ require('conform').setup({
     typescript = { 'oxfmt' },
     json = { 'oxfmt' },
     jsonc = { 'oxfmt' },
+    bash = { 'shfmt' },
+    sh = { 'shfmt' },
   },
   format_on_save = { lsp_format = 'fallback', timeout_ms = 500 },
 })
