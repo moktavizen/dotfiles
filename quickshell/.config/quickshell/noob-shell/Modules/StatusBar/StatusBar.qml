@@ -26,8 +26,8 @@ Variants {
                 radius: winGroup.background.radius
             }
             Region {
-                item: trayLoader.item.background
-                radius: trayLoader.item.background.radius
+                item: trayLoader.item?.background ?? null
+                radius: trayLoader.item?.background.radius ?? 0
             }
             Region {
                 item: hwGroup.background
