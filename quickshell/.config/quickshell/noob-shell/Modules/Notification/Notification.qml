@@ -56,7 +56,7 @@ Scope {
 
             Control {
                 id: content
-                implicitWidth: 425
+                implicitWidth: contentItem.implicitWidth
                 padding: 16
                 background: RoundedRect {}
                 contentItem: RowLayout {
@@ -71,6 +71,7 @@ Scope {
                         }
                     }
                     ColumnLayout {
+                        Layout.maximumWidth: 256
                         spacing: 4
                         ThemedText {
                             font.weight: 700
