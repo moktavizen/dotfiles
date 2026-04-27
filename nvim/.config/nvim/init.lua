@@ -122,6 +122,9 @@ vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
 vim.api.nvim_create_autocmd('FileType', {
   callback = function(ev)
     local lang = vim.treesitter.language.get_lang(ev.match)
+    if not vim.tbl_contains(require('nvim-treesitter').get_available(), lang) then
+      return
+    end
     if lang and not pcall(vim.treesitter.start, ev.buf, lang) then
       require('nvim-treesitter').install(lang)
       local function start_after_installed()
