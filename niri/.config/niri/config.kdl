@@ -110,8 +110,8 @@ layout {
 
     border {
         width 1
-        active-color "#404040"
-        inactive-color "#404040"
+        active-color "#484848"
+        inactive-color "#484848"
         urgent-color "#f2d297"
     }
 
