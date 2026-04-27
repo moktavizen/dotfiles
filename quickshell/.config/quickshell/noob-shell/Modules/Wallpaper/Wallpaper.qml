@@ -6,6 +6,7 @@ Variants {
     model: Quickshell.screens
 
     PanelWindow {
+        id: window
         required property var modelData
         screen: modelData
 
@@ -20,8 +21,9 @@ Variants {
         Image {
             anchors.fill: parent
             source: Quickshell.env("HOME") + "/.config/wallpapers/max-suleimanov-1.avif"
-            sourceSize.width: Screen.width
-            sourceSize.height: Screen.height
+            fillMode: Image.PreserveAspectCrop
+            sourceSize.width: window.modelData.width
+            sourceSize.height: window.modelData.height
         }
     }
 }
