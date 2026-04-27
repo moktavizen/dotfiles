@@ -121,7 +121,7 @@ ench264() {
 #
 
 # ZSH Theme
-eval "$(oh-my-posh init zsh --config ~/.config/ansi.minimal.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/ansi.mini.omp.json)"
 
 # ZSH Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
