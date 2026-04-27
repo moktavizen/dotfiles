@@ -1,0 +1,187 @@
+binds {
+    Mod+Shift+Slash      { show-hotkey-overlay; }
+
+    // Based on https://i3wm.org/docs/userguide.html#_default_keybindings
+
+    Mod+Return           { spawn "foot"; }
+
+    Mod+H                { focus-column-left; }
+    Mod+J                { focus-window-down; }
+    Mod+K                { focus-window-up; }
+    Mod+L                { focus-column-right; }
+
+    Mod+Shift+H          { move-column-left; }
+    Mod+Shift+J          { move-window-down; }
+    Mod+Shift+K          { move-window-up; }
+    Mod+Shift+L          { move-column-right; }
+
+    Mod+W                { switch-preset-column-width; }
+    Mod+Shift+W          { switch-preset-column-width-back; }
+
+    Mod+F                { maximize-column; }
+    Mod+Shift+F          { fullscreen-window; }
+
+    Mod+D                { spawn "qs" "-c" "noob-shell" "ipc" "call" "menu" "open" "app"; }
+
+    Mod+Shift+Q          { close-window; }
+
+    Mod+1                { focus-workspace 1; }
+    Mod+2                { focus-workspace 2; }
+    Mod+3                { focus-workspace 3; }
+    Mod+4                { focus-workspace 4; }
+    Mod+5                { focus-workspace 5; }
+    Mod+6                { focus-workspace 6; }
+    Mod+7                { focus-workspace 7; }
+    Mod+8                { focus-workspace 8; }
+    Mod+9                { focus-workspace 9; }
+
+    Mod+Shift+1          { move-column-to-workspace 1; }
+    Mod+Shift+2          { move-column-to-workspace 2; }
+    Mod+Shift+3          { move-column-to-workspace 3; }
+    Mod+Shift+4          { move-column-to-workspace 4; }
+    Mod+Shift+5          { move-column-to-workspace 5; }
+    Mod+Shift+6          { move-column-to-workspace 6; }
+    Mod+Shift+7          { move-column-to-workspace 7; }
+    Mod+Shift+8          { move-column-to-workspace 8; }
+    Mod+Shift+9          { move-column-to-workspace 9; }
+
+    Mod+Ctrl+H           { set-column-width "-10%"; }
+    Mod+Ctrl+J           { set-window-height "+10%"; }
+    Mod+Ctrl+K           { set-window-height "-10%"; }
+    Mod+Ctrl+L           { set-column-width "+10%"; }
+
+    Mod+Shift+E          { quit; }
+
+    Mod+Shift+Space      { toggle-window-floating; }
+    Mod+Ctrl+Space       { switch-focus-between-floating-and-tiling; }
+
+    // Niri only
+
+    Mod+A                { toggle-overview; }
+
+    Mod+BracketLeft      { consume-or-expel-window-left; }
+    Mod+BracketRight     { consume-or-expel-window-right; }
+
+    // Based on Windows 11
+
+    Mod+S                { screenshot-screen; }
+    Mod+Alt+S            { screenshot-window; }
+    Mod+Shift+S          { screenshot; }
+
+    Mod+Period           { spawn "qs" "-c" "noob-shell" "ipc" "call" "menu" "open" "emoji"; }
+    Mod+V                { spawn "qs" "-c" "noob-shell" "ipc" "call" "menu" "open" "clipboard"; }
+
+    Mod+Shift+C          { spawn-sh "niri msg pick-color | awk '/Hex/ {printf \"%s\", $2}' | wl-copy"; }
+
+    // System control
+
+    XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+" "-l" "1.0"; }
+    XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioMute        { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute     { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    Mod+Shift+X          { spawn "systemctl" "poweroff"; }
+}
+
+environment {
+    QT_QPA_PLATFORMTHEME "qt6ct"
+}
+
+cursor {
+    xcursor-theme "Breeze_Light"
+    xcursor-size 24
+    hide-when-typing
+}
+
+spawn-at-startup "qs" "-c" "noob-shell"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "wlsunset" "-l" "-7.15" "-L" "112.61"
+
+spawn-at-startup "brave-origin-beta" "--password-store=gnome-libsecret"
+spawn-sh-at-startup "foot -T Terminal tmux new-session -s vizen \\; send-keys nvim Enter"
+
+layout {
+    gaps 8
+
+    focus-ring {
+        off
+    }
+
+    border {
+        width 1
+        active-color "#404040"
+        inactive-color "#404040"
+        urgent-color "#f2d297"
+    }
+
+    background-color "transparent"
+}
+
+overview {
+    workspace-shadow {
+        off
+    }
+}
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+animations {
+    on
+}
+
+blur {
+    // From https://www.figma.com/design/ZBadTrn1fW9Wo8k3YYJMGS/Apple-Blur?node-id=133-24&t=4eUTfT2bJf7468e0-1
+    passes 3
+    offset 4
+    saturation 1.0
+}
+
+workspace "browser"
+workspace "terminal"
+
+window-rule {
+    match at-startup=true app-id="brave-origin-beta"
+    default-column-width { proportion 1.0; }
+    open-on-workspace "browser"
+}
+
+window-rule {
+    match at-startup=true title="Terminal"
+    default-column-width { proportion 1.0; }
+    open-on-workspace "terminal"
+}
+
+window-rule {
+    match app-id="foot"
+    opacity 0.8
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+layer-rule {
+    match namespace="noob-wallpaper"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="noob-statusbar|noob-menu|noob-notif"
+    opacity 0.8
+    background-effect {
+        blur true
+        xray false
+    }
+}
