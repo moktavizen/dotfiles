@@ -63,10 +63,11 @@ Scope {
                     spacing: 16
                     ClippingWrapperRectangle {
                         radius: 10
+                        color: "transparent"
                         Image {
-                            source: root.notif.appIcon
-                            sourceSize.width: 150
-                            sourceSize.height: 150
+                            source: root.notif.appIcon || root.notif.image
+                            sourceSize.width: root.notif.appIcon ? 150 : 50
+                            sourceSize.height: root.notif.appIcon ? 150 : 50
                         }
                     }
                     ColumnLayout {
