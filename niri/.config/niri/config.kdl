@@ -179,7 +179,6 @@ layer-rule {
 
 layer-rule {
     match namespace="noob-statusbar|noob-menu|noob-notif"
-    opacity 0.8
     background-effect {
         blur true
         xray false

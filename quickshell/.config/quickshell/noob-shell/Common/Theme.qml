@@ -4,7 +4,7 @@ import Quickshell
 import QtQuick
 
 Singleton {
-    property color background: "#1e1e1e"
+    property color background: "#cc1e1e1e"
     property color foreground: "#ebebeb"
     property color blue: "#97b4f2"
     property color cyan: "#97d8f2"
