@@ -14,6 +14,7 @@ Singleton {
     property color magenta: "#cd97f2"
     property color green: "#cdf297"
     property color border: "#484848"
+    property color separator: "#26ffffff"
     property color selected: "#1affffff"
 
     property string fontFamily: "JetBrainsMonoNL Nerd Font Propo"
