@@ -8,11 +8,11 @@ import Quickshell
 import qs.Modules.Wallpaper
 import qs.Modules.StatusBar
 import qs.Modules.Menu
-import qs.Modules.Notification
+import qs.Modules.Notif
 
 ShellRoot {
     Wallpaper {}
     StatusBar {}
     Menu {}
-    Notification {}
+    Notif {}
 }
