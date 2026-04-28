@@ -12,7 +12,7 @@ Variants {
     model: Quickshell.screens
 
     PanelWindow {
-        id: barWindow
+        id: window
         required property var modelData
         screen: modelData
 
@@ -83,7 +83,7 @@ Variants {
                     id: trayLoader
                     Layout.preferredHeight: hwGroup.height
                     iconSize: 16
-                    parentWindow: barWindow
+                    parentWindow: window
                 }
 
                 Group {

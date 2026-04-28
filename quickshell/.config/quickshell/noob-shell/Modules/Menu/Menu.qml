@@ -156,7 +156,7 @@ Scope {
                             }
                         }
                         delegate: Control {
-                            id: delegateItem
+                            id: item
                             required property var modelData
                             required property int index
 
@@ -165,20 +165,20 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    source: root.state.getIcon(delegateItem.modelData)
+                                    source: root.state.getIcon(item.modelData)
                                     implicitSize: 24
                                 }
                                 ThemedText {
                                     font.pixelSize: 16
                                     font.letterSpacing: 0.4
                                     Layout.fillWidth: true
-                                    text: root.state.getText(delegateItem.modelData)
+                                    text: root.state.getText(item.modelData)
                                     elide: Text.ElideRight
                                 }
                             }
                             TapHandler {
-                                onTapped: listView.currentIndex = delegateItem.index
-                                onDoubleTapped: window.selectItem(delegateItem.modelData)
+                                onTapped: listView.currentIndex = item.index
+                                onDoubleTapped: window.selectItem(item.modelData)
                             }
                             HoverHandler {
                                 cursorShape: Qt.PointingHandCursor
