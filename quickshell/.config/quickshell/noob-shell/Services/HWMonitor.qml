@@ -8,7 +8,7 @@ import QtQuick
 
 Singleton {
     id: root
-    property int refreshSec: 2
+    property int updateSec: 2
 
     property int cpuUsage
     Process {
@@ -51,8 +51,8 @@ Singleton {
             // qmlformat off
             onStreamFinished: {
                 root.downloadMBps = text.includes("K")
-                    ? parseInt(text) / 1024 / root.refreshSec
-                    : parseInt(text) / 1024 / 1024 / root.refreshSec;
+                    ? parseInt(text) / 1024 / root.updateSec
+                    : parseInt(text) / 1024 / 1024 / root.updateSec;
             }
             // qmlformat on
         }
@@ -61,7 +61,7 @@ Singleton {
     property string btStatus: Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
 
     Timer {
-        interval: root.refreshSec * 1000
+        interval: root.updateSec * 1000
         running: true
         repeat: true
         onTriggered: {
