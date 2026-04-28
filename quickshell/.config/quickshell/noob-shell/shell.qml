@@ -5,10 +5,10 @@
 //@ pragma UseQApplication
 
 import Quickshell
-import qs.Modules.Wallpaper
-import qs.Modules.StatusBar
-import qs.Modules.Menu
-import qs.Modules.Notif
+import qs.Widgets.Wallpaper
+import qs.Widgets.StatusBar
+import qs.Widgets.Menu
+import qs.Widgets.Notif
 
 ShellRoot {
     Wallpaper {}
