@@ -112,7 +112,7 @@ Variants {
                     onClickCmd: "foot -T 'Bluetooth Manager' bluetui"
                 }
                 Module {
-                    format: `<font color="${Theme.red}">󰕾</font> ${Audio.speakerVolume}%`
+                    format: `<font color="${Theme.red}">${Audio.isMuted ? "󰖁" : "󰕾"}</font> ${Audio.speakerVolume}%`
                     onClickCmd: "foot -T 'Audio Manager' wiremix"
                 }
             }
