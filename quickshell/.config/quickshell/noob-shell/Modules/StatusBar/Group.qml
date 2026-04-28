@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import qs.Common
 
 Control {
@@ -14,7 +15,7 @@ Control {
         radius: 999
     }
 
-    contentItem: Row {
+    contentItem: RowLayout {
         id: content
         spacing: 15
     }

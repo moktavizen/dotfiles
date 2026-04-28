@@ -65,10 +65,14 @@ Variants {
                     Layout.preferredHeight: hwGroup.height
                 }
 
-                WmWindow {
+                Group {
                     id: winGroup
-                    format: `<font color="${Theme.blue}">󰊠</font> ${WMan.winTitle}`
                     Layout.maximumHeight: hwGroup.height
+                    Module {
+                        format: `<font color="${Theme.blue}">󰊠</font> ${WMan.winTitle}`
+                        Layout.maximumWidth: 603
+                        elide: Text.ElideRight
+                    }
                 }
 
                 Item {
