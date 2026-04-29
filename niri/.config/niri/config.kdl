@@ -95,7 +95,6 @@ cursor {
 
 spawn-at-startup "qs" "-c" "noob-shell"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "wlsunset" "-l" "-7.15" "-L" "112.61"
 
 spawn-at-startup "brave-origin-beta"
@@ -178,7 +177,7 @@ layer-rule {
 }
 
 layer-rule {
-    match namespace="noob-statusbar|noob-menu|noob-notif"
+    match namespace="noob-statusbar|noob-menu|noob-notif|noob-polkit"
     background-effect {
         blur true
         xray false
