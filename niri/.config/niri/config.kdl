@@ -94,8 +94,8 @@ cursor {
 }
 
 spawn-at-startup "qs" "-c" "noob-shell"
-spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "wlsunset" "-l" "-7.15" "-L" "112.61"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 spawn-at-startup "brave-origin-beta"
 spawn-sh-at-startup "foot -T Terminal tmux new-session -s vizen \\; send-keys nvim Enter"
