@@ -21,18 +21,6 @@ Scope {
             notification.tracked = true;
             root.notif = notification;
             loader.active = true;
-            timer.running = true;
-        }
-    }
-
-    Timer {
-        id: timer
-        interval: 5000
-        onTriggered: {
-            if (loader.active) {
-                loader.active = false;
-                root.notif.expire();
-            }
         }
     }
 
@@ -53,6 +41,15 @@ Scope {
             implicitWidth: content.implicitWidth
             implicitHeight: content.implicitHeight
             color: "transparent"
+
+            Timer {
+                running: loader.active
+                interval: 5000
+                onTriggered: {
+                    loader.active = false;
+                    root.notif.expire();
+                }
+            }
 
             Control {
                 id: content
