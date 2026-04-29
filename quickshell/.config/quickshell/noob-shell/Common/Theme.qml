@@ -19,6 +19,6 @@ Singleton {
 
     property string fontFamily: "JetBrainsMonoNL Nerd Font Propo"
     property int fontPxSize: 14
-    property int fontWeight: 500
+    property int fontWeight: 400
     property real fontLetterSpacing: -0.4
 }
