@@ -94,7 +94,7 @@ Scope {
                     onTapped: {
                         if (root.notif.actions) {
                             loader.active = false;
-                            root.notif.actions[0].invoke();
+                            root.notif.actions[0]?.invoke();
                         } else {
                             loader.active = false;
                             root.notif.dismiss();
