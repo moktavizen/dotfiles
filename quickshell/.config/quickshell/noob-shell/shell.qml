@@ -9,10 +9,12 @@ import qs.Widgets.Wallpaper
 import qs.Widgets.StatusBar
 import qs.Widgets.Menu
 import qs.Widgets.Notif
+import qs.Widgets.Polkit
 
 ShellRoot {
     Wallpaper {}
     StatusBar {}
     Menu {}
     Notif {}
+    Polkit {}
 }
