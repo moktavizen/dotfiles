@@ -56,7 +56,7 @@ Scope {
                         items: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name)),
                         getIcon: app => Quickshell.iconPath(app.icon || "dialog-question"),
                         getText: app => app.name,
-                        getSearchKey: app => app.name,
+                        getKeywords: app => app.name,
                         applyAction: app => app.execute()
                     };
                 case "emoji":
@@ -64,7 +64,7 @@ Scope {
                         items: Emoji.emojis,
                         getIcon: () => Quickshell.iconPath("arrow-right"),
                         getText: emoji => `${emoji.e} ${emoji.n}`,
-                        getSearchKey: emoji => emoji.k,
+                        getKeywords: emoji => emoji.k,
                         applyAction: emoji => Quickshell.execDetached(["wl-copy", emoji.e])
                     };
                 case "clipboard":
@@ -72,7 +72,7 @@ Scope {
                         items: Cliphist.clipboard,
                         getIcon: () => Quickshell.iconPath("arrow-right"),
                         getText: cbItem => cbItem.split("\t")[1],
-                        getSearchKey: cbItem => cbItem,
+                        getKeywords: cbItem => cbItem,
                         applyAction: cbItem => Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbItem.split("\t")[0]} | wl-copy`])
                     };
                 }
@@ -138,15 +138,15 @@ Scope {
                         highlightMoveDuration: 0
                         model: ScriptModel {
                             values: {
-                                function hasWords(str, sentence) {
+                                function containWords(str, sentence) {
                                     const nStr = str.toLowerCase();
                                     const nWords = sentence.toLowerCase().split(" ");
                                     return nWords.every(word => nStr.includes(word));
                                 }
 
                                 return window.state.items.filter(item => {
-                                    const searchKey = window.state.getSearchKey(item);
-                                    return hasWords(searchKey, window.q);
+                                    const itemKeywords = window.state.getKeywords(item);
+                                    return containWords(itemKeywords, window.q);
                                 });
                             }
                         }
