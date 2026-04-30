@@ -12,42 +12,7 @@ import qs.Services
 
 Scope {
     id: root
-    // We get the list data here to prevent race condition with list highlight
-    // that caused the highlight to be in second item rather than the first
-    property var apps: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name))
-    property var emojis: Emoji.emojis
-    property var clipboard: Cliphist.clipboard
-
     property string mode
-
-    property var state: {
-        switch (root.mode) {
-        case "app":
-            return {
-                items: root.apps,
-                getIcon: app => Quickshell.iconPath(app.icon || "dialog-question"),
-                getText: app => app.name,
-                getSearchKey: app => app.name,
-                applyAction: app => app.execute()
-            };
-        case "emoji":
-            return {
-                items: root.emojis,
-                getIcon: () => Quickshell.iconPath("arrow-right"),
-                getText: emoji => `${emoji.e} ${emoji.n}`,
-                getSearchKey: emoji => emoji.k,
-                applyAction: emoji => Quickshell.execDetached(["wl-copy", emoji.e])
-            };
-        case "clipboard":
-            return {
-                items: root.clipboard,
-                getIcon: () => Quickshell.iconPath("arrow-right"),
-                getText: cbItem => cbItem.split("\t")[1],
-                getSearchKey: cbItem => cbItem,
-                applyAction: cbItem => Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbItem.split("\t")[0]} | wl-copy`])
-            };
-        }
-    }
 
     IpcHandler {
         id: ipc
@@ -84,8 +49,37 @@ Scope {
 
             property string q: ""
 
+            property var state: {
+                switch (root.mode) {
+                case "app":
+                    return {
+                        items: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name)),
+                        getIcon: app => Quickshell.iconPath(app.icon || "dialog-question"),
+                        getText: app => app.name,
+                        getSearchKey: app => app.name,
+                        applyAction: app => app.execute()
+                    };
+                case "emoji":
+                    return {
+                        items: Emoji.emojis,
+                        getIcon: () => Quickshell.iconPath("arrow-right"),
+                        getText: emoji => `${emoji.e} ${emoji.n}`,
+                        getSearchKey: emoji => emoji.k,
+                        applyAction: emoji => Quickshell.execDetached(["wl-copy", emoji.e])
+                    };
+                case "clipboard":
+                    return {
+                        items: Cliphist.clipboard,
+                        getIcon: () => Quickshell.iconPath("arrow-right"),
+                        getText: cbItem => cbItem.split("\t")[1],
+                        getSearchKey: cbItem => cbItem,
+                        applyAction: cbItem => Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbItem.split("\t")[0]} | wl-copy`])
+                    };
+                }
+            }
+
             function selectItem(item) {
-                root.state.applyAction(item);
+                window.state.applyAction(item);
                 ipc.close();
             }
 
@@ -121,7 +115,7 @@ Scope {
                             ThemedText {
                                 font.pixelSize: 16
                                 font.letterSpacing: 0.4
-                                text: `${listView.count}/${root.state.items.length}`
+                                text: `${listView.count}/${window.state.items.length}`
                             }
                         }
                     }
@@ -150,8 +144,8 @@ Scope {
                                     return nWords.every(word => nStr.includes(word));
                                 }
 
-                                return root.state.items.filter(item => {
-                                    const searchKey = root.state.getSearchKey(item);
+                                return window.state.items.filter(item => {
+                                    const searchKey = window.state.getSearchKey(item);
                                     return hasWords(searchKey, window.q);
                                 });
                             }
@@ -166,14 +160,14 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    source: root.state.getIcon(item.modelData)
+                                    source: window.state.getIcon(item.modelData)
                                     implicitSize: 24
                                 }
                                 ThemedText {
                                     font.pixelSize: 16
                                     font.letterSpacing: 0.4
                                     Layout.fillWidth: true
-                                    text: root.state.getText(item.modelData)
+                                    text: window.state.getText(item.modelData)
                                     elide: Text.ElideRight
                                 }
                             }
@@ -188,6 +182,12 @@ Scope {
                         highlight: Rectangle {
                             color: Theme.selected
                             radius: 8
+                        }
+                        // Ensure highlight is forced properly on initial list creation
+                        Component.onCompleted: {
+                            Qt.callLater(() => {
+                                currentIndex = 0;
+                            });
                         }
                     }
                 }
