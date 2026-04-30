@@ -8,7 +8,7 @@ Singleton {
         objects: [Pipewire.defaultAudioSink]
     }
 
-    property PwNodeAudio pwAudio: Pipewire.defaultAudioSink?.audio
+    property PwNodeAudio pwAudio: Pipewire.defaultAudioSink?.audio || null
     property int speakerVolume: Math.round(pwAudio?.volume * 100) ?? 0
     property bool isMuted: pwAudio?.muted ?? false
 }
