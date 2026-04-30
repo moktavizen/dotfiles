@@ -5,7 +5,7 @@ import Quickshell.Io
 
 Singleton {
     id: root
-    property var clipboard: []
+    property list<string> clipboard
 
     Process {
         id: cliphistProc

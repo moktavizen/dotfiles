@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 
+import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 import QtQuick
@@ -7,7 +8,7 @@ import QtQuick
 Loader {
     id: root
     property int iconSize
-    property var parentWindow
+    property QsWindow parentWindow
 
     active: SystemTray.items.values.length > 0
     sourceComponent: Group {
@@ -15,7 +16,7 @@ Loader {
             model: SystemTray.items
             IconImage {
                 id: trayItem
-                required property var modelData
+                required property SystemTrayItem modelData
 
                 source: modelData.icon
                 implicitSize: root.iconSize

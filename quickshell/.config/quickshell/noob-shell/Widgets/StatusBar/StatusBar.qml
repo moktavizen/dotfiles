@@ -13,7 +13,7 @@ Variants {
 
     PanelWindow {
         id: window
-        required property var modelData
+        required property ShellScreen modelData
         screen: modelData
 
         WlrLayershell.namespace: "noob-statusbar"
