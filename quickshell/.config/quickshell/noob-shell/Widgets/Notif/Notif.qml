@@ -87,20 +87,20 @@ Scope {
                         }
                     }
                 }
-                TapHandler {
-                    onTapped: {
-                        if (root.notif.actions) {
-                            loader.active = false;
-                            root.notif.actions[0]?.invoke();
-                        } else {
-                            loader.active = false;
-                            root.notif.dismiss();
-                        }
+            }
+            TapHandler {
+                onTapped: {
+                    if (root.notif.actions) {
+                        loader.active = false;
+                        root.notif.actions[0]?.invoke();
+                    } else {
+                        loader.active = false;
+                        root.notif.dismiss();
                     }
                 }
-                HoverHandler {
-                    cursorShape: Qt.PointingHandCursor
-                }
+            }
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
             }
         }
     }
