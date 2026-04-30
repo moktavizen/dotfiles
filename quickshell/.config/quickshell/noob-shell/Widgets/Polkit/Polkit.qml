@@ -67,7 +67,7 @@ Scope {
                         horizontalPadding: 0
                         contentItem: Rectangle {
                             implicitHeight: 1
-                            color: Theme.separator
+                            color: Theme.selected
                         }
                     }
                     ThemedTextField {

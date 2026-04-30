@@ -124,7 +124,7 @@ Scope {
                         verticalPadding: 8
                         contentItem: Rectangle {
                             implicitHeight: 1
-                            color: Theme.separator
+                            color: Theme.selected
                         }
                     }
                     ListView {
