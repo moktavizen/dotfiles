@@ -13,6 +13,7 @@ import qs.Services
 Scope {
     id: root
     // We get the list data here to prevent race condition with list highlight
+    // that caused the highlight to be in second item rather than the first
     property var apps: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name))
     property var emojis: Emoji.emojis
     property var clipboard: Cliphist.clipboard
@@ -190,36 +191,36 @@ Scope {
                         }
                     }
                 }
-                Shortcut {
-                    sequence: "Ctrl+J"
-                    onActivated: {
-                        listView.currentIndex++;
-                        if (listView.currentIndex > listView.count - 1) {
-                            listView.currentIndex = 0;
-                        }
+            }
+            Shortcut {
+                sequence: "Ctrl+J"
+                onActivated: {
+                    listView.currentIndex++;
+                    if (listView.currentIndex > listView.count - 1) {
+                        listView.currentIndex = 0;
                     }
                 }
-                Shortcut {
-                    sequence: "Ctrl+K"
-                    onActivated: {
-                        listView.currentIndex--;
-                        if (listView.currentIndex < 0) {
-                            listView.currentIndex = listView.count - 1;
-                        }
+            }
+            Shortcut {
+                sequence: "Ctrl+K"
+                onActivated: {
+                    listView.currentIndex--;
+                    if (listView.currentIndex < 0) {
+                        listView.currentIndex = listView.count - 1;
                     }
                 }
-                Shortcut {
-                    sequences: ["Return", "Enter"]
-                    onActivated: {
-                        if (listView.currentItem !== null) {
-                            window.selectItem(listView.model.values[listView.currentIndex]);
-                        }
+            }
+            Shortcut {
+                sequences: ["Return", "Enter"]
+                onActivated: {
+                    if (listView.currentItem !== null) {
+                        window.selectItem(listView.model.values[listView.currentIndex]);
                     }
                 }
-                Shortcut {
-                    sequences: ["Esc", "Ctrl+["]
-                    onActivated: ipc.close()
-                }
+            }
+            Shortcut {
+                sequences: ["Esc", "Ctrl+["]
+                onActivated: ipc.close()
             }
         }
     }
