@@ -98,6 +98,9 @@ Scope {
                         }
                     }
                 }
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
+                }
             }
         }
     }
