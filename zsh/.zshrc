@@ -51,10 +51,6 @@ alias start-jellyfin='sudo systemctl start jellyfin'
 # Make sudo detect alias
 alias sudo='sudo '
 
-# Restore chromium session correctly
-alias poweroff='pkill chromium && poweroff'
-alias reboot='pkill chromium && reboot'
-
 # Complex aliases
 sf() {
   file="$(
