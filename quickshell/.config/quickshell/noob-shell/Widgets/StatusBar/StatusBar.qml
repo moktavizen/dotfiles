@@ -67,7 +67,8 @@ Variants {
 
                 Group {
                     id: winGroup
-                    Layout.maximumHeight: hwGroup.height
+                    Layout.preferredHeight: hwGroup.height
+                    verticalPadding: 0
                     Module {
                         format: `<font color="${Theme.blue}">󰊠</font> ${WMan.winTitle}`
                         Layout.maximumWidth: 603
