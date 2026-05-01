@@ -62,7 +62,6 @@ Variants {
                     activeIcon: "󰮯"
                     defaultIcon: "•"
                     activeColor: Theme.yellow
-                    Layout.preferredHeight: hwGroup.height
                 }
 
                 Group {
