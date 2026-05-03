@@ -97,7 +97,7 @@ Variants {
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                     Module {
-                        format: `<font color="${Theme.magenta}">󰘚</font> ${HWMonitor.memUsed.replace("i", "B")}`
+                        format: `<font color="${Theme.magenta}">󰘚</font> ${HWMonitor.memUsed.toFixed(1)}G`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                 }
@@ -109,7 +109,7 @@ Variants {
                         onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
                     }
                     Module {
-                        format: `<font color="${Theme.cyan}">󰤨</font> ${HWMonitor.downloadMBps.toFixed(1)}MB/s`
+                        format: `<font color="${Theme.cyan}">󰤨</font> ${HWMonitor.downloadMBps.toFixed(1)}M`
                         onClickCmd: "foot -T 'WiFi Manager' impala"
                     }
                     Module {

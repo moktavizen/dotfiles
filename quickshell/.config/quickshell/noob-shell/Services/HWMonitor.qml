@@ -30,13 +30,16 @@ Singleton {
         }
     }
 
-    property string memUsed
+    property real memUsed
     Process {
         id: memProc
         command: ["sh", "-c", "free -h | awk '/Mem/ {print $3}'"]
         running: true
         stdout: StdioCollector {
-            onStreamFinished: root.memUsed = text
+            onStreamFinished: {
+                // Mebibyte -> Gibibyte
+                root.memUsed = text.includes("Mi") ? parseFloat(text) / 1024 : parseFloat(text);
+            }
         }
     }
 
@@ -50,9 +53,10 @@ Singleton {
         stdout: StdioCollector {
             // qmlformat off
             onStreamFinished: {
+                // Kilobyte or byte -> Mebibyte
                 root.downloadMBps = text.includes("K")
-                    ? parseInt(text) / 1024 / root.updateSec
-                    : parseInt(text) / 1024 / 1024 / root.updateSec;
+                    ? parseInt(text) / 1049 / root.updateSec
+                    : parseInt(text) / 1049 / 1049 / root.updateSec;
             }
             // qmlformat on
         }
