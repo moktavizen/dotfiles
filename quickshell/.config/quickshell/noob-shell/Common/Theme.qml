@@ -6,6 +6,7 @@ import QtQuick
 Singleton {
     property color background: "#cc1e1e1e"
     property color foreground: "#ebebeb"
+    property color foregroundAlt: "#999999"
     property color red: "#f2979c"
     property color green: "#cdf297"
     property color yellow: "#f2d297"

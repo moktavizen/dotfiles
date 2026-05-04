@@ -54,7 +54,7 @@ Scope {
                 case "app":
                     return {
                         items: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name)),
-                        getIcon: app => Quickshell.iconPath(app.icon || "dialog-question"),
+                        getIcon: app => Quickshell.iconPath(app.icon, "dialog-question"),
                         getText: app => app.name,
                         getKeywords: app => app.name,
                         applyAction: app => app.execute()
@@ -105,6 +105,7 @@ Scope {
                             ThemedTextField {
                                 Layout.fillWidth: true
                                 placeholderText: "Search..."
+                                placeholderTextColor: Theme.foregroundAlt
 
                                 Component.onCompleted: forceActiveFocus()
                                 onTextChanged: {

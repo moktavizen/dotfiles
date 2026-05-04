@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # postinstall
-# Install software that I use on Arch Linux Hyprland
+# Install software that I use on Arch Linux
 #
 # Usage:
 # run this script after minimal install using `archinstall --advanced`
@@ -12,153 +12,156 @@ set -euo pipefail
 github_url='https://github.com/moktavizen'
 
 configure_pacman() {
-  sudo sed -i '/^\[options\]/a\Color' /etc/pacman.conf
+  echo "#"
+  echo "# Configuring pacman..."
+  echo "#"
+
+  sudo sed -i '/^\[options\]/a\VerbosePkgLists' /etc/pacman.conf
   sudo sed -i '/^\[options\]/a\ILoveCandy' /etc/pacman.conf
 
   sudo pacman -S --needed --noconfirm reflector
   sudo reflector --country Indonesia,Singapore --isos --sort rate --number 2 --save /etc/pacman.d/mirrorlist
 
+  sudo pacman -S --needed --noconfirm pacman-contrib
+  sudo systemctl enable paccache.timer
+
   sudo pacman -S --needed --noconfirm git base-devel
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
+  git clone https://aur.archlinux.org/yay-bin.git
+  cd yay-bin
   makepkg -si --noconfirm
   cd ..
-  rm -fr yay
+  rm -fr yay-bin
 }
 
 install_packages() {
-  local base=(
+  echo "#"
+  echo "# Installing packages..."
+  echo "#"
+
+  local hardware=(
     'libva-intel-driver-irql'
-    'vulkan-intel'
     'mesa'
-    'brightnessctl'
-    'broadcom-bt-firmware'
-    'zcfan'
+    'vulkan-intel'
+  )
+
+  local fonts=(
     'noto-fonts'
     'noto-fonts-cjk'
     'noto-fonts-emoji'
     'noto-fonts-extra'
-    'zsh'
-    'zsh-autosuggestions'
-    'zsh-syntax-highlighting'
-    'oh-my-posh-bin'
-    'man-db'
-    'pacman-contrib'
-  )
-
-  local desktop_env=(
-    'hyprland'
-    'swww'
-    'hyprlock'
-    'hyprpicker'
-    'xdg-desktop-portal-hyprland'
-    'xdg-desktop-portal-gtk'
-    'polkit-kde-agent'
-    'qt6-wayland'
-    'greetd'
-    'iwd'
-    'tlp'
-    'foot'
-    'foot-terminfo'
-    'quickshell'
-    'rofi'
-    'dunst'
-    'wiremix'
-    'bluetui'
-    'impala'
-    'rofi-emoji'
-    'cliphist'
-    'wlsunset'
-    'grim'
-    'slurp'
   )
 
   local theme=(
-    'qt6ct-kde'
-    'breeze'
     'nwg-look'
-    'adw-gtk-theme'
+    'qt6ct'
+    'kvantum'
+    'breeze-cursors'
     'papirus-icon-theme'
     'inter-font'
     'ttf-jetbrains-mono-nerd'
   )
 
-  local cli=(
-    'stow'
-    'tmux'
-    'fastfetch'
-    'btop'
-    'eza'
-    'fd'
-    'bat'
-    'dust'
-    'fzf'
-    'ffmpeg'
-    'imagemagick'
-    'yt-dlp'
-    'neovim'
-    'github-cli'
-    'lazygit'
-    'git-delta'
+  local de=(
+    'ly'
+    'xdg-desktop-portal-gnome'
+    'gnome-keyring'
+    'niri'
+    'quickshell'
   )
 
-  local gui_apps=(
-    'easyeffects'
-    'chromium'
-    'dolphin'
-    'ark'
-    'gwenview'
-    'haruna'
+  local gui=(
+    'brave-origin-beta-bin'
+    'foot'
+    'pcmanfm-qt'
+    'lxqt-archiver'
+    'lximage-qt'
+    'mpv'
     'obs-studio'
-    'partitionmanager'
   )
 
-  local optional_deps=(
-    'vulkan-mesa-layers' # vulkan-intel    : additional vulkan layers
-    'calf'               # easyeffects     : mono speaker, since left broke
-    'tree-sitter-cli'    # nvim            : tree-sitter auto_install
-    'ripgrep'            # nvim            : snacks.picker
-    '7zip'               # ark             : 7zip format
-    'unrar'              # ark             : RAR format
-    'kimageformats'      # gwenview        : support additional formats
-    'qt6-imageformats'   # gwenview        : support additional formats
-    'libheif'            # gwenview        : HEIF format
-    'libavif'            # gwenview        : AVIF format
-    'dosfstools'         # partitionmanager: FAT format
+  local cli=(
+    'fish'
+    'fastfetch'
+    'tmux'
+    'fd'
+    'fzf'
+    'eza'
+    'bat'
+    'neovim'
+    'wlsunset'
+    'stow'
+    'git-delta'
+    'lazygit'
+  )
+
+  local optionals=(
+    'btop'          # hardware monitor for `quickshell`
+    'impala'        # wifi manager for `quickshell`
+    'bluetui'       # bluetooth manager for `quickshell`
+    'wiremix'       # audio manager for `quickshell`
+    'cliphist'      # clipboard history for `quickshell`
+    'foot-terminfo' # extra features for `foot`
   )
 
   local packages=(
-    "${base[@]}"
-    "${desktop_env[@]}"
+    "${hardware[@]}"
+    "${fonts[@]}"
     "${theme[@]}"
+    "${de[@]}"
+    "${gui[@]}"
     "${cli[@]}"
-    "${gui_apps[@]}"
-    "${optional_deps[@]}"
+    "${optionals[@]}"
   )
 
   yay -Syyu --noconfirm
-
-  echo "Installing ${#packages[@]} packages..."
   yay -S --needed --noconfirm "${packages[@]}"
+  yay -Qdttq | yay -Rns --noconfirm - || true
 }
 
-configure_display_manager() {
-  sudo systemctl enable greetd.service
+restore_configs() {
+  echo "#"
+  echo "# Restoring configs..."
+  echo "#"
 
-  sudo tee -a '/etc/greetd/config.toml' <<EOF
+  git clone --depth 1 "${github_url}/dotfiles"
+  cd dotfiles
+  stow */
+}
 
-[initial_session]
-command = "start-hyprland &>/dev/null"
-user = "$(whoami)"
-EOF
+configure_silent_boot() {
+  echo "#"
+  echo "# Configuring silent boot..."
+  echo "#"
+
+  sudo systemctl disable getty@tty2.service
+  sudo systemctl enable ly@tty2.service
+  sudo sed -i '/^Exec/s/$/\&>\/dev\/null/' /usr/share/wayland-sessions/niri.desktop
+
+  sudo sed -i '/^timeout/s/^/#/' /boot/loader/loader.conf
+  sudo sed -i 's/$/ module_blacklist=iTCO_wdt quiet/' /etc/kernel/cmdline
+
+  sudo sed -i '/^HOOKS=/ {s/base udev/systemd/; s/keymap consolefont/sd-vconsole/; s/ fsck//}' /etc/mkinitcpio.conf
+
+  sudo cp ~/.local/wallpapers/bootctl/splash-memepad.bmp /usr/share/systemd/bootctl/
+  sudo sed -i 's/splash-arch/splash-memepad/' /etc/mkinitcpio.d/linux.preset
+
+  sudo mkinitcpio -P
 }
 
 configure_locale() {
+  echo "#"
+  echo "# Configuring locale..."
+  echo "#"
+
   sudo sed -i '/^#en_US.UTF-8 UTF-8/s/^#//' /etc/locale.gen
   sudo locale-gen
 }
 
-configure_network() {
+configure_dns() {
+  echo "#"
+  echo "# Configuring DNS..."
+  echo "#"
+
   sudo ln -sf ../run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
   sudo mkdir -p /etc/systemd/resolved.conf.d/
@@ -172,72 +175,42 @@ EOF
   sudo systemctl enable iwd.service
 }
 
-configure_fan_control() {
-  sudo tee /etc/modprobe.d/99-fancontrol.conf <<<'options thinkpad_acpi fan_control=1'
-  sudo tee /etc/zcfan.conf <<EOF
-max_temp 85
-med_temp 70
-low_temp 55
-EOF
+configure_home_dir() {
+  echo "#"
+  echo "# Configuring home directory..."
+  echo "#"
 
-  sudo mkinitcpio -P
-  sudo systemctl enable zcfan.service
-}
-
-enable_systemd_units() {
-  sudo systemctl enable bluetooth.service
-  sudo systemctl enable tlp.service
-  sudo systemctl enable paccache.timer
-}
-
-configure_user_env() {
   mkdir -p "${HOME}/Desktop/"
   mkdir -p "${HOME}/Documents/"
   mkdir -p "${HOME}/Downloads/"
   mkdir -p "${HOME}/Projects/"
   mkdir -p "${HOME}/Courses/"
-
-  sudo mkdir -p /media/Books/
-  sudo mkdir -p /media/Music/
-  sudo mkdir -p /media/Pictures/
-  sudo mkdir -p /media/Videos/
-  sudo chmod -R 777 /media
-  ln -s /media/Books/ "${HOME}/Books"
-  ln -s /media/Music "${HOME}/Music"
-  ln -s /media/Pictures "${HOME}/Pictures"
-  ln -s /media/Videos/ "${HOME}/Videos"
-
-  git clone "${github_url}/dotfiles"
-  cd dotfiles
-  stow */
-
-  nwg-look -a -x
-}
-
-configure_bootloader() {
-  sudo sed -i '/^timeout/s/^/#/' /boot/loader/loader.conf
-  sudo sed -i 's/$/ module_blacklist=iTCO_wdt quiet/' /etc/kernel/cmdline
-  sudo sed -i '/^HOOKS=/ {s/base udev/systemd/; s/keymap consolefont/sd-vconsole/; s/ fsck//}' /etc/mkinitcpio.conf
-
-  sudo cp ~/.config/wallpapers/bootctl/splash-memepad.bmp /usr/share/systemd/bootctl/
-  sudo sed -i 's/splash-arch/splash-memepad/' /etc/mkinitcpio.d/linux.preset
-
-  sudo mkinitcpio -P
+  mkdir -p "${HOME}/Books/"
+  mkdir -p "${HOME}/Music/"
+  mkdir -p "${HOME}/Pictures/"
+  mkdir -p "${HOME}/Videos/"
 }
 
 main() {
+  echo "Prompting for sudo password to grant temporary password-less sudo..."
+  sudo -v
+  echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/99-temp-postinstall >/dev/null
+  trap 'sudo rm -f /etc/sudoers.d/99-temp-postinstall' EXIT
+
   configure_pacman
   install_packages
-  configure_display_manager
-  configure_locale
-  configure_network
-  configure_fan_control
-  enable_systemd_units
-  configure_user_env
-  configure_bootloader
 
-  echo 'Post installation process complete!'
-  echo 'You may reboot!'
+  restore_configs
+
+  configure_silent_boot
+  configure_locale
+  configure_dns
+  configure_home_dir
+
+  echo '#'
+  echo '# Post installation process complete!'
+  echo '# You may reboot!'
+  echo '#'
 }
 
 main "$@"

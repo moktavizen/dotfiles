@@ -14,6 +14,7 @@ Singleton {
     Process {
         id: winProc
         command: ["niri", "msg", "--json", "windows"]
+        running: true
         stdout: StdioCollector {
             onStreamFinished: {
                 root.winTitle = JSON.parse(text).find(w => w.is_focused)?.title || "N/A";
@@ -24,6 +25,7 @@ Singleton {
     Process {
         id: wsProc
         command: ["niri", "msg", "--json", "workspaces"]
+        running: true
         stdout: StdioCollector {
             onStreamFinished: {
                 root.workspaces = JSON.parse(text).sort((a, b) => a.idx - b.idx);
