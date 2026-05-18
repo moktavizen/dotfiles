@@ -43,7 +43,7 @@ vim.o.cursorline = true
 vim.o.cursorlineopt = 'number'
 -- vim.o.cursorcolumn = true
 
--- vim.o.winborder = 'rounded'
+vim.o.winborder = 'rounded'
 -- vim.o.winborder = '+,-,+,`,+,-,+,`'
 
 vim.diagnostic.config({
