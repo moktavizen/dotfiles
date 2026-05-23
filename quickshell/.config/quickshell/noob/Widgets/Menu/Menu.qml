@@ -173,11 +173,15 @@ Scope {
                                 }
                             }
                             TapHandler {
-                                onTapped: listView.currentIndex = item.index
-                                onDoubleTapped: window.selectItem(item.modelData)
+                                onTapped: window.selectItem(item.modelData)
                             }
                             HoverHandler {
                                 cursorShape: Qt.PointingHandCursor
+                                onHoveredChanged: {
+                                    if (hovered) {
+                                        listView.currentIndex = index;
+                                    }
+                                }
                             }
                         }
                         highlight: Rectangle {
