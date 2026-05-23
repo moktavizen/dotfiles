@@ -21,7 +21,7 @@ binds {
     Mod+F                { maximize-column; }
     Mod+Shift+F          { fullscreen-window; }
 
-    Mod+D                { spawn "qs" "-c" "noob-shell" "ipc" "call" "menu" "open" "app"; }
+    Mod+D                { spawn "qs" "-c" "noob" "ipc" "call" "menu" "open" "app"; }
 
     Mod+Shift+Q          { close-window; }
 
@@ -68,8 +68,8 @@ binds {
     Mod+Alt+S            { screenshot-window; }
     Mod+Shift+S          { screenshot; }
 
-    Mod+Period           { spawn "qs" "-c" "noob-shell" "ipc" "call" "menu" "open" "emoji"; }
-    Mod+V                { spawn "qs" "-c" "noob-shell" "ipc" "call" "menu" "open" "clipboard"; }
+    Mod+Period           { spawn "qs" "-c" "noob" "ipc" "call" "menu" "open" "emoji"; }
+    Mod+V                { spawn "qs" "-c" "noob" "ipc" "call" "menu" "open" "clipboard"; }
 
     Mod+Shift+C          { spawn-sh "niri msg pick-color | awk '/Hex/ {printf \"%s\", $2}' | wl-copy"; }
 
@@ -93,7 +93,7 @@ cursor {
     hide-when-typing
 }
 
-spawn-at-startup "qs" "-c" "noob-shell"
+spawn-at-startup "qs" "-c" "noob"
 spawn-at-startup "wlsunset" "-l" "-7.15" "-L" "112.61"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
