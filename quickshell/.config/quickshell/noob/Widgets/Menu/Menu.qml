@@ -152,7 +152,6 @@ Scope {
                             }
                         }
                         delegate: Control {
-                            id: item
                             required property var modelData
                             required property int index
 
@@ -161,19 +160,19 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    source: window.state.getIcon(item.modelData)
+                                    source: window.state.getIcon(modelData)
                                     implicitSize: 24
                                 }
                                 ThemedText {
                                     font.pixelSize: 16
                                     font.letterSpacing: 0.4
                                     Layout.fillWidth: true
-                                    text: window.state.getText(item.modelData)
+                                    text: window.state.getText(modelData)
                                     elide: Text.ElideRight
                                 }
                             }
                             TapHandler {
-                                onTapped: window.selectItem(item.modelData)
+                                onTapped: window.selectItem(modelData)
                             }
                             HoverHandler {
                                 cursorShape: Qt.PointingHandCursor
