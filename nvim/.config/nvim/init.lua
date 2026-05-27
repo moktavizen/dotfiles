@@ -115,35 +115,9 @@ require('conform').setup({
 })
 
 -- Syntax highlight
-vim.api.nvim_create_autocmd('PackChanged', {
-  callback = function(ev)
-    local name, kind = ev.data.spec.name, ev.data.kind
-    if name == 'nvim-treesitter' and kind == 'update' then
-      if not ev.data.active then
-        vim.cmd.packadd('nvim-treesitter')
-      end
-      vim.cmd('TSUpdate')
-    end
-  end,
-})
-vim.pack.add({ 'https://github.com/nvim-treesitter/nvim-treesitter' })
--- Enable Tree-sitter highlighting and install if parser is missing
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function(ev)
-    local lang = vim.treesitter.language.get_lang(ev.match)
-    if not vim.tbl_contains(require('nvim-treesitter').get_available(), lang) then
-      return
-    end
-    if lang and not pcall(vim.treesitter.start, ev.buf, lang) then
-      require('nvim-treesitter').install(lang)
-      local function start_after_installed()
-        if vim.api.nvim_buf_is_valid(ev.buf) and not pcall(vim.treesitter.start, ev.buf, lang) then
-          vim.defer_fn(start_after_installed, 300)
-        end
-      end
-      start_after_installed()
-    end
-  end,
+vim.pack.add({ 'https://github.com/arborist-ts/arborist.nvim' })
+require('arborist').setup({
+  install_popular = false,
 })
 
 -- Code completion
