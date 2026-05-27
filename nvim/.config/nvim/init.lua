@@ -41,10 +41,12 @@ vim.o.laststatus = 3
 
 vim.o.cursorline = true
 vim.o.cursorlineopt = 'number'
+
+-- Uncomment these two line for pinpoint cursor
+-- vim.o.cursorlineopt = 'both'
 -- vim.o.cursorcolumn = true
 
 vim.o.winborder = 'rounded'
--- vim.o.winborder = '+,-,+,`,+,-,+,`'
 
 vim.diagnostic.config({
   underline = true,
@@ -128,6 +130,7 @@ require('blink.cmp').setup({
   fuzzy = { implementation = 'rust' },
 })
 
+-- QOL
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
@@ -139,7 +142,6 @@ require('mini.diff').setup({
   },
 })
 require('mini.files').setup()
-
 vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
 require('snacks').setup({
   styles = {
