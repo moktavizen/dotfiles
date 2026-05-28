@@ -81,6 +81,7 @@ binds {
     XF86AudioMicMute     { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
     Mod+Shift+X          { spawn "systemctl" "poweroff"; }
+    Mod+Shift+R          { spawn "systemctl" "reboot"; }
 }
 
 environment {
