@@ -22,16 +22,16 @@ Scope {
             WlrLayershell.layer: WlrLayer.Overlay
             WlrLayershell.namespace: "noob-polkit"
             BackgroundEffect.blurRegion: Region {
-                item: content.background
-                radius: content.background.radius
+                item: container.background
+                radius: container.background.radius
             }
-            implicitWidth: content.implicitWidth
-            implicitHeight: content.implicitHeight
+            implicitWidth: container.implicitWidth
+            implicitHeight: container.implicitHeight
             color: "transparent"
             focusable: true
 
             Control {
-                id: content
+                id: container
                 padding: 16
                 background: RoundedRect {}
                 contentItem: ColumnLayout {

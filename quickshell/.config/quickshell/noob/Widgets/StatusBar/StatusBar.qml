@@ -47,10 +47,10 @@ Variants {
         anchors.top: true
         anchors.left: true
         anchors.right: true
-        implicitHeight: content.implicitHeight
+        implicitHeight: container.implicitHeight
 
         Control {
-            id: content
+            id: container
             anchors.fill: parent
             topPadding: 8
             horizontalPadding: 8

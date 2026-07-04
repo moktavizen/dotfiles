@@ -39,11 +39,11 @@ Scope {
             WlrLayershell.layer: WlrLayer.Overlay
             WlrLayershell.namespace: "noob-menu"
             BackgroundEffect.blurRegion: Region {
-                item: content.background
-                radius: content.background.radius
+                item: container.background
+                radius: container.background.radius
             }
-            implicitWidth: content.implicitWidth
-            implicitHeight: content.implicitHeight
+            implicitWidth: container.implicitWidth
+            implicitHeight: container.implicitHeight
             color: "transparent"
             focusable: true
 
@@ -84,7 +84,7 @@ Scope {
             }
 
             Control {
-                id: content
+                id: container
                 implicitWidth: 666
 
                 padding: 8

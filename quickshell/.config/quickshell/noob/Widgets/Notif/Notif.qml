@@ -31,15 +31,15 @@ Scope {
             WlrLayershell.layer: WlrLayer.Overlay
             WlrLayershell.namespace: "noob-notif"
             BackgroundEffect.blurRegion: Region {
-                item: content.background
-                radius: content.background.radius
+                item: container.background
+                radius: container.background.radius
             }
             anchors.top: true
             anchors.right: true
             margins.top: 16
             margins.right: 16
-            implicitWidth: content.implicitWidth
-            implicitHeight: content.implicitHeight
+            implicitWidth: container.implicitWidth
+            implicitHeight: container.implicitHeight
             color: "transparent"
 
             Timer {
@@ -52,7 +52,7 @@ Scope {
             }
 
             Control {
-                id: content
+                id: container
                 implicitWidth: contentItem.implicitWidth
                 padding: 16
                 background: RoundedRect {}
