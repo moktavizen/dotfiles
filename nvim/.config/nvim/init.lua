@@ -75,6 +75,13 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
+vim.lsp.config('nil_ls', {
+  settings = {
+    formatting = {
+      command = { 'nixfmt' },
+    },
+  },
+})
 -- Enable even if not in a project/workspace
 vim.lsp.config('oxlint', {
   root_markers = {},
@@ -85,6 +92,7 @@ vim.lsp.config('qmlls', {
 })
 vim.lsp.enable({
   'lua_ls',
+  'nil_ls',
   'emmet_language_server',
   'ts_ls',
   'oxlint',
@@ -112,6 +120,7 @@ require('conform').setup({
     jsonc = { 'oxfmt' },
     bash = { 'shfmt' },
     sh = { 'shfmt' },
+    toml = { 'taplo' },
   },
   format_on_save = { lsp_format = 'fallback', timeout_ms = 500 },
 })

@@ -105,12 +105,12 @@ Variants {
                 Group {
                     id: controlGroup
                     Module {
-                        format: `<font color="${Theme.green}"></font> ${HWMonitor.battCapacity}%`
-                        onClickCmd: "foot -T 'Battery Details' sh -c 'upower -i /org/freedesktop/UPower/devices/battery_BAT0; read'"
+                        format: `<font color="${Theme.green}"></font> ${HWMonitor.powerCapacity}%`
+                        onClickCmd: "foot -T 'Battery Details' sh -c 'cat /sys/class/power_supply/BAT*/uevent; read'"
                     }
                     Module {
                         format: `<font color="${Theme.cyan}">󰤨</font> ${HWMonitor.downloadMBps.toFixed(1)}M`
-                        onClickCmd: "foot -T 'WiFi Manager' impala"
+                        onClickCmd: "foot -T 'Network Manager' nmtui"
                     }
                     Module {
                         format: `<font color="${Theme.blue}"></font> ${HWMonitor.btStatus}`

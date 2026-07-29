@@ -1,11 +1,28 @@
-# Vizen dotfiles
+# Dotfiles
 
 ![preview](./preview.jpg)
 
-Usage:
+Managed with [`dotter`](https://github.com/SuperCuber/dotter).
 
-1. Clone this repo into your home directory
-2. Install [stow](https://repology.org/project/stow/versions) on your system
-3. `cd` into this repo and stow the things that you need
+I want my dotfiles repo to be exactly like this
 
-   e.g. `stow waybar kitty ... etc`
+```
+# / means directory, no / means file
+
+.gitconfig
+
+.config/
+    fish/
+    tmux/
+    nvim/
+
+.local/
+    share/
+        wallpapers/
+        via-qmk/
+        vimium/
+```
+
+I want when I add a new nvim plugins I just need to stage and commit it.
+
+What dotfile manager should I use?
