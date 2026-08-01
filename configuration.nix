@@ -123,7 +123,7 @@
     dust
     delta
     github-cli
-    stow
+    dotter
 
     # Tooling
     nil

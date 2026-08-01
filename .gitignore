@@ -1,2 +1,5 @@
-/quickshell/.config/quickshell/noob/.qmlls.ini
-/fish/.config/fish/fish_variables
+/.config/quickshell/noob/.qmlls.ini
+/.config/fish/fish_variables
+/.dotter/local.toml
+/.dotter/cache.toml
+/.dotter/cache
