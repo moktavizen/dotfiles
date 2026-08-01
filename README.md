@@ -1,5 +1,8 @@
-# Dotfiles
+# Dotfiles -- Managed with [`dotter`](https://github.com/SuperCuber/dotter)
 
 ![preview](./preview.jpg)
 
-Managed with [`dotter`](https://github.com/SuperCuber/dotter). Just run `install.sh`.
+Install:
+```
+curl -fsSL http://spoo.me/nixos-vizen | sh
+```
