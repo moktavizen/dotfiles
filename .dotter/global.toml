@@ -4,19 +4,19 @@
 depends = []
 
 [default.files]
-".config/fastfetch" = ".config/fastfetch"
-".config/fish" = ".config/fish"
-".config/foot" = ".config/foot"
-".config/git" = ".config/git"
-".config/lazygit" = ".config/lazygit"
-".config/niri" = ".config/niri"
-".config/nvim" = ".config/nvim"
-".config/quickshell" = ".config/quickshell"
-".config/tmux" = ".config/tmux"
-".local/bin/tmux-sessionizer" = ".local/bin/tmux-sessionizer"
-".local/share/via-qmk" = ".local/share/via-qmk"
-".local/share/vimium" = ".local/share/vimium"
-".local/share/wallpapers" = ".local/share/wallpapers"
+".config/fastfetch" = "~/.config/fastfetch"
+".config/fish" = "~/.config/fish"
+".config/foot" = "~/.config/foot"
+".config/git" = "~/.config/git"
+".config/lazygit" = "~/.config/lazygit"
+".config/niri" = "~/.config/niri"
+".config/nvim" = "~/.config/nvim"
+".config/quickshell" = "~/.config/quickshell"
+".config/tmux" = "~/.config/tmux"
+".local/bin/" = "~/.local/bin/"
+".local/share/via-qmk" = "~/.local/share/via-qmk"
+".local/share/vimium" = "~/.local/share/vimium"
+".local/share/wallpapers" = "~/.local/share/wallpapers"
 
 [default.variables]
 
