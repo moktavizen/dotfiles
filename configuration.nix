@@ -44,10 +44,7 @@
   users.users."vizen" = {
     isNormalUser = true;
     description = "vizen";
-    extraGroups = [
-      "wheel"
-      "video"
-    ];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   hardware.bluetooth = {
@@ -61,6 +58,7 @@
       intel-vaapi-driver
     ];
   };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "i965"; };
 
   #
   # Packages
@@ -68,6 +66,7 @@
 
   # DE
   services.tlp.enable = true;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
