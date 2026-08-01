@@ -54,6 +54,7 @@
     enable = true;
     powerOnBoot = false;
   };
+  hardware.enableAllFirmware = true;
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
