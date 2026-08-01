@@ -71,12 +71,12 @@
   programs.niri.enable = true;
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
-
-  # GUI
   programs.seahorse.enable = true;
   programs.partition-manager.enable = true;
-  programs.obs-studio.enable = true;
+
+  # GUI
   programs.chromium.enable = true; # Policies for Brave Browser
+  programs.obs-studio.enable = true;
 
   # CLI
   programs.foot.enable = true;
@@ -104,12 +104,13 @@
     cliphist
     wl-clipboard
     wlsunset
-
-    # GUI
-    brave
     lxqt.pcmanfm-qt
     lxqt.lximage-qt
     lxqt.lxqt-archiver
+    font-manager
+
+    # GUI
+    brave
     mpv
 
     # CLI
@@ -134,17 +135,20 @@
   ];
 
   fonts = {
+    enableDefaultPackages = false;
     packages = with pkgs; [
       inter
       nerd-fonts.jetbrains-mono
+      source-serif
+      noto-fonts-color-emoji
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
     ];
     fontconfig.defaultFonts = {
-      sansSerif = [
-        "Inter"
-      ];
-      monospace = [
-        "JetBrainsMonoNL Nerd Font Propo"
-      ];
+      sansSerif = [ "Inter" ];
+      monospace = [ "JetBrainsMonoNL Nerd Font Propo" ];
+      serif = [ "Source Serif 4" ];
+      emoji = [ "Noto Color Emoji" ];
     };
   };
 
