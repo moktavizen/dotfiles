@@ -1,8 +1,3 @@
-[helpers]
-
-[default]
-depends = []
-
 [default.files]
 ".config/fastfetch" = "~/.config/fastfetch"
 ".config/fish" = "~/.config/fish"
@@ -17,8 +12,3 @@ depends = []
 ".local/share/via-qmk" = "~/.local/share/via-qmk"
 ".local/share/vimium" = "~/.local/share/vimium"
 ".local/share/wallpapers" = "~/.local/share/wallpapers"
-
-[default.variables]
-
-[settings]
-default_target_type = "automatic"
