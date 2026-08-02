@@ -73,6 +73,7 @@ Scope {
                     ThemedTextField {
                         Layout.fillWidth: true
                         placeholderText: polkit.flow?.inputPrompt ?? ""
+                        placeholderTextColor: Theme.foregroundAlt
                         echoMode: polkit.flow?.responseVisible ? TextInput.Normal : TextInput.Password
                         passwordCharacter: "*"
                         enabled: infoMsg.text.includes("left to unlock") === false
