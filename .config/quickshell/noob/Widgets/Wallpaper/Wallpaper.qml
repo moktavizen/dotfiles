@@ -20,7 +20,7 @@ Variants {
 
         Image {
             anchors.fill: parent
-            source: Quickshell.env("HOME") + "/.local/share/wallpapers/max-suleimanov-1.jpg"
+            source: Quickshell.env("HOME") + "/.local/share/wallpapers/charles-william.jpg"
             fillMode: Image.PreserveAspectCrop
             sourceSize.width: window.modelData.width
             sourceSize.height: window.modelData.height
