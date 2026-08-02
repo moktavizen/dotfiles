@@ -9,6 +9,6 @@ cd ~/.dotfiles
 
 nix-shell -p dotter --run 'dotter deploy'
 
-sudo ln -sf ~/.dotfiles/configuration.nix /etc/nixos/configuration.nix
+sudo ln -sf ~/.dotfiles/install/configuration.nix /etc/nixos/configuration.nix
 
 sudo nixos-rebuild switch
