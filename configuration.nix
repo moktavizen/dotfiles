@@ -44,7 +44,10 @@
   users.users."vizen" = {
     isNormalUser = true;
     description = "vizen";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   hardware.bluetooth = {
@@ -58,7 +61,9 @@
       intel-vaapi-driver
     ];
   };
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "i965"; };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "i965";
+  };
 
   #
   # Packages
@@ -136,6 +141,8 @@
     fzf
     eza
     dust
+    imagemagick
+    yt-dlp
     delta
     github-cli
     dotter
