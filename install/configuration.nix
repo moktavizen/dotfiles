@@ -92,6 +92,7 @@
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
   programs.partition-manager.enable = true;
+  services.gvfs.enable = true;
 
   # GUI
   programs.chromium.enable = true; # Policies for Brave Browser
