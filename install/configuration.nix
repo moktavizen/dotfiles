@@ -134,7 +134,7 @@
     mpv
 
     # CLI
-    fastfetch
+    microfetch
     tree-sitter # arborist.nvim deps
     gcc # arborist.nvim deps
     ripgrep # snacks.picker deps

@@ -90,8 +90,6 @@ if status is-interactive
   alias diff='diff --color=auto'
   alias ip='ip -color=auto'
   alias ls='eza -1 --icons=always --color=always'
-  alias ff='fastfetch'
-  alias fff='fastfetch -C ~/.config/fastfetch/fastfetch-full.jsonc'
   alias shis='history | fzf'
   alias vim='nvim'
   alias lazyvim='env NVIM_APPNAME=lazyvim nvim'

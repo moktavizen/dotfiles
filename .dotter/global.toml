@@ -1,5 +1,4 @@
 [default.files]
-".config/fastfetch" = "~/.config/fastfetch"
 ".config/fish" = "~/.config/fish"
 ".config/foot" = "~/.config/foot"
 ".config/git" = "~/.config/git"
