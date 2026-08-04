@@ -31,6 +31,8 @@
   networking.hostName = "thicc430";
 
   networking.networkmanager.enable = true;
+  services.cloudflare-warp.enable = true;
+  systemd.user.services.warp-taskbar.enable = false;
 
   time.timeZone = "Asia/Jakarta";
 
