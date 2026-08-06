@@ -156,6 +156,7 @@
     taplo
     lua-language-server
     stylua
+    nodejs
   ];
 
   fonts = {
