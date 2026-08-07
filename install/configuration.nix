@@ -28,6 +28,13 @@
   boot.kernelParams = [ "quiet" ];
   boot.blacklistedKernelModules = [ "iTCO_wdt" ];
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 25;
+    priority = 100;
+  };
+
   networking.hostName = "thicc430";
 
   networking.networkmanager.enable = true;
