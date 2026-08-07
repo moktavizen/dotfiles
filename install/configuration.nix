@@ -157,6 +157,7 @@
     lua-language-server
     stylua
     nodejs
+    typescript-go
   ];
 
   fonts = {
