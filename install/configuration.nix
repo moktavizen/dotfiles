@@ -156,7 +156,7 @@
     taplo
     lua-language-server
     stylua
-    nodejs
+    pnpm
     typescript-go
   ];
 
