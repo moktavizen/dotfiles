@@ -1,4 +1,4 @@
-![preview](./install/preview.jpg)
+![preview](./install/preview.png)
 
 # Dotfiles -- Managed with [`dotter`](https://github.com/SuperCuber/dotter)
 
