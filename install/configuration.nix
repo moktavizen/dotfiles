@@ -166,6 +166,8 @@
     stylua
     pnpm
     typescript-go
+    oxfmt
+    oxlint
   ];
 
   fonts = {
