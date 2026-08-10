@@ -161,6 +161,7 @@
     nil
     nixfmt-rs
     taplo
+    shfmt
     lua-language-server
     stylua
     pnpm
