@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 nix-shell -p xdg-user-dirs --run 'xdg-user-dirs-update'
 
 nix-shell -p git --run 'git clone https://github.com/moktavizen/dotfiles ~/.dotfiles'
