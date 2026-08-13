@@ -79,7 +79,6 @@ if status is-interactive
   #
 
   bind \cy end-of-line
-  bind \cf 'commandline "tmux-sessionizer"; commandline -f execute'
 
   #
   # Alias

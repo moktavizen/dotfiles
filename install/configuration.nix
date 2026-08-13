@@ -111,7 +111,6 @@
   # CLI
   programs.foot.enable = true;
   programs.fish.enable = true;
-  programs.tmux.enable = true;
   programs.git.enable = true;
   programs.neovim.enable = true;
   programs.bat.enable = true;

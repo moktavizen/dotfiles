@@ -6,8 +6,6 @@
 ".config/niri" = "~/.config/niri"
 ".config/nvim" = "~/.config/nvim"
 ".config/quickshell" = "~/.config/quickshell"
-".config/tmux" = "~/.config/tmux"
-".local/bin/" = "~/.local/bin/"
 ".local/share/via-qmk" = "~/.local/share/via-qmk"
 ".local/share/vimium" = "~/.local/share/vimium"
 ".local/share/wallpapers" = "~/.local/share/wallpapers"
