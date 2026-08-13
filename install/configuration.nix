@@ -115,6 +115,7 @@
   programs.neovim.enable = true;
   programs.bat.enable = true;
   programs.lazygit.enable = true;
+  programs.television.enable = true;
 
   # Packages that does not have `.enable` option
   environment.systemPackages = with pkgs; [
@@ -148,7 +149,6 @@
     gcc # arborist.nvim deps
     ripgrep # snacks.picker deps
     fd
-    fzf
     eza
     dust
     imagemagick

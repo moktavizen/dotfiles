@@ -6,6 +6,7 @@
 ".config/niri" = "~/.config/niri"
 ".config/nvim" = "~/.config/nvim"
 ".config/quickshell" = "~/.config/quickshell"
+".config/television" = "~/.config/television"
 ".local/share/via-qmk" = "~/.local/share/via-qmk"
 ".local/share/vimium" = "~/.local/share/vimium"
 ".local/share/wallpapers" = "~/.local/share/wallpapers"
