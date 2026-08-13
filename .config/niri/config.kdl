@@ -99,7 +99,7 @@ spawn-at-startup "wlsunset" "-l" "-7.15" "-L" "112.61"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 spawn-at-startup "brave"
-spawn-sh-at-startup "foot -T Terminal nvim"
+spawn-sh-at-startup "foot sh -c 'nvim; exec fish'"
 
 layout {
     gaps 8
@@ -144,7 +144,7 @@ blur {
 }
 
 workspace "browser"
-workspace "terminal"
+workspace "dev"
 
 window-rule {
     match at-startup=true app-id="brave-browser"
@@ -153,9 +153,9 @@ window-rule {
 }
 
 window-rule {
-    match at-startup=true title="Terminal"
+    match at-startup=true app-id="foot"
     default-column-width { proportion 1.0; }
-    open-on-workspace "terminal"
+    open-on-workspace "dev"
 }
 
 window-rule {
