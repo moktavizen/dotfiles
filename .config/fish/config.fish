@@ -85,9 +85,6 @@ if status is-interactive
   #
 
   # Require television, fd, eza, bat to be installed
-  alias grep='grep --color=auto'
-  alias diff='diff --color=auto'
-  alias ip='ip -color=auto'
   alias ls='eza -1 --icons=always --color=always'
   alias shis='tv fish-history | wl-copy -n'
   alias vim='nvim'
