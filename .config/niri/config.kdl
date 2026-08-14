@@ -3,8 +3,6 @@ binds {
 
     // Based on https://i3wm.org/docs/userguide.html#_default_keybindings
 
-    Mod+Return           { spawn "foot"; }
-
     Mod+H                { focus-column-left; }
     Mod+J                { focus-window-down; }
     Mod+K                { focus-window-up; }
