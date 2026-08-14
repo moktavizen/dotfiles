@@ -178,7 +178,7 @@
       source-serif
       noto-fonts-color-emoji
       noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
+      stix-two
     ];
     fontconfig.defaultFonts = {
       sansSerif = [ "Inter" ];
