@@ -151,6 +151,30 @@ require('mini.diff').setup({
   },
 })
 require('mini.files').setup()
+require('mini.starter').setup({
+  header = [[
+       ▄▄     ▄▄▄          ▄▄▄
+       ██▄   ██▀          █▀██  ██▀▀
+       ███▄  ██             ██  ██ ▀▀ ▄
+       ██ ▀█▄██ ▄█▀█▄ ▄███▄ ██  ██ ██ ███▄███▄
+       ██   ▀██ ██▄█▀ ██ ██ ██▄ ██ ██ ██ ██ ██
+     ▀██▀    ██▄▀█▄▄▄▄▀███▀  ▀███▀▄██▄██ ██ ▀█]],
+  -- stylua: ignore
+  items = {
+    { name = 'Find file ---------------------------------------- F', action = function() Snacks.picker.files() end, section = ' ' },
+    { name = 'Grep text ---------------------------------------- G', action = function() Snacks.picker.grep() end, section = ' ' },
+    { name = 'Recent files ------------------------------------- R', action = function() Snacks.picker.recent() end, section = ' ' },
+  },
+  footer = "There was a time when Einstein couldn't count to ten\nA year from now you may wish you had started today",
+  content_hooks = {
+    require('mini.starter').gen_hook.aligning('center', 'center'),
+  },
+  evaluate_single = true,
+  silent = true,
+})
+vim.api.nvim_set_hl(0, 'MiniStarterHeader', { link = 'OkMsg' })
+vim.api.nvim_set_hl(0, 'MiniStarterItemPrefix', { link = 'Normal' })
+vim.api.nvim_set_hl(0, 'MiniStarterFooter', { link = 'Delimiter' })
 vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
 require('snacks').setup({
   styles = {
@@ -162,28 +186,6 @@ require('snacks').setup({
       grep = { hidden = true },
       buffers = { hidden = true },
       explorer = { hidden = true },
-    },
-  },
-  -- Yes, I know this dashboard is cringe
-  dashboard = {
-    sections = {
-      { section = 'header' },
-      { section = 'keys', gap = 1 },
-    },
-    preset = {
-      header = [[
-  ▄▄     ▄▄▄   ▄▄▄         ▄▄▄▄▄▄    ▄▄▄     ▄▄▄
- ██▄   ██▀   █▀██  ██▀▀  █▀ ██       ███▄ ▄███
- ███▄  ██      ██  ██       ██       ██ ▀█▀ ██
- ██ ▀█▄██      ██  ██       ██       ██     ██
- ██   ▀██      ██▄ ██       ██       ██     ██
- ▀██▀    ██       ▀███▀     ▄▄██▄▄   ▀██▀     ▀██▄]],
-      -- stylua: ignore
-      keys = {
-        { icon = ' ', key = 'f', desc = 'Find File',    action = ":lua Snacks.dashboard.pick('files')"     },
-        { icon = ' ', key = 'g', desc = 'Find Text',    action = ":lua Snacks.dashboard.pick('live_grep')" },
-        { icon = ' ', key = 'r', desc = 'Recent Files', action = ":lua Snacks.dashboard.pick('oldfiles')"  },
-      },
     },
   },
 })
