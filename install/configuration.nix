@@ -95,6 +95,7 @@
       animation = "matrix";
       hide_key_hints = true;
       hide_version_string = true;
+      session_log = ".local/state/ly-session.log";
     };
   };
   programs.niri.enable = true;
