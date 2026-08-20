@@ -143,6 +143,7 @@
     # GUI
     brave
     mpv
+    vscode
 
     # CLI
     microfetch
