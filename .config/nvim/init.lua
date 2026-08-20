@@ -197,7 +197,7 @@ require('snacks').setup({
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Remove search highlight' })
 
 -- Only use this when making a colorscheme
--- map('n', '<C-I>', '<Cmd>Inspect<CR>', { desc = 'Inspect highlight group under cursor' })
+-- vim.keymap.set('n', '<C-I>', '<Cmd>Inspect<CR>', { desc = 'Inspect highlight group under cursor' })
 
 vim.keymap.set('n', '<Leader>bb', '<Cmd>b #<CR>', { desc = 'Switch to other buffer' })
 
