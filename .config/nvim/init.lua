@@ -94,7 +94,7 @@ vim.lsp.enable({
   'lua_ls',
   'nil_ls',
   'emmet_language_server',
-  'tsgo',
+  'tsc',
   'oxlint',
   'qmlls',
 })
