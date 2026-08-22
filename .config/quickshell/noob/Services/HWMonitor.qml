@@ -10,15 +10,24 @@ Singleton {
     property int updateSec: 2
 
     property int cpuUsage
+    property real lastIdle: 0
+    property real lastTotal: 0
     Process {
         id: cpuProc
-        command: ["vmstat", "1", "2"]
+        command: ["cat", "/proc/stat"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                let lines = text.trim().split("\n");
-                let val = lines[lines.length - 1].trim().split(/\s+/)[14];
-                root.cpuUsage = 100 - parseInt(val);
+                const p = text.split(/\s+/).slice(1, 8).map(Number);
+                const total = p.reduce((a, b) => a + b, 0);
+                const idle = p[3] + (p[4] || 0);
+
+                const dTotal = total - root.lastTotal;
+                const dIdle = idle - root.lastIdle
+                root.cpuUsage = Math.round((1 - dIdle / dTotal) * 100);
+
+                root.lastIdle = idle;
+                root.lastTotal = total;
             }
         }
     }
@@ -36,16 +45,14 @@ Singleton {
     property real memUsed
     Process {
         id: memProc
-        command: ["free", "-h"]
+        command: ["cat", "/proc/meminfo"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                let line = text.split("\n").find(l => l.includes("Mem:"));
-                if (line) {
-                    let val = line.trim().split(/\s+/)[2];
-                    // Mebibyte -> Gibibyte
-                    root.memUsed = val.includes("Mi") ? parseFloat(val) / 1024 : parseFloat(val);
-                }
+                const total = text.match(/MemTotal:\s+(\d+)/);
+                const avail = text.match(/MemAvailable:\s+(\d+)/);
+                // kB -> GiB
+                root.memUsed = (total[1] - avail[1]) / 1048576;
             }
         }
     }
@@ -62,24 +69,20 @@ Singleton {
         }
     }
 
-    property real downloadMBps
+    property real downloadMBps: 0
+    property real lastBytes: 0
     Process {
         id: netwProc
-        command: ["ifstat"]
+        command: ["cat", "/sys/class/net/wlp3s0/statistics/rx_bytes"]
         running: true
         stdout: StdioCollector {
-            // qmlformat off
             onStreamFinished: {
-                let line = text.split("\n").find(l => l.includes("wlp3s0"));
-                if (line) {
-                    let val = line.trim().split(/\s+/)[5];
-                    // Kilobyte or byte -> Mebibyte
-                    root.downloadMBps = val.includes("K")
-                        ? parseInt(val) / 1049 / root.updateSec
-                        : parseInt(val) / 1049 / 1049 / root.updateSec;
-                }
+                const bytes = parseInt(text);
+                // (current - previous) converted to MiB/s
+                root.downloadMBps = (bytes - root.lastBytes) / 1048576 / root.updateSec;
+
+                root.lastBytes = bytes;
             }
-            // qmlformat on
         }
     }
 
