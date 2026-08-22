@@ -5,6 +5,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Wayland
+import Quickshell.Bluetooth
 import qs.Common
 import qs.Services
 
@@ -113,7 +114,7 @@ Variants {
                         onClickCmd: "foot -T 'Network Manager' nmtui"
                     }
                     Module {
-                        format: `<font color="${Theme.blue}"></font> ${HWMonitor.btStatus}`
+                        format: `<font color="${Theme.blue}"></font> ${Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"}`
                         onClickCmd: "foot -T 'Bluetooth Manager' bluetui"
                     }
                     Module {

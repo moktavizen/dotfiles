@@ -2,7 +2,6 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Io
-import Quickshell.Bluetooth
 import QtQuick
 
 Singleton {
@@ -18,12 +17,15 @@ Singleton {
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
+                // Parse into [0] user, [1] nice, [2] system, [3] idle, [4] iowait, [5] irq, [6] softirq
                 const p = text.split(/\s+/).slice(1, 8).map(Number);
-                const total = p.reduce((a, b) => a + b, 0);
+                // Like top and vmstat, disk activity isn't counted as CPU work
                 const idle = p[3] + (p[4] || 0);
+                const total = p.reduce((a, b) => a + b, 0);
 
-                const dTotal = total - root.lastTotal;
                 const dIdle = idle - root.lastIdle
+                const dTotal = total - root.lastTotal;
+                // CPU ratio (e.g., 0.35 for 35% usage)
                 root.cpuUsage = Math.round((1 - dIdle / dTotal) * 100);
 
                 root.lastIdle = idle;
@@ -35,6 +37,7 @@ Singleton {
     property int cpuTemp
     Process {
         id: tempProc
+        // Note: Change 'thermal_zone1' if your CPU temp is on a different zone
         command: ["cat", "/sys/class/thermal/thermal_zone1/temp"]
         running: true
         stdout: StdioCollector {
@@ -60,6 +63,7 @@ Singleton {
     property int powerCapacity
     Process {
         id: powerProc
+        // Note: Change 'BAT0' if your battery identifier is different (e.g., BAT1)
         command: ["cat", "/sys/class/power_supply/BAT0/capacity"]
         running: true
         stdout: StdioCollector {
@@ -73,6 +77,7 @@ Singleton {
     property real lastBytes: 0
     Process {
         id: netwProc
+        // Note: Replace 'wlp3s0' with your active network interface name
         command: ["cat", "/sys/class/net/wlp3s0/statistics/rx_bytes"]
         running: true
         stdout: StdioCollector {
@@ -85,8 +90,6 @@ Singleton {
             }
         }
     }
-
-    property string btStatus: Bluetooth.defaultAdapter?.state == "1" ? "On" : "Off"
 
     Timer {
         interval: root.updateSec * 1000
