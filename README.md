@@ -1,6 +1,8 @@
 ![preview](./install/preview.png)
 
-# Dotfiles -- Managed with [`dotter`](https://github.com/SuperCuber/dotter)
+# Dotfiles
+
+> Managed with [`dotter`](https://github.com/SuperCuber/dotter)
 
 1. Boot into NixOS
 
