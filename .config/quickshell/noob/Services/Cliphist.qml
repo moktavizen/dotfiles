@@ -2,6 +2,7 @@ pragma Singleton
 
 import Quickshell
 import Quickshell.Io
+import QtQuick
 
 Singleton {
     id: root
@@ -16,10 +17,18 @@ Singleton {
         }
     }
 
+    // Prevent rapid duplicate executions when the DB writes multiple chunks
+    Timer {
+        id: debounceTimer
+        // Waits out all disk I/O bursts while feeling instantaneous
+        interval: 50 // ms
+        onTriggered: cliphistProc.running = true
+    }
+
     FileView {
         path: Quickshell.env("HOME") + "/.cache/cliphist/db"
         preload: false
         watchChanges: true
-        onFileChanged: cliphistProc.running = true
+        onFileChanged: debounceTimer.restart()
     }
 }
