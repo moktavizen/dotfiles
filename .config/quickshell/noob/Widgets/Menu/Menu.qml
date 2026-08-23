@@ -49,7 +49,7 @@ Scope {
 
             property string q: ""
 
-            property var state: {
+            property var provider: {
                 switch (root.mode) {
                 case "app":
                     return {
@@ -85,7 +85,7 @@ Scope {
             }
 
             function selectItem(item) {
-                window.state.applyAction(item);
+                window.provider.applyAction(item);
                 ipc.close();
             }
 
@@ -122,7 +122,7 @@ Scope {
                             ThemedText {
                                 font.pixelSize: 16
                                 font.letterSpacing: 0.4
-                                text: `${listView.count}/${window.state.items.length}`
+                                text: `${listView.count}/${window.provider.items.length}`
                             }
                         }
                     }
@@ -145,8 +145,8 @@ Scope {
                         highlightMoveDuration: 0
                         model: ScriptModel {
                             values: {
-                                return window.state.items.filter(item => {
-                                    const itemKeywords = window.state.getKeywords(item);
+                                return window.provider.items.filter(item => {
+                                    const itemKeywords = window.provider.getKeywords(item);
                                     return window.containWords(itemKeywords, window.q);
                                 });
                             }
@@ -160,14 +160,14 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    source: window.state.getIcon(modelData)
+                                    source: window.provider.getIcon(modelData)
                                     implicitSize: 24
                                 }
                                 ThemedText {
                                     font.pixelSize: 16
                                     font.letterSpacing: 0.4
                                     Layout.fillWidth: true
-                                    text: window.state.getText(modelData)
+                                    text: window.provider.getText(modelData)
                                     elide: Text.ElideRight
                                 }
                             }
