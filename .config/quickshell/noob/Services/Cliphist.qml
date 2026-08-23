@@ -25,6 +25,7 @@ Singleton {
         onTriggered: cliphistProc.running = true
     }
 
+    // Run `cliphist list` everytime cliphist db changes
     FileView {
         path: Quickshell.env("HOME") + "/.cache/cliphist/db"
         preload: false
