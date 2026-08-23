@@ -166,6 +166,7 @@
     shfmt
     lua-language-server
     stylua
+    kdePackages.qtdeclarative
     pnpm
     typescript-go
     oxfmt

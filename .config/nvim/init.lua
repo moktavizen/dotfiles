@@ -87,9 +87,6 @@ vim.lsp.config('oxlint', {
   root_markers = {},
   workspace_required = false,
 })
-vim.lsp.config('qmlls', {
-  cmd = { 'qmlls6' },
-})
 vim.lsp.enable({
   'lua_ls',
   'nil_ls',
