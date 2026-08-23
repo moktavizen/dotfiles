@@ -78,6 +78,12 @@ Scope {
                 }
             }
 
+            function containWords(str, sentence) {
+                const nStr = str.toLowerCase();
+                const nWords = sentence.toLowerCase().split(" ");
+                return nWords.every(word => nStr.includes(word));
+            }
+
             function selectItem(item) {
                 window.state.applyAction(item);
                 ipc.close();
@@ -139,15 +145,9 @@ Scope {
                         highlightMoveDuration: 0
                         model: ScriptModel {
                             values: {
-                                function containWords(str, sentence) {
-                                    const nStr = str.toLowerCase();
-                                    const nWords = sentence.toLowerCase().split(" ");
-                                    return nWords.every(word => nStr.includes(word));
-                                }
-
                                 return window.state.items.filter(item => {
                                     const itemKeywords = window.state.getKeywords(item);
-                                    return containWords(itemKeywords, window.q);
+                                    return window.containWords(itemKeywords, window.q);
                                 });
                             }
                         }
