@@ -50,7 +50,7 @@ vim.o.winborder = 'rounded'
 
 vim.diagnostic.config({
   underline = true,
-  virtual_text = true,
+  -- virtual_text = true,
   signs = true,
   float = true,
   severity_sort = true,
