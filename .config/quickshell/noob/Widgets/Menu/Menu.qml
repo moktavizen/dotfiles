@@ -59,18 +59,6 @@ Scope {
 
             property string q: ""
 
-            function filterItems(items, queryText) {
-                if (!queryText.trim()) {
-                    return items;
-                }
-                const terms = queryText.toLowerCase().split(" ");
-
-                return items.filter(item => {
-                    const text = root.provider.getKeywords(item).toLowerCase();
-                    return terms.every(word => text.includes(word));
-                });
-            }
-
             function selectItem(item) {
                 root.provider.applyAction(item);
                 ipc.close();
@@ -84,35 +72,17 @@ Scope {
                 background: RoundedRect {}
                 contentItem: ColumnLayout {
                     spacing: 0
-                    Control {
-                        Layout.fillWidth: true
-                        topPadding: 10
-                        bottomPadding: 4
-                        horizontalPadding: 12
-                        contentItem: RowLayout {
-                            spacing: 8
-                            IconImage {
-                                source: Quickshell.iconPath("search")
-                                implicitSize: 24
-                            }
-                            ThemedTextField {
-                                Layout.fillWidth: true
-                                placeholderText: "Search..."
-                                placeholderTextColor: Theme.foregroundAlt
 
-                                Component.onCompleted: forceActiveFocus()
-                                onTextChanged: {
-                                    window.q = text;
-                                    listView.currentIndex = 0;
-                                }
-                            }
-                            ThemedText {
-                                font.pixelSize: 16
-                                font.letterSpacing: 0.4
-                                text: `${listView.count}/${root.provider.items.length}`
-                            }
+                    MenuSearchBar {
+                        Layout.fillWidth: true
+                        count: listView.count
+                        totalCount: root.provider?.items?.length ?? 0
+                        onSearchChanged: text => {
+                            window.q = text;
+                            listView.currentIndex = 0;
                         }
                     }
+
                     MenuSeparator {
                         Layout.fillWidth: true
                         verticalPadding: 8
@@ -121,68 +91,28 @@ Scope {
                             color: Theme.selected
                         }
                     }
-                    ListView {
+
+                    MenuListView {
                         id: listView
-                        property int lines: 7
-
                         Layout.fillWidth: true
-                        spacing: 2
-                        implicitHeight: (currentItem?.implicitHeight * lines) + (spacing * (lines - 1))
-                        clip: true
-                        highlightMoveDuration: 0
-                        model: ScriptModel {
-                            values: window.filterItems(root.provider.items, window.q)
-                        }
-                        delegate: Control {
-                            required property var modelData
-                            required property int index
-
-                            width: listView.width
-                            padding: 11
-                            contentItem: RowLayout {
-                                spacing: 12
-                                IconImage {
-                                    source: root.provider.getIcon(modelData)
-                                    implicitSize: 24
-                                }
-                                ThemedText {
-                                    font.pixelSize: 16
-                                    font.letterSpacing: 0.4
-                                    Layout.fillWidth: true
-                                    text: root.provider.getText(modelData)
-                                    elide: Text.ElideRight
-                                }
-                            }
-                            TapHandler {
-                                onTapped: window.selectItem(modelData)
-                            }
-                            HoverHandler {
-                                cursorShape: Qt.PointingHandCursor
-                                onHoveredChanged: {
-                                    if (hovered) {
-                                        listView.currentIndex = index;
-                                    }
-                                }
-                            }
-                        }
-                        highlight: Rectangle {
-                            color: Theme.selected
-                            radius: 8
-                        }
+                        provider: root.provider
+                        query: window.q
+                        onItemSelected: item => window.selectItem(item)
                     }
                 }
             }
+
             Shortcut {
                 sequence: "Ctrl+J"
-                onActivated: listView.currentIndex = (listView.currentIndex + 1) % listView.count
+                onActivated: listView.next()
             }
             Shortcut {
                 sequence: "Ctrl+K"
-                onActivated: listView.currentIndex = (listView.currentIndex - 1 + listView.count) % listView.count
+                onActivated: listView.previous()
             }
             Shortcut {
                 sequences: ["Return", "Enter"]
-                onActivated: window.selectItem(listView.model.values[listView.currentIndex])
+                onActivated: listView.selectCurrent()
             }
             Shortcut {
                 sequences: ["Esc", "Ctrl+["]
