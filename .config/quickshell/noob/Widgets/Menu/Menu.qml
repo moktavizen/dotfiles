@@ -8,11 +8,17 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import qs.Common
-import qs.Services
+import qs.Providers
 
 Scope {
     id: root
-    property string mode
+
+    property var provider: null
+    readonly property var providers: ({
+            "app": App,
+            "emoji": Emoji,
+            "clipboard": Clipboard
+        })
 
     IpcHandler {
         id: ipc
@@ -22,8 +28,12 @@ Scope {
             if (loader.active) {
                 return;
             }
-            root.mode = mode;
-            loader.active = true;
+
+            const selectedProvider = root.providers[mode];
+            root.provider = selectedProvider;
+            selectedProvider.loadItems(() => {
+                loader.active = true;
+            });
         }
 
         function close(): void {
@@ -49,35 +59,6 @@ Scope {
 
             property string q: ""
 
-            property var provider: {
-                switch (root.mode) {
-                case "app":
-                    return {
-                        items: DesktopEntries.applications.values.slice().sort((a, b) => a.name.localeCompare(b.name)),
-                        getIcon: app => Quickshell.iconPath(app.icon, "dialog-question"),
-                        getText: app => app.name,
-                        getKeywords: app => app.name,
-                        applyAction: app => app.execute()
-                    };
-                case "emoji":
-                    return {
-                        items: Emoji.emojis,
-                        getIcon: () => Quickshell.iconPath("arrow-right"),
-                        getText: emoji => `${emoji.e} ${emoji.n}`,
-                        getKeywords: emoji => emoji.k,
-                        applyAction: emoji => Quickshell.execDetached(["wl-copy", emoji.e])
-                    };
-                case "clipboard":
-                    return {
-                        items: Cliphist.clipboard,
-                        getIcon: () => Quickshell.iconPath("arrow-right"),
-                        getText: cbItem => cbItem.split("\t")[1],
-                        getKeywords: cbItem => cbItem,
-                        applyAction: cbItem => Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbItem.split("\t")[0]} | wl-copy`])
-                    };
-                }
-            }
-
             function filterItems(items, queryText) {
                 if (!queryText.trim()) {
                     return items;
@@ -85,13 +66,13 @@ Scope {
                 const terms = queryText.toLowerCase().split(" ");
 
                 return items.filter(item => {
-                    const text = window.provider.getKeywords(item).toLowerCase();
+                    const text = root.provider.getKeywords(item).toLowerCase();
                     return terms.every(word => text.includes(word));
                 });
             }
 
             function selectItem(item) {
-                window.provider.applyAction(item);
+                root.provider.applyAction(item);
                 ipc.close();
             }
 
@@ -128,7 +109,7 @@ Scope {
                             ThemedText {
                                 font.pixelSize: 16
                                 font.letterSpacing: 0.4
-                                text: `${listView.count}/${window.provider.items.length}`
+                                text: `${listView.count}/${root.provider.items.length}`
                             }
                         }
                     }
@@ -150,7 +131,7 @@ Scope {
                         clip: true
                         highlightMoveDuration: 0
                         model: ScriptModel {
-                            values: window.filterItems(window.provider.items, window.q)
+                            values: window.filterItems(root.provider.items, window.q)
                         }
                         delegate: Control {
                             required property var modelData
@@ -161,14 +142,14 @@ Scope {
                             contentItem: RowLayout {
                                 spacing: 12
                                 IconImage {
-                                    source: window.provider.getIcon(modelData)
+                                    source: root.provider.getIcon(modelData)
                                     implicitSize: 24
                                 }
                                 ThemedText {
                                     font.pixelSize: 16
                                     font.letterSpacing: 0.4
                                     Layout.fillWidth: true
-                                    text: window.provider.getText(modelData)
+                                    text: root.provider.getText(modelData)
                                     elide: Text.ElideRight
                                 }
                             }
@@ -187,12 +168,6 @@ Scope {
                         highlight: Rectangle {
                             color: Theme.selected
                             radius: 8
-                        }
-                        // Ensure highlight is forced properly on initial list creation
-                        Component.onCompleted: {
-                            Qt.callLater(() => {
-                                currentIndex = 0;
-                            });
                         }
                     }
                 }
