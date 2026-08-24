@@ -78,10 +78,16 @@ Scope {
                 }
             }
 
-            function containWords(str, sentence) {
-                const nStr = str.toLowerCase();
-                const nWords = sentence.toLowerCase().split(" ");
-                return nWords.every(word => nStr.includes(word));
+            function filterItems(items, queryText) {
+                if (!queryText.trim()) {
+                    return items;
+                }
+                const terms = queryText.toLowerCase().split(" ");
+
+                return items.filter(item => {
+                    const text = window.provider.getKeywords(item).toLowerCase();
+                    return terms.every(word => text.includes(word));
+                });
             }
 
             function selectItem(item) {
@@ -144,12 +150,7 @@ Scope {
                         clip: true
                         highlightMoveDuration: 0
                         model: ScriptModel {
-                            values: {
-                                return window.provider.items.filter(item => {
-                                    const itemKeywords = window.provider.getKeywords(item);
-                                    return window.containWords(itemKeywords, window.q);
-                                });
-                            }
+                            values: window.filterItems(window.provider.items, window.q)
                         }
                         delegate: Control {
                             required property var modelData
