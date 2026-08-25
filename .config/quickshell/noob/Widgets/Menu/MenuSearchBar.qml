@@ -11,10 +11,8 @@ Control {
     id: root
 
     property alias text: textField.text
-    property int count: 0
-    property int totalCount: 0
-
-    signal searchChanged(string text)
+    required property int count
+    required property int totalCount
 
     topPadding: 10
     bottomPadding: 4
@@ -35,7 +33,6 @@ Control {
             placeholderTextColor: Theme.foregroundAlt
 
             Component.onCompleted: forceActiveFocus()
-            onTextChanged: root.searchChanged(text)
         }
 
         ThemedText {

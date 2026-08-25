@@ -11,27 +11,21 @@ ListView {
     id: root
 
     required property var provider
-    property string query: ""
+    required property string query
     property int lines: 7
 
     signal itemSelected(var item)
 
     function selectCurrent(): void {
-        if (count > 0 && currentIndex >= 0 && currentIndex < count) {
-            itemSelected(model.values[currentIndex]);
-        }
+        itemSelected(model.values[currentIndex]);
     }
 
     function next(): void {
-        if (count > 0) {
-            currentIndex = (currentIndex + 1) % count;
-        }
+        currentIndex = (currentIndex + 1) % count;
     }
 
     function previous(): void {
-        if (count > 0) {
-            currentIndex = (currentIndex - 1 + count) % count;
-        }
+        currentIndex = (currentIndex - 1 + count) % count;
     }
 
     spacing: 2
@@ -41,19 +35,16 @@ ListView {
 
     model: ScriptModel {
         values: {
-            if (!root.provider)
-                return [];
-            const items = root.provider.items ?? [];
-            const q = root.query.trim().toLowerCase();
-
-            if (!q) {
+            const query = root.query.trim();
+            const items = root.provider.items;
+            if (!query) {
                 return items;
             }
 
-            const terms = q.split(" ");
+            const terms = query.toLowerCase().split(" ");
             return items.filter(item => {
-                const text = root.provider.getKeywords(item).toLowerCase();
-                return terms.every(word => text.includes(word));
+                const keywords = root.provider.getKeywords(item).toLowerCase();
+                return terms.every(term => keywords.includes(term));
             });
         }
     }

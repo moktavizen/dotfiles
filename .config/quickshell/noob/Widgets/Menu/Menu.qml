@@ -14,7 +14,7 @@ Scope {
     id: root
 
     property var provider: null
-    readonly property var providers: ({
+    property var providers: ({
             "app": App,
             "emoji": Emoji,
             "clipboard": Clipboard
@@ -57,8 +57,6 @@ Scope {
             color: "transparent"
             focusable: true
 
-            property string q: ""
-
             function selectItem(item) {
                 root.provider.applyAction(item);
                 ipc.close();
@@ -74,13 +72,10 @@ Scope {
                     spacing: 0
 
                     MenuSearchBar {
+                        id: searchBar
                         Layout.fillWidth: true
                         count: listView.count
-                        totalCount: root.provider?.items?.length ?? 0
-                        onSearchChanged: text => {
-                            window.q = text;
-                            listView.currentIndex = 0;
-                        }
+                        totalCount: root.provider.items.length
                     }
 
                     MenuSeparator {
@@ -96,7 +91,7 @@ Scope {
                         id: listView
                         Layout.fillWidth: true
                         provider: root.provider
-                        query: window.q
+                        query: searchBar.text
                         onItemSelected: item => window.selectItem(item)
                     }
                 }
