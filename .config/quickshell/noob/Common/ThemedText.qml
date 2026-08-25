@@ -7,5 +7,6 @@ Text {
     font.pixelSize: Theme.fontPxSize
     font.weight: Theme.fontWeight
     font.letterSpacing: Theme.fontLetterSpacing
+    textFormat: Text.PlainText
     renderType: Text.NativeRendering
 }
