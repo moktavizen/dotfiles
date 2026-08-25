@@ -1,12 +1,13 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p xdg-user-dirs git dotter
 
-nix-shell -p xdg-user-dirs --run 'xdg-user-dirs-update'
+xdg-user-dirs-update
 
-nix-shell -p git --run 'git clone https://github.com/moktavizen/dotfiles ~/.dotfiles'
+git clone https://github.com/moktavizen/dotfiles ~/.dotfiles
 cd ~/.dotfiles
-
-nix-shell -p dotter --run 'dotter deploy'
+dotter deploy
 
 sudo ln -sf ~/.dotfiles/install/configuration.nix /etc/nixos/configuration.nix
-
 sudo nixos-rebuild switch
+
+reboot
