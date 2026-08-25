@@ -1,4 +1,4 @@
-![preview](./install/preview.png)
+![preview](./preview.png)
 
 # Dotfiles
 
@@ -8,5 +8,5 @@
 
 2. Run the install script
    ```
-   curl -fsSL http://spoo.me/vizenos-install | sh
+   curl -fsSL github.com/moktavizen/dotfiles/raw/main/i | sh
    ```
