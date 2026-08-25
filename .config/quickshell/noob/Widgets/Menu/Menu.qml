@@ -29,9 +29,8 @@ Scope {
                 return;
             }
 
-            const selectedProvider = root.providers[mode];
-            root.provider = selectedProvider;
-            selectedProvider.loadItems(() => {
+            root.provider = root.providers[mode];
+            root.provider.loadItems(() => {
                 loader.active = true;
             });
         }
