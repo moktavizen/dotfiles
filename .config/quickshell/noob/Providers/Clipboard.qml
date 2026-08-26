@@ -30,11 +30,11 @@ Singleton {
     }
 
     function getText(cbItem): string {
-        return cbItem.split("\t")[1] ?? "";
+        return cbItem.split("\t")[1];
     }
 
     function getKeywords(cbItem): string {
-        return cbItem;
+        return cbItem.split("\t")[1];
     }
 
     function applyAction(cbItem): void {
