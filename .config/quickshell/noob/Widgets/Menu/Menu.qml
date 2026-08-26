@@ -106,7 +106,7 @@ Scope {
             }
             Shortcut {
                 sequences: ["Return", "Enter"]
-                onActivated: listView.selectCurrent()
+                onActivated: listView.selectCurrentItem()
             }
             Shortcut {
                 sequences: ["Esc", "Ctrl+["]

@@ -16,8 +16,8 @@ ListView {
 
     signal itemSelected(var item)
 
-    function selectCurrent(): void {
-        itemSelected(model.values[currentIndex]);
+    function selectCurrentItem(): void {
+        itemSelected(currentItem.modelData);
     }
 
     spacing: 2
@@ -68,7 +68,7 @@ ListView {
         }
 
         TapHandler {
-            onTapped: root.itemSelected(modelData)
+            onTapped: root.selectCurrentItem()
         }
 
         HoverHandler {
