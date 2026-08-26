@@ -37,7 +37,7 @@ Singleton {
     property int cpuTemperature
     FileView {
         id: temperatureFile
-        path: "/sys/class/thermal/" + root.thermalZone + "/temp"
+        path: `/sys/class/thermal/${root.thermalZone}/temp`
         onLoaded: {
             root.cpuTemperature = this.text() / 1000;
         }
@@ -58,7 +58,7 @@ Singleton {
     property int powerCapacity
     FileView {
         id: powerFile
-        path: "/sys/class/power_supply/" + root.battery + "/capacity"
+        path: `/sys/class/power_supply/${root.battery}/capacity`
         onLoaded: {
             root.powerCapacity = this.text();
         }
@@ -68,7 +68,7 @@ Singleton {
     property real lastBytes: 0
     FileView {
         id: netwFile
-        path: "/sys/class/net/" + root.networkInterface + "/statistics/rx_bytes"
+        path: `/sys/class/net/${root.networkInterface}/statistics/rx_bytes`
         onLoaded: {
             const bytes = this.text();
             // (current - previous) converted to MiB/s
