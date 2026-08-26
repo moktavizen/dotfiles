@@ -43,7 +43,7 @@ ListView {
                 return items;
             }
 
-            const terms = query.toLowerCase().split(" ");
+            const terms = query.toLowerCase().split(/\s+/);
             return items.filter(item => {
                 const keywords = root.provider.getKeywords(item).toLowerCase();
                 return terms.every(term => keywords.includes(term));
