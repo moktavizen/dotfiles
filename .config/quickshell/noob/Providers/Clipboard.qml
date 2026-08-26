@@ -38,6 +38,7 @@ Singleton {
     }
 
     function applyAction(cbItem): void {
-        Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbItem.split("\t")[0]} | wl-copy`]);
+        const cbId = cbItem.split("\t")[0];
+        Quickshell.execDetached(["sh", "-c", `cliphist decode ${cbId} | wl-copy`]);
     }
 }
