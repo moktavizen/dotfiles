@@ -17,7 +17,7 @@ Singleton {
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
-                root.winTitle = JSON.parse(text).find(w => w.is_focused)?.title || "N/A";
+                root.winTitle = JSON.parse(text).find(w => w.is_focused)?.title || "Quickshell";
             }
         }
     }
