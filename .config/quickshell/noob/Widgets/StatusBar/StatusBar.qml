@@ -94,7 +94,7 @@ Variants {
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                     Module {
-                        format: `<font color="${Theme.red}"></font> ${HWMonitor.cpuTemp}C`
+                        format: `<font color="${Theme.red}"></font> ${HWMonitor.cpuTemperature}C`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                     Module {

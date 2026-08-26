@@ -34,12 +34,12 @@ Singleton {
         }
     }
 
-    property int cpuTemp
+    property int cpuTemperature
     FileView {
-        id: tempFile
+        id: temperatureFile
         path: "/sys/class/thermal/" + root.thermalZone + "/temp"
         onLoaded: {
-            root.cpuTemp = this.text() / 1000;
+            root.cpuTemperature = this.text() / 1000;
         }
     }
 
@@ -84,7 +84,7 @@ Singleton {
         repeat: true
         onTriggered: {
             cpuFile.reload();
-            tempFile.reload();
+            temperatureFile.reload();
             memFile.reload();
             powerFile.reload();
             netwFile.reload();
