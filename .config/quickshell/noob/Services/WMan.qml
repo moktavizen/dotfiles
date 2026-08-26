@@ -38,10 +38,10 @@ Singleton {
         running: true
         stdout: SplitParser {
             onRead: data => {
-                const ev = JSON.parse(data);
-                if (ev.WindowFocusChanged || ev.WindowOpenedOrChanged) {
+                const event = JSON.parse(data);
+                if (event.WindowFocusChanged || event.WindowOpenedOrChanged) {
                     winProc.running = true;
-                } else if (ev.WorkspaceActivated || ev.WorkspacesChanged) {
+                } else if (event.WorkspaceActivated || event.WorkspacesChanged) {
                     wsProc.running = true;
                 }
             }
