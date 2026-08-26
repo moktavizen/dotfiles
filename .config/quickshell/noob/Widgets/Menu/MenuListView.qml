@@ -12,6 +12,8 @@ ListView {
 
     required property var provider
     required property string query
+    onQueryChanged: currentIndex = 0
+
     property int lines: 7
 
     signal itemSelected(var item)
