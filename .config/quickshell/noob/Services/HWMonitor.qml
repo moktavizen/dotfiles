@@ -6,6 +6,9 @@ import QtQuick
 
 Singleton {
     id: root
+    property string thermalZone: "thermal_zone1"
+    property string battery: "BAT0"
+    property string networkInterface: "wlp3s0"
     property int updateSec: 2
 
     property int cpuUsage
@@ -34,8 +37,7 @@ Singleton {
     property int cpuTemp
     FileView {
         id: tempFile
-        // Note: Change 'thermal_zone1' if your CPU temp is on a different zone
-        path: "/sys/class/thermal/thermal_zone1/temp"
+        path: "/sys/class/thermal/" + root.thermalZone + "/temp"
         onLoaded: {
             root.cpuTemp = this.text() / 1000;
         }
@@ -56,8 +58,7 @@ Singleton {
     property int powerCapacity
     FileView {
         id: powerFile
-        // Note: Change 'BAT0' if your battery identifier is different (e.g., BAT1)
-        path: "/sys/class/power_supply/BAT0/capacity"
+        path: "/sys/class/power_supply/" + root.battery + "/capacity"
         onLoaded: {
             root.powerCapacity = this.text();
         }
@@ -67,8 +68,7 @@ Singleton {
     property real lastBytes: 0
     FileView {
         id: netwFile
-        // Note: Replace 'wlp3s0' with your active network interface name
-        path: "/sys/class/net/wlp3s0/statistics/rx_bytes"
+        path: "/sys/class/net/" + root.networkInterface + "/statistics/rx_bytes"
         onLoaded: {
             const bytes = this.text();
             // (current - previous) converted to MiB/s
