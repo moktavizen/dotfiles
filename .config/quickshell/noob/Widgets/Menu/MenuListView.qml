@@ -20,18 +20,11 @@ ListView {
         itemSelected(model.values[currentIndex]);
     }
 
-    function next(): void {
-        currentIndex = (currentIndex + 1) % count;
-    }
-
-    function previous(): void {
-        currentIndex = (currentIndex - 1 + count) % count;
-    }
-
     spacing: 2
     implicitHeight: (currentItem?.implicitHeight * lines) + (spacing * (lines - 1))
     clip: true
     highlightMoveDuration: 0
+    keyNavigationWraps: true
 
     model: ScriptModel {
         values: {

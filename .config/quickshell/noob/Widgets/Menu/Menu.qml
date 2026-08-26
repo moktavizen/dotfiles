@@ -98,11 +98,11 @@ Scope {
 
             Shortcut {
                 sequence: "Ctrl+J"
-                onActivated: listView.next()
+                onActivated: listView.incrementCurrentIndex()
             }
             Shortcut {
                 sequence: "Ctrl+K"
-                onActivated: listView.previous()
+                onActivated: listView.decrementCurrentIndex()
             }
             Shortcut {
                 sequences: ["Return", "Enter"]
