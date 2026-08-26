@@ -12,8 +12,6 @@ ListView {
 
     required property var provider
     required property string query
-    onQueryChanged: currentIndex = 0
-
     property int lines: 7
 
     signal itemSelected(var item)
@@ -49,6 +47,7 @@ ListView {
                 return terms.every(term => keywords.includes(term));
             });
         }
+        onValuesChanged: currentIndex = 0
     }
 
     delegate: Control {
