@@ -162,7 +162,6 @@
     # Tooling
     nil # nix
     nixfmt-rs # nix
-    taplo # dotter
     shfmt # installs script
     lua-language-server # neovim
     stylua # neovim
