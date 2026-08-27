@@ -144,9 +144,9 @@ require('mini.starter').setup({
      ▀██▀    ██▄▀█▄▄▄▄▀███▀  ▀███▀▄██▄██ ██ ▀█]],
   -- stylua: ignore
   items = {
-    { name = 'Find file ---------------------------------------- F', action = function() Snacks.picker.files() end, section = ' ' },
-    { name = 'Grep text ---------------------------------------- G', action = function() Snacks.picker.grep() end, section = ' ' },
-    { name = 'Recent files ------------------------------------- R', action = function() Snacks.picker.recent() end, section = ' ' },
+    { name = 'Find file --------------------------------------- F', action = function() MiniPick.builtin.files() end, section = ' ' },
+    { name = 'Grep text --------------------------------------- G', action = function() MiniPick.builtin.grep_live() end, section = ' ' },
+    { name = 'Recent files ------------------------------------ R', action = function() MiniExtra.pickers.oldfiles() end, section = ' ' },
   },
   footer = "There was a time when Einstein couldn't count to ten\nA year from now you may wish you had started today",
   content_hooks = {
@@ -165,21 +165,9 @@ require('mini.diff').setup({
   },
 })
 require('mini.files').setup()
+require('mini.pick').setup()
+require('mini.extra').setup()
 require('mini.align').setup()
-vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
-require('snacks').setup({
-  styles = {
-    float = { backdrop = 100 },
-  },
-  picker = {
-    sources = {
-      files = { hidden = true },
-      grep = { hidden = true },
-      buffers = { hidden = true },
-      explorer = { hidden = true },
-    },
-  },
-})
 
 --
 -- Keymaps
@@ -197,25 +185,25 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>ca', function() vim.lsp.buf.code_action() 
 vim.keymap.set('n', '<Leader>cr', function() vim.lsp.buf.rename() end, { desc = 'Rename' })
 vim.keymap.set('n', '<leader>pU', function() vim.pack.update() end, { desc = ' Update plugins' })
 
-vim.keymap.set('n', '<leader><space>', function() Snacks.picker.files() end, { desc = 'Find Files' })
-vim.keymap.set('n', '<leader>,', function() Snacks.picker.buffers() end, { desc = 'Buffers' })
-vim.keymap.set('n', "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep" })
-vim.keymap.set('n', '<leader>:', function() Snacks.picker.command_history() end, { desc = 'Command History' })
-vim.keymap.set('n', '<leader>n', function() Snacks.picker.notifications() end, { desc = 'Notification History' })
-vim.keymap.set({ 'n', 'x' }, '<leader>sw', function() Snacks.picker.grep_word() end, { desc = 'Visual selection or word' })
-vim.keymap.set('n', '<leader>sh', function() Snacks.picker.help() end, { desc = 'Help Pages' })
-vim.keymap.set('n', '<leader>sH', function() Snacks.picker.highlights() end, { desc = 'Highlights' })
-vim.keymap.set('n', '<leader>sM', function() Snacks.picker.man() end, { desc = 'Man Pages' })
-vim.keymap.set('n', '<leader>sk', function() Snacks.picker.keymaps() end, { desc = 'Keymaps' })
-vim.keymap.set('n', '<leader>sd', function() Snacks.picker.diagnostics() end, { desc = 'Diagnostics' })
-vim.keymap.set('n', '<leader>sq', function() Snacks.picker.qflist() end, { desc = 'Quickfix List' })
-vim.keymap.set('n', 'gd', function() Snacks.picker.lsp_definitions() end, { desc = 'Goto Definition' })
-vim.keymap.set('n', 'gD', function() Snacks.picker.lsp_declarations() end, { desc = 'Goto Declaration' })
-vim.keymap.set('n', 'gr', function() Snacks.picker.lsp_references() end, { desc = 'References' })
-vim.keymap.set('n', 'gI', function() Snacks.picker.lsp_implementations() end, { desc = 'Goto Implementation' })
-vim.keymap.set('n', 'gy', function() Snacks.picker.lsp_type_definitions() end, { desc = 'Goto T[y]pe Definition' })
-vim.keymap.set('n', '<leader>ss', function() Snacks.picker.lsp_symbols() end, { desc = 'LSP Symbols' })
-vim.keymap.set('n', '<leader>sS', function() Snacks.picker.lsp_workspace_symbols() end, { desc = 'LSP Workspace Symbols' })
+-- MiniPick & MiniExtra Keymaps
+vim.keymap.set('n', '<leader><space>', function() MiniPick.builtin.files() end, { desc = 'Find Files' })
+vim.keymap.set('n', '<leader>,', function() MiniPick.builtin.buffers() end, { desc = 'Buffers' })
+vim.keymap.set('n', '<leader>/', function() MiniPick.builtin.grep_live() end, { desc = 'Grep' })
+vim.keymap.set('n', '<leader>:', function() MiniExtra.pickers.history({ scope = ':' }) end, { desc = 'Command History' })
+vim.keymap.set({ 'n', 'x' }, '<leader>sw', function() MiniPick.builtin.grep({ pattern = vim.fn.expand('<cword>') }) end, { desc = 'Word under cursor' })
+vim.keymap.set('n', '<leader>sh', function() MiniPick.builtin.help() end, { desc = 'Help Pages' })
+vim.keymap.set('n', '<leader>sH', function() MiniExtra.pickers.hl_groups() end, { desc = 'Highlights' })
+vim.keymap.set('n', '<leader>sM', function() MiniExtra.pickers.manpages() end, { desc = 'Man Pages' })
+vim.keymap.set('n', '<leader>sk', function() MiniExtra.pickers.keymaps() end, { desc = 'Keymaps' })
+vim.keymap.set('n', '<leader>sd', function() MiniExtra.pickers.diagnostic() end, { desc = 'Diagnostics' })
+vim.keymap.set('n', '<leader>sq', function() MiniExtra.pickers.list({ scope = 'quickfix' }) end, { desc = 'Quickfix List' })
+vim.keymap.set('n', 'gd', function() MiniExtra.pickers.lsp({ scope = 'definition' }) end, { desc = 'Goto Definition' })
+vim.keymap.set('n', 'gD', function() MiniExtra.pickers.lsp({ scope = 'declaration' }) end, { desc = 'Goto Declaration' })
+vim.keymap.set('n', 'gr', function() MiniExtra.pickers.lsp({ scope = 'references' }) end, { desc = 'References' })
+vim.keymap.set('n', 'gI', function() MiniExtra.pickers.lsp({ scope = 'implementation' }) end, { desc = 'Goto Implementation' })
+vim.keymap.set('n', 'gy', function() MiniExtra.pickers.lsp({ scope = 'type_definition' }) end, { desc = 'Goto Type Definition' })
+vim.keymap.set('n', '<leader>ss', function() MiniExtra.pickers.lsp({ scope = 'document_symbol' }) end, { desc = 'LSP Symbols' })
+vim.keymap.set('n', '<leader>sS', function() MiniExtra.pickers.lsp({ scope = 'workspace_symbol' }) end, { desc = 'LSP Workspace Symbols' })
 -- stylua: ignore end
 
 vim.keymap.set('n', '<leader>e', function()

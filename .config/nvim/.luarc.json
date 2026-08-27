@@ -2,6 +2,8 @@
     "diagnostics.globals": [
         "MiniIcons",
         "Snacks",
-        "MiniFiles"
+        "MiniFiles",
+        "MiniPick",
+        "MiniExtra"
     ]
 }

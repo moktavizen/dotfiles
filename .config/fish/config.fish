@@ -170,3 +170,5 @@ set -gx EDITOR nvim
 set -gx VISUAL nvim
 
 set -gx LS_COLORS (dircolors -c | string split ' ')[3]
+
+set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/config"

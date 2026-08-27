@@ -150,7 +150,7 @@
     tree-sitter # arborist.nvim deps
     gcc # arborist.nvim deps
     nodejs # arborist.nvim deps
-    ripgrep # snacks.picker deps
+    ripgrep # mini.pick deps
     fd
     eza
     dust
