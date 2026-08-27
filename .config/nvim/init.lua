@@ -60,10 +60,15 @@ vim.diagnostic.config({
 -- Plugins
 --
 
+-- Colorscheme
 vim.pack.add({ 'https://github.com/moktavizen/neutr.nvim' })
 vim.cmd.colorscheme('neutr')
 
--- LSP & Linter
+-- Syntax highlight
+vim.pack.add({ 'https://github.com/arborist-ts/arborist.nvim' })
+require('arborist').setup()
+
+-- LSP
 vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
 vim.lsp.config('lua_ls', {
   settings = {
@@ -122,12 +127,6 @@ require('conform').setup({
   format_on_save = { lsp_format = 'fallback', timeout_ms = 500 },
 })
 
--- Syntax highlight
-vim.pack.add({ 'https://github.com/arborist-ts/arborist.nvim' })
-require('arborist').setup({
-  install_popular = false,
-})
-
 -- Code completion
 vim.pack.add({
   { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') },
@@ -140,14 +139,6 @@ require('blink.cmp').setup({
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
-require('mini.align').setup()
-require('mini.diff').setup({
-  view = {
-    style = 'sign',
-    signs = { add = '┃', change = '┃', delete = '▶' },
-  },
-})
-require('mini.files').setup()
 require('mini.starter').setup({
   header = [[
        ▄▄     ▄▄▄          ▄▄▄
@@ -172,6 +163,14 @@ require('mini.starter').setup({
 vim.api.nvim_set_hl(0, 'MiniStarterHeader', { link = 'OkMsg' })
 vim.api.nvim_set_hl(0, 'MiniStarterItemPrefix', { link = 'Normal' })
 vim.api.nvim_set_hl(0, 'MiniStarterFooter', { link = 'Delimiter' })
+require('mini.diff').setup({
+  view = {
+    style = 'sign',
+    signs = { add = '┃', change = '┃', delete = '▶' },
+  },
+})
+require('mini.files').setup()
+require('mini.align').setup()
 vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
 require('snacks').setup({
   styles = {
