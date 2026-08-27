@@ -160,17 +160,17 @@
     dotter
 
     # Tooling
-    nil
-    nixfmt-rs
-    taplo
-    shfmt
-    lua-language-server
-    stylua
-    kdePackages.qtdeclarative
-    pnpm
-    typescript-go
-    oxfmt
-    oxlint
+    nil # nix
+    nixfmt-rs # nix
+    taplo # dotter
+    shfmt # installs script
+    lua-language-server # neovim
+    stylua # neovim
+    kdePackages.qtdeclarative # quickshell
+    pnpm # web
+    typescript-go # web
+    oxfmt # web
+    oxlint # web
   ];
 
   fonts = {
