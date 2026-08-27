@@ -153,7 +153,7 @@
     ripgrep # mini.pick deps
     fd
     eza
-    dust
+    dua
     imagemagick
     yt-dlp
     delta
