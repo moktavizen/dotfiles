@@ -128,17 +128,12 @@ require('conform').setup({
 })
 
 -- Code completion
-vim.pack.add({
-  { src = 'https://github.com/saghen/blink.cmp', version = vim.version.range('1.x') },
-})
-require('blink.cmp').setup({
-  fuzzy = { implementation = 'rust' },
-})
-
--- QOL
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
+require('mini.completion').setup()
+
+-- QOL
 require('mini.starter').setup({
   header = [[
        ▄▄     ▄▄▄          ▄▄▄
