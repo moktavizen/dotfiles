@@ -172,4 +172,4 @@ set -gx VISUAL nvim
 set -gx LS_COLORS (dircolors -c | string split ' ')[3]
 
 set -gx FZF_DEFAULT_OPTS_FILE "$HOME/.config/fzf/rc"
-set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/config"
+set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/rc"
