@@ -84,7 +84,7 @@ if status is-interactive
   # Alias
   #
 
-  # Require fzf, fd, eza, bat to be installed
+  # Require fzf, fd, eza to be installed
   alias ls='eza -1 --icons=always --color=always'
   alias shis='history | fzf | wl-copy -n'
   alias vim='nvim'
