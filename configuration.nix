@@ -163,7 +163,6 @@
     # Tooling
     nil # nix
     nixfmt-rs # nix
-    shfmt # installs script
     lua-language-server # neovim
     stylua # neovim
     kdePackages.qtdeclarative # quickshell
