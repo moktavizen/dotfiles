@@ -146,9 +146,6 @@ require('mini.starter').setup({
   evaluate_single = true,
   silent = true,
 })
-vim.api.nvim_set_hl(0, 'MiniStarterHeader', { link = 'OkMsg' })
-vim.api.nvim_set_hl(0, 'MiniStarterItemPrefix', { link = 'Normal' })
-vim.api.nvim_set_hl(0, 'MiniStarterFooter', { link = 'Delimiter' })
 require('mini.diff').setup({
   view = {
     style = 'sign',
