@@ -1,0 +1,5 @@
+--color=16
+--color=fg:#c1c1c1,bg:#131313,bg+:#2c2c2c,border:#717171
+--no-scrollbar
+--layout=reverse
+--border

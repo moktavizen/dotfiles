@@ -116,7 +116,6 @@
   programs.neovim.enable = true;
   programs.bat.enable = true;
   programs.lazygit.enable = true;
-  programs.television.enable = true;
 
   # Packages that does not have `.enable` option
   environment.systemPackages = with pkgs; [
@@ -154,6 +153,7 @@
     fd
     eza
     dua
+    fzf
     imagemagick
     yt-dlp
     delta

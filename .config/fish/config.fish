@@ -84,23 +84,23 @@ if status is-interactive
   # Alias
   #
 
-  # Require television, fd, eza, bat to be installed
+  # Require fzf, fd, eza, bat to be installed
   alias ls='eza -1 --icons=always --color=always'
-  alias shis='tv fish-history | wl-copy -n'
+  alias shis='history | fzf | wl-copy -n'
   alias vim='nvim'
   alias lazyvim='env NVIM_APPNAME=lazyvim nvim'
   alias nvchad='env NVIM_APPNAME=nvchad nvim'
   alias lg='lazygit'
 
   function sf
-    set file (fd -H -t f -E '.git' | tv -p "bat --theme=base16 --color=always --style=numbers {}")
+    set file (fd -H -t f -E '.git' | fzf)
     if test -n "$file"
       nvim "$file"
     end
   end
 
   function sd
-    set dir (fd -H -t d -E '.git' | tv -p "eza -1 --icons=always --color=always {}")
+    set dir (fd -H -t d -E '.git' | fzf)
     if test -n "$dir"
       cd "$dir"
     end
@@ -171,4 +171,5 @@ set -gx VISUAL nvim
 
 set -gx LS_COLORS (dircolors -c | string split ' ')[3]
 
+set -gx FZF_DEFAULT_OPTS_FILE "$HOME/.config/fzf/rc"
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/config"
