@@ -29,6 +29,7 @@ vim.o.smartindent = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+vim.o.completeopt = 'menuone,noinsert,fuzzy'
 vim.o.spell = true
 vim.o.spelllang = 'en_us'
 
@@ -47,6 +48,7 @@ vim.o.cursorlineopt = 'number'
 -- vim.o.cursorcolumn = true
 
 vim.o.winborder = 'rounded'
+vim.o.pumborder = 'rounded'
 
 vim.diagnostic.config({
   underline = true,
@@ -122,7 +124,11 @@ require('conform').setup({
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
-require('mini.completion').setup()
+require('mini.completion').setup({
+  delay = {
+    info = 10000000,
+  },
+})
 
 -- QOL
 require('mini.starter').setup({
