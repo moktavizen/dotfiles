@@ -124,11 +124,7 @@ require('conform').setup({
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
-require('mini.completion').setup({
-  delay = {
-    info = 10000000,
-  },
-})
+require('mini.completion').setup({ delay = { info = 10000000 } })
 
 -- QOL
 require('mini.starter').setup({
