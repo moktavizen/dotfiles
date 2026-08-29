@@ -17,7 +17,7 @@ Singleton {
     property color border: "#484848"
     property color selected: "#1affffff"
 
-    property string fontFamily: "JetBrainsMonoNL Nerd Font Propo"
+    property string fontFamily: "monospace"
     property int fontPxSize: 14
     property int fontWeight: 400
     property real fontLetterSpacing: -0.4
