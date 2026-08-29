@@ -167,11 +167,9 @@ require('mini.extra').setup()
 --
 
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Remove search highlight' })
-
+vim.keymap.set('n', '<Leader>bb', '<Cmd>b #<CR>', { desc = 'Switch to other buffer' })
 -- Only use this when making a colorscheme
 -- vim.keymap.set('n', '<C-I>', '<Cmd>Inspect<CR>', { desc = 'Inspect highlight group under cursor' })
-
-vim.keymap.set('n', '<Leader>bb', '<Cmd>b #<CR>', { desc = 'Switch to other buffer' })
 
 -- stylua: ignore start
 vim.keymap.set({ 'n', 'v' }, '<Leader>ca', function() vim.lsp.buf.code_action() end, { desc = 'Code Action' })
