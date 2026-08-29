@@ -158,7 +158,7 @@ require('mini.diff').setup({
     signs = { add = '┃', change = '┃', delete = '▶' },
   },
 })
-require('mini.files').setup()
+require('mini.files').setup({ mappings = { close = '<Esc>' } })
 require('mini.pick').setup()
 require('mini.extra').setup()
 
@@ -197,13 +197,10 @@ vim.keymap.set('n', 'gI', function() MiniExtra.pickers.lsp({ scope = 'implementa
 vim.keymap.set('n', 'gy', function() MiniExtra.pickers.lsp({ scope = 'type_definition' }) end, { desc = 'Goto Type Definition' })
 vim.keymap.set('n', '<leader>ss', function() MiniExtra.pickers.lsp({ scope = 'document_symbol' }) end, { desc = 'LSP Symbols' })
 vim.keymap.set('n', '<leader>sS', function() MiniExtra.pickers.lsp({ scope = 'workspace_symbol' }) end, { desc = 'LSP Workspace Symbols' })
--- stylua: ignore end
 
-vim.keymap.set('n', '<leader>e', function()
-  if not MiniFiles.close() then
-    MiniFiles.open(vim.api.nvim_buf_get_name(0))
-  end
-end, { desc = 'Toggle Floating File Explorer' })
+-- MiniFiles
+vim.keymap.set('n', '<leader>e', function() if vim.bo.filetype ~= 'minifiles' then MiniFiles.open(vim.api.nvim_buf_get_name(0)) end end, { desc = 'Open Explorer' })
+-- stylua: ignore end
 
 --
 -- Auto commands
