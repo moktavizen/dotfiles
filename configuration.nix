@@ -175,6 +175,7 @@
     enableDefaultPackages = false;
     packages = with pkgs; [
       inter
+      jetbrains-mono
       nerd-fonts.jetbrains-mono
       source-serif
       noto-fonts-color-emoji
