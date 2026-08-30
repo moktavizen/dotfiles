@@ -71,7 +71,7 @@ Variants {
                     verticalPadding: 0
                     Module {
                         format: `<font color="${Theme.blue}">󰊠</font> ${WMan.winTitle}`
-                        Layout.maximumWidth: 603
+                        Layout.maximumWidth: 420
                         elide: Text.ElideRight
                     }
                 }
