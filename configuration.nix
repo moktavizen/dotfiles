@@ -136,7 +136,6 @@
     lxqt.pcmanfm-qt
     lxqt.lximage-qt
     lxqt.lxqt-archiver
-    font-manager
 
     # GUI
     brave
