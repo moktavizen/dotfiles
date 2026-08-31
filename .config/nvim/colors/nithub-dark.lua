@@ -9,49 +9,51 @@ vim.g.colors_name = 'nithub-dark'
 
 local c = {
   -- Canvas / Backgrounds
-  bg_canvas = '#1e1e1e', -- Main editor background 0.0
-  bg_dark = '#161616', -- Sidebars, inactive headers, tabs 1.08
-  bg_highlight = '#262626', -- Cursorline & folded background (alpha blended / widget surface) 1.09
-  bg_dark_highlight = '#393939', -- Sidebar cursor
-  bg_visual = '#555555', -- Selection / visual highlight (#388bfd blended) 2.22
-  border = '#3e3e3e', -- Borders and separators 1.55
+  bg_canvas = '#1e1e1e',
+  bg_dark = '#161616',
+  bg_highlight = '#262626',
+  bg_dark_highlight = '#393939',
+  bg_visual = '#555555',
+  border = '#3e3e3e',
 
   -- Foregrounds
-  fg = '#e9e9e9', -- Base text, active tabs 16.01
-  fg_bright = '#ffffff', -- Badges, button foreground 18.92
-  fg_muted = '#9d9d9d', -- Comments, inactive text (#7d8590 in UI) 6.15
-  fg_subtle = '#7E7E7E', -- Line numbers, placeholder, ignored 4.11
-  border_focus = '#1f6feb', -- Focus border / badges
+  fg = '#e9e9e9',
+  fg_bright = '#ffffff',
+  fg_muted = '#9d9d9d',
+  fg_subtle = '#7E7E7E',
+  border_focus = '#1f6feb',
 
   -- Syntax Colors
-  red = '#ff7b72', -- Keywords, storage, operators, constants
-  red_bright = '#ffa198', -- Errors, invalid tokens, deleted inline
-  red_bg = '#490202', -- Diff deleted background
-  orange = '#ffa657', -- Variables, entity definitions, markdown lists
-  yellow = '#d29922', -- Warnings, git modified
-  yellow_bright = '#e3b341', -- Bracket highlight 3, debug source
-  yellow_match = '#9e6a03', -- Exact search match background
-  green = '#3fb950', -- Git added, numbers, terminal green
-  green_bright = '#7ee787', -- Tags, JSX components, JSON property names
-  green_bg = '#04260f', -- Diff inserted background
-  green_bracket = '#1a3b25', -- Bracket match background (#3fb95040 blended)
-  blue = '#58a6ff', -- Links, cursor, highlight
-  blue_bright = '#79c0ff', -- Constants, types, headings, properties
-  blue_light = '#a5d6ff', -- Strings, regex, link references
-  purple = '#bc8cff', -- Methods, functions, terminal magenta
-  purple_bright = '#d2a8ff', -- Function names, diff ranges
-  pink = '#ff9bce', -- Bracket highlight 5
-  diff_add = '#1a4a29', -- Diff sign add
-  diff_change = '#533e12', -- Diff sign add
-  diff_delete = '#6b2a2b', -- Diff sign add
+  red = '#ff7b72',
+  red_bright = '#ffa198',
+  red_bg = '#490202',
+  orange = '#ffa657',
+  yellow = '#d29922',
+  yellow_bright = '#e3b341',
+  yellow_match = '#9e6a03',
+  green = '#3fb950',
+  green_bright = '#7ee787',
+  green_bg = '#04260f',
+  green_bracket = '#1a3b25',
+  blue = '#58a6ff',
+  blue_bright = '#79c0ff',
+  blue_light = '#a5d6ff',
+  purple = '#bc8cff',
+  purple_bright = '#d2a8ff',
+  pink = '#ff9bce',
+  diff_add = '#1a4a29',
+  diff_change = '#533e12',
+  diff_delete = '#6b2a2b',
 
   none = 'NONE',
 }
 
 local highlights = {
+
   --
   -- Standard UI Highlights
   --
+
   Normal = { fg = c.fg, bg = c.bg_canvas },
   NormalNC = { fg = c.fg, bg = c.bg_canvas },
   NormalFloat = { fg = c.fg, bg = c.bg_dark },
@@ -124,6 +126,7 @@ local highlights = {
   --
   -- Diff & Git Highlighting
   --
+
   DiffAdd = { fg = c.green_bright, bg = c.green_bg },
   DiffChange = { fg = c.orange, bg = c.orange_bg },
   DiffDelete = { fg = c.red_bright, bg = c.red_bg },
@@ -136,6 +139,7 @@ local highlights = {
   --
   -- Standard Syntax Highlighting
   --
+
   Comment = { fg = c.fg_muted, italic = true },
   SpecialComment = { fg = c.fg_muted, italic = true },
 
@@ -184,6 +188,7 @@ local highlights = {
   --
   -- Treesitter Standard Captures
   --
+
   ['@comment'] = { link = 'Comment' },
   ['@comment.documentation'] = { fg = c.fg_muted, italic = true },
   ['@comment.error'] = { fg = c.red_bright, bold = true },
@@ -265,6 +270,7 @@ local highlights = {
   ['@tag.delimiter'] = { fg = c.fg_muted },
 
   -- Treesitter Markup / Markdown
+
   ['@markup.strong'] = { fg = c.fg, bold = true },
   ['@markup.italic'] = { fg = c.fg, italic = true },
   ['@markup.strikethrough'] = { fg = c.fg_muted, strikethrough = true },
@@ -288,6 +294,7 @@ local highlights = {
   --
   -- Diagnostics
   --
+
   DiagnosticError = { fg = c.red_bright },
   DiagnosticWarn = { fg = c.yellow_bright },
   DiagnosticInfo = { fg = c.blue_light },
@@ -309,6 +316,7 @@ local highlights = {
   --
   -- Plugins
   --
+
   -- mini.starter
   MiniStarterHeader = { link = 'DiagnosticOk' },
   MiniStarterFooter = { link = 'DiagnosticInfo' },
