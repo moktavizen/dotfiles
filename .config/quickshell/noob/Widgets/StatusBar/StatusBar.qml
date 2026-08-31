@@ -90,7 +90,7 @@ Variants {
                 Group {
                     id: hwGroup
                     Module {
-                        format: `<font color="${Theme.paleCyan}">󰍛</font> ${HWMonitor.cpuUsage}%`
+                        format: `<font color="${Theme.gray}">󰍛</font> ${HWMonitor.cpuUsage}%`
                         onClickCmd: "foot -T 'Task Manager' btop"
                     }
                     Module {

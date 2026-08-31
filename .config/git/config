@@ -23,15 +23,11 @@
     dark = true
 
     # Theme
-    syntax-theme                  = base16
-    minus-style                   = syntax "#3a2b2c"
-    minus-non-emph-style          = syntax "#3a2b2c"
-    minus-emph-style              = syntax "#724d4f"
-    minus-empty-line-marker-style = syntax "#3a2b2c"
-    plus-style                    = syntax "#3b4133"
-    plus-non-emph-style           = syntax "#3b4133"
-    plus-emph-style               = syntax "#687754"
-    plus-empty-line-marker-style  = syntax "#3b4133"
+    syntax-theme     = base16
+    minus-style      = syntax "#3d2b29"
+    minus-emph-style = syntax "#783f3a"
+    plus-style       = syntax "#293d2b"
+    plus-emph-style  = syntax "#3a783f"
 
 [merge]
     conflictStyle = zdiff3

@@ -9,12 +9,8 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "mini.nvim": {
-      "rev": "1098976ddda3cf00f50c1dda5eef10ccf463d9eb",
+      "rev": "fb2bbae327f3c306f3c825031345b89dd176ce60",
       "src": "https://github.com/nvim-mini/mini.nvim"
-    },
-    "neutr.nvim": {
-      "rev": "00d140cddc64de9360c433550478ffafbe391353",
-      "src": "https://github.com/moktavizen/neutr.nvim"
     },
     "nvim-lspconfig": {
       "rev": "684cb45c2faa24ce463b4fe9aaf011bfe1e0fb26",

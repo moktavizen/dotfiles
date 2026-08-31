@@ -63,8 +63,7 @@ vim.diagnostic.config({
 --
 
 -- Colorscheme
-vim.pack.add({ 'https://github.com/moktavizen/neutr.nvim' })
-vim.cmd.colorscheme('neutr')
+vim.cmd.colorscheme('nithub-dark')
 
 -- Syntax highlight
 vim.pack.add({ 'https://github.com/arborist-ts/arborist.nvim' })

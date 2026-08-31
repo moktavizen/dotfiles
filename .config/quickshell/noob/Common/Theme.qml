@@ -4,17 +4,18 @@ import Quickshell
 import QtQuick
 
 Singleton {
+    property color red: "#ffa198"
+    property color green: "#7ee787"
+    property color yellow: "#e3b341"
+    property color blue: "#79c0ff"
+    property color magenta: "#d2a8ff"
+    property color cyan: "#a5d6ff"
+    property color gray: "#c5c5c5"
+
     property color background: "#cc1e1e1e"
-    property color foreground: "#ebebeb"
-    property color foregroundAlt: "#999999"
-    property color red: "#f2979c"
-    property color green: "#cdf297"
-    property color yellow: "#f2d297"
-    property color blue: "#97b4f2"
-    property color magenta: "#cd97f2"
-    property color cyan: "#97d8f2"
-    property color paleCyan: "#b4c8d1"
-    property color border: "#484848"
+    property color foreground: "#e9e9e9"
+    property color foregroundAlt: "#9d9d9d"
+    property color border: "#3e3e3e"
     property color selected: "#1affffff"
 
     property string fontFamily: "monospace"
