@@ -1,4 +1,10 @@
 --
+-- Colorscheme
+--
+
+vim.cmd.colorscheme('nithub-dark')
+
+--
 -- Options
 --
 
@@ -61,9 +67,6 @@ vim.diagnostic.config({
 --
 -- Plugins
 --
-
--- Colorscheme
-vim.cmd.colorscheme('nithub-dark')
 
 -- Syntax highlight
 vim.pack.add({ 'https://github.com/arborist-ts/arborist.nvim' })
