@@ -37,6 +37,7 @@ Scope {
                 contentItem: ColumnLayout {
                     spacing: 8
                     ThemedText {
+                        textFormat: Text.StyledText
                         text: `This <font color="${Theme.yellow}">${polkit.flow?.iconName || "action"}</font> needs root access!`
                         font.weight: 700
                         font.pixelSize: 16
