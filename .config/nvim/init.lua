@@ -166,6 +166,8 @@ require('mini.extra').setup()
 
 vim.keymap.set('n', '<Esc>', '<Cmd>nohlsearch<CR>', { desc = 'Remove search highlight' })
 vim.keymap.set('n', '<Leader>bb', '<Cmd>b #<CR>', { desc = 'Switch to other buffer' })
+vim.keymap.set('n', '<leader>gg', '<Cmd>tabnew | term lazygit<CR>i', { desc = 'LazyGit' })
+
 -- Only use this when making a colorscheme
 -- vim.keymap.set('n', '<C-I>', '<Cmd>Inspect<CR>', { desc = 'Inspect highlight group under cursor' })
 
@@ -217,6 +219,22 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     vim.fn.setpos('.', save_cursor)
   end,
   desc = 'Remove trailing whitespace on save',
+})
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function()
+    vim.opt_local.spell = false
+  end,
+  desc = 'Disable spellcheck in terminal',
+})
+
+vim.api.nvim_create_autocmd('TermClose', {
+  callback = function(args)
+    if vim.v.event.status == 0 and vim.api.nvim_buf_is_valid(args.buf) then
+      vim.api.nvim_buf_delete(args.buf, { force = true })
+    end
+  end,
+  desc = 'Auto-close terminal buffers if the process exits cleanly',
 })
 
 --
