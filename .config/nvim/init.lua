@@ -206,35 +206,35 @@ vim.keymap.set('n', '<leader>e', function() if vim.bo.filetype ~= 'minifiles' th
 
 -- From `:h lua-guide-autocommand-create`
 vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Briefly highlight yanked text',
   callback = function()
     vim.hl.on_yank()
   end,
-  desc = 'Briefly highlight yanked text',
 })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
-  callback = function()
-    local save_cursor = vim.fn.getpos('.')
-    vim.cmd([[%s/\s\+$//e]])
-    vim.fn.setpos('.', save_cursor)
-  end,
   desc = 'Remove trailing whitespace on save',
+  callback = function()
+    local last_pos = vim.fn.getpos('.')
+    vim.cmd([[%s/\s\+$//e]])
+    vim.fn.setpos('.', last_pos)
+  end,
 })
 
 vim.api.nvim_create_autocmd('TermOpen', {
+  desc = 'Disable spellcheck in terminal',
   callback = function()
     vim.opt_local.spell = false
   end,
-  desc = 'Disable spellcheck in terminal',
 })
 
 vim.api.nvim_create_autocmd('TermClose', {
+  desc = 'Auto-close terminal buffers if the process exits cleanly',
   callback = function(args)
     if vim.v.event.status == 0 and vim.api.nvim_buf_is_valid(args.buf) then
       vim.api.nvim_buf_delete(args.buf, { force = true })
     end
   end,
-  desc = 'Auto-close terminal buffers if the process exits cleanly',
 })
 
 --
