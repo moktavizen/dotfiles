@@ -2,11 +2,6 @@
 -- Ported directly from VS Code GitHub Dark Default specifications
 -- With some tweaks to neutralize the base colors
 
-vim.cmd('highlight clear')
-
-vim.o.termguicolors = true
-vim.g.colors_name = 'nithub-dark'
-
 local c = {
   -- Canvas / Backgrounds
   bg_canvas = '#1e1e1e',
