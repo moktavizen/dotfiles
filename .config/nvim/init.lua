@@ -156,7 +156,7 @@ require('mini.diff').setup({
     signs = { add = '┃', change = '┃', delete = '▶' },
   },
 })
-require('mini.files').setup({ mappings = { close = '<Esc>' } })
+require('mini.files').setup()
 require('mini.pick').setup()
 require('mini.extra').setup()
 
