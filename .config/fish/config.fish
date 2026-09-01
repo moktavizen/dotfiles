@@ -84,14 +84,10 @@ if status is-interactive
   # Alias
   #
 
-  # Require fzf, fd, eza to be installed
-  alias ls='eza -1 --icons=always --color=always'
   alias shis='history | fzf | wl-copy -n'
   alias update='sudo nixos-rebuild switch --upgrade'
   alias vim='nvim'
   alias lazyvim='env NVIM_APPNAME=lazyvim nvim'
-  alias nvchad='env NVIM_APPNAME=nvchad nvim'
-  alias lg='lazygit'
 
   function sf
     set file (fd -H -t f -E '.git' | fzf)
@@ -126,36 +122,8 @@ if status is-interactive
       -o "%(channel)s - %(title)s.%(ext)s" $argv[1]
   end
 
-  function encav1
-    # > Preset value of 6 can give you a good trade-off between quality,
-    # > file size, and speed.
-    # See https://ottverse.com/analysis-of-svt-av1-presets-and-crf-values/
-    #
-    # > CRF value of 23 yields a quality level corresponding to CRF 19 for x264,
-    # > which would be considered visually lossless.
-    # See https://trac.ffmpeg.org/wiki/Encode/AV1/
-    #
-    ffmpeg -i $argv[1] -c:v libsvtav1 -preset 6 -crf 23 -c:a libopus -b:a 128k $argv[2]
-  end
-
-  function ench265
-    # > Preset medium is roughly the same speed as -preset 6 in `libsvtav1`.
-    #
-    # > The default is 28, and it should visually correspond to libx264
-    # > video at CRF 23. That makes CRF 24 corresponds to CRF 19 for x264,
-    # > which would be considered visually lossless.
-    # See https://trac.ffmpeg.org/wiki/Encode/H.265
-    #
-    ffmpeg -i $argv[1] -c:v libx265 -preset medium -crf 24 -c:a libopus -b:a 128k $argv[2]
-  end
-
-  function ench264
-    # > Preset medium is roughly the same speed as -preset 6 in `libsvtav1`.
-    #
-    # > CRF 19 for x264,which would be considered visually lossless.
-    # See https://trac.ffmpeg.org/wiki/Encode/AV1/
-    #
-    ffmpeg -i $argv[1] -c:v libx264 -preset medium -crf 19 -c:a libopus -b:a 128k $argv[2]
+  function fcut
+    ffmpeg -ss $argv[2] -to $argv[3] -i $argv[1] -c copy $argv[4]
   end
 
 end
@@ -169,8 +137,6 @@ fish_add_path "$HOME/.local/bin"
 set -gx MANPAGER 'nvim +Man!'
 set -gx EDITOR nvim
 set -gx VISUAL nvim
-
-set -gx LS_COLORS (dircolors -c | string split ' ')[3]
 
 set -gx FZF_DEFAULT_OPTS_FILE "$HOME/.config/fzf/rc"
 set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/rc"
