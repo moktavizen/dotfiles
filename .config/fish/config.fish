@@ -87,6 +87,7 @@ if status is-interactive
   # Require fzf, fd, eza to be installed
   alias ls='eza -1 --icons=always --color=always'
   alias shis='history | fzf | wl-copy -n'
+  alias update='sudo nixos-rebuild switch --upgrade'
   alias vim='nvim'
   alias lazyvim='env NVIM_APPNAME=lazyvim nvim'
   alias nvchad='env NVIM_APPNAME=nvchad nvim'

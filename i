@@ -8,6 +8,7 @@ cd ~/.dotfiles
 dotter deploy
 
 sudo ln -sf ~/.dotfiles/configuration.nix /etc/nixos/configuration.nix
-sudo nixos-rebuild switch
+sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+sudo nixos-rebuild switch --upgrade
 
 reboot
