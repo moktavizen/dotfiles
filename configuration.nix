@@ -140,9 +140,9 @@
     microfetch
     tree-sitter # arborist.nvim deps
     ripgrep # mini.pick deps
+    fzf
     fd
     dua
-    fzf
     imagemagick
     yt-dlp
     ffmpeg-full
