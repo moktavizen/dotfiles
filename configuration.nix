@@ -89,25 +89,18 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  services.displayManager.ly = {
-    enable = true;
-    settings = {
-      animation = "matrix";
-      hide_key_hints = true;
-      hide_version_string = true;
-      session_log = ".local/state/ly-session.log";
-    };
-  };
-  programs.niri.enable = true;
   security.polkit.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-  programs.seahorse.enable = true;
-  programs.partition-manager.enable = true;
-  services.gvfs.enable = true; # pcmanfm-qt deps
+  programs.niri.enable = true;
+  programs.bash.loginShellInit = ''
+    if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+      exec niri-session
+    fi
+  '';
 
   # GUI
   programs.chromium.enable = true; # Policies for Brave Browser
   programs.obs-studio.enable = true;
+  services.gvfs.enable = true; # pcmanfm-qt deps
 
   # CLI
   programs.foot.enable = true;
