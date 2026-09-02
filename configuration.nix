@@ -39,8 +39,16 @@
   networking.hostName = "thicc430";
 
   networking.networkmanager.enable = true;
-  services.cloudflare-warp.enable = true;
-  systemd.user.services.warp-taskbar.enable = false;
+  services.resolved = {
+    enable = true;
+    settings.Resolve = {
+      DNSOverTLS = "true";
+    };
+  };
+  networking.nameservers = [
+    "1.1.1.1"
+    "1.0.0.1"
+  ];
 
   time.timeZone = "Asia/Jakarta";
 
