@@ -11,4 +11,4 @@ sudo ln -sf ~/.dotfiles/configuration.nix /etc/nixos/configuration.nix
 sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 sudo nixos-rebuild switch --upgrade
 
-reboot
+echo "Installation complete! Reboot to see the result!"
