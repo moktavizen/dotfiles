@@ -96,7 +96,7 @@ spawn-at-startup "qs" "-c" "noob"
 spawn-at-startup "wlsunset" "-l" "-7.15" "-L" "112.61"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
-spawn-at-startup "brave"
+spawn-at-startup "brave-origin"
 spawn-sh-at-startup "foot sh -c 'nvim; exec fish'"
 
 layout {
@@ -145,7 +145,7 @@ workspace "browser"
 workspace "dev"
 
 window-rule {
-    match at-startup=true app-id="brave-browser"
+    match at-startup=true app-id="brave-origin"
     default-column-width { proportion 1.0; }
     open-on-workspace "browser"
 }

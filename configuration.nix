@@ -98,7 +98,7 @@
   '';
 
   # GUI
-  programs.chromium.enable = true; # Policies for Brave Browser
+  programs.chromium.enable = true; # Policies for Brave Origin
   programs.obs-studio.enable = true;
   services.gvfs.enable = true; # pcmanfm-qt deps
 
@@ -131,7 +131,7 @@
     lxqt.lxqt-archiver
 
     # GUI
-    brave
+    brave-origin
     mpv
     vscode
 
