@@ -5,7 +5,7 @@ xdg-user-dirs-update
 
 git clone https://github.com/moktavizen/dotfiles ~/.dotfiles
 cd ~/.dotfiles
-dotter deploy
+dotter --force
 
 sudo ln -sf ~/.dotfiles/configuration.nix /etc/nixos/configuration.nix
 sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
