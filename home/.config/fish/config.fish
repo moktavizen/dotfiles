@@ -85,6 +85,7 @@ if status is-interactive
   #
 
   alias shis='history | fzf | wl-copy -n'
+  alias rebuild='sudo nixos-rebuild switch'
   alias update='sudo nixos-rebuild switch --upgrade'
   alias vim='nvim'
   alias lazyvim='env NVIM_APPNAME=lazyvim nvim'
