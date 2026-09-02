@@ -1,3 +1,2 @@
-[default.files]
-".config" = "~/.config"
-".local" = "~/.local"
+[home.files]
+"home" = "~/"
