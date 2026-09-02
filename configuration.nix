@@ -59,15 +59,6 @@
     variant = "";
   };
 
-  users.users."vizen" = {
-    isNormalUser = true;
-    description = "vizen";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  };
-
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
@@ -185,6 +176,24 @@
       emoji = [ "Noto Color Emoji" ];
     };
   };
+
+  users.users."vizen" = {
+    isNormalUser = true;
+    description = "vizen";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+  };
+  services.getty = {
+    loginOptions = "-- vizen";
+    extraArgs = [ "--skip-login" ];
+  };
+  programs.bash.loginShellInit = ''
+    if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+      exec niri-session -l
+    fi
+  '';
 
   system.stateVersion = "26.05";
 }
