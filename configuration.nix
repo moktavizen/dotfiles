@@ -145,15 +145,13 @@
     # CLI
     microfetch
     tree-sitter # arborist.nvim deps
-    gcc # arborist.nvim deps
-    nodejs # arborist.nvim deps
     ripgrep # mini.pick deps
     fd
-    eza
     dua
     fzf
     imagemagick
     yt-dlp
+    ffmpeg-full
     delta
     github-cli
     dotter
