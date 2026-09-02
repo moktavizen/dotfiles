@@ -222,9 +222,12 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 vim.api.nvim_create_autocmd('TermOpen', {
-  desc = 'Disable spellcheck in terminal',
+  desc = 'Disable spellcheck and search highlight in terminal',
   callback = function()
     vim.opt_local.spell = false
+    vim.schedule(function()
+      vim.cmd.nohlsearch()
+    end)
   end,
 })
 
