@@ -91,11 +91,6 @@
   };
   security.polkit.enable = true;
   programs.niri.enable = true;
-  programs.bash.loginShellInit = ''
-    if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-      exec niri-session
-    fi
-  '';
 
   # GUI
   programs.chromium.enable = true; # Policies for Brave Origin
