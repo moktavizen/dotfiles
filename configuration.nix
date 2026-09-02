@@ -134,6 +134,8 @@
     cmatrix
     microfetch
     tree-sitter # arborist.nvim deps
+    gcc # arborist.nvim deps
+    nodejs # arborist.nvim deps
     ripgrep # mini.pick deps
     fzf
     fd
