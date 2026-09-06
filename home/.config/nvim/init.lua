@@ -45,6 +45,7 @@ vim.o.statuscolumn = '%l %s%C'
 vim.o.signcolumn = 'yes:1'
 
 vim.o.laststatus = 1
+vim.o.rulerformat = '%c  %t%m'
 
 vim.o.cursorline = true
 vim.o.cursorlineopt = 'number'
