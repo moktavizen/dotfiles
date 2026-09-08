@@ -10,7 +10,6 @@ Singleton {
     property color blue: "#79c0ff"
     property color magenta: "#d2a8ff"
     property color cyan: "#a5d6ff"
-    property color gray: "#c5c5c5"
 
     property color background: "#cc1e1e1e"
     property color foreground: "#e9e9e9"
