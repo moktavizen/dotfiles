@@ -76,6 +76,7 @@ local highlights = {
 
   StatusLine = { fg = c.fg_muted, bg = c.bg_canvas },
   StatusLineNC = { fg = c.fg_subtle, bg = c.bg_canvas },
+  MsgArea = { link = 'StatusLine' },
 
   TabLine = { fg = c.fg_muted, bg = c.bg_canvas },
   TabLineFill = { bg = c.bg_canvas },
@@ -109,7 +110,7 @@ local highlights = {
   ErrorMsg = { fg = c.red_bright, bold = true },
   WarningMsg = { fg = c.yellow_bright },
   MoreMsg = { fg = c.blue_light, bold = true },
-  ModeMsg = { fg = c.fg_bright, bold = true },
+  ModeMsg = { fg = c.fg_muted, bold = true },
   Question = { fg = c.green_bright },
   QuickFixLine = { bg = c.bg_highlight, bold = true },
 
