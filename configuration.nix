@@ -130,6 +130,7 @@
     lxqt.pcmanfm-qt
     lxqt.lximage-qt
     lxqt.lxqt-archiver
+    unzip # lxqt-archiver deps
 
     # GUI
     brave-origin
