@@ -161,7 +161,7 @@
     stylua # neovim
     kdePackages.qtdeclarative # quickshell
     pnpm # web
-    typescript-go # web
+    typescript # web
     oxfmt # web
     oxlint # web
   ];
