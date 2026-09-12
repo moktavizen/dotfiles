@@ -102,6 +102,7 @@
   programs.chromium.enable = true; # Policies for Brave Origin
   programs.obs-studio.enable = true;
   services.gvfs.enable = true; # pcmanfm-qt deps
+  services.flatpak.enable = true; # for rare programs without native nixpkg
 
   # CLI
   programs.foot.enable = true;
@@ -127,6 +128,7 @@
     cliphist
     wl-clipboard
     wlsunset
+    xwayland-satellite
     lxqt.pcmanfm-qt
     lxqt.lximage-qt
     lxqt.lxqt-archiver
